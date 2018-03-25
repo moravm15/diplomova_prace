@@ -10,6 +10,8 @@
 
 \usepackage[utf8]{inputenc} % LaTeX source encoded as UTF-8
 
+\usepackage{float}
+
 \usepackage{graphicx} %graphics files inclusion
 % \usepackage{amsmath} %advanced maths
 % \usepackage{amssymb} %additional math symbols
@@ -56,21 +58,130 @@
 \chapter{Cíl práce}
 Cílem této práce je vytvoření webové SAP Fiori aplikace nad SAPovským modulem údržby ve frameworku SAPUI5. Pomocí této aplikace bude umožněno realizovat servisní zakázky i preventivní údržbu strojů a to včetně jejich vybavení.
 
-\section{Rešešní část}
-Jedním z cílů rešešní části je porovnání prostředí podporujících vývoj ve frameworku SAPUI5. 
+\section{Rešeršní část}
+Jedním z cílů rešeršní části je porovnání prostředí podporujících vývoj ve frameworku SAPUI5. 
 
 \section{Vývojová část}
 Cílem praktické části je navržení uživatelského rozhraní aplikace s ohledem na způsob zacházení s modulem údržby. Nadále pak implementace samotné aplikace dle provedeného návrhu. 
 
 \section{Co není cílem práce}
 
-\chapter{Analýza a návrh}
+\chapter{SAP PM}
+\section{Společnost SAP}
+Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací a jednou z největších softwarových společností na celém světe. 
+Pod zkratkou SAP se schovávají počáteční písmena německých slov „Systeme, Anwendungen, Produkte in der Datenverarbeitung“. Anglicky si lze zkratku přeložit pomocí anglických slov „Systems - Applications - Products in data processing“.
 
-\chapter{Analýza a návrh}
+\section{SAP R3}
+Příchodem verze SAP R/3 se změnila architektura SAPu na architekturu klient-server, kte-rá je tvořena třemi vrstvami:
+\begin{itemize}
+	\item
+	\textbf{Prezenční vrstva}
+	\item
+	\textbf{Aplikační vrstva}
+	\item
+	\textbf{Databázová vrstva}
+\end{itemize} 	
 
-\chapter{Analýza a návrh}
+\subsection{Moduly SAP R3}
+Systém SAP R/3 je vnitřně rozdělen do několika různých modulů. Každý z nich pak řeší konkrétní problematiku firmy.
 
-\chapter{Realizace}
+\begin{itemize}
+	\item
+	\textbf{Financial Accounting (FI)} - Finanční účetnictví 
+	\item
+	\textbf{Controlling (CO)} - Kontroling
+	\item
+	\textbf{Asset Management (AM)} - Evidence majetku
+	\item
+	\textbf{Project system (PS)} - Plánování dlouhodobých projektů
+	\item
+	\textbf{Workflow (WF)} - Řízení oběhu dokumentů
+	\item
+	\textbf{Industry Solutions (IS)} - Specifická řešení různých odvětví
+	\item
+	\textbf{Human Resources (HR)} - Řízení lidských zdrojů  
+	\item
+	\textbf{Plant Maintenance (PM)} - Údržba
+	\item
+	\textbf{Materials Management (MM)} - Skladové hospodářství a logistika
+	\item
+	\textbf{Quality Management (QM)} - Management kvality
+	\item
+	\textbf{Production Planning (PP)} - Plánování výroby 
+	\item
+	\textbf{Sales and Distribution (SD)} - Podpora prodeje   
+\end{itemize} 	
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/sap_r3.jpg}
+	\caption{Moduly SAP R3}
+	\label{img:sapr3}
+	\small
+	fghfghgddh
+\end{figure}
+
+\subsection{SAP Plant Maintenance (PM)}
+
+\chapter{Analýza a návrh aplikace}
+Tato kapitola se věnuje analýze mnou navrženého řešení. Obsahuje jednotlivé podkapitoly zaměřující se na zpracování požadavků kladených na výslednou aplikaci, funkčnost RFID čtečky i návrh kompletního třídního modelu.	
+
+\section{Model požadavků}
+V této kapitole jsou uvedeny veškeré požadavky kladené na  výslednou aplikaci, které byly probírány se zadavatelem. Většina z nich byla stanovena ihned po určení rámcového zadání, některé však byly přidány nebo lehce upraveny v rámci konzultací , jak se upravovalo zadání práce. Následující výčet požadavků je rozdělen do dvou kategorií a to do funkčních a nefunkčních požadavků.  
+
+\subsection{Funkční požadavky}
+
+\subsubsection{F1: Založení poruchy}
+\subsubsection{F2: Založení požadavku na údržbu}
+\subsubsection{F3: Zobrazení seznamu aktivních poruch}
+\subsubsection{F4: Zobrazení seznamu historie poruch}
+\subsubsection{F5: Zobrazení seznamu požadavků na údržbu}
+\subsubsection{F6: Zobrazení seznamu prevencí}
+\subsubsection{F7: Zobrazení dokumentace ke stroji (vybavení)}
+\subsubsection{F8: Administrace uživatele}
+
+\subsection{Nefunkční požadavky}
+
+\subsubsection{N1: Grafické uživatelské rozhraní}
+\subsubsection{N2: Provoz na provozních počítačích}
+\subsubsection{N3: Provoz na mobilních zařízeních}
+\subsubsection{N4: Dostupnost přes web}
+
+\section{Model případů užití (Use Case model)}
+Detailní specifikace funkčních požadavků, Typicky se jednotlivé požadavky rozpadají na několik případů užití. Základ pro tvorbu uživatelské příručky
+– Podklady k tvorbě akceptačních testů
+– Zpřesnění odhadů pracnosti
+– Zadání pro programátora
+
+
+\subsection{Seznam účastníků}
+
+\begin{itemize}
+	\item
+	\textbf{Operátor výroby} - 
+	\item
+	\textbf{Údržbář} - 
+	\item
+	\textbf{Správce - Administrátor} - 
+\end{itemize} 	
+
+\subsection{Diagram případů užití}
+
+\subsubsection{UC1: Vložit novou knihu}
+
+
+
+\section{Návrh uživatelského rozhraní}
+
+\subsection{Balsamiq}
+
+\subsection{Built}
+
+\chapter{Implementace}
+
+\section{Porovnání vývojových prostředí}
+
+\section{Doporučení pro vývoj}
 
 \begin{conclusion}
 	%sem napište závěr Vaší práce
