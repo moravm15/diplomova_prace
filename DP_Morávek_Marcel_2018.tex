@@ -58,28 +58,33 @@
 \chapter{Cíl práce}
 Cílem této práce je vytvoření webové SAP Fiori aplikace nad SAPovským modulem údržby ve frameworku SAPUI5. Pomocí této aplikace bude umožněno realizovat servisní zakázky i preventivní údržbu strojů a to včetně jejich vybavení.
 
-\section{Rešeršní část}
-Jedním z cílů rešeršní části je porovnání prostředí podporujících vývoj ve frameworku SAPUI5. 
-
 \section{Vývojová část}
 Cílem praktické části je navržení uživatelského rozhraní aplikace s ohledem na způsob zacházení s modulem údržby. Nadále pak implementace samotné aplikace dle provedeného návrhu. 
 
-\section{Co není cílem práce}
+\section{Rešeršní část}
+Jedním z cílů rešeršní části je porovnání prostředí podporujících vývoj ve frameworku SAPUI5. 
 
-\chapter{SAP PM}
+\section{Co není cílem práce}
+Cílem této práce není implementace ani návrh funkčnosti uvnitř EPRového systému. Tato práce začíná na úrovni komunikačních rozhraní jednotlivých funkčních modulů realizujících požadované operace. 
+
+\chapter{SAP}
+Tata kapitola se věnuje podnikovému informačnímu systému SAP. V jednotlivých podkapitolách jsou pak popsány obecné informace o historii firmy a architektonické struktuře systému. Dále jsou zde popsány i jednotlivé technické komponenty, které jsou použity pro realizaci požadované aplikace. 
 \section{Společnost SAP}
 Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací a jednou z největších softwarových společností na celém světe. 
 Pod zkratkou SAP se schovávají počáteční písmena německých slov „Systeme, Anwendungen, Produkte in der Datenverarbeitung“. Anglicky si lze zkratku přeložit pomocí anglických slov „Systems - Applications - Products in data processing“.
 
 \section{SAP R3}
-Příchodem verze SAP R/3 se změnila architektura SAPu na architekturu klient-server, kte-rá je tvořena třemi vrstvami:
+
+První verze systému, která přišla na svět v roce 1973, SAP R/1, byla tvořena finančním účetnictvím. Další verze SAP R/2 již můžeme nazývat za první funkční ERP systém (Enterprise resources planning), ovšem nevýhodou tohoto systému byla nutnost využívání sálových počítačů. Verzí SAP R/3 z roku 1992 byla změněna architektura SAPu, kdy se zaměnily sálové počítače na architekturu klient-server a začaly se využívat relační databáze. Výhoda této architektury byla především v kompatibilitě s různými platformami a operačními systémy Microsoft Windows nebo Unix. Další verze byla v roce 2002 spuštěna pod názvem SAP R/3 Enterprise. V roce 2004 byly nově uspořádány komponenty, čímž vznikl centrální produkt mySAP Business Suite. Došlo k oddělení aplikačních komponent od technických, přičemž se nadále označují jako SAP NetWeaver.
+
+Příchodem verze SAP R/3 se změnila architektura SAPu na architekturu klient-server, která je tvořena třemi vrstvami:
 \begin{itemize}
 	\item
-	\textbf{Prezenční vrstva}
+	\textbf{Prezenční vrstva} - Prezenční vrstva slouží pro komunikaci mezi uživatelem a počítačem. Vlastní komunikace probíhá na klientské části – prezentačním serveru. Nedílnou součástí prezentačního serveru je SAP GUI rozhraní, které se stará o komunikaci mezi prezentačním a aplikačním serverem.
 	\item
-	\textbf{Aplikační vrstva}
+	\textbf{Aplikační vrstva} - Aplikační vrstva je tvořena aplikačním serverem, který jednak přes SAP GUI komu-nikuje s klientem a jednak komunikuje s databází přes systém pro správu databáze. Vlastní programy, vytvořené v systému ABAP, jsou uloženy na aplikačních serverech.
 	\item
-	\textbf{Databázová vrstva}
+	\textbf{Databázová vrstva} - Databázová vrstva je tvořena vlastními databázovými servery, které slouží pro ukládání dat. Jelikož SAP je multiplatformní systém, vývojáře nemusí zajímat, na jaké databázové platformě (UNIX, ORACLE, SUN, MICROSOFT) databázová vrstva běží, aplikační vrstva bude vypadat vždy stejně.
 \end{itemize} 	
 
 \subsection{Moduly SAP R3}
@@ -123,6 +128,10 @@ Systém SAP R/3 je vnitřně rozdělen do několika různých modulů. Každý z
 
 \subsection{SAP Plant Maintenance (PM)}
 
+\subsection{SAP BSP}
+
+\subsection{SAP FIORI}
+
 \chapter{Analýza a návrh aplikace}
 Tato kapitola se věnuje analýze mnou navrženého řešení. Obsahuje jednotlivé podkapitoly zaměřující se na zpracování požadavků kladených na výslednou aplikaci, funkčnost RFID čtečky i návrh kompletního třídního modelu.	
 
@@ -130,6 +139,7 @@ Tato kapitola se věnuje analýze mnou navrženého řešení. Obsahuje jednotli
 V této kapitole jsou uvedeny veškeré požadavky kladené na  výslednou aplikaci, které byly probírány se zadavatelem. Většina z nich byla stanovena ihned po určení rámcového zadání, některé však byly přidány nebo lehce upraveny v rámci konzultací , jak se upravovalo zadání práce. Následující výčet požadavků je rozdělen do dvou kategorií a to do funkčních a nefunkčních požadavků.  
 
 \subsection{Funkční požadavky}
+Funkční požadavky jsou rozděleny do 8 sekcí označených jako F1 až F8. 
 
 \subsubsection{F1: Založení poruchy}
 \subsubsection{F2: Založení požadavku na údržbu}
@@ -139,6 +149,7 @@ V této kapitole jsou uvedeny veškeré požadavky kladené na  výslednou aplik
 \subsubsection{F6: Zobrazení seznamu prevencí}
 \subsubsection{F7: Zobrazení dokumentace ke stroji (vybavení)}
 \subsubsection{F8: Administrace uživatele}
+
 
 \subsection{Nefunkční požadavky}
 
@@ -169,13 +180,38 @@ Detailní specifikace funkčních požadavků, Typicky se jednotlivé požadavky
 
 \subsubsection{UC1: Vložit novou knihu}
 
-
-
 \section{Návrh uživatelského rozhraní}
 
 \subsection{Balsamiq}
 
 \subsection{Built}
+
+\subsection{Heuristická analýza}
+
+\begin{enumerate}
+	\item
+	\textbf{Viditelnost stavu systému} -
+	\item
+	\textbf{Propojení systému a reálného světa} -
+	\item
+	\textbf{Uživatelská kontrola a svoboda} -
+	\item
+	\textbf{Standardizace a konzistence} -
+	\item
+	\textbf{Prevence chyb} -
+	\item
+	\textbf{Rozpoznání namísto vzpomínání} -
+	\item
+	\textbf{Flexibilní a efektivní použití} -
+	\item
+	\textbf{Estetický a minimalistický} -
+	\item
+	\textbf{Pomoc uživatelů pochopit, poznat a vzpamatovat se z chyb} -
+	\item
+	\textbf{Nápověda a návody} -
+\end{enumerate} 
+
+\chapter{Návrh architektury}
 
 \chapter{Implementace}
 
