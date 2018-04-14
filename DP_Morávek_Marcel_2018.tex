@@ -46,6 +46,8 @@
 \keywordsEN{SAP, Fiori}
 % \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
 
+\setcounter{secnumdepth}{5}
+
 \begin{document}
 
 % \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
@@ -92,11 +94,11 @@ Systém SAP R/3 je vnitřně rozdělen do několika různých modulů. Každý z
 
 \begin{itemize}
 	\item
-	\textbf{Financial Accounting (FI)} - Finanční účetnictví 
+	\textbf{Financial Accounting (FI)} označuje finanční účetnictví a je jedním z nejdůležitějších modulů SAP ERP. Používá se k uložení finančních dat organizace a pomáhá analyzovat finanční podmínky společnosti na trhu.
 	\item
-	\textbf{Controlling (CO)} - Kontroling
+	\textbf{Controlling (CO)} podporuje koordinaci, monitorování a optimalizaci všech procesů v organizaci. Zahrnuje správu a konfiguraci základních dat, které pokrývají náklady a výnosy, interní objednávky a další nákladové prvky a funkční oblasti. Jeho hlavním účelem je plánování. Umožňuje určit odchylky srovnáním skutečných dat s údaji plánu a tím umožňuje řídit obchodní toky v organizaci.
 	\item
-	\textbf{Asset Management (AM)} - Evidence majetku
+	\textbf{Asset Management (AM)} slouží k optimální správě fyzického majetku organizace. Zahrnuje takové funkcionality jako jsou návrh, konstrukce, provoz, údržba a výměna zařízení. Spravuje majetek v jednotlivých odděleních (obchodních jednotkách).
 	\item
 	\textbf{Project system (PS)} - Plánování dlouhodobých projektů
 	\item
@@ -126,11 +128,115 @@ Systém SAP R/3 je vnitřně rozdělen do několika různých modulů. Každý z
 	fghfghgddh
 \end{figure}
 
-\subsection{SAP Plant Maintenance (PM)}
+\section{SAP Plant Maintenance (PM)}
+Modul SAP Plant Maintenance je komplexní řešení, které poskytuje nástroje pro kompletní údržbu v rámci firmy. Objekt údržby se skládá z technických objektů představujících strojní zařízení a skutečného modelu závodu.
 
-\subsection{SAP BSP}
+Modul se skládá z činností jako je například správa technických objektů, zpracování údržby nebo preventivní údržba. Používá se k komplexnímu plánování, provádění denních činností údržby s integrací do ostatních SAP modulů.
 
-\subsection{SAP FIORI}
+\subsection{Technické objekty}
+Pakliže je ve firmě zapotřebí správně nastavit DP (data processing) podporující údržbu, je nutné stávající technické systémy strukturovat na základě technických objektů. Vytvoření hierarchické podoby s sebou přináší následující výhody.
+\begin{itemize}
+	\item
+	Doba potřebná pro správu technických objektů je snížena.
+	\item
+	Zpracování údržby je zjednodušeno.
+	\item
+	Doba strávená při zadávání dat během zpracování údržby je značně snížena.
+	\item
+	Konkrétnější, důkladnější a rychlejší vyhodnocení údajů o údržbě.
+\end{itemize}
+
+Technická správa objektů se skládá z následujících činností:
+\begin{itemize}
+	\item
+	\textbf{Inspekce} - měřit a sledovat aktuální stav technického objektu
+	\item
+	\textbf{Preventivní údržba} - předvídat potřebu oprav a udržovat optimální stav technického objektu
+	\item
+	\textbf{Oprava} - měření a obnovení technického objektu
+	\item
+	\textbf{Další činnosti související s údržbou}
+\end{itemize}
+\vspace*{0.5cm}
+Zpracování údržby pomáhá řídit skutečné údržbářské práce prováděné v údržbě. Proces se skládá ze tří oblastí:
+\begin{itemize}
+	\item
+	\textbf{Upozornění na údržbu} -  oznamte poruchu nebo popište technickou podmínku objektu
+	\item
+	\textbf{Objednávka údržby} - provést podrobný plán údržby a sledovat průběh práce a uhradit náklady na údržbu
+	\item
+	\textbf{Historie údržby} - uložení důležitých údajů údržby pro vykazování a vyhodnocení
+\end{itemize} 	
+
+\subsection{Preventivní údržba}
+Preventivní údržba je dlouhodobý proces, jehož cílem je zajistit vysokou použitelnost zařízení a funkčních míst a minimalizovat prostoje způsobené opravami. Tato funkce podporuje údržbu založenou na výkonu, pokud jsou měřicí body nebo čítače používány pro řízení technických podmínek objektu.
+Součást preventivní údržby lze použít k:
+\begin{itemize}
+	\item
+	Uložit seznam úkolů, které mají být provedeny
+	\item
+	Upřesněte rozsah inspekčních prací, preventivní údržbu a plánování činností
+	\item
+	Zadejte opakovanou frekvenci údržby
+	\item
+	Upřesněte přiřazení kontrolních činností a preventivní údržbu na základě nákladů
+	\item
+	Vyhodnotit náklady na budoucí preventivní údržbu a inspekční práci
+\end{itemize} 	
+
+Preventivní údržba v organizaci se používá k zabránění selhání systému a rozpadu výroby. Pomocí preventivní údržby můžete ve vaší organizaci dosáhnout různých výhod. Preventivní údržba se používá k provádění inspekcí, preventivní údržby a oprav. Plány údržby slouží k definování dat a rozsahu úkolů preventivní a inspekční údržby, které lze naplánovat pro technické objekty.
+
+Seznam úkolů v Preventivní údržbě je definován jako sled činností, které jsou prováděny v rámci preventivní údržby v organizaci. Jsou používány k provádění opakovaných úkolů v rámci preventivní údržby a k jejich efektivnímu provedení.
+
+Pomocí seznamů úkolů můžete snížit úsilí standardizací pracovní postup. Všechny aktualizace se provádějí na jednom konkrétním místě v seznamu úkolů údržby a všechny položky údržby a údržby v systému obdrží aktualizovaný stav pracovních postupů. Pomocí seznamů úkolů pomáhá při snižování úsilí potřebného pro vytvoření objednávek údržby a položek údržby, jak můžete vrátit do seznamu úkolů, abyste viděli pracovní postup.
+Klíčové funkce seznamů úkolů v SAP Plant Maintenance jsou následující plánovaná a probíhající údržba podrobněji popsány v následujících odstavcích.
+
+\paragraph{Plánovaná údržba}
+Všechny plánované činnosti, jako je kontrola, údržba a opravy, jsou součástí plánované údržby. V údržbě rostlin definujete časové intervaly, kdy je třeba pracovní kroky provést a pracovní sekvence, ve kterých musí být provedeny. Seznamy úkolů jsou při plánování plánování údržby přiřazeny plánu údržby.
+
+\paragraph{Probíhající údržba}
+Seznam úkolů pro průběžnou údržbu obsahuje pracovní postupy založené na aktuální kontrole. Všechna kontrola, která se provádí bez pravidelného rozvrhu, je předmětem trvalé údržby.
+
+\subsection{Zpracování údržby}
+Zpracování údržby se skládá z několika úrovní, které nemusí být nutně plně realizovány.
+
+Proto je možné zpracovat opravu v mnoha fázích plánování, jako je předběžná kalkulace, plánování práce, materiálové zabezpečení, plánování zdrojů a povolení. Je však také možné okamžitě reagovat na škody způsobené událostmi, které způsobí vypnutí výroby, a v co nejkratší možné době předložit požadované objednávky a prodejní doklady s minimálními údaji.
+
+Zpracování údržby lze rozdělit na následující tři oblasti:
+\begin{itemize}
+	\item
+	\textbf{Popis stavu objektu} - Nejdůležitějším prvkem v této oblasti je oznámení o údržbě. Používá se k popisu stavu technického objektu nebo hlášení poruchy na technickém objektu a požadavek na opravu poškození.
+	\item
+	\textbf{Provádění úkolů údržby} - Nejdůležitějším prvkem v této oblasti je objednávka údržby. Používá se k detailnímu plánování provádění údržbářských činností, sledování průběhu práce a vypořádání nákladů na údržbu.
+	\item
+	\textbf{Dokončení úkolů údržby} - Nejdůležitějším prvkem v této oblasti je historie údržby. Používá se k dlouhodobému uložení nejdůležitějších údajů o údržbě. Tyto údaje lze kdykoli vyžádat k vyhodnocení.
+\end{itemize} 
+
+Tyto prvky umožňují zpracovat všechny úkoly, které je třeba provést v údržbě zařízení, stejně jako operace, které nepatří přímo do údržby zařízení, jako jsou investice, restrukturalizace, úpravy a podobně.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/pm_process.png}
+	\caption{Moduly SAP R3}
+	\label{img:sapr3}
+	\small
+	fghfghgddh
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{SAP BSP}
+
+\section{SAP FIORI}
 
 \chapter{Analýza a návrh aplikace}
 Tato kapitola se věnuje analýze mnou navrženého řešení. Obsahuje jednotlivé podkapitoly zaměřující se na zpracování požadavků kladených na výslednou aplikaci, funkčnost RFID čtečky i návrh kompletního třídního modelu.	
