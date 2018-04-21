@@ -69,6 +69,11 @@ Jedním z cílů rešeršní části je porovnání prostředí podporujících 
 \section{Co není cílem práce}
 Cílem této práce není implementace ani návrh funkčnosti uvnitř EPRového systému. Tato práce začíná na úrovni komunikačních rozhraní jednotlivých funkčních modulů realizujících požadované operace. 
 
+
+
+
+
+
 \chapter{SAP}
 Tata kapitola se věnuje podnikovému informačnímu systému SAP. V jednotlivých podkapitolách jsou pak popsány obecné informace o historii firmy a architektonické struktuře systému. Dále jsou zde popsány i jednotlivé technické komponenty, které jsou použity pro realizaci požadované aplikace. 
 \section{Společnost SAP}
@@ -92,33 +97,6 @@ Příchodem verze SAP R/3 se změnila architektura SAPu na architekturu klient-s
 \subsection{Moduly SAP R3}
 Systém SAP R/3 je vnitřně rozdělen do několika různých modulů. Každý z nich pak řeší konkrétní problematiku firmy.
 
-\begin{itemize}
-	\item
-	\textbf{Financial Accounting (FI)} označuje finanční účetnictví a je jedním z nejdůležitějších modulů SAP ERP. Používá se k uložení finančních dat organizace a pomáhá analyzovat finanční podmínky společnosti na trhu.
-	\item
-	\textbf{Controlling (CO)} podporuje koordinaci, monitorování a optimalizaci všech procesů v organizaci. Zahrnuje správu a konfiguraci základních dat, které pokrývají náklady a výnosy, interní objednávky a další nákladové prvky a funkční oblasti. Jeho hlavním účelem je plánování. Umožňuje určit odchylky srovnáním skutečných dat s údaji plánu a tím umožňuje řídit obchodní toky v organizaci.
-	\item
-	\textbf{Asset Management (AM)} slouží k optimální správě fyzického majetku organizace. Zahrnuje takové funkcionality jako jsou návrh, konstrukce, provoz, údržba a výměna zařízení. Spravuje majetek v jednotlivých odděleních (obchodních jednotkách).
-	\item
-	\textbf{Project system (PS)} - Plánování dlouhodobých projektů
-	\item
-	\textbf{Workflow (WF)} - Řízení oběhu dokumentů
-	\item
-	\textbf{Industry Solutions (IS)} - Specifická řešení různých odvětví
-	\item
-	\textbf{Human Resources (HR)} - Řízení lidských zdrojů  
-	\item
-	\textbf{Plant Maintenance (PM)} - Údržba
-	\item
-	\textbf{Materials Management (MM)} - Skladové hospodářství a logistika
-	\item
-	\textbf{Quality Management (QM)} - Management kvality
-	\item
-	\textbf{Production Planning (PP)} - Plánování výroby 
-	\item
-	\textbf{Sales and Distribution (SD)} - Podpora prodeje   
-\end{itemize} 	
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/sap_r3.jpg}
@@ -127,6 +105,33 @@ Systém SAP R/3 je vnitřně rozdělen do několika různých modulů. Každý z
 	\small
 	fghfghgddh
 \end{figure}
+
+\begin{itemize}
+	\item
+	\textbf{Financial Accounting (FI)} označuje finanční účetnictví a je jedním z nejdůležitějších modulů SAP ERP. Používá se k uložení finančních dat organizace a pomáhá analyzovat finanční podmínky společnosti na trhu.
+	\item
+	\textbf{Controlling (CO)} podporuje koordinaci, monitorování a optimalizaci všech procesů v organizaci. Zahrnuje správu a konfiguraci základních dat, které pokrývají náklady a výnosy, interní objednávky a další nákladové prvky a funkční oblasti. Jeho hlavním účelem je plánování. Umožňuje určit odchylky srovnáním skutečných dat s údaji plánu a tím umožňuje řídit obchodní toky v organizaci.
+	\item
+	\textbf{Asset Management (AM)} slouží k optimální správě fyzického majetku organizace. Zahrnuje takové funkcionality jako jsou návrh, konstrukce, provoz, údržba a výměna zařízení. Spravuje majetek v jednotlivých odděleních (obchodních jednotkách).
+	\item
+	\textbf{Project system (PS)} - je nástroj pro správu dlouhodobých projektů. Umožňuje uživatelům plánovat finanční prostředky i zdroje a kontrolovat jednotlivé části projektu tak, aby bylo zaručeno včasné dodání pokud možno v rámci rozpočtu.
+	\item
+	\textbf{Workflow (WF)} - umožňuje navrhovat a realizovat obchodní procesy v rámci aplikačních systémů SAP. Zajišťuje aby se práce dostala v požadovaný čas do rukou správným lidem. Jeho cílem je usnadnění automatizace podnikových procesů.
+	\item
+	\textbf{Industry Solutions (IS)} - poskytuje specifická řešení pro desítky industriálních odvětví jako například pro automobilový, chemický či energetický průmysl.
+	\item
+	\textbf{Human Resources (HR)} - umožňuje organizaci strukturálně a efektivně zpracovávat informace údaje týkající se zaměstnanců k potřebám obchodním požadavkům.
+	\item
+	\textbf{Plant Maintenance (PM)} - poskytuje nástroj pro provádění veškerých potřebných činností týkajících se údržby organizace a jejích součástí. Umožňuje plánovat údržbu i s ohledem na materiálovou potřebu, zaznamenávat a vyrovnávat náklady spojené s činností.
+	\item
+	\textbf{Materials Management (MM)} - se zabývá řízením materiálů a skladových zásob. Kontroluje, aby nedocházelo k nedostatkům zboží a nevznikaly tak mezery v řetězci dodavatelského procesu.
+	\item
+	\textbf{Production Planning (PP)} - sleduje a zaznamenává toky ve výrobním procesu. Má za úkol sladění poptávky s výrovním kapacitou spolu s vytvořením plánů k dokončení komponentů a produktů.
+	\item
+	\textbf{Quality Management (QM)} - je modul úzce provázaný s moduly MM, PP či PM a nedílnou součástí logistického řízení. Používá se k prováděnější kvalitativních funkcí jako je plánovaní jakosti, zajištění a kontroly kvality ve výrobním a spotřebním procesu.
+	\item
+	\textbf{Sales and Distribution (SD)} - se používá pro ukládání údajů o zákaznících a produktech organizace. Pomáhá řídit fakturaci, prodej a přepravu produktů či služeb organizace. Řídí vztah se zákazníky od počáteční nabídky až po prodejní zakázku a fakturaci produktu.   
+\end{itemize} 	
 
 \section{SAP Plant Maintenance (PM)}
 Modul SAP Plant Maintenance je komplexní řešení, které poskytuje nástroje pro kompletní údržbu v rámci firmy. Objekt údržby se skládá z technických objektů představujících strojní zařízení a skutečného modelu závodu.
@@ -216,27 +221,40 @@ Tyto prvky umožňují zpracovat všechny úkoly, které je třeba provést v ú
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/pm_process.png}
-	\caption{Moduly SAP R3}
-	\label{img:sapr3}
+	\includegraphics[width=1\textwidth]{images/pm_process.jpg}
+	\caption{Proces diagram PM}
+	\label{img:pm_process}
 	\small
-	fghfghgddh
+	Procesní diagram PM
 \end{figure}
 
-
-
-
-
-
-
-
-
-
-
-
 \section{SAP BSP}
+Tato sekce se zaměřuje na front-endovou technologii SAP BSP. Jedná se o jednu z technologií použitých v cílové architektuře řešení mobilní aplikace a proto je zde stručně popsána její struktura.
+
+\paragraph{SAP Web Application Server} SAP WAS je produktový produkt aplikačního serveru a nová generace produktu Basis. Poskytuje všechny funkce, které Basis udělal, a pak mnohem víc. Přemýšlejte o tom jako o nadpřirozené základně. Přemýšlejte o tom jako o obalení základny s obrovskými možnostmi webových aplikací, mezi které patří i schopnost spouštět aplikace Java / J2EE vedle aplikací ABAP. A chci říci, že přidání Java / J2EE k tomuto aplikačnímu serveru v žádném případě neohrožuje podporu pro ABAP. Všechny vaše investice do řešení ABAP jsou dobře chráněny. Rozdíl spočívá v tom, že oba vývojové a běhové prostředí ABAP a Java / J2EE se nacházejí na jedné platformě, na jedné společné infrastruktuře. Tato sjednocená oblast systému ABAP / Java minimalizuje úsilí učitele o výuku a náklady na správu.
+
+\paragraph{BSP} Business Server Page (BSP) je kompletní funkční aplikace, stejně tak jako klasická transakce SAP. Rozhraním pro přístup však není software SAPGUI, spíše však libovolný webový prohlížeč. Díky využití protokolů HTTP nebo HTTPS je protokol používaný pro přístup k aplikaci po celé síti, což umožňuje používání standardních produktů, jako jsou firewally a proxy servery.
+
+Programovací program Stránky Business Server je podobný technologii serverových stránek. Zaměřením programovacího modelu BSP jsou body, které zajišťují optimální strukturu v rozhraní a obchodní logiku.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/bsp.png}
+	\caption{Struktura BSP apliace}
+	\label{img:bsp}
+	\small
+	Struktura BSP aplikace
+\end{figure}
 
 \section{SAP FIORI}
+
+\subsection{MVC}
+
+\subsection{SAP ODATA}
+
+
+
+
 
 \chapter{Analýza a návrh aplikace}
 Tato kapitola se věnuje analýze mnou navrženého řešení. Obsahuje jednotlivé podkapitoly zaměřující se na zpracování požadavků kladených na výslednou aplikaci, funkčnost RFID čtečky i návrh kompletního třídního modelu.	

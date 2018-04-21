@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.14)  14 APR 2018 15:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.14)  21 APR 2018 16:06
 entering extended mode
 **./DP_Mor√°vek_Marcel_2018.tex
 (DP_Mor√°vek_Marcel_2018.tex
@@ -918,11 +918,7 @@ Package: dirtree 2012/12/11 v0.32 package wrapper for dirtree
 \DT@baselineskip=\dimen163
 )
 File: dirtree.tex 2012/12/11 v0.32 `dirtree' (jcc)
-) (DP_Mor√°vek_Marcel_2018.aux
-
-LaTeX Warning: Label `img:sapr3' multiply defined.
-
-)
+) (DP_Mor√°vek_Marcel_2018.aux)
 \openout1 = `DP_Mor√°vek_Marcel_2018.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
@@ -942,7 +938,8 @@ LaTeX Font Info:    ... okay on input line 51.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
 LaTeX Font Info:    ... okay on input line 51.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 51.
- ("D:\Apps\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
+
+("D:\Apps\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 \AtBeginShipoutBox=\box31
@@ -1087,102 +1084,118 @@ l.60 \chapter
 
 ] [3] [4
 
-] [5] [6]
-<images/sap_r3.jpg, id=221, 566.86781pt x 418.56375pt>
+] [5]
+<images/sap_r3.jpg, id=218, 566.86781pt x 418.56375pt>
 File: images/sap_r3.jpg Graphic file (type jpg)
  <use images/sap_r3.jpg>
-Package pdftex.def Info: images/sap_r3.jpg used on input line 124.
+Package pdftex.def Info: images/sap_r3.jpg used on input line 102.
 (pdftex.def)             Requested size: 369.0pt x 272.47195pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
 [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.139 	\item
-             <./images/sap_r3.jpg>]
-Overfull \hbox (4.88177pt too wide) in paragraph at lines 161--163
+l.121 	\textbf
+              {Industry Solutions (IS)} - poskytuje specifick√° ≈ôe≈°en√≠ pr...
+ <./images/sap_r3.jpg>] [8]
+Overfull \hbox (4.88177pt too wide) in paragraph at lines 166--168
 \T1/lmr/m/n/10.95 Zpracov·nÌ ˙dr∫by po-m·h· ∞Ì-dit sku-te£nÈ ˙dr∫-b·∞-skÈ pr·ce
  pro-v·-d•nÈ v ˙dr∫b•.
  []
 
-[8] [9] <images/pm_process.png, id=239, 661.47125pt x 510.90875pt>
-File: images/pm_process.png Graphic file (type png)
+[9] [10] <images/pm_process.jpg, id=245, 754.31813pt x 536.75531pt>
+File: images/pm_process.jpg Graphic file (type jpg)
 
-<use images/pm_process.png>
-Package pdftex.def Info: images/pm_process.png used on input line 219.
-(pdftex.def)             Requested size: 369.0pt x 285.00774pt.
+<use images/pm_process.jpg>
+Package pdftex.def Info: images/pm_process.jpg used on input line 224.
+(pdftex.def)             Requested size: 369.0pt x 262.57011pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10]
-[11pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
+ [11]
+Underfull \vbox (badness 1087) has occurred while \output is active []
+
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.237 
+       <./images/pm_process.jpg>]
+<images/bsp.png, id=256, 480.79625pt x 360.34625pt>
+File: images/bsp.png Graphic file (type png)
+ <use images/bsp.png>
+Package pdftex.def Info: images/bsp.png used on input line 242.
+(pdftex.def)             Requested size: 369.0pt x 276.56023pt.
+
+[13pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.241 \chapter
-              {Anal√Ωza a n√°vrh aplikace} <./images/pm_process.png>] [12
+l.259 \chapter
+              {Anal√Ωza a n√°vrh aplikace} <./images/bsp.png>] [14
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
+ [15]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14]
-[15] [16
-
-] [17] [18
+ [16]
+[17] [18
 
 ] [19] [20
 
-] (DP_Mor√°vek_Marcel_2018.bbl [21] [22
+] [21] [22
+
+] (DP_Mor√°vek_Marcel_2018.bbl [23] [24
 
 ]
 bibitemlist
 
 LaTeX Warning: Empty `thebibliography' environment on input line 11.
 
-) [23] [24
+) [25] [26
 
-] [25] [26
+] [27] [28
 
 ]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 465.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 483.
 
  ("D:\Apps\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [27]
+) [29]
 \tf@toc=\write5
 \openout5 = `DP_Mor√°vek_Marcel_2018.toc'.
 
 \tf@lof=\write6
 \openout6 = `DP_Mor√°vek_Marcel_2018.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 468.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 468.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 486.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 486.
 
 (DP_Mor√°vek_Marcel_2018.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 468.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 468.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 486.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 486.
 Package rerunfilecheck Info: File `DP_Mor√°vek_Marcel_2018.out' has not changed
 .
-(rerunfilecheck)             Checksum: A225FA0A9F100C23D3091CA670B1A156;3249.
+(rerunfilecheck)             Checksum: 8F6E48A3B14F6C2D5C715EB1867F3B8B;3250.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 468.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 486.
  ) 
 Here is how much of TeX's memory you used:
- 13521 strings out of 493333
- 184936 string characters out of 3143069
- 314553 words of memory out of 3000000
- 16810 multiletter control sequences out of 15000+200000
+ 13535 strings out of 493333
+ 185122 string characters out of 3143069
+ 315653 words of memory out of 3000000
+ 16816 multiletter control sequences out of 15000+200000
  68980 words of font info for 45 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,10n,32p,1110b,419s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1195,9 +1208,9 @@ b><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><D:/Apps/MiKTeX 2.9/fonts
 D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><D:/Apps/MiKTeX 2.9/fonts/t
 ype1/public/lm/lmssbx10.pfb><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pf
 b><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
-Output written on DP_Mor√°vek_Marcel_2018.pdf (41 pages, 506940 bytes).
+Output written on DP_Mor√°vek_Marcel_2018.pdf (43 pages, 577587 bytes).
 PDF statistics:
- 412 PDF objects out of 1000 (max. 8388607)
- 106 named destinations out of 1000 (max. 500000)
- 200 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 113 named destinations out of 1000 (max. 500000)
+ 205 words of extra memory for PDF output out of 10000 (max. 10000000)
 
