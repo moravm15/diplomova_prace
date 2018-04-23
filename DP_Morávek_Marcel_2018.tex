@@ -71,9 +71,6 @@ Cílem této práce není implementace ani návrh funkčnosti uvnitř EPRového 
 
 
 
-
-
-
 \chapter{SAP}
 Tata kapitola se věnuje podnikovému informačnímu systému SAP. V jednotlivých podkapitolách jsou pak popsány obecné informace o historii firmy a architektonické struktuře systému. Dále jsou zde popsány i jednotlivé technické komponenty, které jsou použity pro realizaci požadované aplikace. 
 \section{Společnost SAP}
@@ -240,7 +237,7 @@ Programovací program Stránky Business Server je podobný technologii serverov�
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/bsp.png}
-	\caption{Struktura BSP apliace}
+	\caption{Struktura BSP aplikace}
 	\label{img:bsp}
 	\small
 	Struktura BSP aplikace
@@ -248,13 +245,107 @@ Programovací program Stránky Business Server je podobný technologii serverov�
 
 \section{SAP FIORI}
 
+Stejně jako každý jiný tradiční počítačový software byly také přístupné ERP systémy prostřednictvím grafického uživatelského rozhraní na stacionárních místech PC nebo notebooků. Vzhledem k rychlému vývoji mobilních zařízení očekává velké množství uživatelů zlepšení a příležitosti pro mobilní použití.
+
+V minulosti, mnoho zákazníků SAP vyjádřili svou nespokojenost ohledně staromódní vzhled a dojem z obrazovek SAP, stejně jako nedostatek exkluzivního přístupu přes desktop GUI pro většinu operací (jako schvalování objednávky, vytvoření prodejní objednávky, samostatně výdělečně servisní úkoly, vyhledávání informací.) Zpětná vazba byla oceněna a SAP podnikla kroky ke zlepšení použitelnosti a dostupnosti. (Bince 2015, 365)
+Dne 15. května 2013 představila společnost SAP platformu SAP Mobile Platform 3.0, otevřenou platformu, která byla k dispozici vývojářům softwaru. Společně se zavedením platformy zahájila společnost SAP svůj nový mobilní produkt s názvem Fiori. (SAP Fiori 2013, citováno 9. listopadu 2016.) Tento nový produkt je založen na pěti zásadách návrhu (obrázek 4).
+Prostřednictvím tohoto nového mobilního řešení uživatelsky orientované klienti nyní měl přístup k novým řešením, kde sbírka aplikací bylo možné použít na různých zařízení, jako jsou stolní počítače, chytré telefony a tablety. V prvním vydání Flowers bylo zařazeno 25 aplikací, které slouží klientům v jejich nejčastějších obchodních funkcích. (SAP Fiori 2013, citováno 9. listopadu 2016.)
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/fiori.jpg}
+	\caption{Struktura BSP aplikace}
+	\label{img:fiori}
+	\small
+	Struktura BSP aplikace
+\end{figure}
+
+
+\begin{itemize}
+	\item
+	Založené na rolích:
+	- Uživatelsky orientované aplikace závislé na odpovědnosti uživatele
+	- uživatel může mít více rolí a spouštět různé úkoly v několika doménách
+	\item
+	citlivý:
+	- založené na formátu HTML5; pracuje bez problémů na různých zařízeních a velikostech obrazovky
+	- automaticky upravuje rozložení aplikací na dostupné obrazovce
+	- podporuje různé režimy interakce, jako klávesnice, myši a dotykové vstupy
+	\item
+	Jednoduché:
+	- Jednoduché uživatelské rozhraní podporuje rychlé a snadné dokončení úkolů
+	- má přístup 1: 1: 3: jeden uživatel, jeden případ, tři obrazovky (stolní, tabletové, mobilní)
+	\item
+	koherentní:
+	- uživatel může mít mnoho aplikací, které mají stejný design a použitelnost
+	- Snadno se naučíte nové aplikace poté, co se učíte používat jednu aplikaci Fiori
+	\item
+	Okamžitá hodnota:
+	- stejný návrhový vzorec v aplikacích snižuje čas a náklady na školení nových uživatelů
+\end{itemize} 	
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/fiori_arch.png}
+	\caption{Struktura BSP aplikace}
+	\label{img:fiori_arch}
+	\small{ https://sapui5.hana.ondemand.com/\#/topic/28b59ca857044a7890a22aec8cf1fee9.html }
+\end{figure}
+
 \subsection{MVC}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/mvc.png}
+	\caption{Struktura BSP aplikace}
+	\label{img:bsp}
+	\small
+	Struktura BSP aplikace
+\end{figure}
+
+\paragraph{Model} reprezentuje správu vlastních dat, nad nimiž aplikace pracuje: to mů-že být třeba obrázek, textový dokument, databáze uložená na serveru SQL, … Je dobré si uvědomit rozdíl mezi daty samotnými a jejich správcem (tedy prá-vě tím modelem, o němž zde hovoříme). Třeba takový konkrétní obrázek jsou data; skupina tříd, umožňující obrázky načítat ze souborů a opět do nich uklá-dat, zjišťovat a měnit jejich atributy, převádět jejich formáty a pracovat s jejich obsahem – to je správce. V běžící aplikaci pak samozřejmě bude základním ob-jektem vrstvy modelu nějaká vhodná instance, jež bude reprezentovat vlastní obrázek a nabízet všechny odpovídající služby.
+
+\paragraph{View} zahrnuje všechny objekty (grafického) uživatelského rozhraní a jejich služby. Uživatel aplikace s ní komunikuje výhradně prostřednictvím těchto ob-jektů; právě ony mu prezentují data z modelu ve vhodné formě, a naopak pou-ze jejich prostřednictvím uživatel dává aplikaci příkazy, jež určují její další činnost.
+View má s modelem společnou tu nejdůležitější věc: jeho objekty nejsou závislé na konkrétní aplikační logice. Grafické uživatelské rozhraní aplikace tak mů-žeme podle potřeby (a podle požadavků zákazníků) snadno kdykoliv měnit, aniž by bylo zapotřebí přitom nějak zasahovat do aplikační logiky (nebo do-konce do modelu).
+
+\paragraph{Controller} mezi datovým modelem a objekty grafického uživatelského roz-hraní, jež tvoří vzhled, stojí vrstva controller; právě na její úrovni je imple-mentována funkční logika aplikace, takové věci jako „stiskne-li uživatel tohle tlačítko, provede se támhleta akce, a v tomto textovém poli se zobrazí výsle-dek“. (Čada, 2009)
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/fiori.jpg}
+	\caption{Struktura BSP aplikace}
+	\label{img:fiori}
+	\small
+	Struktura BSP aplikace
+\end{figure}
 
 \subsection{SAP ODATA}
 
+\paragraph{Protokol OData} umožňuje vytváření datových služeb založených na webovém protokolu REST (representational state transfer), který umožňuje uživatelům provádět CRUDQ operace nad zdroji identifikovanými pomocí Uniform Resource Identifier (URI) a definovanými v datovém modelu použitím jednoduchých HTTP zpráv.
 
+Protokol původně vyvinul Microsoft, verze 1.0, 2.0 a 3.0 jsou uvolněny pod Microsoft Open Specification Promise. Aktuálně nejnovější verze 4.0 byla schválena jako standard prostřednictvím OASIS OData Technical Committee, jejímiž členy jsou BlackBerry, IBM, Microsoft, SAP a další. Následující informace ohledně OData protokolu se budou vztahovat k verzi 2.0, která je momentálně v SAPu navzdory zavádění verze 4.0, používána nejčastěji. 
 
+Data přenášená prostřednictvím OData protokolu mohou využívat různé datové formáty běžně používané ve webových technologiích, například Extensible Markup Language (XML), JavaScript Object Notation (JSON) nebo Atom Publishing Pro-tocol (AtomPub) a další. Data jsou při přenosu zabalena do protokolu HTTP, případně do jeho zabezpečené verze HTTPS.
 
+Jádrem OData jsou feeds, které jsou kolekcemi Collections složené ze záznamů Entries. Každý Entry je identifikovaný klíčem a reprezentuje strukturovaný záznam, který má seznam vlastností Properties, ty mohou být komplexního, nebo primitivního typu. Entries mohou být součástí hierarchie typů a mohou mít související entries a feeds odkazované prostřednictvím Links.
+
+\paragraph{Metadata} OData služba poskytuje metadata dokumenty. Aby mohli uživatelé oData služby prozkoumat, co všechno služba nabízí, aniž by museli zkoumat implementaci služ-by na backendu.
+Jednodušší Service Document se nachází v root URI služby, obsahuje seznam všech feedů, takže je uživatelé mohou prozkoumat a zjistit jejich adresy.
+Přidáním segmentu \$metadata do root URI služby získáme Service Metadata Document, který popisuje celý datový model, jinými slovy strukturu a propojení všech zdrojů. Jak uvádí (Odata, 2013), Service Metadata Document popisuje svá data pomocí termínů EDM použitím XML jazyka pro popis modelů nazvaných Con-ceptual Schema Definition Language (CSDL). Tento CSDL dokument je pak zabalen použitím formátu EDMX. (Odata, 2015)
+
+\paragraph{Entity Data Model (EDM)} Hlavním konceptem v EDM jsou entity a asociace. Entity jsou instance Entity Type (například Inventura, Závod, Budova a tak dále), které jsou strukturovanými zá-znamy s klíčem Entity Key a složenými z pojmenovaných a typovaných vlastností. Entity Key je složen z podmnožiny vlastností v Entity Type. Entity Key (například InventuraID, nebo BudovaID) je zásadní koncept pro unikátní identifikaci instancí Entity Type a umožnění Enity Type instancím fungovat ve vztazích. Entity jsou se-skupovány v Entity Sets (například Budovy je množina instancí Entity Type Budo-va).
+Asociace definují vztah mezi dvěma nebo více Enity Type (například Budova patří Závodu). Instance asociací jsou seskupovány v Association Sets. Navigation Properties jsou speciální vlastnosti v Entity Type, které jsou vázány na konkrétní asociaci a mohou být použity k odkazování na asociaci entity.
+Položením předchozích definic do OData termínů, feedy vystavované OData službou jsou reprezentovány pomocí Entity Set, nebo Navigation Property na Entity Type, které identifikuje kolekci entit. Například Entity Set identifikovaný pomocí URI http://services.odata.org/OData/OData.svc/Products, nebo kolekce entit identifikovaná pomocí Products Navigation Property v http://services.odata.org/OData/OData.svc/Categories(1)/Products identifikují feed složený z Entry vystavovaný OData službou. (Odata, 2015)
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/odata.png}
+	\caption{Struktura BSP aplikace}
+	\label{img:bsp}
+	\small
+	Struktura BSP aplikace
+\end{figure}
 
 \chapter{Analýza a návrh aplikace}
 Tato kapitola se věnuje analýze mnou navrženého řešení. Obsahuje jednotlivé podkapitoly zaměřující se na zpracování požadavků kladených na výslednou aplikaci, funkčnost RFID čtečky i návrh kompletního třídního modelu.	
@@ -297,7 +388,7 @@ Detailní specifikace funkčních požadavků, Typicky se jednotlivé požadavky
 	\item
 	\textbf{Údržbář} - 
 	\item
-	\textbf{Správce - Administrátor} - 
+	\textbf{Správce / Administrátor} - 
 \end{itemize} 	
 
 \subsection{Diagram případů užití}
@@ -306,36 +397,64 @@ Detailní specifikace funkčních požadavků, Typicky se jednotlivé požadavky
 
 \section{Návrh uživatelského rozhraní}
 
-\subsection{Balsamiq}
-
-\subsection{Built}
-
 \subsection{Heuristická analýza}
+Při návrhu uživatelského rozhraní je dobré držet se deseti následujících pravidel z Nielsenovi heuristické analýzy. V této kapitole je čerpáno ze zdrojů [8] a [9]. Nielsenova heuristická analýza je jednou ze základních metod pro testování uživatelského rozhraní. Jedná se o seznam pravidel, které by mělo uživatelské rozhraní splňovat. Jakob Nielsen a Rolf Molich v roce 1990 vytvořili heuristiku
+pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto heristiku na množinu pravidel.
 
 \begin{enumerate}
 	\item
-	\textbf{Viditelnost stavu systému} -
+	\textbf{Viditelnost stavu systému} - Uživatel by měl být vždy systémem vhodně informován (v rozumném čase)
+	o tom co se zrovna děje. Systém by tak měl reagovat na uživatelský vstup, nebo v případě, že se například provádí nějaký časově náročnější výpočet nebo
+	stahování dat, tak zobrazit progress bar.
 	\item
-	\textbf{Propojení systému a reálného světa} -
+	\textbf{Propojení systému a reálného světa} - Systém by měl na uživatele mluvit jazykem uživatele se slovy, frázemi a koncepty, které jsou uživateli známé, zná je z reálného světa. Neměly by se využívat
+	pojmy, které jsou například specifické pouze pro daný systém.
 	\item
-	\textbf{Uživatelská kontrola a svoboda} -
+	\textbf{Uživatelská kontrola a svoboda} - Uživatelé se často učí nové funkce systému pomocí chyb, které provedou. Když uživatelé udělají chybu, musí mít možnost provedenou akci vrátit zpět a vrátit
+	tak systém do předchozího stavu. V případě, že se provádí nenávratná akce,
+	je třeba na to uživatele řádně upozornit.
 	\item
-	\textbf{Standardizace a konzistence} -
+	\textbf{Standardizace a konzistence} - Uživatel nesmí být zmaten různými termíny v různých situacích, přestože mají dané termíny stejný význam. Systém by měl vždy dodržovat standardy, které
+	jsou na dané platformě. Proto je například potřeba dodržovat standardní chybové
+	hlášky, správné umístění komponent apod. Ideální je používat standardní
+	platformové komponenty.
 	\item
-	\textbf{Prevence chyb} -
+	\textbf{Prevence chyb} - Lepší než dobré chybové hlášky je návrh, který zabraňuje samotnému výskytu
+	chyb. Buď je možné podmínky náchylné k chybám co nejvíce eliminovat, nebo
+	na chyby uživatele upozornit ještě dříve než například potvrdí formulář.
 	\item
-	\textbf{Rozpoznání namísto vzpomínání} -
+	\textbf{Rozpoznání namísto vzpomínání} - Je třeba minimalizovat zatěžování paměti uživatele tím, že uživatel vždy vidí potřebné informace a akce, které může provést. Uživatel si tak například nemusí
+	pamatovat informace z jedné části formuláře na další.
 	\item
-	\textbf{Flexibilní a efektivní použití} -
+	\textbf{Flexibilní a efektivní použití} - Systém by měl v závislosti na jeho možnostech a typu umožňovat dvě verze ovládání. Pro méně zkušené uživatele a pro zkušené uživatele. Verze pro méně zkušené uživatele by měla obsahovat pouze základní funkce a možnosti nastavení tak, aby „nezkušený“ uživatel nebyl zbytečně zatěžován funkcionalitami, které stejně nepotřebuje. Naopak pro zkušené uživatele by se	měli zobrazit všechny funkcionality, včetně těch složitějších. Zkušenější uživatel by měl mít také případně možnost si potřebné funkcionality přizpůsobit pomocí maker. Pro oba typy uživatelů je také dobré umožnit využívat klávesové zkratky
 	\item
-	\textbf{Estetický a minimalistický} -
+	\textbf{Estetický a minimalistický} - Uživatel by měl mít co nejméně možností kam může kliknout, protože každá
+	další možnost soutěží o pozornost uživatele. Čím méně možností uživatel má,
+	tím rychleji je schopen pokračovat. Na obrazovce by také měly být zobrazeny
+	pouze informace, které uživatel v dané situaci opravdu potřebuje.
 	\item
-	\textbf{Pomoc uživatelů pochopit, poznat a vzpamatovat se z chyb} -
+	\textbf{Pomoc uživatelů pochopit, poznat a vzpamatovat se z chyb} - Chybové hlášky by měly být v přirozeném jazyce a neměly by například obsahovat
+	žádné chybové kódy apod. Hlášky by měly přesně popisovat co je za
+	problém a doporučit uživateli jak pokračovat dál. Ideální je, když uživatel
+	nemá možnost dojít do stavu, kdy je potřeba chybové hlášení.
 	\item
-	\textbf{Nápověda a návody} -
+	\textbf{Nápověda a návody} - Přestože je lepší, když je systém použitelný bez jakékoliv nápovědy, nápovědu
+	by měl systém obsahovat. Veškeré informace by v systému měly být snadno
+	vyhledatelné a obsahem nápovědy by měly být názorné příklady.
 \end{enumerate} 
 
+\subsection{Lo-Fi prototyp}
+
+\paragraph{Úvodní obrazovka}
+
+\subsubsection{Balsamiq}
+
+\subsubsection{Built}
+
+
 \chapter{Návrh architektury}
+
+
 
 \chapter{Implementace}
 
