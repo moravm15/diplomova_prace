@@ -69,26 +69,27 @@ Jedním z cílů rešeršní části je porovnání prostředí podporujících 
 \section{Co není cílem práce}
 Cílem této práce není implementace ani návrh funkčnosti uvnitř EPRového systému. Tato práce začíná na úrovni komunikačních rozhraní jednotlivých funkčních modulů realizujících požadované operace. 
 
-
-
 \chapter{SAP}
-Tata kapitola se věnuje podnikovému informačnímu systému SAP. V jednotlivých podkapitolách jsou pak popsány obecné informace o historii firmy a architektonické struktuře systému. Dále jsou zde popsány i jednotlivé technické komponenty, které jsou použity pro realizaci požadované aplikace. 
+Kapitola obecně popisuje podnikový informační systém SAP. V jednotlivých podkapitolách jsou pak popsány informace o historii firmy a architektonické struktuře systému. Dále jsou zde popsány i jednotlivé technické komponenty, které jsou použity pro realizaci požadované aplikace. 
+
 \section{Společnost SAP}
-Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací a jednou z největších softwarových společností na celém světe. 
-Pod zkratkou SAP se schovávají počáteční písmena německých slov „Systeme, Anwendungen, Produkte in der Datenverarbeitung“. Anglicky si lze zkratku přeložit pomocí anglických slov „Systems - Applications - Products in data processing“.
+Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací a jednou z největších softwarových společností na celém světe. Pod zkratkou SAP se schovávají počáteční písmena německých slov „Systeme, Anwendungen, Produkte in der Datenverarbeitung“. Anglicky si lze zkratku přeložit pomocí anglických slov „Systems - Applications - Products in data processing“. Zaměřují se na vývoj a provoz softwarových produktů podporujících podnikové procesy. Zejména pak tedy řízení podniku, systémy pro správu vztahu se zákazníky a v současné době pak především vývoj technologií pro webové aplikace a cloud computing \cite{sap_information}.
 
 \section{SAP R3}
+První verze systému SAP R/1, tvořená pouze finančním účetnictvím, byla vydána již v roce 1973. Následující verze SAP R/2, vydaná o šest let později, se dá již označit za první funkční ERP systém (Enterprise resources planning). Ovšem nevýhodou tohoto systému byla vysoká technická náročnost na klienta, která v tu dobu přinášela nutnost využívání sálových počítačů. Verzí SAP R/3 z roku 1992 však byla kompletně změněna architektura SAPu. Změnou architektury na klient-server opadly nároky na klienta a odpadla tak tehdejší nutnost využívání sálových počítačů a zároveň se začaly využívat relační databáze. Hlavní výhoda této architektury spočívala především však pak v kompatibilitě s různými platformami a operačními systémy Microsoft Windows nebo Unix. Tím se společnost dostala na špici poskytovatelů ERP systémů a na té se do dnes drží.
 
-První verze systému, která přišla na svět v roce 1973, SAP R/1, byla tvořena finančním účetnictvím. Další verze SAP R/2 již můžeme nazývat za první funkční ERP systém (Enterprise resources planning), ovšem nevýhodou tohoto systému byla nutnost využívání sálových počítačů. Verzí SAP R/3 z roku 1992 byla změněna architektura SAPu, kdy se zaměnily sálové počítače na architekturu klient-server a začaly se využívat relační databáze. Výhoda této architektury byla především v kompatibilitě s různými platformami a operačními systémy Microsoft Windows nebo Unix. Další verze byla v roce 2002 spuštěna pod názvem SAP R/3 Enterprise. V roce 2004 byly nově uspořádány komponenty, čímž vznikl centrální produkt mySAP Business Suite. Došlo k oddělení aplikačních komponent od technických, přičemž se nadále označují jako SAP NetWeaver.
-
-Příchodem verze SAP R/3 se změnila architektura SAPu na architekturu klient-server, která je tvořena třemi vrstvami:
+\paragraph{Architektura systému SAP R/3} Spolu se změnou architektury s příchodem verze SAP R/3 na model klient-server, došlo k rozčlenění do tří vrstev:
 \begin{itemize}
 	\item
-	\textbf{Prezenční vrstva} - Prezenční vrstva slouží pro komunikaci mezi uživatelem a počítačem. Vlastní komunikace probíhá na klientské části – prezentačním serveru. Nedílnou součástí prezentačního serveru je SAP GUI rozhraní, které se stará o komunikaci mezi prezentačním a aplikačním serverem.
+	\textbf{Databázová vrstva} je tvořena vlastními databázovými servery, které slouží pro ukládání dat. Jelikož SAP je multiplatformní systém, vývojáře nemusí zajímat, na jaké platformě (UNIX, ORACLE, SUN, MICROSOFT nebo jiné) databázová vrstva běží, protože na aplikační vrstvě bude přístup vypadat vždy stejně. 
+	
+	Příkladem mohou být uložená data týkající se vybavení továrny, která jsou roztroušená po jednotlivých databázových tabulkách.
 	\item
-	\textbf{Aplikační vrstva} - Aplikační vrstva je tvořena aplikačním serverem, který jednak přes SAP GUI komu-nikuje s klientem a jednak komunikuje s databází přes systém pro správu databáze. Vlastní programy, vytvořené v systému ABAP, jsou uloženy na aplikačních serverech.
+	\textbf{Aplikační vrstva} slouží především jako prostředí pro vykonávání programové logiky na straně aplikačního serveru. Centrálně se na něm zpracovávají data, které se načítají a ukládají z databázové vrstvy. Jednotlivé programy (funkce) se v tomto prostředí píší zpravidla v SAPovském programovacím jazyce ABAP, někdy však i pomocí Javy. 
+	
+	Příkladem budiž uživatelský požadavek o vyčtení zakázek na výrobní stroj pro daného uživatele. Aplikační vrstva nejdříve musí načíst z databázové vrstvy potřebná data o uživateli, strojích v továrně i zakázkách a ty poté následně dle požadavku zpracovat. Vyloučí tak například stroje, ke kterým uživatel nemá oprávnění nebo zakázky nerelevantní k danému času a strojům. Tím získá požadovanou informaci, se kterou je poté následně nějakým způsobem naloženo, například přenosem do vyšší, prezentační vrstvy.
 	\item
-	\textbf{Databázová vrstva} - Databázová vrstva je tvořena vlastními databázovými servery, které slouží pro ukládání dat. Jelikož SAP je multiplatformní systém, vývojáře nemusí zajímat, na jaké databázové platformě (UNIX, ORACLE, SUN, MICROSOFT) databázová vrstva běží, aplikační vrstva bude vypadat vždy stejně.
+	\textbf{Prezenční vrstva} slouží pro komunikaci mezi uživatelem a počítačem. Má za úkol předávat informace uživateli. Vlastní komunikace probíhá na prezentačním serveru, tedy klientské části. Její nedílnou součástí je rozhraní SAP GUI, které se stará o komunikaci mezi prezentačním a aplikačním serverem. To je ovšem v poslední době nahrazováno přístupem přes webový prohlížeč. Typickým příkladem jsou SAPovské aplikace Fiori vytvořené ve frameworku SAPUI5, kterým je věnována samostatná sekce. 
 \end{itemize} 	
 
 \subsection{Moduly SAP R3}
@@ -111,35 +112,43 @@ Systém SAP R/3 je vnitřně rozdělen do několika různých modulů. Každý z
 	\item
 	\textbf{Asset Management (AM)} slouží k optimální správě fyzického majetku organizace. Zahrnuje takové funkcionality jako jsou návrh, konstrukce, provoz, údržba a výměna zařízení. Spravuje majetek v jednotlivých odděleních (obchodních jednotkách).
 	\item
-	\textbf{Project system (PS)} - je nástroj pro správu dlouhodobých projektů. Umožňuje uživatelům plánovat finanční prostředky i zdroje a kontrolovat jednotlivé části projektu tak, aby bylo zaručeno včasné dodání pokud možno v rámci rozpočtu.
+	\textbf{Project system (PS)} je nástroj pro správu dlouhodobých projektů. Umožňuje uživatelům plánovat finanční prostředky i zdroje a kontrolovat jednotlivé části projektu tak, aby bylo zaručeno včasné dodání pokud možno v rámci rozpočtu.
 	\item
-	\textbf{Workflow (WF)} - umožňuje navrhovat a realizovat obchodní procesy v rámci aplikačních systémů SAP. Zajišťuje aby se práce dostala v požadovaný čas do rukou správným lidem. Jeho cílem je usnadnění automatizace podnikových procesů.
+	\textbf{Workflow (WF)} umožňuje navrhovat a realizovat obchodní procesy v rámci aplikačních systémů SAP. Zajišťuje aby se práce dostala v požadovaný čas do rukou správným lidem. Jeho cílem je usnadnění automatizace podnikových procesů.
 	\item
-	\textbf{Industry Solutions (IS)} - poskytuje specifická řešení pro desítky industriálních odvětví jako například pro automobilový, chemický či energetický průmysl.
+	\textbf{Industry Solutions (IS)} poskytuje specifická řešení pro desítky industriálních odvětví jako například pro automobilový, chemický či energetický průmysl.
 	\item
-	\textbf{Human Resources (HR)} - umožňuje organizaci strukturálně a efektivně zpracovávat informace údaje týkající se zaměstnanců k potřebám obchodním požadavkům.
+	\textbf{Human Resources (HR)} umožňuje organizaci strukturálně a efektivně zpracovávat informace údaje týkající se zaměstnanců k potřebám obchodním požadavkům.
 	\item
-	\textbf{Plant Maintenance (PM)} - poskytuje nástroj pro provádění veškerých potřebných činností týkajících se údržby organizace a jejích součástí. Umožňuje plánovat údržbu i s ohledem na materiálovou potřebu, zaznamenávat a vyrovnávat náklady spojené s činností.
+	\textbf{Plant Maintenance (PM)} poskytuje nástroj pro provádění veškerých potřebných činností týkajících se údržby organizace a jejích součástí. Umožňuje plánovat údržbu i s ohledem na materiálovou potřebu, zaznamenávat a vyrovnávat náklady spojené s činností.
 	\item
-	\textbf{Materials Management (MM)} - se zabývá řízením materiálů a skladových zásob. Kontroluje, aby nedocházelo k nedostatkům zboží a nevznikaly tak mezery v řetězci dodavatelského procesu.
+	\textbf{Materials Management (MM)} se zabývá řízením materiálů a skladových zásob. Kontroluje, aby nedocházelo k nedostatkům zboží a nevznikaly tak mezery v řetězci dodavatelského procesu.
 	\item
-	\textbf{Production Planning (PP)} - sleduje a zaznamenává toky ve výrobním procesu. Má za úkol sladění poptávky s výrovním kapacitou spolu s vytvořením plánů k dokončení komponentů a produktů.
+	\textbf{Production Planning (PP)} sleduje a zaznamenává toky ve výrobním procesu. Má za úkol sladění poptávky s výrovním kapacitou spolu s vytvořením plánů k dokončení komponentů a produktů.
 	\item
-	\textbf{Quality Management (QM)} - je modul úzce provázaný s moduly MM, PP či PM a nedílnou součástí logistického řízení. Používá se k prováděnější kvalitativních funkcí jako je plánovaní jakosti, zajištění a kontroly kvality ve výrobním a spotřebním procesu.
+	\textbf{Quality Management (QM)} je modul úzce provázaný s moduly MM, PP či PM a nedílnou součástí logistického řízení. Používá se k prováděnější kvalitativních funkcí jako je plánovaní jakosti, zajištění a kontroly kvality ve výrobním a spotřebním procesu.
 	\item
-	\textbf{Sales and Distribution (SD)} - se používá pro ukládání údajů o zákaznících a produktech organizace. Pomáhá řídit fakturaci, prodej a přepravu produktů či služeb organizace. Řídí vztah se zákazníky od počáteční nabídky až po prodejní zakázku a fakturaci produktu.   
+	\textbf{Sales and Distribution (SD)} se používá pro ukládání údajů o zákaznících a produktech organizace. Pomáhá řídit fakturaci, prodej a přepravu produktů či služeb organizace. Řídí vztah se zákazníky od počáteční nabídky až po prodejní zakázku a fakturaci produktu.   
 \end{itemize} 	
 
 \section{SAP Plant Maintenance (PM)}
-Modul SAP Plant Maintenance je komplexní řešení, které poskytuje nástroje pro kompletní údržbu v rámci firmy. Objekt údržby se skládá z technických objektů představujících strojní zařízení a skutečného modelu závodu.
+Modul SAP Plant Maintenance je komplexní řešení, které poskytuje nástroje pro kompletní údržbu v rámci organizace. Veškeré prováděné činnosti jsou vzájemně propojeny s návaznými moduly (Production Planning, Materials Management a Sales and Distribution) v rámci podnikových procesů. Modul umožňuje provádět komplexní plánování, realizovat denní činnosti údržby nebo zaznamenávat případné vzniklé problémy. Díky provázanosti na ostatní moduly taktéž dovede sledovat a plánovat materiálové aktivity případně zaznamenávat i určovat dané náklady vzniklé údržbou.
 
-Modul se skládá z činností jako je například správa technických objektů, zpracování údržby nebo preventivní údržba. Používá se k komplexnímu plánování, provádění denních činností údržby s integrací do ostatních SAP modulů.
-
-\subsection{Technické objekty}
-Pakliže je ve firmě zapotřebí správně nastavit DP (data processing) podporující údržbu, je nutné stávající technické systémy strukturovat na základě technických objektů. Vytvoření hierarchické podoby s sebou přináší následující výhody.
+K realizování zmíněných aktivit je modul rozdělen do následujících podmodulů:
 \begin{itemize}
 	\item
-	Doba potřebná pro správu technických objektů je snížena.
+	Správa technických objektů a vybavení
+	\item
+	Plánování úkolů údržby
+	\item
+	Řízení notifikací v rámci nastavených procesů a zakázek v rámci údržby
+\end{itemize} 	
+
+\subsection{Technické objekty}
+Jelikož je v organizaci zapotřebí správně a efektivně spravovat jednotlivé aktivity v rámci procesů modulu Plant Maintenance, je struktura údržby rozdělena na technické objekty. Ty slouží k definování jednotlivých typů strojů, kterými organizace disponuje. Za použití charakteristiky technických objektů lze pak zadefinovat jiný technický objekt, což umožňuje hierarchicky definovat strukturu organizace. Výčtem zmíněných vlastností technických objektů získáme následující výhody.
+\begin{itemize}
+	\item
+	Doba potřebná pro správu jednotlivých technických objektů je snížena.
 	\item
 	Zpracování údržby je zjednodušeno.
 	\item
@@ -147,7 +156,6 @@ Pakliže je ve firmě zapotřebí správně nastavit DP (data processing) podpor
 	\item
 	Konkrétnější, důkladnější a rychlejší vyhodnocení údajů o údržbě.
 \end{itemize}
-
 Technická správa objektů se skládá z následujících činností:
 \begin{itemize}
 	\item
@@ -159,6 +167,7 @@ Technická správa objektů se skládá z následujících činností:
 	\item
 	\textbf{Další činnosti související s údržbou}
 \end{itemize}
+
 \vspace*{0.5cm}
 Zpracování údržby pomáhá řídit skutečné údržbářské práce prováděné v údržbě. Proces se skládá ze tří oblastí:
 \begin{itemize}
@@ -348,22 +357,90 @@ Položením předchozích definic do OData termínů, feedy vystavované OData s
 \end{figure}
 
 \chapter{Analýza a návrh aplikace}
-Tato kapitola se věnuje analýze mnou navrženého řešení. Obsahuje jednotlivé podkapitoly zaměřující se na zpracování požadavků kladených na výslednou aplikaci, funkčnost RFID čtečky i návrh kompletního třídního modelu.	
+Tato kapitola se věnuje analýze a návrhu požadované webové aplikace pracující nad SAP modulem Plant Maintenance pro vykonávání údržby v halách. Jednotlivé podkapitoly se pak věnují zpracování požadavků kladených na výslednou aplikaci, omezením aplikace a definování uživatelských rolí, které budou v aplikaci použity. Na základě stanovených požadavků je posléze proveden návrh uživatelského rozhraní.  
+
+
+\section{Základní popis aplikace}
+Webová aplikace bude svým uživatelům umožňovat vykonávat potřebné úkony pro správný chod výrobních hal. To zahrnuje důležité operace jako je například hlášení požadavků na údržbu nebo poruch pro zadefinované vybavení, evidování práce na nahlášených poruchách apod. Podrobný soupis funkčních požadavků je popsán v následující kapitole. 
+
+
+\section{Uživatelské role}
+Uživatelské role popsané této sekci jsou vytvořeny na základě požadavků v kapitole níže. Ovšem pro lepší čitelnost jsou popsány zde, ještě před důvody jejich vzniku. 
+\subsection{Údržbář}
+
+\subsection{Operátor výroby}
+Uživatel, jehož primárním účelem je obsluha strojů na jeho pracovišti. 
+
+\subsection{Uživatel s možností založení požadavku na údržbu}
+Uživatel jehož zodpovědností je bezproblémový chod strojů. Osoba by se dala charakterizovat jako revizní technik, který má na starost obcházení všech pracovišť 
+\subsection{Správce - administrátor}
+Uživatel zodpovědný za správu ostatních uživatelských účtů. Pomocí rolí bude definovat možnosti jednotlivých uživatelů. Jelikož role nejsou uživatelsky výlučné, budou dvě fyzické osoby představující údržbáře mít odlišné možnosti v aplikaci. Oba dva budou moci provádět údržbářské činnosti, ale jenom jeden z nich bude moci zakládat požadavky na údržbu.
+
 
 \section{Model požadavků}
-V této kapitole jsou uvedeny veškeré požadavky kladené na  výslednou aplikaci, které byly probírány se zadavatelem. Většina z nich byla stanovena ihned po určení rámcového zadání, některé však byly přidány nebo lehce upraveny v rámci konzultací , jak se upravovalo zadání práce. Následující výčet požadavků je rozdělen do dvou kategorií a to do funkčních a nefunkčních požadavků.  
+V této sekci jsou uvedeny veškeré požadavky kladené na výslednou aplikaci, které byly probírány se zadavatelem. Požadavky představují minimální kritéria potřebná pro samotný návrh uživatelského rozhraní. Veškeré požadavky byly probírány se zadavatelem, většina z nich byla jasně stanovena v rámci rámcového zadání, některé však byly lehce v rámci konzultací během vývoje aplikace.
 
 \subsection{Funkční požadavky}
-Funkční požadavky jsou rozděleny do 8 sekcí označených jako F1 až F8. 
+Funkční požadavky jsou rozděleny do 8 sekcí označených jako F1 až F7. Jedná se především o funkcionality spojené s nahlašováním poruch nebo požadavků na údržbu nebo úkonu prováděných nad již vzniklým hlášením. 
 
-\subsubsection{F1: Založení poruchy}
-\subsubsection{F2: Založení požadavku na údržbu}
-\subsubsection{F3: Zobrazení seznamu aktivních poruch}
-\subsubsection{F4: Zobrazení seznamu historie poruch}
-\subsubsection{F5: Zobrazení seznamu požadavků na údržbu}
-\subsubsection{F6: Zobrazení seznamu prevencí}
-\subsubsection{F7: Zobrazení dokumentace ke stroji (vybavení)}
-\subsubsection{F8: Administrace uživatele}
+\subsubsection{F1: Založení požadavku na údržbu}
+V případě zjištění potřeby údržby daného vybavení bude uživateli s oprávněním tuto činnost provádět k dispozici založení hlášení v modulu PM s následující editovatelnými parametry.
+\begin{itemize}
+	\item
+	\textbf{Vybavení}: Výběr bude umožněn pomocí hierarchické struktury představující podobu závodu. V případě, že bude uživateli přednastaveno výchozí technické místo (například pracovní linka, hala nebo závod), bude výběrová struktura příslušně omezena.  
+	\item
+	\textbf{Příloha}: Ke každému požadavku bude umožněno přiložené jedné přílohy s tím, že prozatím bude omezeno pouze na fotografie (omezený výčet typů souborů). Do budoucna se počítá s rozšířením na vyšší počet příloh.  
+	\item
+	\textbf{Priorita}: Stanovuje termín, do kterého se požaduje požadovanou údržbu provést. Řešeno pomocí tří úrovní důležitosti, podle kterých se očekává zpracování požadavku v horizontu dne, týdne nebo měsíce.
+	\item
+	\textbf{Plánovací skupin}: Spočívá ve výběru subjektu zodpovídajícího za údržbu. Fyzicky se jedná o skupinu lidí spravující vymezený okruh údržby (například elektromechanici, mechanici nebo revizní technici). V případě, že bude uživateli přednastavena výchozí plánovací skupina, dojde automaticky k jejímu předvyplnění.
+	\item
+	\textbf{Pracoviště}: Reprezentuje skupinu údržbářů, kteří jsou podřízeni příslušnému mistru údržby. Z důvodu propojení s modulem CO dochází s návazností na pracoviště k ocenění práce, která je vykazována pomocí zpětného hlášení daným pracovištěm na zakázku PM. 
+	\item
+	\textbf{Popis poruchy}: Jedná se o stručný popis hlášení, jasně přibližující daný problém (například došlý materiál nebo opotřebení). 
+\end{itemize} 
+Parametry, které uživatel nebude svévolně volit jsou následující.
+\begin{itemize}
+	\item
+	\textbf{Typ hlášení}: Vychází z prováděné operace, je stanoven konstantou určující typ hlášení požadavku na údržbu.
+	\item
+	\textbf{Závod}: Definován přihlášeným uživatelem. Každý uživatel bude mít nějaký přidělený, jedná se o potřebný údaj při zakládání hlášení.
+\end{itemize} 
+Typickým uživatelem využívající tento funkční požadavek bude mistr, vedoucí směny a údržbáři.
+\subsubsection{F2: Nahlášení poruchy}
+Jelikož se technicky na úrovni modulu PM jedná o stejný záznam jako při zakládání požadavku na údržbu, je výčet potřebných parametrů totožný. Nicméně jelikož se hlášení poruchy reálně očekává od jiného typu uživatelů, je výběr následujících parametrů trochu odlišný. Typicky bude poruchu nahlašovat pracovník ve výrobě například na konkrétní lince. 
+\begin{itemize}
+	\item
+	\textbf{Vybavení}: Jelikož se očekává mnohem menší počet vybavení, které bude umožněno uživateli vybrat, nebude se provádět výběr z hierarchické struktury technických míst a vybavení, ale bude k dispozici jenom takové, které spadá pod určité pracoviště. Hierarchické uspořádání však zůstane zachováno.
+	\item
+	\textbf{Plánovací skupin}: Uživatel bude mít na výběr hlášení poruch dvojího typu. Bude na něm, jestli si vybere poruchu s mechanickou nebo elektrotechnickou příčinou. V závislosti na tom bude plánovací skupina přednastavena z uživatelského nastavení.
+\end{itemize} 
+Needitovatelné parametry budou stejně jako při zakládání požadavku na údržbu přednastaveny z uživatelského nastavení.
+\subsubsection{F3: Správa poruch}
+Uživateli musí být k dispozici seznam poruch obsahující potřebné informace (popis hlášení, technické místo spolu s vybavením, pracoviště, informace o tom kdo, kdy poruchu nahlásil a status daného hlášení) pro správné zacházení s nimi. Uživateli budou nad jednotlivými poruchami umožněny následující operace. Některé z nich jsou k dispozici v závislosti na stavu (statusu) hlášení.
+\begin{itemize}
+	\item
+	\textbf{Evidence práce na poruše}: Údržbář (člověk s oprávněním provádět opravy) může na konkrétní poruše zahájit práci, technicky realizována založením PM zakázky, u které díky integraci na modul CO dochází k evidenci nákladů. Takový uživatel může samozřejmě práci na svojí zakázce ukončit.
+	\item
+	\textbf{Zrušení hlášení}: V případě založení poruchy (status odpovídající stavu právě založeno) je umožněno hlášení zrušit. To například pro nevhodné nebo omylné založení. 
+	\item
+	\textbf{Výdej náhradního dílu ze skladu}: 
+	\item
+	\textbf{Správa akcí}: Hlášení mají jasný výčet operací, které při práci s poruchou může provést. Jedná se například o informaci objednání náhradního dílu nebo servisu. K takové akci pak může dotyčný uživatel dodat vlastní poznámku. Tyto akce mohou být zakládány, ale i zpětně prohlíženy.
+	\item
+	\textbf{Zobrazení textů}: Ke každému hlášení je pomocí dlouhých textů v SAPu umožněno přidávat poznámky. V rámci hlášení bude všem dostupná historie těchto poznámek, přidávání bude umožněno v závislosti na typu uživatele.
+	\item
+	\textbf{Zobrazení přílohy}: V důsledku možnosti přidávat přílohu při zakládání poruchy je i v případě práce s poruchou umožněno si danou přílohu zobrazit a eventuálně stáhnout na lokální disk.
+\end{itemize} 
+
+\subsubsection{F4: Správa požadavků na údržbu}
+
+\subsubsection{F5: Správa prevencí}
+
+\subsubsection{F6: Zobrazení dokumentace ke stroji (vybavení)}
+V závislosti na vybraném technickém místě nebo vybavení dojde k zobrazení seznamu přiložené dokumentace. Ta je uložena na sdíleném uložiti v interní síti společnosti a bude tedy dostupná pouze v případě použití aplikace uvnitř dané síti. Výběr technického místo nebo vybavení bude umožněn z hierarchické struktury.
+\subsubsection{F7: Administrace uživatele}
+Bude umožněna obecná správa účtu uživatelů, tedy základní operace jako přidání nebo odebrání účtu, nastavení jména uživatele a osobního čísla odpovídajícímu osobnímu číslu v ERP. Administrátorský účet bude moci měnit nastavení ostatních účtů, bude přiřazovat uživatelské role (oprávnění k zacházení s jednotlivými funkcionalitami) a parametry charakterizující daného uživatele. Pod tím se schovává nastavení závodu, plánovací skupiny, předdefinovaného technického místa a dalších atributů ulehčujících uživateli práci s aplikací (například přednastavené hodnoty pro výběr pracovišť, plánovacích skupin při zakládání požadavků na údržbu nebo hlášení poruch). V případě ztráty uživatelova hesla, bude z administrátorského účtu umožněno inicializování hesla.
 
 
 \subsection{Nefunkční požadavky}
@@ -384,18 +461,20 @@ Detailní specifikace funkčních požadavků, Typicky se jednotlivé požadavky
 
 \begin{itemize}
 	\item
-	\textbf{Operátor výroby} - 
+	\textbf{Operátor výroby} 
 	\item
-	\textbf{Údržbář} - 
+	\textbf{Údržbář} 
 	\item
-	\textbf{Správce / Administrátor} - 
+	\textbf{Správce / Administrátor}
 \end{itemize} 	
 
 \subsection{Diagram případů užití}
 
 \subsubsection{UC1: Vložit novou knihu}
 
-\section{Návrh uživatelského rozhraní}
+\chapter{Návrh uživatelského rozhraní}
+
+\subsection{}
 
 \subsection{Heuristická analýza}
 Při návrhu uživatelského rozhraní je dobré držet se deseti následujících pravidel z Nielsenovi heuristické analýzy. V této kapitole je čerpáno ze zdrojů [8] a [9]. Nielsenova heuristická analýza je jednou ze základních metod pro testování uživatelského rozhraní. Jedná se o seznam pravidel, které by mělo uživatelské rozhraní splňovat. Jakob Nielsen a Rolf Molich v roce 1990 vytvořili heuristiku
@@ -454,13 +533,17 @@ pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto h
 
 \chapter{Návrh architektury}
 
-
-
 \chapter{Implementace}
 
 \section{Porovnání vývojových prostředí}
 
 \section{Doporučení pro vývoj}
+
+\section{Doporučení pro vývoj}
+
+\chapter{Testování}
+
+
 
 \begin{conclusion}
 	%sem napište závěr Vaší práce

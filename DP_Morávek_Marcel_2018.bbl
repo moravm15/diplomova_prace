@@ -1,4 +1,4 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
 \providecommand{\biburl}[1]{\url{#1}}
 \providecommand{\urlprefix}{Dostupn{\' e} z: }
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -7,5 +7,9 @@
   \urlstyle{rm}\Url}\fi
 \providecommand{\selectlanguage}[1]{\relax}
 \providecommand{\eprint}[2][]{\biburl{#2}}
+
+\bibitem{sap_information}
+SAP: \emph{SAP Company History {[online]}}. [cit. 2016-24-24].
+\urlprefix\biburl{https://www.sap.com/corporate/en/company/history.html}
 
 \end{thebibliography}
