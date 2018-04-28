@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.14)  28 APR 2018 11:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.14)  29 APR 2018 00:50
 entering extended mode
 **./DP_Mor√°vek_Marcel_2018.tex
 (DP_Mor√°vek_Marcel_2018.tex
@@ -1230,65 +1230,75 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 l.359 \chapter
               {Anal√Ωza a n√°vrh aplikace} <./images/odata.png>] [20
 
-] [21]
-Overfull \hbox (0.44228pt too wide) in paragraph at lines 392--394
+]
+Underfull \vbox (badness 1755) has occurred while \output is active []
+
+ [21]
+[22]
+Overfull \hbox (0.44228pt too wide) in paragraph at lines 393--395
 []\T1/lmr/bx/n/10.95 Priorita\T1/lmr/m/n/10.95 : Sta-no-vuje ter-mÌn, do kte-rÈ
 ho se po-∫a-duje po-∫a-do-va-nou ˙dr∫bu
  []
 
 
-Overfull \hbox (12.87239pt too wide) in paragraph at lines 394--396
+Overfull \hbox (12.87239pt too wide) in paragraph at lines 395--397
 []\T1/lmr/bx/n/10.95 Pl·novacÌ sku-pin\T1/lmr/m/n/10.95 : Spo-£Ìv· ve v˝-b•ru s
 ub-jektu zod-po-vÌ-da-jÌ-cÌho za ˙dr∫bu.
  []
 
-[22]
-Overfull \hbox (3.42206pt too wide) in paragraph at lines 409--411
+
+Overfull \hbox (3.42206pt too wide) in paragraph at lines 410--412
 \T1/lmr/m/n/10.95 kl·-d·nÌ po-∫a-davku na ˙dr∫bu, je v˝-£et po-t∞eb-n˝ch pa-ra-
 me-tr∑ to-to∫n˝. NicmÈn•
  []
 
-
-Overfull \hbox (5.00351pt too wide) in paragraph at lines 416--417
+[23]
+Overfull \hbox (5.00351pt too wide) in paragraph at lines 417--418
 \T1/lmr/m/n/10.95 NeeditovatelnÈ pa-ra-me-try bu-dou stejn• jako p∞i za-kl·-d·n
 Ì po-∫a-davku na ˙dr∫bu
  []
 
-[23] [24] [25] [26
+[24]
+Overfull \hbox (1.74866pt too wide) in paragraph at lines 442--444
+\T1/lmr/m/n/10.95 opravy) m∑∫e roz-hod-nout o do-sta-te£-nÈm pro-ve-denÌ ˙dr∫by
+ da-nÈho stroje.
+ []
 
-] [27] [28] [29] [30
+[25] [26] [27] [28
 
-] [31] [32
+] [29] [30] [31] [32
 
 ] [33] [34
 
 ] [35] [36
 
+] [37] [38
+
 ]
-(DP_Mor√°vek_Marcel_2018.bbl [37] [38
+(DP_Mor√°vek_Marcel_2018.bbl [39] [40
 
 ]
 bibitemlist
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 13.
 ("D:\Apps\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) [39] [40
+)) [41] [42
 
-] [41] [42
+] [43] [44
 
-] [43]
+] [45]
 \tf@toc=\write5
 \openout5 = `DP_Mor√°vek_Marcel_2018.toc'.
 
 \tf@lof=\write6
 \openout6 = `DP_Mor√°vek_Marcel_2018.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 686.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 686.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 698.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 698.
 
 (DP_Mor√°vek_Marcel_2018.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 686.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 686.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 698.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 698.
 Package rerunfilecheck Info: File `DP_Mor√°vek_Marcel_2018.out' has not changed
 .
 (rerunfilecheck)             Checksum: 05CC357388185039E6F64B67D87D9BDD;3834.
@@ -1299,11 +1309,11 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 686.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 698.
  ) 
 Here is how much of TeX's memory you used:
- 13599 strings out of 493333
- 185978 string characters out of 3143069
+ 13601 strings out of 493333
+ 185992 string characters out of 3143069
  315883 words of memory out of 3000000
  16839 multiletter control sequences out of 15000+200000
  68980 words of font info for 45 fonts, out of 3000000 for 9000
@@ -1320,9 +1330,9 @@ b><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><D:/Apps/MiKTeX 2.9/fonts
 <D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><D:/Apps/MiKTeX 2.9/font
 s/type1/public/lm/lmsy10.pfb><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.p
 fb>
-Output written on DP_Mor√°vek_Marcel_2018.pdf (57 pages, 849680 bytes).
+Output written on DP_Mor√°vek_Marcel_2018.pdf (59 pages, 853924 bytes).
 PDF statistics:
- 554 PDF objects out of 1000 (max. 8388607)
- 150 named destinations out of 1000 (max. 500000)
+ 563 PDF objects out of 1000 (max. 8388607)
+ 152 named destinations out of 1000 (max. 500000)
  257 words of extra memory for PDF output out of 10000 (max. 10000000)
 

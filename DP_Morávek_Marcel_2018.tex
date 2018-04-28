@@ -367,12 +367,11 @@ Webová aplikace bude svým uživatelům umožňovat vykonávat potřebné úkon
 \section{Uživatelské role}
 Uživatelské role popsané této sekci jsou vytvořeny na základě požadavků v kapitole níže. Ovšem pro lepší čitelnost jsou popsány zde, ještě před důvody jejich vzniku. 
 \subsection{Údržbář}
-
+Uživatel, který primárně řeší plánované údržby z preventivních důvodů (například periodicky nastavené v modulu PM), povinnosti vyřešit vznesený požadavek nebo nahlášené poruchy.
 \subsection{Operátor výroby}
-Uživatel, jehož primárním účelem je obsluha strojů na jeho pracovišti. 
-
+Uživatel, jehož primárním účelem je obsluha strojů na jeho pracovišti ve výrobním procesu. S aplikací přijde do styku pouze v případě, že bude chtít nahlásit poruchu na daném vybavení. Jednotlivá pracoviště jsou vybavena stolními počítači na kterých jsou spuštěny aplikace pro provoz. Z těchto aplikací bude umožněn odkázání se do budoucí webové aplikace pro nahlášení poruchy na příslušném pracovišti.
 \subsection{Uživatel s možností založení požadavku na údržbu}
-Uživatel jehož zodpovědností je bezproblémový chod strojů. Osoba by se dala charakterizovat jako revizní technik, který má na starost obcházení všech pracovišť 
+Uživatel, jehož zodpovědností je bezproblémový chod strojů. Osoba by se dala charakterizovat jako revizní technik, který má na starost obcházení všech pracovišť a kontrolu jednotlivých výrobních linek. V případě, že shledá za vhodné provést na nějakém stroji údržbu, založí adekvátní požadavek. To bude zpravidla provádět z přenosného zařízení, které má neustále u sebe . Tím může být například chytrý telefon nebo tablet.
 \subsection{Správce - administrátor}
 Uživatel zodpovědný za správu ostatních uživatelských účtů. Pomocí rolí bude definovat možnosti jednotlivých uživatelů. Jelikož role nejsou uživatelsky výlučné, budou dvě fyzické osoby představující údržbáře mít odlišné možnosti v aplikaci. Oba dva budou moci provádět údržbářské činnosti, ale jenom jeden z nich bude moci zakládat požadavky na údržbu.
 
@@ -387,7 +386,7 @@ Funkční požadavky jsou rozděleny do 8 sekcí označených jako F1 až F7. Je
 V případě zjištění potřeby údržby daného vybavení bude uživateli s oprávněním tuto činnost provádět k dispozici založení hlášení v modulu PM s následující editovatelnými parametry.
 \begin{itemize}
 	\item
-	\textbf{Vybavení}: Výběr bude umožněn pomocí hierarchické struktury představující podobu závodu. V případě, že bude uživateli přednastaveno výchozí technické místo (například pracovní linka, hala nebo závod), bude výběrová struktura příslušně omezena.  
+	\textbf{Vybavení}: Výběr bude umožněn pomocí hierarchické struktury představující podobu závodu. V případě, že bude uživateli přednastaveno výchozí technické místo (například pracovní linka, hala nebo závod), bude výběrová struktura příslušně omezena. Provedení výběru by mělo být umožněno i pomocí naskenování QR kódu.  
 	\item
 	\textbf{Příloha}: Ke každému požadavku bude umožněno přiložené jedné přílohy s tím, že prozatím bude omezeno pouze na fotografie (omezený výčet typů souborů). Do budoucna se počítá s rozšířením na vyšší počet příloh.  
 	\item
@@ -411,20 +410,22 @@ Typickým uživatelem využívající tento funkční požadavek bude mistr, ved
 Jelikož se technicky na úrovni modulu PM jedná o stejný záznam jako při zakládání požadavku na údržbu, je výčet potřebných parametrů totožný. Nicméně jelikož se hlášení poruchy reálně očekává od jiného typu uživatelů, je výběr následujících parametrů trochu odlišný. Typicky bude poruchu nahlašovat pracovník ve výrobě například na konkrétní lince. 
 \begin{itemize}
 	\item
-	\textbf{Vybavení}: Jelikož se očekává mnohem menší počet vybavení, které bude umožněno uživateli vybrat, nebude se provádět výběr z hierarchické struktury technických míst a vybavení, ale bude k dispozici jenom takové, které spadá pod určité pracoviště. Hierarchické uspořádání však zůstane zachováno.
+	\textbf{Vybavení}: Jelikož se očekává mnohem menší počet vybavení, které bude umožněno uživateli vybrat, nebude se provádět výběr z hierarchické struktury technických míst a vybavení, ale bude k dispozici jenom takové, které spadá pod určité pracoviště. Hierarchické uspořádání však zůstane zachováno. Provedení výběru by mělo být umožněno i pomocí naskenování QR kódu.  
 	\item
 	\textbf{Plánovací skupin}: Uživatel bude mít na výběr hlášení poruch dvojího typu. Bude na něm, jestli si vybere poruchu s mechanickou nebo elektrotechnickou příčinou. V závislosti na tom bude plánovací skupina přednastavena z uživatelského nastavení.
 \end{itemize} 
 Needitovatelné parametry budou stejně jako při zakládání požadavku na údržbu přednastaveny z uživatelského nastavení.
 \subsubsection{F3: Správa poruch}
-Uživateli musí být k dispozici seznam poruch obsahující potřebné informace (popis hlášení, technické místo spolu s vybavením, pracoviště, informace o tom kdo, kdy poruchu nahlásil a status daného hlášení) pro správné zacházení s nimi. Uživateli budou nad jednotlivými poruchami umožněny následující operace. Některé z nich jsou k dispozici v závislosti na stavu (statusu) hlášení.
+Uživateli musí být k dispozici seznam poruch obsahující potřebné informace (popis hlášení, technické místo spolu s vybavením, pracoviště a informace o tom kdo, kdy poruchu nahlásil a status daného hlášení) pro správné zacházení s nimi. Uživateli budou nad jednotlivými poruchami umožněny následující operace. Některé z nich jsou k dispozici v závislosti na stavu (statusu) hlášení.
 \begin{itemize}
 	\item
-	\textbf{Evidence práce na poruše}: Údržbář (člověk s oprávněním provádět opravy) může na konkrétní poruše zahájit práci, technicky realizována založením PM zakázky, u které díky integraci na modul CO dochází k evidenci nákladů. Takový uživatel může samozřejmě práci na svojí zakázce ukončit.
+	\textbf{Evidence práce na poruše}: Údržbář (člověk s oprávněním provádět opravy) může na konkrétní poruše zahájit práci, technicky realizována založením PM zakázky, u které díky integraci na modul CO dochází k evidenci nákladů. Takový uživatel může poté práci na svojí zakázce ukončit.
 	\item
 	\textbf{Zrušení hlášení}: V případě založení poruchy (status odpovídající stavu právě založeno) je umožněno hlášení zrušit. To například pro nevhodné nebo omylné založení. 
 	\item
-	\textbf{Výdej náhradního dílu ze skladu}: 
+	\textbf{Vyřešení poruchy}: Poté, co se poruše začal někdo věnovat (zahájil na ní práci - došlo k založení zakázky PM) a svou práci ukončil a nikdo jiný už na ní nepracuje, je možné poruchu ukončit. V takovém případ dojde k ukončení celého procesu a dané hlášení již v aplikaci nebude dostupné.
+	\item
+	\textbf{Výdej náhradního dílu ze skladu}: Pro provedení této činnosti se uživateli přednastaví z uživatelského nastavení závod a sklad s tím, že sklad bude moci změnit. Materiál, množství a možnost poté uživatel zadá ručně. Potvrzením zadaných parametrů dojde k vyskladnění požadovaného materiálu.
 	\item
 	\textbf{Správa akcí}: Hlášení mají jasný výčet operací, které při práci s poruchou může provést. Jedná se například o informaci objednání náhradního dílu nebo servisu. K takové akci pak může dotyčný uživatel dodat vlastní poznámku. Tyto akce mohou být zakládány, ale i zpětně prohlíženy.
 	\item
@@ -432,10 +433,19 @@ Uživateli musí být k dispozici seznam poruch obsahující potřebné informac
 	\item
 	\textbf{Zobrazení přílohy}: V důsledku možnosti přidávat přílohu při zakládání poruchy je i v případě práce s poruchou umožněno si danou přílohu zobrazit a eventuálně stáhnout na lokální disk.
 \end{itemize} 
-
 \subsubsection{F4: Správa požadavků na údržbu}
+Uživateli musí být k dispozici seznam požadavků obsahující potřebné informace (popis požadavku, technické místo spolu s vybavením, pracoviště, mezní zahájení spolu s ukončením a informace o tom, kdo požadavek založil a status daného hlášení) pro správné zacházení s nimi. Uživateli budou umožněny stejné operace jako pří správě poruch, kromě následujících změn.
+\begin{itemize}
+	\item
+	\textbf{Provedení údržby}: Údržbář (člověk s oprávněním provádět opravy) může na konkrétním požadavku zahájit práci, technicky realizovanou založením PM zakázky, u které díky integraci na modul CO dochází k evidenci nákladů. Po ukončení prací na daném požadavku bude moci údržbář rozhodnout, zdali je údržba provedena dostatečně a může dojít předání k operátorům výroby na schválení. 
+	\item
+	\textbf{Akceptace údržby}: Operátor výroby (člověk s oprávněním provádět opravy) může rozhodnout o dostatečném provedení údržby daného stroje. V takovém případě dojde k ukončení celého procesu a dané hlášení již v aplikace nebude dostupné.
+	\item
+	\textbf{Reklamování údržby}: Operátor výroby (člověk s oprávněním provádět opravy) může rozhodnout o nedostatečném provedení údržby daného stroje. V takovém případě dojde k navrácení hlášení údržbářům, aby mohli na dané údržbě znovu pracovat.
+\end{itemize} 
 
 \subsubsection{F5: Správa prevencí}
+Uživateli musí být k dispozici seznam požadavků obsahující potřebné informace (popis požadavku, technické místo spolu s vybavením, pracoviště, mezní zahájení spolu s ukončením a informace o tom, kdo požadavek založil a status daného hlášení) pro správné zacházení s nimi. Uživateli budou umožněny stejné operace jako pří správě poruch, kromě následujících změn.
 
 \subsubsection{F6: Zobrazení dokumentace ke stroji (vybavení)}
 V závislosti na vybraném technickém místě nebo vybavení dojde k zobrazení seznamu přiložené dokumentace. Ta je uložena na sdíleném uložiti v interní síti společnosti a bude tedy dostupná pouze v případě použití aplikace uvnitř dané síti. Výběr technického místo nebo vybavení bude umožněn z hierarchické struktury.
