@@ -38,36 +38,38 @@
 \contentsline {subsection}{\numberline {3.2.4}Spr\IeC {\'a}vce - administr\IeC {\'a}tor}{22}{subsection.3.2.4}
 \contentsline {section}{\numberline {3.3}Model po\IeC {\v z}adavk\IeC {\r u}}{22}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Funk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky}{22}{subsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.1.1}F1: Zalo\IeC {\v z}en\IeC {\'\i } po\IeC {\v z}adavku na \IeC {\'u}dr\IeC {\v z}bu}{22}{subsubsection.3.3.1.1}
-\contentsline {subsubsection}{\numberline {3.3.1.2}F2: Nahl\IeC {\'a}\IeC {\v s}en\IeC {\'\i } poruchy}{23}{subsubsection.3.3.1.2}
+\contentsline {subsubsection}{\numberline {3.3.1.1}F1: Zalo\IeC {\v z}en\IeC {\'\i } po\IeC {\v z}adavku na \IeC {\'u}dr\IeC {\v z}bu}{23}{subsubsection.3.3.1.1}
+\contentsline {subsubsection}{\numberline {3.3.1.2}F2: Nahl\IeC {\'a}\IeC {\v s}en\IeC {\'\i } poruchy}{24}{subsubsection.3.3.1.2}
 \contentsline {subsubsection}{\numberline {3.3.1.3}F3: Spr\IeC {\'a}va poruch}{24}{subsubsection.3.3.1.3}
 \contentsline {subsubsection}{\numberline {3.3.1.4}F4: Spr\IeC {\'a}va po\IeC {\v z}adavk\IeC {\r u} na \IeC {\'u}dr\IeC {\v z}bu}{25}{subsubsection.3.3.1.4}
-\contentsline {subsubsection}{\numberline {3.3.1.5}F5: Spr\IeC {\'a}va prevenc\IeC {\'\i }}{25}{subsubsection.3.3.1.5}
+\contentsline {subsubsection}{\numberline {3.3.1.5}F5: Spr\IeC {\'a}va prevenc\IeC {\'\i }}{26}{subsubsection.3.3.1.5}
 \contentsline {subsubsection}{\numberline {3.3.1.6}F6: Zobrazen\IeC {\'\i } dokumentace ke stroji (vybaven\IeC {\'\i })}{26}{subsubsection.3.3.1.6}
 \contentsline {subsubsection}{\numberline {3.3.1.7}F7: Administrace u\IeC {\v z}ivatele}{26}{subsubsection.3.3.1.7}
 \contentsline {subsection}{\numberline {3.3.2}Nefunk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky}{26}{subsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.2.1}N1: Grafick\IeC {\'e} u\IeC {\v z}ivatelsk\IeC {\'e} rozhran\IeC {\'\i }}{26}{subsubsection.3.3.2.1}
-\contentsline {subsubsection}{\numberline {3.3.2.2}N2: Provoz na provozn\IeC {\'\i }ch po\IeC {\v c}\IeC {\'\i }ta\IeC {\v c}\IeC {\'\i }ch}{26}{subsubsection.3.3.2.2}
-\contentsline {subsubsection}{\numberline {3.3.2.3}N3: Provoz na mobiln\IeC {\'\i }ch za\IeC {\v r}\IeC {\'\i }zen\IeC {\'\i }ch}{26}{subsubsection.3.3.2.3}
-\contentsline {subsubsection}{\numberline {3.3.2.4}N4: Dostupnost p\IeC {\v r}es web}{26}{subsubsection.3.3.2.4}
-\contentsline {section}{\numberline {3.4}Model p\IeC {\v r}\IeC {\'\i }pad\IeC {\r u} u\IeC {\v z}it\IeC {\'\i } (Use Case model)}{26}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Seznam \IeC {\'u}\IeC {\v c}astn\IeC {\'\i }k\IeC {\r u}}{26}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Diagram p\IeC {\v r}\IeC {\'\i }pad\IeC {\r u} u\IeC {\v z}it\IeC {\'\i }}{27}{subsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.2.1}UC1: Vlo\IeC {\v z}it novou knihu}{27}{subsubsection.3.4.2.1}
-\contentsline {chapter}{\chapternumberline {4}N\IeC {\'a}vrh u\IeC {\v z}ivatelsk\IeC {\'e}ho rozhran\IeC {\'\i }}{29}{chapter.4}
-\contentsline {subsection}{\numberline {4.0.1}}{29}{subsection.4.0.1}
-\contentsline {subsection}{\numberline {4.0.2}Heuristick\IeC {\'a} anal\IeC {\'y}za}{29}{subsection.4.0.2}
-\contentsline {subsection}{\numberline {4.0.3}Lo-Fi prototyp}{30}{subsection.4.0.3}
-\contentsline {paragraph}{\IeC {\'U}vodn\IeC {\'\i } obrazovka}{30}{section*.17}
-\contentsline {subsubsection}{\numberline {4.0.3.1}Balsamiq}{31}{subsubsection.4.0.3.1}
-\contentsline {subsubsection}{\numberline {4.0.3.2}Built}{31}{subsubsection.4.0.3.2}
-\contentsline {chapter}{\chapternumberline {5}N\IeC {\'a}vrh architektury}{33}{chapter.5}
-\contentsline {chapter}{\chapternumberline {6}Implementace}{35}{chapter.6}
-\contentsline {section}{\numberline {6.1}Porovn\IeC {\'a}n\IeC {\'\i } v\IeC {\'y}vojov\IeC {\'y}ch prost\IeC {\v r}ed\IeC {\'\i }}{35}{section.6.1}
-\contentsline {section}{\numberline {6.2}Doporu\IeC {\v c}en\IeC {\'\i } pro v\IeC {\'y}voj}{35}{section.6.2}
-\contentsline {section}{\numberline {6.3}Doporu\IeC {\v c}en\IeC {\'\i } pro v\IeC {\'y}voj}{35}{section.6.3}
-\contentsline {chapter}{\chapternumberline {7}Testov\IeC {\'a}n\IeC {\'\i }}{37}{chapter.7}
-\contentsline {chapter}{Z{\' a}v{\v e}r}{39}{chapter*.18}
-\contentsline {chapter}{Literatura}{41}{section*.20}
-\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{43}{appendix.A}
-\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{45}{appendix.B}
+\contentsline {subsubsection}{\numberline {3.3.2.2}N2: Dostupnost}{27}{subsubsection.3.3.2.2}
+\contentsline {subsubsection}{\numberline {3.3.2.3}N3: Spolehlivost a spravovovanost}{27}{subsubsection.3.3.2.3}
+\contentsline {subsubsection}{\numberline {3.3.2.4}N4: Bezpe\IeC {\v c}nost}{27}{subsubsection.3.3.2.4}
+\contentsline {section}{\numberline {3.4}Model p\IeC {\v r}\IeC {\'\i }pad\IeC {\r u} u\IeC {\v z}it\IeC {\'\i } (Use Case Model)}{27}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Seznam \IeC {\'u}\IeC {\v c}astn\IeC {\'\i }k\IeC {\r u}}{27}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Diagram p\IeC {\v r}\IeC {\'\i }pad\IeC {\r u} u\IeC {\v z}it\IeC {\'\i }}{28}{subsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.2.1}UC1: Spr\IeC {\'a}va poruch}{28}{subsubsection.3.4.2.1}
+\contentsline {subsubsection}{\numberline {3.4.2.2}UC2: Spr\IeC {\'a}va po\IeC {\v z}adavk\IeC {\r u} na \IeC {\'u}dr\IeC {\v z}bu}{28}{subsubsection.3.4.2.2}
+\contentsline {subsubsection}{\numberline {3.4.2.3}UC3: Spr\IeC {\'a}va prevenc\IeC {\'\i }}{29}{subsubsection.3.4.2.3}
+\contentsline {chapter}{\chapternumberline {4}N\IeC {\'a}vrh u\IeC {\v z}ivatelsk\IeC {\'e}ho rozhran\IeC {\'\i }}{31}{chapter.4}
+\contentsline {subsection}{\numberline {4.0.1}}{31}{subsection.4.0.1}
+\contentsline {subsection}{\numberline {4.0.2}Heuristick\IeC {\'a} anal\IeC {\'y}za}{31}{subsection.4.0.2}
+\contentsline {subsection}{\numberline {4.0.3}Lo-Fi prototyp}{32}{subsection.4.0.3}
+\contentsline {paragraph}{\IeC {\'U}vodn\IeC {\'\i } obrazovka}{32}{section*.17}
+\contentsline {subsubsection}{\numberline {4.0.3.1}Balsamiq}{33}{subsubsection.4.0.3.1}
+\contentsline {subsubsection}{\numberline {4.0.3.2}Built}{33}{subsubsection.4.0.3.2}
+\contentsline {chapter}{\chapternumberline {5}N\IeC {\'a}vrh architektury}{35}{chapter.5}
+\contentsline {chapter}{\chapternumberline {6}Implementace}{37}{chapter.6}
+\contentsline {section}{\numberline {6.1}Porovn\IeC {\'a}n\IeC {\'\i } v\IeC {\'y}vojov\IeC {\'y}ch prost\IeC {\v r}ed\IeC {\'\i }}{37}{section.6.1}
+\contentsline {section}{\numberline {6.2}Doporu\IeC {\v c}en\IeC {\'\i } pro v\IeC {\'y}voj}{37}{section.6.2}
+\contentsline {section}{\numberline {6.3}Doporu\IeC {\v c}en\IeC {\'\i } pro v\IeC {\'y}voj}{37}{section.6.3}
+\contentsline {chapter}{\chapternumberline {7}Testov\IeC {\'a}n\IeC {\'\i }}{39}{chapter.7}
+\contentsline {chapter}{Z{\' a}v{\v e}r}{41}{chapter*.18}
+\contentsline {chapter}{Literatura}{43}{section*.20}
+\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{45}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{47}{appendix.B}

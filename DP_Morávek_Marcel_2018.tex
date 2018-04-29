@@ -44,6 +44,7 @@
 \declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
 \keywordsCS{SAP, Fiori}
 \keywordsEN{SAP, Fiori}
+
 % \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
 
 \setcounter{secnumdepth}{5}
@@ -365,14 +366,19 @@ Webová aplikace bude svým uživatelům umožňovat vykonávat potřebné úkon
 
 
 \section{Uživatelské role}
+\label{sec:role}
 Uživatelské role popsané této sekci jsou vytvořeny na základě požadavků v kapitole níže. Ovšem pro lepší čitelnost jsou popsány zde, ještě před důvody jejich vzniku. 
 \subsection{Údržbář}
+\label{ssec:udrzbar}
 Uživatel, který primárně řeší plánované údržby z preventivních důvodů (například periodicky nastavené v modulu PM), povinnosti vyřešit vznesený požadavek nebo nahlášené poruchy.
 \subsection{Operátor výroby}
+\label{ssec:operator_vyroby}
 Uživatel, jehož primárním účelem je obsluha strojů na jeho pracovišti ve výrobním procesu. S aplikací přijde do styku pouze v případě, že bude chtít nahlásit poruchu na daném vybavení. Jednotlivá pracoviště jsou vybavena stolními počítači na kterých jsou spuštěny aplikace pro provoz. Z těchto aplikací bude umožněn odkázání se do budoucí webové aplikace pro nahlášení poruchy na příslušném pracovišti.
 \subsection{Uživatel s možností založení požadavku na údržbu}
+\label{ssec:pozadavek_udrzba}
 Uživatel, jehož zodpovědností je bezproblémový chod strojů. Osoba by se dala charakterizovat jako revizní technik, který má na starost obcházení všech pracovišť a kontrolu jednotlivých výrobních linek. V případě, že shledá za vhodné provést na nějakém stroji údržbu, založí adekvátní požadavek. To bude zpravidla provádět z přenosného zařízení, které má neustále u sebe . Tím může být například chytrý telefon nebo tablet.
 \subsection{Správce - administrátor}
+\label{ssec:administrator}
 Uživatel zodpovědný za správu ostatních uživatelských účtů. Pomocí rolí bude definovat možnosti jednotlivých uživatelů. Jelikož role nejsou uživatelsky výlučné, budou dvě fyzické osoby představující údržbáře mít odlišné možnosti v aplikaci. Oba dva budou moci provádět údržbářské činnosti, ale jenom jeden z nich bude moci zakládat požadavky na údržbu.
 
 
@@ -380,8 +386,7 @@ Uživatel zodpovědný za správu ostatních uživatelských účtů. Pomocí ro
 V této sekci jsou uvedeny veškeré požadavky kladené na výslednou aplikaci, které byly probírány se zadavatelem. Požadavky představují minimální kritéria potřebná pro samotný návrh uživatelského rozhraní. Veškeré požadavky byly probírány se zadavatelem, většina z nich byla jasně stanovena v rámci rámcového zadání, některé však byly lehce v rámci konzultací během vývoje aplikace.
 
 \subsection{Funkční požadavky}
-Funkční požadavky jsou rozděleny do 8 sekcí označených jako F1 až F7. Jedná se především o funkcionality spojené s nahlašováním poruch nebo požadavků na údržbu nebo úkonu prováděných nad již vzniklým hlášením. 
-
+Jsou takové požadavky, které musí být ve výsledné aplikaci implementovány, aby byla splněna požadovaná funkcionalita. Požadavky jsou rozděleny do 8 sekcí označených jako F1 až F7. Jedná se především o funkcionality spojené s nahlašováním poruch nebo požadavků na údržbu spolu s úkony prováděných nad již vzniklými hlášeními. 
 \subsubsection{F1: Založení požadavku na údržbu}
 V případě zjištění potřeby údržby daného vybavení bude uživateli s oprávněním tuto činnost provádět k dispozici založení hlášení v modulu PM s následující editovatelnými parametry.
 \begin{itemize}
@@ -407,6 +412,7 @@ Parametry, které uživatel nebude svévolně volit jsou následující.
 \end{itemize} 
 Typickým uživatelem využívající tento funkční požadavek bude mistr, vedoucí směny a údržbáři.
 \subsubsection{F2: Nahlášení poruchy}
+\label{sscec:fc_nahlaseni_poruchy}
 Jelikož se technicky na úrovni modulu PM jedná o stejný záznam jako při zakládání požadavku na údržbu, je výčet potřebných parametrů totožný. Nicméně jelikož se hlášení poruchy reálně očekává od jiného typu uživatelů, je výběr následujících parametrů trochu odlišný. Typicky bude poruchu nahlašovat pracovník ve výrobě například na konkrétní lince. 
 \begin{itemize}
 	\item
@@ -416,6 +422,7 @@ Jelikož se technicky na úrovni modulu PM jedná o stejný záznam jako při za
 \end{itemize} 
 Needitovatelné parametry budou stejně jako při zakládání požadavku na údržbu přednastaveny z uživatelského nastavení.
 \subsubsection{F3: Správa poruch}
+\label{sssec:fc_sprava_poruch}
 Uživateli musí být k dispozici seznam poruch obsahující potřebné informace (popis hlášení, technické místo spolu s vybavením, pracoviště a informace o tom kdo, kdy poruchu nahlásil a status daného hlášení) pro správné zacházení s nimi. Uživateli budou nad jednotlivými poruchami umožněny následující operace. Některé z nich jsou k dispozici v závislosti na stavu (statusu) hlášení.
 \begin{itemize}
 	\item
@@ -423,7 +430,7 @@ Uživateli musí být k dispozici seznam poruch obsahující potřebné informac
 	\item
 	\textbf{Zrušení hlášení}: V případě založení poruchy (status odpovídající stavu právě založeno) je umožněno hlášení zrušit. To například pro nevhodné nebo omylné založení. 
 	\item
-	\textbf{Vyřešení poruchy}: Poté, co se poruše začal někdo věnovat (zahájil na ní práci - došlo k založení zakázky PM) a svou práci ukončil a nikdo jiný už na ní nepracuje, je možné poruchu ukončit. V takovém případ dojde k ukončení celého procesu a dané hlášení již v aplikaci nebude dostupné.
+	\textbf{Vyřešení poruchy}: Poté, co se poruše začal někdo věnovat (zahájil na ní práci - došlo k založení zakázky PM) a svou práci ukončil a nikdo jiný už na ní nepracuje, je možné poruchu ukončit. Poté bude údržbář vyzván k odborné specifikaci poruchy. Dostane za úkol specifikovat část objektu, poškození a příčinu. V takovém případ dojde k ukončení celého procesu a dané hlášení již v aplikaci nebude dostupné.
 	\item
 	\textbf{Výdej náhradního dílu ze skladu}: Pro provedení této činnosti se uživateli přednastaví z uživatelského nastavení závod a sklad s tím, že sklad bude moci změnit. Materiál, množství a možnost poté uživatel zadá ručně. Potvrzením zadaných parametrů dojde k vyskladnění požadovaného materiálu.
 	\item
@@ -434,7 +441,8 @@ Uživateli musí být k dispozici seznam poruch obsahující potřebné informac
 	\textbf{Zobrazení přílohy}: V důsledku možnosti přidávat přílohu při zakládání poruchy je i v případě práce s poruchou umožněno si danou přílohu zobrazit a eventuálně stáhnout na lokální disk.
 \end{itemize} 
 \subsubsection{F4: Správa požadavků na údržbu}
-Uživateli musí být k dispozici seznam požadavků obsahující potřebné informace (popis požadavku, technické místo spolu s vybavením, pracoviště, mezní zahájení spolu s ukončením a informace o tom, kdo požadavek založil a status daného hlášení) pro správné zacházení s nimi. Uživateli budou umožněny stejné operace jako pří správě poruch, kromě následujících změn.
+\label{sssec:fc_sprava_poz_udr}
+Uživateli musí být k dispozici seznam požadavků obsahující potřebné informace (popis požadavku, technické místo spolu s vybavením, pracoviště, mezní zahájení spolu s ukončením a informace o tom, kdo požadavek založil a status daného hlášení) pro správné zacházení s nimi. Uživateli budou umožněny stejné operace jako pří správě poruch \ref{sssec:fc_sprava_poruch}, kromě změn v následujícím seznamu. Vyřešení poruchy ze správy poruch se požadavků na údržbu netýká.
 \begin{itemize}
 	\item
 	\textbf{Provedení údržby}: Údržbář (člověk s oprávněním provádět opravy) může na konkrétním požadavku zahájit práci, technicky realizovanou založením PM zakázky, u které díky integraci na modul CO dochází k evidenci nákladů. Po ukončení prací na daném požadavku bude moci údržbář rozhodnout, zdali je údržba provedena dostatečně a může dojít předání k operátorům výroby na schválení. 
@@ -443,44 +451,71 @@ Uživateli musí být k dispozici seznam požadavků obsahující potřebné inf
 	\item
 	\textbf{Reklamování údržby}: Operátor výroby (člověk s oprávněním provádět opravy) může rozhodnout o nedostatečném provedení údržby daného stroje. V takovém případě dojde k navrácení hlášení údržbářům, aby mohli na dané údržbě znovu pracovat.
 \end{itemize} 
-
 \subsubsection{F5: Správa prevencí}
-Uživateli musí být k dispozici seznam požadavků obsahující potřebné informace (popis požadavku, technické místo spolu s vybavením, pracoviště, mezní zahájení spolu s ukončením a informace o tom, kdo požadavek založil a status daného hlášení) pro správné zacházení s nimi. Uživateli budou umožněny stejné operace jako pří správě poruch, kromě následujících změn.
-
+\label{sssec:fc_sprava_prev}
+Uživateli musí být k dispozici seznam prevencí obsahující potřebné informace (popis prevence, technické místo spolu s vybavením, pracoviště, mezní ukončením a informace o statusu daného hlášení) pro správné zacházení s nimi. Uživateli budou umožněny stejné operace jako pří správě požadavků na údržbu \ref{sssec:fc_sprava_poz_udr}, kromě změn v následujícím seznamu. 
 \subsubsection{F6: Zobrazení dokumentace ke stroji (vybavení)}
 V závislosti na vybraném technickém místě nebo vybavení dojde k zobrazení seznamu přiložené dokumentace. Ta je uložena na sdíleném uložiti v interní síti společnosti a bude tedy dostupná pouze v případě použití aplikace uvnitř dané síti. Výběr technického místo nebo vybavení bude umožněn z hierarchické struktury.
 \subsubsection{F7: Administrace uživatele}
-Bude umožněna obecná správa účtu uživatelů, tedy základní operace jako přidání nebo odebrání účtu, nastavení jména uživatele a osobního čísla odpovídajícímu osobnímu číslu v ERP. Administrátorský účet bude moci měnit nastavení ostatních účtů, bude přiřazovat uživatelské role (oprávnění k zacházení s jednotlivými funkcionalitami) a parametry charakterizující daného uživatele. Pod tím se schovává nastavení závodu, plánovací skupiny, předdefinovaného technického místa a dalších atributů ulehčujících uživateli práci s aplikací (například přednastavené hodnoty pro výběr pracovišť, plánovacích skupin při zakládání požadavků na údržbu nebo hlášení poruch). V případě ztráty uživatelova hesla, bude z administrátorského účtu umožněno inicializování hesla.
-
+Bude umožněna obecná správa účtu uživatelů, tedy základní operace jako přidání nebo odebrání účtu, nastavení jména uživatele a osobního čísla odpovídajícímu osobnímu číslu (identifikátor zaměstnance) v ERP. Administrátorský účet bude moci měnit nastavení ostatních účtů, bude přiřazovat uživatelské role (oprávnění k zacházení s jednotlivými funkcionalitami) a parametry charakterizující daného uživatele. Pod tím se schovává nastavení závodu, plánovací skupiny, předdefinovaného technického místa a dalších atributů ulehčujících uživateli práci s aplikací (například přednastavené hodnoty pro výběr pracovišť, plánovacích skupin při zakládání požadavků na údržbu nebo hlášení poruch). V případě ztráty uživatelova hesla, bude z administrátorského účtu umožněno inicializování hesla.
 
 \subsection{Nefunkční požadavky}
-
+Jsou takové požadavky, které nejsou přímo nutné pro splnění požadované funkcionality, nicméně vhodné pro správný chod aplikace. Jedná se například o specifikaci očekávání od designu, zabezpečení nebo dostupnosti systému a dalších pasivních požadavků. Navržené požadavky pro výslednou aplikaci jsou rozděleny do 5 sekcí označených jako N1 až N4.
 \subsubsection{N1: Grafické uživatelské rozhraní}
-\subsubsection{N2: Provoz na provozních počítačích}
-\subsubsection{N3: Provoz na mobilních zařízeních}
-\subsubsection{N4: Dostupnost přes web}
+Uživatelské rozhraní bude dostupné v českém jazyce. Nicméně pro budoucí plánované využití i v zahraničních závodech se očekává snadné rozšíření do ostatních jazyků jako je například angličtina nebo němčina. Jelikož se nejedná o první organizační aplikaci pracující nad nějakým z modulů SAPu, požaduje se zachování stejného UI frameworku SAPUI5.
+\subsubsection{N2: Dostupnost}
+Aplikace musí být viditelná v internetu, musí být tedy dostupná z veřejné internetové adresy. Aplikace musí být ovšem plně funkční i ve vnitřní síti, která nemá přístup do internetu. Veškeré zdroje aplikace musí bý tedy uloženy na interním serveru poskytujícího run-time prostředí pro webovou aplikaci.
+\subsubsection{N3: Spolehlivost a spravovovanost}
+Aplikace bude umožňovat logování činnosti uživatelů v systému z důvodu lepší identifikaci chyb. A to minimálně z počátku provozu aplikace. Taktéž bude umožněno I v případě vyššího zatížení musejí výt veškeré transakční kroky prováděné uživatelem uskutečněny.
+\subsubsection{N4: Bezpečnost}
+Z bezpečnostních důvodů musí v aplikaci docházet k autentizaci a autorizaci každého uživatele. Uživatel bude v aplikaci smět dělat pouze ty úkony, které mu administrátor povolí. Komunikace napříč komponentami musí být šifrována.
 
-\section{Model případů užití (Use Case model)}
-Detailní specifikace funkčních požadavků, Typicky se jednotlivé požadavky rozpadají na několik případů užití. Základ pro tvorbu uživatelské příručky
-– Podklady k tvorbě akceptačních testů
-– Zpřesnění odhadů pracnosti
-– Zadání pro programátora
-
+\section{Model případů užití (Use Case Model)}
+Jedná se o detailní specifikaci funkčních požadavků. Typicky slouží pro tvorbu uživatelské příručky, jako podklady k tvorbě akceptačních testů, zpřesnění odhadů pracnosti a zadání pro programátora. Zahrnuje informace o tom, kdo bude se systémem pracovat a jaké funkcionality využívat. K tomu slouží vydefinovaný seznam účastníků a diagramy případů užití.
 
 \subsection{Seznam účastníků}
-
+\label{ssec:seznam_ucastniku}
+Níže zmínění účastníci odpovídají standardnímu pracovnímu modelu stanovenému v organizaci.
 \begin{itemize}
 	\item
-	\textbf{Operátor výroby} 
+	\textbf{Operátor výroby}: Vychází z navržené uživatelské role operátor výroby \ref{ssec:operator_vyroby}. Na přiděleném pracovišti provádí přidělenou výrobní činnost. 
 	\item
-	\textbf{Údržbář} 
+	\textbf{Údržbář}: Odpovídá navržené roli údržbář \ref{ssec:udrzbar}, zpravidla bude disponovat i rolí pro zakládání požadavků na údržbu \ref{ssec:pozadavek_udrzba}. 
 	\item
-	\textbf{Správce / Administrátor}
+	\textbf{Správce / Administrátor}: Vychází z navržené uživatelské správce / administrátor \ref{ssec:administrator}.
 \end{itemize} 	
+Nicméně nic administrátorovi nebrání tomu role různě kombinovat, nemají mezi sebou výlučný vztah. Tudíž administrátor může mít klidně i role údržbáře a operátora výroby, čímž je schopen provádět jejich příslušné operace.
 
 \subsection{Diagram případů užití}
-
-\subsubsection{UC1: Vložit novou knihu}
+Souží pro detailní specifikaci požadavků na systém s tím, že graficky zobrazuje účastníky a jejich příslušná oprávnění. V následujících podkapitolách jsou vytvořeny diagramy pro nejdůležitější procesy očekávané d výsledné aplikace.
+\label{ssec:diagram_pripadu_uziti}
+\subsubsection{UC1: Správa poruch}
+\label{sssec:uc_sprava_poruch}
+Následující případ užití týkající se správy poruch zahrnuje funkční požadavky pro hlášení poruch \ref{sscec:fc_nahlaseni_poruchy} a jejich následnou správu \ref{sssec:fc_sprava_poruch}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/ea_sprava_poruch.jpg}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+\subsubsection{UC2: Správa požadavků na údržbu}
+\label{sssec:uc_sprava_udrzby}
+Následující případ užití týkající se správy poruch zahrnuje funkční požadavky pro hlášení poruch \ref{sscec:fc_nahlaseni_poruchy} a jejich následnou správu \ref{sssec:fc_sprava_poruch}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/ea_sprava_poruch.jpg}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+\subsubsection{UC3: Správa prevencí}
+\label{sssec:uc_sprava_prevenci}
+Následující případ užití týkající se správy poruch zahrnuje funkční požadavky pro hlášení poruch \ref{sscec:fc_nahlaseni_poruchy} a jejich následnou správu \ref{sssec:fc_sprava_poruch}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/ea_sprava_poruch.jpg}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
 
 \chapter{Návrh uživatelského rozhraní}
 
