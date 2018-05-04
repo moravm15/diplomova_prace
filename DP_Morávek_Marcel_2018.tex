@@ -12,6 +12,12 @@
 
 \usepackage{float}
 
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
 \usepackage{graphicx} %graphics files inclusion
 % \usepackage{amsmath} %advanced maths
 % \usepackage{amssymb} %additional math symbols
@@ -518,8 +524,112 @@ Následující případ užití týkající se správy poruch zahrnuje funkční
 \end{figure}
 
 \chapter{Návrh uživatelského rozhraní}
+Tato kapitola se věnuje průběhu vytváření návrhu uživatelského rozhraní výsledné aplikace. Na základě funkčních požadavků vzešlých z prvních schůzek se zadavatelem a modelu případu užití jsou jednotlivé vzniklé úkony sdruženy v task group. Na základě task group je vytvořen task graph, který v grafické podob přiřazuje funkcionality k navrženým obrazovkám. Na základě toho je zde vytvořen Lo-Fi prototyp. K tomu byly použity dva nástroje Built.me a Balsamiq Mockups, které jsou následně porovnány. Na základě výsledků z testování Lo-Fi prototypu s uživateli jsou odpovídající změny zaneseny do výsledné aplikace.
 
-\subsection{}
+\section{Task Groups}
+
+\section{Task Graph}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/task_graph.png}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+
+\section{Lo-Fi prototyp}
+
+\subsection{Balsamiq}
+
+\subsubsection{Údržbář}
+
+\paragraph{Desktopová verze}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/bal_login}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/fiori_launchpad}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/bal_homepage}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/bal_poruchy_seznam}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/bal_poruchy_seznam_zalozeni_poruchy}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\paragraph{Mobilní verze}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/bal_login_hompage_mob}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/bal_poruchy_mob}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\subsection{Built}
+
+\paragraph{Desktopová verze}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/bu_poruchy_seznam}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/bu_zalozeni_poruchy}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\paragraph{Mobilní verze}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/bu_poruchy_seznam_mob}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/bu_zalozeni_poruchy_mob}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
 
 \subsection{Heuristická analýza}
 Při návrhu uživatelského rozhraní je dobré držet se deseti následujících pravidel z Nielsenovi heuristické analýzy. V této kapitole je čerpáno ze zdrojů [8] a [9]. Nielsenova heuristická analýza je jednou ze základních metod pro testování uživatelského rozhraní. Jedná se o seznam pravidel, které by mělo uživatelské rozhraní splňovat. Jakob Nielsen a Rolf Molich v roce 1990 vytvořili heuristiku
@@ -567,28 +677,158 @@ pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto h
 	vyhledatelné a obsahem nápovědy by měly být názorné příklady.
 \end{enumerate} 
 
-\subsection{Lo-Fi prototyp}
-
-\paragraph{Úvodní obrazovka}
-
-\subsubsection{Balsamiq}
-
-\subsubsection{Built}
+\section{Porovnaní prototypovacích nástrojů}
 
 
-\chapter{Návrh architektury}
+
+
 
 \chapter{Implementace}
 
+\section{Architektura}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/architektura}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\subsection{Apache Tomcat}
+Apache Tomcat je známý open-source webový server a servletový kontejner. Jedná se o oficiální referenční implementaci technologií Java Servlet a Java Server Pages (JSP). Na serveru mohou běžet uživatelské servlety (programy napsané v Javě), které umí zpracovávat požadavky zasílané pomocí HTTP protokolu a tímtéž protokolem na ně odpovídat. Apache Tomcat zde slouží jako zásobník servletů starající se o jejich spouštění, běh, ukončování a
+podobně.
+
+\section{Login Modul}
+
+\section{GW Servlet}
+
+\section{PM SAPUI5 Aplikace}
+
+\subsection{Struktura aplikace}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/fiori_app_struct}
+	\caption{Struktura PM aplikace s hlavní prezentační logikou}
+	\label{img:pmfiori_app_struct}
+\end{figure}
+
+\begin{itemize}
+	\item
+	\textbf{WEB-INF}: Adresář obsahuje externí knihovny potřebné pro správnou funkčnost aplikace. Jelikož základní datovou reprezentací používanou v této aplikaci je JSON a programovací jazyk Java nativně práci s tímto formátem nepodporuje, je v tomto adresáři přiložena externí knihovna \textbf{java-json.jar}, která práci s tímto typem objektů umožňuje. Dále je zde uložen soubor \textbf{web.xml} popisující nasazení webové aplikace včetně jejich webových služeb. Slouží k deklaraci servletů a filtrů používaných danou webovou službou. V případě této aplikace se jedná například o GWServlet.
+	\item
+	\textbf{view}: Složka obsahuje zadefinovaná view (UI rozvržení elementů) ve značkovacím jazyce XML. Hlavním úkolem těchto souborů je hierarchické rozvržení použitých komponent jednotlivých stránek. Pomocí různých layoutů tak umožňuje jasně definovat, že dané view reprezentuje dialog, jehož obsahem je formulář o pěti prvcích, z nichž každý používá jinou vstupní uživatelskou komponentu. Podrobněji se jednotlivým souborům věnuje podkapitola views. 
+	\item
+	\textbf{controller}: Adresář obsahující controllery napsané v programovacím jazyce JavaScript. Slouží především pro obsloužení uživatelské interakce s aplikací. Klikne-li například uživatel na tlačítko přidat uživatele, právě zde se nachází část kódu, která požadovanou funkcionalitu provede. Dojde například k přípravě dat pro dialog obsahující potřebná pole pro založení nového uživatele. Jednotlivým souborům se podrobněji věnuje kapitola controllery níže.
+	\item
+	\textbf{css}: Obsahuje soubory pro úpravu kaskádových stylů. Jelikož aplikace využívá z drtivé většiny pouze předdefinované styly frameworku SAPUI5, je zde pouze jeden soubor style.css obsahující pár úprav oproti standardu.
+	\item
+	\textbf{i18n}: Pro internacionalizaci se používá numeronymum i18n a v tomto případě adresář obsahuje soubory s dvojicemi hodnot klíč - hodnota, které slouží pro zobrazení v textu požadovaného jazyku. K rozlišení jazyků se používá postfix v názvu souborů. Pro český jazyk je to například název i18n\_cs.properties, určený dle koncovky \_cs. Seznam koncovek odpovídá \textbf{standardu ISO 639-2}.	
+	\item
+	\textbf{model}: Obsahuje pomocné JavaScriptové soubory s funkcemi, které se opakovaně používají napříč celou aplikací. Jedná se například o formátovací funkce, stanovení modelů obsahující informace o používaném zařízení uživatele a podobně. V mém případě obsahuje tři následující soubory.
+	\begin{itemize}
+		\item
+		\textbf{models.js}: Slouží pouze k zadefinování modelu s informace o používaném zařízení. Poskytuje tak napříč zbytku aplikace například aktuální šířku displeje, používaný operační systém nebo typ prohlížeče. Na základě toho poté dochází ve zbytku aplikace k používání komponent příslušných dané velikosti displeje, nedochází tak k zobrazování tabulky na mobilním zařízení, ale k adekvátně upravenému listu záznamů.
+		\item
+		\textbf{formatter.js}: Obsahuje funkce pro úpravu zobrazované informace získaných z backendu. SAPí interní formát data 2018-05-04, lze tak pomocí takových funkcí převést na datum v požadovaném tvaru a naopak.
+		\item
+		\textbf{utils.js}: Disponuje především funkcemi pro určení, zdali se má daná komponenta zobrazovat. Například tlačítko pro schválení údržby u operátora výroby musí být zobrazené pouze v případě, že na něm údržbáři dokončili práce. Na základě statusu hlášení poté funkce vrací boolean hodnoty true nebo false pro zobrazení daného tlačítka. Dále jsou zde funkce pro přeposílání dat na GWServlet využívající AJAX, který umožňuje asynchronní komunikaci pro výměnu dat s backendem. 
+	\end{itemize} 
+\end{itemize} 
+
+\begin{itemize}
+	\item
+	\textbf{Component.js}: Jeden ze stavebních kamenů celé aplikace. Představuje objekt obalující všechna zadefinovaná view. Tudíž jakékoliv informace uložené v modelu jsou dostupné napříč celou aplikací. Právě zde se uplatní modely nesoucí znalosti o použitém zařízení klienta nebo sloužící pro překlady textů.
+	\item
+	\textbf{index.html}: Jedná se o soubor, který je implicitně volán v případě, že uživatel ve svém webovém prohlížeči zadá adresu, pod kterou se požadovaná aplikace skrývá. Nacházejí se zde základní informace nutné pro správné spuštění aplikace. Nejdůležitější z nich je zadefinování zdrojů frameworku SAPUI5. To spočívá v odkazu na obsáhlý soubor sap-ui-core.js (dále již jen jádro), které představuje kostru nutnou pro běh aplikace. Použití slova core - jádro v názvu pochopitelně není náhoda. Jádro si v průběhu používání aplikace dotahuje další frameworkové knihovny jako jsou například komponenty pro uživatelské vstupní pole typu datum, kdy je uživateli poskytnuto příjemné kalendářní rozhraní pro výběr požadovaného data. Tyto knihovny jsou stahovány až v případě, že si je uživatelova interakce vyžaduje. Dochází tedy k tak zvanému lazy loadingu. Stanovit přístup k jádru se dá pomocí dvou základních metod. První z nich je mapování na veřejně dostupný soubor pod adresou \url{https://sapui5.hana.ondemand.com/resources/sap-ui-core.js}. Druhým způsobem je mít veškeré knihovny dostupné v run-timeovém prostředí aplikace. Zároveň se také jedná o možnost použitou v této implementaci. Interní bezpečností politika totiž nedovoluje volání mimo vnitřní síť. Dále se zde nacházejí odkazy na externí knihovny nutné pro správný chod aplikace v rámci prostředí používaném uživatelem. V rámci hierarchie HTML je vytvořen element body, do kterého je vložena celá instance vytvořené aplikace odvozené od staženého jádra. Jedná se zpravidla o jediný kus čistého HTML při tvorbě aplikace ve frameworku SAPUI5.
+	\paragraph{Aplikační Cache} Implicitně jsou veškeré zdroje a knihovny používané ve frameworku ukládány do mezipaměti prohlížeče, aby byla uživateli zkrácena doba načítání a nedocházelo k opakovanému stahování potřebných souborů. To s sebou ovšem přináší problém při vydávání nové verze aplikace. V případě, že by došlo ke změně některého ze souborů a libovolný uživatel měl uloženy staré soubory v mezipaměti, pravděpodobně by se stala aplikace nefunkční. Tento problém je oficiálně řešen na straně SAP Gateway, kde dochází k porovnání jednotlivých soborů před samotným stažením. Tato funkcionalita bohužel není implicitně ve frameworku zanesena, nicméně existují mechanismy, které obdobné chování umožňují. Celý proces spočívá v zadefinování ResourceServletu, který porovnává datum poslední modifikace souboru s tím, který má uživatel uložen v mezipaměti. Tento Servlet musí být zadefinován v souboru web.xml a aplikace musí dostat informaci o tom, u kterých souborů má k takové kontrole docházet. Proto je v tomto HTML souboru odkaz na soubor \textbf{sap-ui-cachebuster-info.json}, obsahující JSON pole, s dvěma prvky. Jedním z nich je relativní cesta k požadovanému souboru a druhým je datum poslední modifikaci. Pro správný chod aplikace je tak nutné při každém exportování dbát na aktualizaci potřebných záznamů.
+	\item
+	\textbf{login.html}: V rámci JAAS logiky pro autorizaci a autentifikaci je definována implicitní HTML stránka, která je vyvolána v případě, že uživatel nemá doposud vytvořenou vůči aplikaci session. Z důvodu zachování konzistetního vzhledu aplikací je i pro přihlášení vytvořena SAPUI5 aplikace. Umístit ji zde v rámci jednoho projektu by způsobilo značnou nepřehlednost a taktéž by mohlo způsobit neočekáváné problémy při vývoji. Z toho důvodu má HTML stránka login.html velmi jednoduchou funkčnost. A tou je přesměrování uživatele do přihlašovací SAPUI5 aplikace.
+	\item
+	\textbf{manifest.json}: Manifest slouží především k rychlému definování možného směrování v rámci aplikace. Dochází zde k mapování uživatelovi aktuální url na jednotlivá view. Lze tak například přiřadit k postfixu pm/\#/vyroba view Vyroba a tím tak uživateli zobrazit očekávané informace. Dále se zde dají zadefinovat modely přiřazené komponentě nebo zdroje kaskádových stylů. 
+\end{itemize} 
+
+\subsection{Views}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/fiori_app_view_struct}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=xml]      
+	\end{lstlisting}
+	\caption{Vytvoření instance třídy PortList}	
+	\label{code:PropertyChangeSupport}
+	\small . 
+\end{algorithm}	
+
+
+\begin{itemize}
+	\item
+	\textbf{App}:
+	\item
+	\textbf{PM}:
+	\item
+	\textbf{Pozadavek}:
+	\item
+	\textbf{Vyroba}:
+	\item
+	\textbf{Udrzba}:
+	\item
+	\textbf{Administrace}:
+\end{itemize} 
+
+\begin{itemize}
+	\item
+	\textbf{pm}:
+	\item
+	\textbf{dialogs}:
+\end{itemize} 
+
+\subsection{Controllers}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/fiori_app_controller_struct}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:uc_sprava_poruch}
+\end{figure}
+
+\begin{itemize}
+	\item
+	\textbf{App}:
+	\item
+	\textbf{Base}:
+	\item
+	\textbf{PM}:
+	\item
+	\textbf{Pozadavek}:
+	\item
+	\textbf{Vyroba}:
+	\item
+	\textbf{Udrzba}:
+	\item
+	\textbf{Administrace}:
+\end{itemize} 
+
+\section{LOGIN SAPUI5 Aplikace}
+
 \section{Porovnání vývojových prostředí}
 
-\section{Doporučení pro vývoj}
+\subsection{Eclipse s pluginem pro SAPUI5}
+
+\subsection{SAP Web IDE}
+
+\section{Testování}
+
+\subsection{Middleware}
+
+\subsection{Frontend}
 
 \section{Doporučení pro vývoj}
-
-\chapter{Testování}
-
-
 
 \begin{conclusion}
 	%sem napište závěr Vaší práce
