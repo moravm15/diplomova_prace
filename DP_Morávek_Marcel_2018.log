@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.14)  3 MAY 2018 23:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.14)  6 MAY 2018 00:22
 entering extended mode
 **./DP_Mor√°vek_Marcel_2018.tex
 (DP_Mor√°vek_Marcel_2018.tex
@@ -964,9 +964,6 @@ Package: dirtree 2012/12/11 v0.32 package wrapper for dirtree
 File: dirtree.tex 2012/12/11 v0.32 `dirtree' (jcc)
 ) (DP_Mor√°vek_Marcel_2018.aux
 
-LaTeX Warning: Label `img:bsp' multiply defined.
-
-
 LaTeX Warning: Label `img:fiori' multiply defined.
 
 
@@ -1018,6 +1015,9 @@ LaTeX Warning: Label `img:uc_sprava_poruch' multiply defined.
 LaTeX Warning: Label `img:uc_sprava_poruch' multiply defined.
 
 
+LaTeX Warning: Label `code:rfc_call' multiply defined.
+
+
 LaTeX Warning: Label `img:uc_sprava_poruch' multiply defined.
 
 
@@ -1026,28 +1026,28 @@ LaTeX Warning: Label `img:uc_sprava_poruch' multiply defined.
 )
 \openout1 = `DP_Mor√°vek_Marcel_2018.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 58.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 67.
  ("D:\Apps\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 \AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring OFF on input line 58.
+Package hyperref Info: Link coloring OFF on input line 67.
 
 ("D:\Apps\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1059,10 +1059,10 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 Redoing nameref's sectioning
 Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 58.
-LaTeX Info: Redefining \ref on input line 58.
-LaTeX Info: Redefining \pageref on input line 58.
-LaTeX Info: Redefining \nameref on input line 58.
+LaTeX Info: Redefining \nameref on input line 67.
+LaTeX Info: Redefining \ref on input line 67.
+LaTeX Info: Redefining \pageref on input line 67.
+LaTeX Info: Redefining \nameref on input line 67.
 (DP_Mor√°vek_Marcel_2018.out) (DP_Mor√°vek_Marcel_2018.out)
 \@outlinefile=\write4
 \openout4 = `DP_Mor√°vek_Marcel_2018.out'.
@@ -1099,10 +1099,10 @@ G,.JBIG2,.JB2,.eps]
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
 ]
-<cvut-logo-bw.pdf, id=149, 554.07pt x 193.29715pt>
+<cvut-logo-bw.pdf, id=141, 554.07pt x 193.29715pt>
 File: cvut-logo-bw.pdf Graphic file (type pdf)
  <use cvut-logo-bw.pdf>
-Package pdftex.def Info: cvut-logo-bw.pdf used on input line 58.
+Package pdftex.def Info: cvut-logo-bw.pdf used on input line 67.
 (pdftex.def)             Requested size: 184.5pt x 64.36635pt.
 
 [1
@@ -1112,33 +1112,33 @@ Package pdftex.def Info: cvut-logo-bw.pdf used on input line 58.
 ]
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 58.
+(Font)              using `T1/lmr/bx/n' instead on input line 67.
 
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 58.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 67.
 ("D:\Apps\MiKTeX 2.9\tex\latex\lm\t1lmss.fd"
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
 LaTeX Font Warning: Font shape `T1/lmss/bx/sc' undefined
-(Font)              using `T1/lmss/bx/n' instead on input line 58.
+(Font)              using `T1/lmss/bx/n' instead on input line 67.
 
 [3
 
 ] [4
 
 ] [5]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 58.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 67.
  ("D:\Apps\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 58.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 67.
 
 
 ("D:\Apps\MiKTeX 2.9\tex\latex\lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 58.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 67.
  [6
 
 ] [7
@@ -1168,32 +1168,31 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 4.
  [9]) [10]
-(DP_Mor√°vek_Marcel_2018.lof) [11
+(DP_Mor√°vek_Marcel_2018.lof [11
 
-] [12
-
-]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
- been already used, duplicate ignored
+]) [12]pdfTeX warning (ext4): destination with the same identifier (name{page.1
+}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.67 \chapter
+l.76 \chapter
              {C√≠l pr√°ce} [1
+
 
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.67 \chapter
+l.76 \chapter
              {C√≠l pr√°ce} [2
 
 ] [3] [4
 
 ] [5]
-<images/sap_r3.jpg, id=323, 566.86781pt x 418.56375pt>
+<images/sap_r3.jpg, id=325, 566.86781pt x 418.56375pt>
 File: images/sap_r3.jpg Graphic file (type jpg)
  <use images/sap_r3.jpg>
-Package pdftex.def Info: images/sap_r3.jpg used on input line 107.
+Package pdftex.def Info: images/sap_r3.jpg used on input line 116.
 (pdftex.def)             Requested size: 369.0pt x 272.47195pt.
 
 [6] [7pdfTeX warning (ext4): destination with the same identifier (name{figure.
@@ -1201,14 +1200,14 @@ Package pdftex.def Info: images/sap_r3.jpg used on input line 107.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.126 	\textbf
+l.135 	\textbf
               {Industry Solutions (IS)} poskytuje specifick√° ≈ôe≈°en√≠ pro ...
  <./images/sap_r3.jpg>] [8] [9] [10]
-<images/pm_process.jpg, id=349, 754.31813pt x 536.75531pt>
+<images/pm_process.jpg, id=351, 754.31813pt x 536.75531pt>
 File: images/pm_process.jpg Graphic file (type jpg)
 
 <use images/pm_process.jpg>
-Package pdftex.def Info: images/pm_process.jpg used on input line 237.
+Package pdftex.def Info: images/pm_process.jpg used on input line 246.
 (pdftex.def)             Requested size: 369.0pt x 262.57011pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1221,12 +1220,12 @@ Underfull \vbox (badness 1087) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.250 
+l.259 
        <./images/pm_process.jpg>]
-<images/bsp.png, id=362, 480.79625pt x 360.34625pt>
+<images/bsp.png, id=364, 480.79625pt x 360.34625pt>
 File: images/bsp.png Graphic file (type png)
  <use images/bsp.png>
-Package pdftex.def Info: images/bsp.png used on input line 255.
+Package pdftex.def Info: images/bsp.png used on input line 264.
 (pdftex.def)             Requested size: 369.0pt x 276.56023pt.
 
 [13pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3
@@ -1234,142 +1233,152 @@ Package pdftex.def Info: images/bsp.png used on input line 255.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.269 
-       <./images/bsp.png>]
-<images/fiori.jpg, id=369, 1476.51625pt x 808.01875pt>
+l.282 	\textbf
+              {OnInputOutputProcessing}: <./images/bsp.png>]
+<images/fiori.jpg, id=371, 1476.51625pt x 808.01875pt>
 File: images/fiori.jpg Graphic file (type jpg)
  <use images/fiori.jpg>
-Package pdftex.def Info: images/fiori.jpg used on input line 273.
+Package pdftex.def Info: images/fiori.jpg used on input line 298.
 (pdftex.def)             Requested size: 369.0pt x 201.9302pt.
 
-Overfull \hbox (3.54335pt too wide) in paragraph at lines 292--296
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14]
+Overfull \hbox (3.54335pt too wide) in paragraph at lines 317--321
 []\T1/lmr/m/n/10.95 JednoduchÈ: - Jed-no-du-chÈ u∫i-va-tel-skÈ roz-hranÌ pod-po
 -ruje rychlÈ a snadnÈ
  []
 
-[14pdfTeX warning (ext4): destination with the same identifier (name{figure.2.4
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.296 	k
-        oherentn√≠: <./images/fiori.jpg>]
-<images/fiori_arch.png, id=374, 967.36406pt x 545.03625pt>
+<images/fiori_arch.png, id=376, 967.36406pt x 545.03625pt>
 File: images/fiori_arch.png Graphic file (type png)
 
 <use images/fiori_arch.png>
-Package pdftex.def Info: images/fiori_arch.png used on input line 306.
+Package pdftex.def Info: images/fiori_arch.png used on input line 331.
 (pdftex.def)             Requested size: 369.0pt x 207.906pt.
 
-Overfull \hbox (7.77643pt too wide) in paragraph at lines 309--310
+Overfull \hbox (7.77643pt too wide) in paragraph at lines 334--335
  []\T1/lmr/m/n/10 https://sapui5.hana.ondemand.com/#/topic/28b59ca857044a7890a2
 2aec8cf1fee9.html 
  []
 
-<images/mvc.png, id=376, 1081.03876pt x 1027.84pt>
-File: images/mvc.png Graphic file (type png)
- <use images/mvc.png>
-Package pdftex.def Info: images/mvc.png used on input line 316.
-(pdftex.def)             Requested size: 221.40225pt x 210.50467pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 8019) has occurred while \output is active []
 
  [15pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.336 
+       <./images/fiori.jpg>]
+<images/mvc.png, id=382, 1081.03876pt x 1027.84pt>
+File: images/mvc.png Graphic file (type png)
+ <use images/mvc.png>
+Package pdftex.def Info: images/mvc.png used on input line 341.
+(pdftex.def)             Requested size: 221.40225pt x 210.50467pt.
+
+Underfull \vbox (badness 2221) has occurred while \output is active []
+
+ [16pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.322 
-       <./images/fiori_arch.png>] [16pdfTeX warning (ext4): destination with th
-e same identifier (name{figure.2.6}) has been already used, duplicate ignored
+l.349 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.329 
-       <./images/mvc.png>]
+l.349 
+       <./images/fiori_arch.png> <./images/mvc.png>]
 File: images/fiori.jpg Graphic file (type jpg)
  <use images/fiori.jpg>
-Package pdftex.def Info: images/fiori.jpg used on input line 332.
+Package pdftex.def Info: images/fiori.jpg used on input line 357.
 (pdftex.def)             Requested size: 369.0pt x 201.9302pt.
- [17pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
-7}) has been already used, duplicate ignored
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17]
+[18pdfTeX warning (ext4): destination with the same identifier (name{figure.2.7
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.348 
+l.377 
       ]
-Overfull \hbox (22.79713pt too wide) in paragraph at lines 353--356
+Overfull \hbox (22.79713pt too wide) in paragraph at lines 378--381
 \T1/lmr/m/n/10.95 iden-ti-fi-ko-van˝ po-mocÌ URI http://services.odata.org/ODat
 a/OData.svc/Products,
  []
 
 
-Overfull \hbox (0.22957pt too wide) in paragraph at lines 353--356
+Overfull \hbox (0.22957pt too wide) in paragraph at lines 378--381
 \T1/lmr/m/n/10.95 http://services.odata.org/OData/OData.svc/Categories(1)/Produ
 cts iden-ti-fi-
  []
 
-<images/odata.png, id=398, 566.115pt x 273.02pt>
+<images/odata.png, id=404, 566.115pt x 273.02pt>
 File: images/odata.png Graphic file (type png)
  <use images/odata.png>
-Package pdftex.def Info: images/odata.png used on input line 359.
+Package pdftex.def Info: images/odata.png used on input line 384.
 (pdftex.def)             Requested size: 369.0pt x 177.9608pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18]
-[19pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8
+ [19]
+[20pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.366 \chapter
-              {Anal√Ωza a n√°vrh aplikace} <./images/odata.png>] [20
-
-]
+l.391 \chapter
+              {Anal√Ωza a n√°vrh aplikace} <./images/odata.png>]
 Underfull \vbox (badness 1755) has occurred while \output is active []
 
- [21]
+ [21
+
+]
 [22]
-Overfull \hbox (0.44228pt too wide) in paragraph at lines 404--406
+Overfull \hbox (0.44228pt too wide) in paragraph at lines 429--431
 []\T1/lmr/bx/n/10.95 Priorita\T1/lmr/m/n/10.95 : Sta-no-vuje ter-mÌn, do kte-rÈ
 ho se po-∫a-duje po-∫a-do-va-nou ˙dr∫bu
  []
 
 
-Overfull \hbox (12.87239pt too wide) in paragraph at lines 406--408
+Overfull \hbox (12.87239pt too wide) in paragraph at lines 431--433
 []\T1/lmr/bx/n/10.95 Pl·novacÌ sku-pin\T1/lmr/m/n/10.95 : Spo-£Ìv· ve v˝-b•ru s
 ub-jektu zod-po-vÌ-da-jÌ-cÌho za ˙dr∫bu.
  []
 
 
-Overfull \hbox (3.42206pt too wide) in paragraph at lines 422--424
+Overfull \hbox (3.42206pt too wide) in paragraph at lines 447--449
 \T1/lmr/m/n/10.95 kl·-d·nÌ po-∫a-davku na ˙dr∫bu, je v˝-£et po-t∞eb-n˝ch pa-ra-
 me-tr∑ to-to∫n˝. NicmÈn•
  []
 
 [23]
-Overfull \hbox (5.00351pt too wide) in paragraph at lines 429--430
+Overfull \hbox (5.00351pt too wide) in paragraph at lines 454--455
 \T1/lmr/m/n/10.95 NeeditovatelnÈ pa-ra-me-try bu-dou stejn• jako p∞i za-kl·-d·n
 Ì po-∫a-davku na ˙dr∫bu
  []
 
 [24]
-Overfull \hbox (1.74866pt too wide) in paragraph at lines 456--458
+Overfull \hbox (1.74866pt too wide) in paragraph at lines 481--483
 \T1/lmr/m/n/10.95 opravy) m∑∫e roz-hod-nout o do-sta-te£-nÈm pro-ve-denÌ ˙dr∫by
  da-nÈho stroje.
  []
 
 [25] [26] [27]
-<images/ea_sprava_poruch.jpg, id=468, 846.16125pt x 618.81187pt>
+<images/ea_sprava_poruch.jpg, id=470, 846.16125pt x 618.81187pt>
 File: images/ea_sprava_poruch.jpg Graphic file (type jpg)
 
 <use images/ea_sprava_poruch.jpg>
-Package pdftex.def Info: images/ea_sprava_poruch.jpg used on input line 503.
+Package pdftex.def Info: images/ea_sprava_poruch.jpg used on input line 528.
 (pdftex.def)             Requested size: 369.0pt x 269.8514pt.
 File: images/ea_sprava_poruch.jpg Graphic file (type jpg)
  <use images/ea_sprava_poruch.jpg>
-Package pdftex.def Info: images/ea_sprava_poruch.jpg used on input line 512.
+Package pdftex.def Info: images/ea_sprava_poruch.jpg used on input line 537.
 (pdftex.def)             Requested size: 369.0pt x 269.8514pt.
 
 Underfull \vbox (badness 7649) has occurred while \output is active []
@@ -1379,12 +1388,12 @@ Underfull \vbox (badness 7649) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.516 \subsubsection
+l.541 \subsubsection
                     {UC3: Spr√°va prevenc√≠} <./images/ea_sprava_poruch.jpg>]
 File: images/ea_sprava_poruch.jpg Graphic file (type jpg)
 
 <use images/ea_sprava_poruch.jpg>
-Package pdftex.def Info: images/ea_sprava_poruch.jpg used on input line 521.
+Package pdftex.def Info: images/ea_sprava_poruch.jpg used on input line 546.
 (pdftex.def)             Requested size: 369.0pt x 269.8514pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1394,19 +1403,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.525 
+l.550 
       ] [30pdfTeX warning (ext4): destination with the same identifier (name{fi
 gure.3.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.526 \chapter
+l.551 \chapter
               {N√°vrh u≈æivatelsk√©ho rozhran√≠}]
-<images/task_graph.png, id=490, 1061.9675pt x 1447.4075pt>
+<images/task_graph.png, id=492, 1061.9675pt x 1447.4075pt>
 File: images/task_graph.png Graphic file (type png)
 
 <use images/task_graph.png>
-Package pdftex.def Info: images/task_graph.png used on input line 534.
+Package pdftex.def Info: images/task_graph.png used on input line 559.
 (pdftex.def)             Requested size: 369.0pt x 502.934pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1425,54 +1434,54 @@ Overfull \vbox (14.54993pt too high) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.538 
+l.563 
        <./images/task_graph.png>]
-<images/bal_login.jpg, id=504, 903.375pt x 602.25pt>
+<images/bal_login.jpg, id=506, 903.375pt x 602.25pt>
 File: images/bal_login.jpg Graphic file (type jpg)
 
 <use images/bal_login.jpg>
-Package pdftex.def Info: images/bal_login.jpg used on input line 550.
+Package pdftex.def Info: images/bal_login.jpg used on input line 575.
 (pdftex.def)             Requested size: 369.0pt x 246.00513pt.
 
-<images/fiori_launchpad.png, id=505, 680.5425pt x 307.90031pt>
+<images/fiori_launchpad.png, id=507, 680.5425pt x 307.90031pt>
 File: images/fiori_launchpad.png Graphic file (type png)
 
 <use images/fiori_launchpad.png>
-Package pdftex.def Info: images/fiori_launchpad.png used on input line 557.
+Package pdftex.def Info: images/fiori_launchpad.png used on input line 582.
 (pdftex.def)             Requested size: 369.0pt x 166.94962pt.
 
-<images/bal_homepage.jpg, id=506, 901.11656pt x 376.40625pt>
+<images/bal_homepage.jpg, id=508, 901.11656pt x 376.40625pt>
 File: images/bal_homepage.jpg Graphic file (type jpg)
 
 <use images/bal_homepage.jpg>
-Package pdftex.def Info: images/bal_homepage.jpg used on input line 564.
+Package pdftex.def Info: images/bal_homepage.jpg used on input line 589.
 (pdftex.def)             Requested size: 369.0pt x 154.13802pt.
  [34pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.568 
+l.593 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 4.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.568 
+l.593 
        <./images/bal_login.jpg> <./images/fiori_launchpad.png>]
-<images/bal_poruchy_seznam.jpg, id=514, 903.375pt x 473.51906pt>
+<images/bal_poruchy_seznam.jpg, id=516, 903.375pt x 473.51906pt>
 File: images/bal_poruchy_seznam.jpg Graphic file (type jpg)
 
 <use images/bal_poruchy_seznam.jpg>
-Package pdftex.def Info: images/bal_poruchy_seznam.jpg used on input line 572.
+Package pdftex.def Info: images/bal_poruchy_seznam.jpg used on input line 597.
 (pdftex.def)             Requested size: 369.0pt x 193.42152pt.
 
-<images/bal_poruchy_seznam_zalozeni_poruchy.jpg, id=515, 902.6222pt x 472.76625
+<images/bal_poruchy_seznam_zalozeni_poruchy.jpg, id=517, 902.6222pt x 472.76625
 pt>
 File: images/bal_poruchy_seznam_zalozeni_poruchy.jpg Graphic file (type jpg)
  <use images/bal_poruchy_seznam_zalozeni_poruchy.jpg>
 Package pdftex.def Info: images/bal_poruchy_seznam_zalozeni_poruchy.jpg used on
- input line 579.
+ input line 604.
 (pdftex.def)             Requested size: 369.0pt x 193.27274pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1482,20 +1491,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.583 
+l.608 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 4.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.583 
+l.608 
        <./images/bal_homepage.jpg> <./images/bal_poruchy_seznam.jpg>]
-<images/bal_login_hompage_mob.jpg, id=521, 578.91281pt x 555.57562pt>
+<images/bal_login_hompage_mob.jpg, id=523, 578.91281pt x 555.57562pt>
 File: images/bal_login_hompage_mob.jpg Graphic file (type jpg)
 
 <use images/bal_login_hompage_mob.jpg>
-Package pdftex.def Info: images/bal_login_hompage_mob.jpg used on input line 58
-8.
+Package pdftex.def Info: images/bal_login_hompage_mob.jpg used on input line 61
+3.
 (pdftex.def)             Requested size: 369.0pt x 354.12602pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1505,13 +1514,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.592 
+l.617 
        <./images/bal_poruchy_seznam_zalozeni_poruchy.jpg>]
-<images/bal_poruchy_mob.jpg, id=527, 581.92406pt x 560.0925pt>
+<images/bal_poruchy_mob.jpg, id=529, 581.92406pt x 560.0925pt>
 File: images/bal_poruchy_mob.jpg Graphic file (type jpg)
 
 <use images/bal_poruchy_mob.jpg>
-Package pdftex.def Info: images/bal_poruchy_mob.jpg used on input line 595.
+Package pdftex.def Info: images/bal_poruchy_mob.jpg used on input line 620.
 (pdftex.def)             Requested size: 369.0pt x 355.15909pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1521,13 +1530,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.599 
+l.624 
        <./images/bal_login_hompage_mob.jpg>]
-<images/bu_poruchy_seznam.jpg, id=532, 958.3303pt x 272.51813pt>
+<images/bu_poruchy_seznam.jpg, id=534, 958.3303pt x 272.51813pt>
 File: images/bu_poruchy_seznam.jpg Graphic file (type jpg)
 
 <use images/bu_poruchy_seznam.jpg>
-Package pdftex.def Info: images/bu_poruchy_seznam.jpg used on input line 606.
+Package pdftex.def Info: images/bu_poruchy_seznam.jpg used on input line 631.
 (pdftex.def)             Requested size: 369.0pt x 104.93019pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1537,22 +1546,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.610 
+l.635 
        <./images/bal_poruchy_mob.jpg>]
-<images/bu_zalozeni_poruchy.jpg, id=538, 950.80219pt x 316.93407pt>
+<images/bu_zalozeni_poruchy.jpg, id=540, 950.80219pt x 316.93407pt>
 File: images/bu_zalozeni_poruchy.jpg Graphic file (type jpg)
 
 <use images/bu_zalozeni_poruchy.jpg>
-Package pdftex.def Info: images/bu_zalozeni_poruchy.jpg used on input line 613.
+Package pdftex.def Info: images/bu_zalozeni_poruchy.jpg used on input line 638.
 
 (pdftex.def)             Requested size: 369.0pt x 122.99928pt.
 
-<images/bu_poruchy_seznam_mob.jpg, id=539, 234.1247pt x 444.15938pt>
+<images/bu_poruchy_seznam_mob.jpg, id=541, 234.1247pt x 444.15938pt>
 File: images/bu_poruchy_seznam_mob.jpg Graphic file (type jpg)
 
 <use images/bu_poruchy_seznam_mob.jpg>
-Package pdftex.def Info: images/bu_poruchy_seznam_mob.jpg used on input line 62
-2.
+Package pdftex.def Info: images/bu_poruchy_seznam_mob.jpg used on input line 64
+7.
 (pdftex.def)             Requested size: 234.12411pt x 444.15828pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1562,20 +1571,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.626 
+l.651 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 4.10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.626 
+l.651 
        <./images/bu_poruchy_seznam.jpg> <./images/bu_zalozeni_poruchy.jpg>]
-<images/bu_zalozeni_poruchy_mob.jpg, id=546, 232.61906pt x 567.62062pt>
+<images/bu_zalozeni_poruchy_mob.jpg, id=548, 232.61906pt x 567.62062pt>
 File: images/bu_zalozeni_poruchy_mob.jpg Graphic file (type jpg)
 
 <use images/bu_zalozeni_poruchy_mob.jpg>
 Package pdftex.def Info: images/bu_zalozeni_poruchy_mob.jpg used on input line 
-629.
+654.
 (pdftex.def)             Requested size: 232.61848pt x 567.61922pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1585,7 +1594,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.633 
+l.658 
        <./images/bu_poruchy_seznam_mob.jpg>]
 Overfull \vbox (1.1481pt too high) has occurred while \output is active []
 
@@ -1595,139 +1604,221 @@ Overfull \vbox (1.1481pt too high) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.633 
+l.658 
        <./images/bu_zalozeni_poruchy_mob.jpg>] [42] [43] [44
 
 ]
-<images/architektura.png, id=580, 869.2475pt x 968.61874pt>
+<images/architektura.png, id=582, 869.2475pt x 968.61874pt>
 File: images/architektura.png Graphic file (type png)
 
 <use images/architektura.png>
-Package pdftex.def Info: images/architektura.png used on input line 692.
+Package pdftex.def Info: images/architektura.png used on input line 712.
 (pdftex.def)             Requested size: 369.0pt x 411.19196pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [46pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
-1}) has been already used, duplicate ignored
+LaTeX Warning: Reference `sec:architektura' on page 46 undefined on input line 
+717.
+
+[46pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.700 
+l.721 
        <./images/architektura.png>]
-<images/fiori_app_struct.jpg, id=590, 152.82094pt x 207.77625pt>
-File: images/fiori_app_struct.jpg Graphic file (type jpg)
+<images/erp_fm.jpg, id=593, 476.53032pt x 266.49562pt>
+File: images/erp_fm.jpg Graphic file (type jpg)
+ <use images/erp_fm.jpg>
+Package pdftex.def Info: images/erp_fm.jpg used on input line 724.
+(pdftex.def)             Requested size: 369.0pt x 206.36931pt.
 
-<use images/fiori_app_struct.jpg>
-Package pdftex.def Info: images/fiori_app_struct.jpg used on input line 711.
-(pdftex.def)             Requested size: 152.82054pt x 207.77573pt.
+<images/gw_json.jpg, id=595, 417.05812pt x 447.92343pt>
+File: images/gw_json.jpg Graphic file (type jpg)
+
+<use images/gw_json.jpg>
+Package pdftex.def Info: images/gw_json.jpg used on input line 734.
+(pdftex.def)             Requested size: 369.0pt x 396.32678pt.
  [47pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.720 	\textbf
-              {view}: Slo≈æka obsahuje zadefinovan√° view (UI rozvr≈æen√≠ el...
- <./images/fiori_app_struct.jpg>] [48]
-Overfull \hbox (9.62715pt too wide) in paragraph at lines 735--736
-\T1/lmr/m/n/10.95 dan· kom-po-nenta zob-ra-zo-vat. Na-p∞Ì-klad tla-£Ìtko pro sc
-hv·-lenÌ ˙dr∫by
- []
-
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 743.
-
-("D:\Apps\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [49]
-<images/fiori_app_view_struct.jpg, id=610, 144.54pt x 163.3603pt>
-File: images/fiori_app_view_struct.jpg Graphic file (type jpg)
-
-<use images/fiori_app_view_struct.jpg>
-Package pdftex.def Info: images/fiori_app_view_struct.jpg used on input line 75
-5.
-(pdftex.def)             Requested size: 144.53963pt x 163.3599pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [50]
-("D:\Apps\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-("D:\Apps\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-)
+l.737 \end{figure}
+                   <./images/erp_fm.jpg>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 763.
-
-<images/fiori_app_controller_struct.jpg, id=615, 140.77594pt x 152.06813pt>
-File: images/fiori_app_controller_struct.jpg Graphic file (type jpg)
-
-<use images/fiori_app_controller_struct.jpg>
-Package pdftex.def Info: images/fiori_app_controller_struct.jpg used on input l
-ine 795.
-(pdftex.def)             Requested size: 140.77557pt x 152.06775pt.
-
-Underfull \vbox (badness 2790) has occurred while \output is active []
-
- [51pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+put line 751.
+ [48pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.799 
-       <./images/fiori_app_view_struct.jpg>] [52pdfTeX warning (ext4): destinat
-ion with the same identifier (name{figure.5.4}) has been already used, duplicat
-e ignored
+l.755 
+       <./images/gw_json.jpg>]
+<images/gw_db.jpg, id=608, 323.70938pt x 155.07938pt>
+File: images/gw_db.jpg Graphic file (type jpg)
+ <use images/gw_db.jpg>
+Package pdftex.def Info: images/gw_db.jpg used on input line 760.
+(pdftex.def)             Requested size: 323.70859pt x 155.07898pt.
+
+[49pdfTeX warning (ext4): destination with the same identifier (name{figure.5.4
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.833 \begin{conclusion}
-                         <./images/fiori_app_controller_struct.jpg>]
-(DP_Mor√°vek_Marcel_2018.bbl [53
+l.771 	\textbf
+              {PMP\_USER\_ROLES}: Tabulka s ciz√≠m kl√≠ƒçem u≈æivatel. Prim√...
+ <./images/gw_db.jpg>] [50] ("D:\Apps\MiKTeX 2.9\tex\latex\listings\lstlang1.st
+y"
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+) ("D:\Apps\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+) [51]
+<images/loginmodule_structure.jpg, id=651, 124.21407pt x 71.51718pt>
+File: images/loginmodule_structure.jpg Graphic file (type jpg)
 
-] [54
+<use images/loginmodule_structure.jpg>
+Package pdftex.def Info: images/loginmodule_structure.jpg used on input line 84
+0.
+(pdftex.def)             Requested size: 124.21375pt x 71.517pt.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 845.
+
+
+("D:\Apps\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 845.
+ [52pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.848 
+       <./images/loginmodule_structure.jpg>]
+Overfull \hbox (3.20811pt too wide) in paragraph at lines 861--862
+\T1/lmr/m/n/10.95 ur-£enÌ kon-fi-gu-ra£-nÌho sou-boru slou∫Ì pa-ra-metr Djava.s
+ecurity.auth.login.config.
+ []
+
+<images/gw_servlet_structure.jpg, id=668, 121.20282pt x 68.50594pt>
+File: images/gw_servlet_structure.jpg Graphic file (type jpg)
+
+<use images/gw_servlet_structure.jpg>
+Package pdftex.def Info: images/gw_servlet_structure.jpg used on input line 867
+.
+(pdftex.def)             Requested size: 121.20251pt x 68.50577pt.
+
+Overfull \hbox (25.20319pt too wide) in paragraph at lines 879--880
+[][][][][][][][][][][][][][] 
+ []
+
+[53pdfTeX warning (ext4): destination with the same identifier (name{figure.5.6
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.891 
+       <./images/gw_servlet_structure.jpg>]
+<images/fiori_app_struct.jpg, id=682, 152.82094pt x 207.77625pt>
+File: images/fiori_app_struct.jpg Graphic file (type jpg)
+
+<use images/fiori_app_struct.jpg>
+Package pdftex.def Info: images/fiori_app_struct.jpg used on input line 909.
+(pdftex.def)             Requested size: 152.82054pt x 207.77573pt.
+
+Underfull \vbox (badness 1270) has occurred while \output is active []
+
+ [54]
+[55pdfTeX warning (ext4): destination with the same identifier (name{figure.5.7
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.924 	\textbf
+              {css}: Obsahuje soubory pro √∫pravu kask√°dov√Ωch styl≈Ø. Jeli...
+ <./images/fiori_app_struct.jpg>]
+Overfull \hbox (9.62715pt too wide) in paragraph at lines 935--936
+\T1/lmr/m/n/10.95 dan· kom-po-nenta zob-ra-zo-vat. Na-p∞Ì-klad tla-£Ìtko pro sc
+hv·-lenÌ ˙dr∫by
+ []
+
+[56] [57] <images/fiori_app_view_struct.jpg, id=713, 144.54pt x 163.3603pt>
+File: images/fiori_app_view_struct.jpg Graphic file (type jpg)
+
+<use images/fiori_app_view_struct.jpg>
+Package pdftex.def Info: images/fiori_app_view_struct.jpg used on input line 95
+5.
+(pdftex.def)             Requested size: 144.53963pt x 163.3599pt.
+ [58pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+8}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.975 	\textbf
+              {Pozadavek}: <./images/fiori_app_view_struct.jpg>]
+<images/fiori_app_controller_struct.jpg, id=721, 140.77594pt x 152.06813pt>
+File: images/fiori_app_controller_struct.jpg Graphic file (type jpg)
+
+<use images/fiori_app_controller_struct.jpg>
+Package pdftex.def Info: images/fiori_app_controller_struct.jpg used on input l
+ine 995.
+(pdftex.def)             Requested size: 140.77557pt x 152.06775pt.
+ [59pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1033 \begin{conclusion}
+                          <./images/fiori_app_controller_struct.jpg>] [60]
+(DP_Mor√°vek_Marcel_2018.bbl [61
+
+] [62
 
 ]
 bibitemlist
-) [55] [56
+) [63] [64
 
-] [57] [58
+] [65] [66
 
-] [59]
+] [67]
 \tf@toc=\write5
 \openout5 = `DP_Mor√°vek_Marcel_2018.toc'.
 
 \tf@lof=\write6
 \openout6 = `DP_Mor√°vek_Marcel_2018.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 973.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 973.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1173.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1173.
  (DP_Mor√°vek_Marcel_2018.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 973.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 973.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1173.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1173.
+
 Package rerunfilecheck Info: File `DP_Mor√°vek_Marcel_2018.out' has not changed
 .
-(rerunfilecheck)             Checksum: B5660281093DDAEC54509C6435312FC9;4787.
+(rerunfilecheck)             Checksum: D8294E40F7952983B62622B83720E9CE;4436.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 973.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1173.
  ) 
 Here is how much of TeX's memory you used:
- 15652 strings out of 493333
- 214450 string characters out of 3143069
- 367305 words of memory out of 3000000
- 18790 multiletter control sequences out of 15000+200000
- 68980 words of font info for 45 fonts, out of 3000000 for 9000
+ 15801 strings out of 493333
+ 216733 string characters out of 3143069
+ 378456 words of memory out of 3000000
+ 18868 multiletter control sequences out of 15000+200000
+ 69298 words of font info for 46 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,51p,1881b,1168s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,11n,51p,1818b,1216s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Apps/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{D:/Apps/MiKTeX 2.9/fonts/en
 c/dvips/lm/lm-mathit.enc}{D:/Apps/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}<
 D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><D:/Apps/MiKTeX 2.9/fonts/t
@@ -1737,11 +1828,11 @@ s/type1/public/lm/lmmi10.pfb><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pf
 b><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmr12.pfb><D:/Apps/MiKTeX 2.9/fonts
 /type1/public/lm/lmr8.pfb><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb>
 <D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><D:/Apps/MiKTeX 2.9/font
-s/type1/public/lm/lmsy10.pfb><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.p
-fb>
-Output written on DP_Mor√°vek_Marcel_2018.pdf (73 pages, 2109801 bytes).
+s/type1/public/lm/lmsy10.pfb><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmtk10.p
+fb><D:/Apps/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
+Output written on DP_Mor√°vek_Marcel_2018.pdf (81 pages, 2421005 bytes).
 PDF statistics:
- 754 PDF objects out of 1000 (max. 8388607)
- 207 named destinations out of 1000 (max. 500000)
- 398 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 876 PDF objects out of 1000 (max. 8388607)
+ 272 named destinations out of 1000 (max. 500000)
+ 407 words of extra memory for PDF output out of 10000 (max. 10000000)
 

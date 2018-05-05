@@ -14,7 +14,8 @@
 
 \usepackage{listings}
 \usepackage{algorithm}
-\usepackage{algorithmic}\usepackage{listings}
+\usepackage{algorithmic}
+\usepackage{listings}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 
@@ -23,6 +24,14 @@
 % \usepackage{amssymb} %additional math symbols
 
 \usepackage{dirtree} %directory tree visualisation
+\usepackage{listings}
+
+\lstdefinelanguage{VHDL}{
+	morekeywords={
+		CALL,FUNCTION,DESTINATION,EXPORTING,IMPORTING
+	}
+}
+
 
 % % list of acronyms
 % \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
@@ -254,10 +263,26 @@ Programovací program Stránky Business Server je podobný technologii serverov�
 	\centering
 	\includegraphics[width=1\textwidth]{images/bsp.png}
 	\caption{Struktura BSP aplikace}
-	\label{img:bsp}
+	\label{img:bsp_structure}
 	\small
 	Struktura BSP aplikace
 \end{figure}
+
+Každá BSP stránka využívá stejného principu zpracování dat. Obecně lze na BSP stránce definovat šest základních událostí, na které se zpracovávají data. 
+\begin{itemize}
+	\item
+	\textbf{OnCreate}:
+	\item
+	\textbf{OnRequest}:
+	\item
+	\textbf{OnInitialization}:
+	\item
+	\textbf{OnManipulation}:
+	\item
+	\textbf{OnInputOutputProcessing}:
+	\item
+	\textbf{OnDestroy}:
+\end{itemize} 
 
 \section{SAP FIORI}
 
@@ -680,12 +705,7 @@ pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto h
 \section{Porovnaní prototypovacích nástrojů}
 
 
-
-
-
 \chapter{Implementace}
-
-\section{Architektura}
 
 \begin{figure}[H]
 	\centering
@@ -694,17 +714,195 @@ pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto h
 	\label{img:uc_sprava_poruch}
 \end{figure}
 
-\subsection{Apache Tomcat}
-Apache Tomcat je známý open-source webový server a servletový kontejner. Jedná se o oficiální referenční implementaci technologií Java Servlet a Java Server Pages (JSP). Na serveru mohou běžet uživatelské servlety (programy napsané v Javě), které umí zpracovávat požadavky zasílané pomocí HTTP protokolu a tímtéž protokolem na ně odpovídat. Apache Tomcat zde slouží jako zásobník servletů starající se o jejich spouštění, běh, ukončování a
-podobně.
+Tato kapitola se věnuje implementaci jednotlivých částí navržené architektury \ref{sec:architektura}, která je ihned v první podkapitole zobrazena a popsána. Podrobnější popis jednotlivých komponent následuji ihned poté. Architekrura je rozdělena do tří bloků a tomu odpovídají i tři následující podkapitoly. 
 
-\section{Login Modul}
+\section{SAP ERP}
+Touto části architektury se tato práce přímo nezabývá, nicméně je zde pro lepší představu o celkovém systému krátce popsána. Jak již bylo v kapitole věnující se teoretickému základu řečeno, základem veškerých potřebných procesů je SAP ERP. Konkrétně potom moduly PM, MM a CO. Každý z těchto modulů ma desítky BAPI (Business Application Programming Interface) funkcí představujících rozhraní pro základní operace nad daným modulem. Správné sekvence a data volaných BAPI funkcí jsou potom obaleny do funkčních modulů, které umožňují vzdálené vyvolání z jiných systémů. Ke vzdálenému volání slouží v rámci SAP systému RFC (Remote Function Call), které umožňuje přenášet data napříč jednotlivými systémy. Takovýchto funkcí vzniklo v ERP systému více než 20, výčet modulů je k vidění na obrázku \ref{img:erp_fm} níže.
 
-\section{GW Servlet}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/erp_fm}
+	\caption{Seznam funkčních modulů v ERP systému}
+	\label{img:erp_fm}
+\end{figure}
 
-\section{PM SAPUI5 Aplikace}
+\section{SAP GW}
+Jak již bylo zmíněno v kapitole věnující se tomuto produktu více teoreticky, primárním účelem serveru je komunikace s okolním světem. Standardní cesta pro Fiori aplikace je používáním servisů ODATA. Ne všichni zákazníci ovšem mají nakoupené licence pro provoz Fiori touto cestou a právě proto byla navržena architektura založená na technologii BSP, běžně dostupné v produktech GW, ale i ERP. Na obrázku \ref{img:gw_json} je seznam 36 BSP stránek, které pro aplikaci vznikly. V porovnání s počtem funkčních modulů na straně ERP je evidetní, že nejsou vytvořeny v poměru 1:1. Je to především z toho důvodu, že jsou v této úrovni uloženy uživatelská data portálových uživatelů. 
 
-\subsection{Struktura aplikace}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/gw_json}
+	\caption{Seznam funkčních modulů v ERP systému}
+	\label{img:gw_json}
+\end{figure}
+
+Všechny výše zobrazené BSP stránky jsou implementovány na stejném principu. Využívají události OnRequest, ve které dojde ke zpracování vstupních dat a vygenerování adekvátních dat na výstup. V první fázi jsou vytvořeny lokální proměnné potřebné pro správné zpracování dat. Následně je deserializován vstupní objekt typu JSON do odpovídajících struktur programovacího jazyka ABAP. Poté je pomocí RFC zavolán příslušný funkční modul. Stejně tak jako v ukázce algoritmu \ref{code:rfc_call} níže. 
+
+\begin{algorithm}[H]	
+	\begin{lstlisting}[language = VHDL]  
+CALL FUNCTION 'ZITL_PM_CREATE_NOTIF' DESTINATION lv_dest
+  EXPORTING
+    is_notif_get = zitl_input_json-qmart
+    it_tplnr     = zitl_input_json-tplnr
+  IMPORTING
+    et_notif     = lt_notif
+    ev_error     = lv_error.
+	\end{lstlisting}
+	\caption{Vytvoření instance třídy PortList}	
+	\label{code:rfc_call}
+	\small Kód zobrazuje volání funkčního modulu ZITL\_MOB\_PM\_GET\_NOTIF pro načtení seznamu hlášení. Parametrem DESTINATION je řízeno směrování volání. Hodnotou musí být nastavené spojení se vzdáleným servem zabezpečeného pomocí metody BASIC. Parametry EXPORTING a IMPORTING určují vstupní a výstupní proměnné z funkčního modulu. Vstupními parametry je tak řízen například typ hlášení, který určuje zdali se jedná o poruchu, prevenci nebo požadovanou údržbu. Obsahuje však i další parametry určují datumový rozsah a podobně.
+\end{algorithm}	
+
+Načtená data jsou zpětně serializována pro výstup. Obsahem celé BSP HTML stránky je tedy objekt typu JSON. Jak již ale bylo zmíněno, na úrovni GW se nacházejí i uživatelská data představující portálové uživatele. Na následujícím obrázku \ref{img:gw_db} je k vidění ilustrační databázové schéma. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/gw_db}
+	\caption{Ilustrační databázové schéma pro uživatelská data portálového uživatele}
+	\label{img:gw_db}
+\end{figure}
+
+Databázové schéma neodpovídá úplně přesně skutečnosti. Některá pole a vazby tabulek jsou úmyslně skryta a to buď protože nejsou pro celý koncept aplikace relevantní nebo z důvodu zvýšení bezpečnosti. Ze schematu vychází vazby 1 ku N pro všechny kombinace kmenové tabulky PMP\_USER a pomocných tabulek PMP\_USER\_ROLES, PMP\_USER\_ATTRUBUTES a PMP\_USER\_LOCATIONS. Trochu podrobněji jsou jednotlivé tabulky popsány v následujícím výčtu.
+
+\begin{itemize}
+	\item
+	\textbf{PMP\_USER}: Tabulka obsahuje záznamy jednotlivých portálových uživatelů. Jedná se tedy především o přihlašovací údaje a jednotlivé informace přímo související s uživatelem. Jako je například jméno, pod kterým uživatel ve webové aplikaci vystupuje, osobní číslo v ERP, informace o tom zdali se jedná o správce nebo také platnosti uživatele a data s časy posledních změn spolu s jejich autory.
+	\item
+	\textbf{PMP\_USER\_ROLES}: Tabulka s cizím klíčem uživatel. Primární klíč je identifikátor role, která je uložena ve standartních SAP tabulkách, které jsou zpracovatelné pomocí standardních transakcí.
+	\item
+	\textbf{PMP\_USER\_ATTRIBUTES}: Tabulka s cizím klíčem uživatele. Primární klíč je identifikátor atributu. Výčet atributů není nikterak stanoven a zodpovědnost za správné vyplnění je přenesena na správce účtů, který má k dispozici seznam užitečných atributů pro webovou aplikaci. Součástí tabulky je i pole pro hodnotu takového atributu. S vytvořením aplikační logiky kontrolující správnost atributů z pevně stanového výčtu je počítáno v budoucím rozšíření aplikace.
+	\item
+	\textbf{PMP\_USER\_LOCATIONS}: Tabulka s cizím klíčem uživatele. Primární klíč je identifikátor zodpovědného pracoviště. Ten není prozatím nikterak kontrolován vůči hierarchickému uspořádání technických míst v modulu SAP PM. S vytvořením aplikační logiky kontrolující správnost pracovišť ze stanovené hierarchie je počítáno v budoucím rozšíření aplikace.
+\end{itemize} 
+
+\section{Apache Tomcat}
+Apache Tomcat je známý open-source webový server a servletový kontejner. Jedná se o oficiální referenční implementaci technologií Java Servlet a Java Server Pages (JSP). Na serveru mohou běžet uživatelské servlety (programy napsané v Javě), které umí zpracovávat požadavky zasílané pomocí HTTP protokolu a tímtéž protokolem na ně odpovídat. Apache Tomcat zde slouží jako zásobník servletů starající se o jejich spouštění, běh, ukončování a podobně.
+
+\subsection{Login Modul}
+Login modul využívá systému \textbf{JAAS} (Java Authentication and Authorization Service), který slouží pro autentizaci a autorizaci uživatele. Jak již z názvu vyplývá, jedná se o bezpečnostní systém založený na technologii Java. Vyskytuje se od verze 1.4 v J2EE (Java 2 Enterprise Edition). 
+
+Deklarativní zabezpečení J2EE chrání webové aplikace podle aktuálního vzorce uživatelovi URL. Cesta k souborům může být popsána absolutním i relativním způsobem. Jeli například požadováno povolení přístupu k aplikaci uživatelům s rolí USERS, je zapotřebí v definici web.xml \ref{item:pm_web_inf} zavést následující definici.
+
+\begin{algorithm}[H]	
+	\begin{lstlisting}[language = XML]  
+<security-constraint> 
+  <web-resource-collection> 
+    <web-resource-name>AllPublic</web-resource-name> 
+    <url-pattern>/</url-pattern> 
+  </web-resource-collection> 
+  <auth-constraint> 
+    <role-name>USERS</role-name> 
+  </auth-constraint> 
+</security-constraint>
+	\end{lstlisting}
+	\caption{Definice zabezpečení aplikace pro roli USERS}	
+	\label{code:j2ee_definition}
+	\small Tato definice chrání webovou aplikaci od kořenového adresáře J2EE, jak je naznačeno vzorem \uv{\textbackslash}. Pokud by mělo být zabezpečení aplikováno jen na část aplikace, je třeba uvést za \uv{\textbackslash} jméno adekvátního podadresáře.
+\end{algorithm}	
+
+Ověřování v deklarativní ochraně je vynuceno, právě tehdy když si uživatel vyžádá chráněnou oblast webové aplikac. Pokud nebyl dříve ověřen, zobrazí se přihlašovací dialog, aby se uživatel mohl identifikovat. Běžně používané způsoby ověření jsou FORM a BASIC. 
+
+\paragraph{BASIC} Je základním typem autentizace. Využívá standardního dialogu prohlížeče pro vložené uživatelského jména a hesla. Tento dialog nelze nikterak modifikovat, proto se jeho vzhled liší pouze na typu aktuálně používaného prohlížeče. Uživatelská pověření pro autentizovanou oblast jsou uložena v rámci session prohlížeče. Uživatelská data (jméno a heslo) jsou potom v zakodované formě posílána s každým HTTP requestem.
+
+\begin{algorithm}[H]	
+	\begin{lstlisting}[language = XML]  
+<login-config> 
+  <auth-method>BASIC</auth-method> 
+</login-config>
+	\end{lstlisting}
+	\caption{Definice typu autentizace BASIC}	
+	\label{code:auth_basic_def}
+\end{algorithm}	
+
+\paragraph{FORM} Je přizpůsobivější variantou autentizace. Umožňuje vývojáři specifikovat vlastní dialog pro přihlášení. Jediné omezení spočívá v pojmenování vstupní hodnoty uživatelského jména na j\_username a hesla na j\_password. Přihlašovací akce pro autentizaci potom musí mít hodnotu j\_security\_check v rámci J2EE kontejneru. Uživatel posléze zůstává ověřen přes session server.
+
+\begin{algorithm}[H]	
+	\begin{lstlisting}[language = XML]  
+<login-config> 
+  <auth-method> FORM</auth-method> 
+  <form-login-config> 
+    <form-login-page>/login.html</form-login-page>
+    <form-error-page>/login_error.html</form-error-page>
+  </form-login-config> 
+</login-config>
+	\end{lstlisting}
+	\caption{Definice typu autentizace FORM}	
+	\label{code:auth_form_def}
+	\small Navíc od autentizace typu BASIC jsou zde zadefinovány dvě html stránky. Element <form-login-page> stanovuje stránku, která je uživateli zobrazena při prvotním pokusu uživatele o načtení aplikace, stránka stanovená elementem <form-error-page> se zobrazí v případě, že uživatel zadá špatnou kombinace jména a hesla nebo se v průběhu autentizace vyskytne jiná chyba.
+\end{algorithm}	
+
+Oba přístupy autentizace jsou zranitelná vůči útokům skrze odposlouchávání. Proto je silně doporučeno zpřístupňovat aplikaci skrze HTTPS protokol. 
+
+Kompletní proces autentizace a autorizace je implementován pomocí tříd napsaných v programovacím jazyce Java. Výčet tříd odpovídá struktuře \ref{img:loginmodule_structure} zobrazené níže. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/loginmodule_structure}
+	\caption{Struktura paketu realizující autentizaci a autorizaci}
+	\label{img:loginmodule_structure}
+\end{figure}
+
+Nejdůležitější třídou je \textbf{PMLoginModule}, která spočívá v přepisu čtyř procesních metod. Inicializační metodou je \textbf{initialize}, která nastavení instančním proměnným výchozí hodnoty. Prvním z nich je základní objekt CallbackHandler, sloužící k předávání hodnot mezi modulem a uživatelovým prohlížečem. Druhým je objekt Subject udržující informace o uživateli. Takovou hodnotou je například identifikátor session. Metodou realizující autentizaci je metoda \texttt{\textbf{Login}}, která pomocí objektu CallbackHandler získá uživatelem vyplněné hodnoty jména a hesla, jejíž ověření se právě v rámci této metody musí provést. Pro kontrolu očekávaného slouží statická třída \textbf{Password}, která obsahuje metody pro generování hesel i ověření jejich shodnosti. Výstupem je potom boolean hodnota true nebo false. O autorizaci se stará metoda \texttt{\textbf{Commit}}, jejíž úkolem je přidělení příslušných rolí uživateli. K tomu slouží třídy \texttt{\textbf{UserPrincipal}} a \textbf{RolePrincipal} reprezentující jednotlivé role a uživatele. Poslední metodou k doplnění celého procesu je \textbf{Logout}, která má za úkol odstranit uživateli role a a následně celý obejt Subjekt, který ho reprezentuje.
+
+\paragraph{Nasazení} Celý projekt je zapotřebí zabalit do archivu typu JAR, sloužící pro distribuci programů a knihoven. Následně ho vložit do run-time prostředí Tomcat serveru. Pro uložení takové knihovny je určen adresář libs.
+
+K tomu, aby server vůbec věděl, že má pro aplikace vyžadující autentizaci uživatele použít vytvořenou JAR knihovnu, je zapotřebí definovat JAAS konfigurační soubor obsahující cestu k dané knihovně. Ukázka takové definici je v kódu \ref{code:jaas_config} níže. 
+
+\begin{algorithm}[H]	
+	\begin{lstlisting}[language = VHDL]  
+pmloginmodule {
+  ite.cz.mo.pmlogin.PMLoginModule required debug=true;
+};
+	\end{lstlisting}
+	\caption{Konfigurační soubor JAAS}	
+	\label{code:jaas_config}
+\end{algorithm}	
+
+Cestu souboru je pak zapotřebí definovat v Java parametrech serveru. K určení konfiguračního souboru slouží parametr Djava.security.auth.login.config. Hodnotou k tomuto parametru je absolutní cesta požadovaného souboru.
+
+\subsection{GW Servlet}
+Na obrázku \ref{img:gw_servlet_structure} je k vidění struktura paketu realizujícího mezivrstvu pro komunikace s SAP GW. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[]{images/gw_servlet_structure}
+	\caption{Struktura paketu realizujícího middleware vrstvu mezi PM SAPUI5 aplikací a SAP GW}
+	\label{img:gw_servlet_structure}
+\end{figure}
+Jedná se o čtyři třídy napsané v programovacím jazyce Java. Podrobněji jsou jednotlivé třídy popsány v seznamu níže.
+
+\begin{itemize}
+	\item
+	\textbf{GWServlet}: Je Java třída implementující interface javax.servlet.Servlet sloužící pro zpracování Http požadavků. Základem tohoto servletu je přepsaná metoda doGet, která obsahuje parametry HttpServletRequest a HttpServletResponse umožňují jednak načtení přijatých dat společně s dalšími parametry, které s sebou požadavek nese a potom také adekvátní data pomocí odpovědi vrátit. Metoda doGet je volána z další přepsané metody doPost, která je vyvolána v případě HTTP requestu typu POST. 
+	
+	\begin{algorithm}[H]	
+		\begin{lstlisting}[language = VHDL]  
+CALL FUNCTION 'ZITL_MOB_PM_CREATE_NOTIF' DESTINATION lv_dest
+EXPORTING
+is_notif_get = zitl_input_json-qmart
+it_tplnr     = zitl_input_json-tplnr
+IMPORTING
+et_notif     = lt_notif
+ev_error     = lv_error.
+		\end{lstlisting}
+		\caption{Vytvoření instance třídy PortList}	
+		\label{code:rfc_call}
+		\small Kód zobrazuje volání funkčního modulu ZITL\_MOB\_PM\_GET\_NOTIF pro načtení seznamu hlášení. Parametrem DESTINATION je řízeno směrování volání. Hodnotou musí být nastavené spojení se vzdáleným servem zabezpečeného pomocí metody BASIC. Parametry EXPORTING a IMPORTING určují vstupní a výstupní proměnné z funkčního modulu. Vstupními parametry je tak řízen například typ hlášení, který určuje zdali se jedná o poruchu, prevenci nebo požadovanou údržbu. Obsahuje však i další parametry určují datumový rozsah a podobně.
+	\end{algorithm}	
+	
+	
+	\item
+	\textbf{Node}: Třída reprezentující prvek hierarchie technických míst a vybavení z modulu SAP PM. Jelikož se v interně technické místo a vybavení datově liší, je vytvořena tato třída, která nesrovnalosti mezi těmito objekty eliminuje. Datově rozdílné identifikátory jsou nahrazeny jednotným id a ostatní lišící se parametry jsou sloučeny do atributů třídy odpovídajícím významu původního datového objektu. To posléze umožňuje v prezentační vrstvě lehce pracovat v 
+	\item
+	\textbf{TplnrHierarchy}:
+	\item
+	\textbf{Password}:
+\end{itemize} 
+
+\subsection{PM SAPUI5 Aplikace}
+V následujících podkapitolách je popsána implementační struktura projektu pro PM SAPUI5 Aplikaci. Jelikož se jedná o stěžejní část celkové architektury, obsahuje veškerou logiku očekávanou od prezentační vrstvy. Jsou zde zadefinovány veškeré pohledy (stránky), se kterými se uživatel bude moci setkat.  
+
+\subsubsection{Struktura aplikace}
+Zde zobrazena a popsána celková struktura aplikace z vývojářského pohledu. Na obrázku \ref{img:pmfiori_app_struct} je k vidění hlavní strom adresářů a souborů v použitém Eclipse projektu. 
 
 \begin{figure}[H]
 	\centering
@@ -713,9 +911,11 @@ podobně.
 	\label{img:pmfiori_app_struct}
 \end{figure}
 
+Jednotlivé položky jsou potom popsány v následujícím seznamu. Koncepčně je popis strukturován tak, že nejdříve jsou napsány obecné vlastnosti očekávané od daného adresáře nebo souboru a poté jsou dopsány případné poznámky z implementace.
+
 \begin{itemize}
 	\item
-	\textbf{WEB-INF}: Adresář obsahuje externí knihovny potřebné pro správnou funkčnost aplikace. Jelikož základní datovou reprezentací používanou v této aplikaci je JSON a programovací jazyk Java nativně práci s tímto formátem nepodporuje, je v tomto adresáři přiložena externí knihovna \textbf{java-json.jar}, která práci s tímto typem objektů umožňuje. Dále je zde uložen soubor \textbf{web.xml} popisující nasazení webové aplikace včetně jejich webových služeb. Slouží k deklaraci servletů a filtrů používaných danou webovou službou. V případě této aplikace se jedná například o GWServlet.
+	\textbf{WEB-INF}: \label{item:pm_web_inf} Adresář obsahuje externí knihovny potřebné pro správnou funkčnost aplikace. Jelikož základní datovou reprezentací používanou v této aplikaci je JSON a programovací jazyk Java nativně práci s tímto formátem nepodporuje, je v tomto adresáři přiložena externí knihovna \textbf{java-json.jar}, která práci s tímto typem objektů umožňuje. Dále je zde uložen soubor \textbf{web.xml} popisující nasazení webové aplikace včetně jejich webových služeb. Slouží k deklaraci servletů a filtrů používaných danou webovou službou. V případě této aplikace se jedná například o GWServlet.
 	\item
 	\textbf{view}: Složka obsahuje zadefinovaná view (UI rozvržení elementů) ve značkovacím jazyce XML. Hlavním úkolem těchto souborů je hierarchické rozvržení použitých komponent jednotlivých stránek. Pomocí různých layoutů tak umožňuje jasně definovat, že dané view reprezentuje dialog, jehož obsahem je formulář o pěti prvcích, z nichž každý používá jinou vstupní uživatelskou komponentu. Podrobněji se jednotlivým souborům věnuje podkapitola views. 
 	\item
@@ -748,7 +948,7 @@ podobně.
 	\textbf{manifest.json}: Manifest slouží především k rychlému definování možného směrování v rámci aplikace. Dochází zde k mapování uživatelovi aktuální url na jednotlivá view. Lze tak například přiřadit k postfixu pm/\#/vyroba view Vyroba a tím tak uživateli zobrazit očekávané informace. Dále se zde dají zadefinovat modely přiřazené komponentě nebo zdroje kaskádových stylů. 
 \end{itemize} 
 
-\subsection{Views}
+\subsubsection{Views}
 
 \begin{figure}[H]
 	\centering
@@ -788,7 +988,7 @@ podobně.
 	\textbf{dialogs}:
 \end{itemize} 
 
-\subsection{Controllers}
+\subsubsection{Controllers}
 
 \begin{figure}[H]
 	\centering
@@ -814,7 +1014,7 @@ podobně.
 	\textbf{Administrace}:
 \end{itemize} 
 
-\section{LOGIN SAPUI5 Aplikace}
+\subsection{LOGIN SAPUI5 Aplikace}
 
 \section{Porovnání vývojových prostředí}
 
