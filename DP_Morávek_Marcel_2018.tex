@@ -34,7 +34,7 @@
 
 \lstdefinelanguage{java}{
 	morekeywords={
-	function, return, if, this, that
+	function, return, if, this, that, var
 	}
 }
 
@@ -788,6 +788,7 @@ Databázové schéma neodpovídá úplně přesně skutečnosti. Některá pole 
 Apache Tomcat je známý open-source webový server a servletový kontejner. Jedná se o oficiální referenční implementaci technologií Java Servlet a Java Server Pages (JSP). Na serveru mohou běžet uživatelské servlety (programy napsané v Javě), které umí zpracovávat požadavky zasílané pomocí HTTP protokolu a tímtéž protokolem na ně odpovídat. Apache Tomcat zde slouží jako zásobník servletů starající se o jejich spouštění, běh, ukončování a podobně.
 
 \subsection{Login Modul}
+\label{ssec:login_modul}
 Login modul využívá systému \textbf{JAAS} (Java Authentication and Authorization Service), který slouží pro autentizaci a autorizaci uživatele. Jak již z názvu vyplývá, jedná se o bezpečnostní systém založený na technologii Java. Vyskytuje se od verze 1.4 v J2EE (Java 2 Enterprise Edition). 
 
 Deklarativní zabezpečení J2EE chrání webové aplikace podle aktuálního vzorce uživatelovi URL. Cesta k souborům může být popsána absolutním i relativním způsobem. Jeli například požadováno povolení přístupu k aplikaci uživatelům s rolí USERS, je zapotřebí v definici web.xml \ref{item:pm_web_inf} zavést následující definici.
@@ -911,6 +912,7 @@ ev_error     = lv_error.
 V následujících podkapitolách je popsána implementační struktura projektu pro PM SAPUI5 Aplikaci. Jelikož se jedná o stěžejní část celkové architektury, obsahuje veškerou logiku očekávanou od prezentační vrstvy. Jsou zde zadefinovány veškeré pohledy (stránky), se kterými se uživatel bude moci setkat.  
 
 \subsection{Struktura aplikace}
+\label{ssec:struckuta_pm_aplikace}
 Zde zobrazena a popsána celková struktura aplikace z vývojářského pohledu. Na obrázku \ref{img:pmfiori_app_struct} je k vidění hlavní strom adresářů a souborů v použitém Eclipse projektu. 
 
 \begin{figure}[H]
@@ -979,21 +981,20 @@ query : function(data, success, error) {
 \end{itemize} 
 
 \subsection{Jednotlivé stránky aplikace}
-V této kapitole jsou popsány a zobrazeny nejdůležitější stránky aplikace. 
-
+V této kapitole jsou popsány a zobrazeny nejdůležitější stránky aplikace. Koncept popisování jednotlivých stránek je velmi podobný. Nejdříve je obecně popsáno, co vlastně daná stránka dělá, poté následují dvě trochu více technické sekce View a Controller a následně popis stránky z uživatelského pohledu společně s ukázkou. Popsány jsou hlavní view a controllery z obrázků \ref{img:views_strucutre} a \ref{img:controlllers_structure} níže.
 \begin{figure}[H]
 	\centering
 	\includegraphics[]{images/fiori_app_view_struct}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Struktura jednotlivých view v Eclipse projektu}
 	\label{img:views_strucutre}
 \end{figure}
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[]{images/fiori_app_controller_struct}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Struktura controllerů v Eclipse projektu}
 	\label{img:controlllers_structure}
 \end{figure}
+Jak je z obrázků patrné, view mají zpravidla stejnojmenný protějšek v controllerech. To je z toho důvodu, že každé view má přiřazen jeden controller a z důvodu přehlednosti jsou proto pojmenovány stejně. 
 
 \subsubsection{App}
 \label{sssec:fiori_app}
@@ -1169,7 +1170,7 @@ Pod filtry je navržena tabulka se všemi možnými sloupci, které se mohou v r
 \paragraph{View (mobile)}
 Pod filtry je navržen komplikovanější rozložení skládající se z desítek komponent různých layoutů uspořádaných do hierarchické struktury. Bylo zapotřebí změnit celou strukturu oproti tabulkovému zobrazení. Každé hlášení tak horizontálně zabírá více místa. Namísto maximálně dvou řádků v rámci jednoho hlášení se tak nyní vyskytuje až sedm řádků informací.
 \paragraph{Controller}
-Kromě standardních činností, jako je odchytávání uživatelovi interakci s patřičným zpracováním, je zde zapotřebí dynamicky řešit obsah hlavního view. Toho je dosaženo za pomocí modelu zařízení a \textbf{návrhového vzoru pozorovatel}, který řeší informování požadovaných objektů o změně stavu jiného objektu. Pozorovaným objektem je v tomto případě model zařízení (konkrétně jeho část řešící aktuální rozlišení). Pozorovatelem je objekt (funkce) controlleru. 
+Kromě standardních činností, jako je odchytávání uživatelovi interakci s patřičným zpracováním, je zde zapotřebí dynamicky řešit obsah hlavního view. Toho je dosaženo za pomocí modelu zařízení a \textbf{návrhového vzoru pozorovatel}, který řeší informování požadovaných objektů o změně stavu jiného objektu. Pozorovaným objektem je v tomto případě model zařízení (konkrétně jeho část řešící aktuální rozlišení). Pozorovatelem je objekt (funkce) controlleru. Jelikož je tabulka společná pro všechny druhy hlášení, řeší controller zobrazení jednotlivých sloupců. 
 \begin{algorithm}[H]
 	\begin{lstlisting}[language=java]     
 var dev = this.getOwnerComponent().getModel("device");
@@ -1204,46 +1205,99 @@ Cílem návrhu této stránky bylo maximální možné eliminování tlačítek 
 \end{figure}
 
 \subsubsection{Udrzba - Údržbář}
+\label{sssec:fiori_udrzba}
 Stránka je navržena tak, aby odpovídala funkčním požadavkům spadající pod roli Údržbáře. Musí zde tedy býti dostupný seznam jednotlivých hlášení (poruchy, prevence a údržby) připravených k provedení servisního úkonu. V rámci jednotlivých hlášení je zapotřebí mít k dispozici relevantní operace, které s nimi údržbář může provést.
 \paragraph{View}
-
-\paragraph{View (mobile)}
+Jelikož je seznam jednotlivých druhů hlášení řešen pomocí tabulky, stejně jako v případě operátora výroby \ref{sssec:fiori_vyroba}, je opět přistoupeno k oddělení jednotlivých view na fragmenty, které se v závislosti na šířce e používaného zařízení přidávají a odebírají. Oproti stránce pro operátory výroby je zde ale požadovaných funkcionalit trochu více a proto je rozdělení typů hlášení řešeno jinak. Místo přepínacího filtru mezi poruchami, prevencemi a údržbami vzniklo pět záložek. Tři z nich kopírují druhy hlášení, zbylé dvě slouží pro dohledání dokumentace k vybavení a zobrazení historie poruch.
 \paragraph{View (desktop)}
+Všech pět záložek je řešeno pomocí tabulek s různými sloupci. Požadavek na minimální počet zobrazených elementů zůstává. A i zde jsou proto texty a tlačítka zobrazována na základě knihovny utils \ref{file:utils.js}. 
+\paragraph{View (mobile)} 
+Všech pět záložek je realizováno pomocí různých layoutů uspořádaných do hierarchické struktury komponent. 
 \paragraph{Controller}
+Kromě standardních činností, jako je odchytávání uživatelovi interakci s patřičným zpracováním, je zde zapotřebí dynamicky řešit obsah hlavního view. Toho je dosaženo za pomocí modelu zařízení a \textbf{návrhového vzoru pozorovatel}, který řeší informování požadovaných objektů o změně stavu jiného objektu. Pozorovaným objektem je v tomto případě model zařízení (konkrétně jeho část řešící aktuální rozlišení). Pozorovatelem je objekt (funkce) controlleru. Jelikož je tabulka společná pro všechny druhy hlášení, řeší controller zobrazení jednotlivých sloupců. 
 \paragraph{Stránka}
+Stránka je řešena trochu odlišně než tomu je u operátory výroby \ref{sssec:fiori_vyroba}. Místo filtru nad druhem hlášení jsou navrženy jednotlivé záložky s tím, že každá má přidělenou svoji adekvátní tabulku. Podoba stránky pro desktop a mobilní zařízení je vidět na obrázku \ref{img:view_vyroba} níže.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/view_udrzba}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Stránka pro údržbáře}
 	\label{img:view_udrzba}
 \end{figure}	
 
 \subsubsection{Administrace}
+\label{sssec:fiori_administrace}
+Stránka je navržena tak, aby odpovídala funkčním požadavkům spadající pod roli Administrátora. Musí zde být k dispozici seznam všech uživatelů a umožněno provádět nad jednotlivými uživateli požadované operace jako je editace atributů, rolí nebo jména a hesla uživatele.
 \paragraph{View}
+Administrace používá koncepčně trochu jiný typ přístup než předchozí stránky. Je zde použita komponenta SplitApp pomyslně rozdělující stránku na master a detail část. Ačkoli to není nutné, obecně se v master části očekává libovolný seznam prvků, jejichž výběrem se v detail části zobrazí podrobné informace příslušného prvku. V tomto případě se tak jedná o seznam uživatelů pro master část a jeho podrobné informace v detail části. Pro seznam je použita standardní listová komponenta obsahující pouze název uživatelského účtu. V detailní části je potom v hlavičce osobní číslo a jméno uživatele a pod tím záložky pro pracoviště, role a atributy. Struktura této stránky je k vidění v ukázce kódu \ref{code:split_app} níže. 
+Rozdílné chování je znát i na mobilních zařízeních. Master a Detail stránky jsou v tomto případě rozděleny a chovají se jakoby samostatné stránky, ačkoliv je za nimi schován jeden controller a sdílí všechny data tak, jako by jednou stránkou byly. 
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=java]      
+<SplitApp initialDetail="detailDefault" 
+          initialMaster="master">
+  <masterPages>
+    <Page id="master" >
+      <customHeader /> 
+      <content />
+      <footer />
+    </Page>
+  </masterPages>
+  <detailPages>
+    <Page id="detailDefault">
+      <customHeader /> 
+      <content />
+      <footer />
+    </Page>
+    <MessagePage id="detailNotFound" />
+  </detailPages>
+</SplitApp>
+	\end{lstlisting}
+	\caption{}
+	\label{code:split_app}
+	\small Ukázka má nastínit základní strukturu SplitApp komponenty. Základním stavebním kamenem jsou agregace masterPages a detailPages. Těm lze přiřadit libovolný počet komponent typu Page, jejichž struktura byla už dříve zmíněna v kapitole \ref{sssec:fiori_pm}.
+\end{algorithm}	
 \paragraph{Controller}
+Oproti předchozím controllerům zde musí být implementováno chování pro správný chod SplitApp aplikace. To obnáší vyčítání parametrů z URL z důvodu zjištění, jestli je nějaký konkrétní uživatel již vybrán. Příkladem může být cesta \uv{/pm/\#/administrace/MORMAITE)}, ze které lze poznat vybraný uživatelský účet MORMAITE a na základě toho z backendu získat příslušná data. Ale to se netýká pouze načítání dat. Je zapotřebí pro případ mobilních zařízení rozlišit, zdali má být zobrazena master nebo detail stránka. Pro to však lze nastavit jednoduché pravidlo. V případě, že je účet znám (například URL \uv{/pm/\#/administrace/MORMAITE)}), dojde k zobrazení detailu, jinak master části se seznamem uživatelů k výběru (například URL \uv{/pm/\#/administrace/)}).
 \paragraph{Stránka}
+Pro stránku byl zvolen rozdělené layout, který zřetelně odděluje seznam uživatelů od jejich detailu. V zápatí seznamu je tlačítko pro založení nového uživatele realizovaného pomocí formuláře zobrazeného v dialogovém okně. V detailní části jsou pak zobrazené všechny požadované informace. Lze tak tedy například editovat osobní číslo a jméno uživatele. V záložkách jsou potom tabulky jednotlivých pracovišť, rolí a atributů, které může správce editovat. Podoba stránky pro desktopzařízení je vidět na obrázku \ref{img:view_administrace} níže.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/view_administrace}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Stránka pro správu uživatelů}
 	\label{img:view_administrace}
 \end{figure}	
+Stránka pro mobilní verzi je z důvodu rozdělení tentokrát zobrazena samostatně na obrázku \ref{img:view_administrace_mob} níže. Z důvodu zpětné navigace z detailu do seznamu přibila v hlavičce šipka zpět pro vykonání tohoto úkonu. Jinak je vzhled víceméně totožný s verzí pro destop zařízení.  
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{images/view_administrace_mob}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Stránka pro správu uživatelů - mobilní verze}
 	\label{img:view_administrace_mob}
 \end{figure}	
 
 \subsubsection{Pomocné dialogy}
+V rámci aplikace vznikly přibližně tři desítky různých dialogů sloužící pro různé účely. Ty nejjednodušší z nich mají například jednoduchý účel vyžádání potvrzení úkonu od uživatele před provedením. Údržbář je například při ukončení práce dotázán, zdali chce svoji předat operátorovi výroby ke schválení. Tím dojde k omezení chyb vzniklých z důvodů neopatrnosti. Vznikly však i dialogy trochu komplikovanější. Zpravidla se jedná o dialogy vyžadující od uživatele vyplnění nějakých dat potřebných pro provedení daného úkonu. Na obrázku \ref{img:view_dialog} níže je například k vidění dialog pro vydání náhradního dílu ze skladu jak pro desktop tak mobilní zařízení. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/view_dialog}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Dialog pro vydání náhradního dílu}
 	\label{img:view_dialog}
 \end{figure}	
 
 \section{LOGIN SAPUI5 Aplikace}
+\subsection{Struktura aplikace}
+Struktura aplikace je víceméně totožná s aplikací PM popsané v kapitole \ref{ssec:struckuta_pm_aplikace} výše. Jediné, v čem se aplikace zásadně liší je její zabezpečení popsané v souboru web.xml. V kapitole \ref{ssec:login_modul} věnující se autentizačnímu a autorizačnímu mechanismu JAAS popsána nutná definice zobrazená v kódu \ref{code:j2ee_definition}. Ta je použita v aplikaci PM, ale aplikace PM ji už postrádá. Z toho důvodu nepotřebuje i další soubory týkající se zabezpečení. A to HTML stránky login.html a error.html popsané v kapitole \ref{code:auth_form_def}.
+\subsection{Login}
+Úkolem Login stránky je autentizace uživatele. K tomu jednoduše poslouží jednoduchý vstupní formulář pro jméno a heslo.
+\paragraph{View}
+Pro ten byl vybrán layout SimpleForm popsaný v ukázce \ref{code:view_pozadavek_form}. 
+\paragraph{Controller}
+Úkolem je především komunikace s PMLoginModulem pro zajištění autentizace uživatele. Vypořádává se také s tím, že v případě pokusu uživatele přistoupit na konkrétní stránku nebo soubor zabezpečený pomocí JAAS, nedochází k implicitnímu přesměrování na domovskou stránku, ale přímo na tu cílenou. K tomu využívá dočasné lokální uložiště prohlížeče, do kterého si při prvním pokusu o načtení uloží aktuální URL a tu se po autentizaci pokusí otevřít již dostupné aplikaci PM.
+\paragraph{Stránka}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/view_login}
+	\caption{Stránka pro přihlášení uživatele}
+	\label{img:view_login}
+\end{figure}
 
 \section{Porovnání vývojových prostředí}
 
