@@ -32,6 +32,12 @@
 	}
 }
 
+\lstdefinelanguage{java}{
+	morekeywords={
+	function, return, if, this, that
+	}
+}
+
 
 % % list of acronyms
 % \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
@@ -419,6 +425,7 @@ V této sekci jsou uvedeny veškeré požadavky kladené na výslednou aplikaci,
 \subsection{Funkční požadavky}
 Jsou takové požadavky, které musí být ve výsledné aplikaci implementovány, aby byla splněna požadovaná funkcionalita. Požadavky jsou rozděleny do 8 sekcí označených jako F1 až F7. Jedná se především o funkcionality spojené s nahlašováním poruch nebo požadavků na údržbu spolu s úkony prováděných nad již vzniklými hlášeními. 
 \subsubsection{F1: Založení požadavku na údržbu}
+\label{sssec:fc_zalozeni_pozadavku}
 V případě zjištění potřeby údržby daného vybavení bude uživateli s oprávněním tuto činnost provádět k dispozici založení hlášení v modulu PM s následující editovatelnými parametry.
 \begin{itemize}
 	\item
@@ -486,8 +493,10 @@ Uživateli musí být k dispozici seznam požadavků obsahující potřebné inf
 \label{sssec:fc_sprava_prev}
 Uživateli musí být k dispozici seznam prevencí obsahující potřebné informace (popis prevence, technické místo spolu s vybavením, pracoviště, mezní ukončením a informace o statusu daného hlášení) pro správné zacházení s nimi. Uživateli budou umožněny stejné operace jako pří správě požadavků na údržbu \ref{sssec:fc_sprava_poz_udr}, kromě změn v následujícím seznamu. 
 \subsubsection{F6: Zobrazení dokumentace ke stroji (vybavení)}
+\label{sssec:fc_zobrazeni_dokumentace}
 V závislosti na vybraném technickém místě nebo vybavení dojde k zobrazení seznamu přiložené dokumentace. Ta je uložena na sdíleném uložiti v interní síti společnosti a bude tedy dostupná pouze v případě použití aplikace uvnitř dané síti. Výběr technického místo nebo vybavení bude umožněn z hierarchické struktury.
 \subsubsection{F7: Administrace uživatele}
+\label{sssec:fc_administrace}
 Bude umožněna obecná správa účtu uživatelů, tedy základní operace jako přidání nebo odebrání účtu, nastavení jména uživatele a osobního čísla odpovídajícímu osobnímu číslu (identifikátor zaměstnance) v ERP. Administrátorský účet bude moci měnit nastavení ostatních účtů, bude přiřazovat uživatelské role (oprávnění k zacházení s jednotlivými funkcionalitami) a parametry charakterizující daného uživatele. Pod tím se schovává nastavení závodu, plánovací skupiny, předdefinovaného technického místa a dalších atributů ulehčujících uživateli práci s aplikací (například přednastavené hodnoty pro výběr pracovišť, plánovacích skupin při zakládání požadavků na údržbu nebo hlášení poruch). V případě ztráty uživatelova hesla, bude z administrátorského účtu umožněno inicializování hesla.
 
 \subsection{Nefunkční požadavky}
@@ -898,10 +907,10 @@ ev_error     = lv_error.
 	\textbf{Password}:
 \end{itemize} 
 
-\subsection{PM SAPUI5 Aplikace}
+\section{PM SAPUI5 Aplikace}
 V následujících podkapitolách je popsána implementační struktura projektu pro PM SAPUI5 Aplikaci. Jelikož se jedná o stěžejní část celkové architektury, obsahuje veškerou logiku očekávanou od prezentační vrstvy. Jsou zde zadefinovány veškeré pohledy (stránky), se kterými se uživatel bude moci setkat.  
 
-\subsubsection{Struktura aplikace}
+\subsection{Struktura aplikace}
 Zde zobrazena a popsána celková struktura aplikace z vývojářského pohledu. Na obrázku \ref{img:pmfiori_app_struct} je k vidění hlavní strom adresářů a souborů v použitém Eclipse projektu. 
 
 \begin{figure}[H]
@@ -932,7 +941,28 @@ Jednotlivé položky jsou potom popsány v následujícím seznamu. Koncepčně 
 		\item
 		\textbf{formatter.js}: Obsahuje funkce pro úpravu zobrazované informace získaných z backendu. SAPí interní formát data 2018-05-04, lze tak pomocí takových funkcí převést na datum v požadovaném tvaru a naopak.
 		\item
-		\textbf{utils.js}: Disponuje především funkcemi pro určení, zdali se má daná komponenta zobrazovat. Například tlačítko pro schválení údržby u operátora výroby musí být zobrazené pouze v případě, že na něm údržbáři dokončili práce. Na základě statusu hlášení poté funkce vrací boolean hodnoty true nebo false pro zobrazení daného tlačítka. Dále jsou zde funkce pro přeposílání dat na GWServlet využívající AJAX, který umožňuje asynchronní komunikaci pro výměnu dat s backendem. 
+		\textbf{utils.js}: \label{file:utils.js} Disponuje především funkcemi pro určení, zdali se má daná komponenta zobrazovat. Například tlačítko pro schválení údržby u operátora výroby musí být zobrazené pouze v případě, že na něm údržbáři dokončili práce. Na základě statusu hlášení poté funkce vrací boolean hodnoty true nebo false pro zobrazení daného tlačítka. Dále jsou zde funkce pro přeposílání dat na GWServlet využívající AJAX, který umožňuje asynchronní komunikaci pro výměnu dat s backendem. 
+		\begin{algorithm}[H]
+			\begin{lstlisting}[language=java]      
+query : function(data, success, error) {
+  $.ajax({
+    type : 'POST',
+    url : url,
+    cache : false,
+    async : true,
+    data : data,
+    dataTye : "json",
+    success : success,
+    error : error
+  });
+},
+			\end{lstlisting}
+			\caption{Ukázka AJAX volání}	
+			\label{code:ajax}
+			\small Tato funkce se používá u každého volání z aplikace na GWServlet pro následné zpracování na backendu. Na vstupu jsou tři parametry. Data obsahuje serializovaný JSON objekt obsahující potřebná data. Parametry success a error jsou ukazateli na funkce, které se mají vykonat v případě (ne)úspěšného volání AJAXu. 
+		\end{algorithm}	
+		
+		
 	\end{itemize} 
 \end{itemize} 
 
@@ -945,76 +975,275 @@ Jednotlivé položky jsou potom popsány v následujícím seznamu. Koncepčně 
 	\item
 	\textbf{login.html}: V rámci JAAS logiky pro autorizaci a autentifikaci je definována implicitní HTML stránka, která je vyvolána v případě, že uživatel nemá doposud vytvořenou vůči aplikaci session. Z důvodu zachování konzistetního vzhledu aplikací je i pro přihlášení vytvořena SAPUI5 aplikace. Umístit ji zde v rámci jednoho projektu by způsobilo značnou nepřehlednost a taktéž by mohlo způsobit neočekáváné problémy při vývoji. Z toho důvodu má HTML stránka login.html velmi jednoduchou funkčnost. A tou je přesměrování uživatele do přihlašovací SAPUI5 aplikace.
 	\item
-	\textbf{manifest.json}: Manifest slouží především k rychlému definování možného směrování v rámci aplikace. Dochází zde k mapování uživatelovi aktuální url na jednotlivá view. Lze tak například přiřadit k postfixu pm/\#/vyroba view Vyroba a tím tak uživateli zobrazit očekávané informace. Dále se zde dají zadefinovat modely přiřazené komponentě nebo zdroje kaskádových stylů. 
+	\textbf{manifest.json}: Manifest slouží především k rychlému definování možného směrování v rámci aplikace. Dochází zde k mapování uživatelovi aktuální url na jednotlivá view. Lze tak například přiřadit k postfixu pm/\#/vyroba view \uv{Vyroba} a tím tak uživateli zobrazit očekávané informace. Dále se zde dají zadefinovat modely přiřazené komponentě nebo zdroje kaskádových stylů. 
 \end{itemize} 
 
-\subsubsection{Views}
+\subsection{Jednotlivé stránky aplikace}
+V této kapitole jsou popsány a zobrazeny nejdůležitější stránky aplikace. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[]{images/fiori_app_view_struct}
 	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\label{img:views_strucutre}
 \end{figure}
-
-\begin{algorithm}[H]
-	\begin{lstlisting}[language=xml]      
-	\end{lstlisting}
-	\caption{Vytvoření instance třídy PortList}	
-	\label{code:PropertyChangeSupport}
-	\small . 
-\end{algorithm}	
-
-
-\begin{itemize}
-	\item
-	\textbf{App}:
-	\item
-	\textbf{PM}:
-	\item
-	\textbf{Pozadavek}:
-	\item
-	\textbf{Vyroba}:
-	\item
-	\textbf{Udrzba}:
-	\item
-	\textbf{Administrace}:
-\end{itemize} 
-
-\begin{itemize}
-	\item
-	\textbf{pm}:
-	\item
-	\textbf{dialogs}:
-\end{itemize} 
-
-\subsubsection{Controllers}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[]{images/fiori_app_controller_struct}
 	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\label{img:controlllers_structure}
 \end{figure}
+
+\subsubsection{App}
+\label{sssec:fiori_app}
+Není ani tak stránkou jako spíš základním view aplikace. V podstatě pouze všechny ostatní view obaluje a svůj obsah dynamicky střídá na základě uživatelových kroků. Je nastaveno jako výchozí pro všechny možné kombinace URL, které je uživatel v rámci aplikace schopen vytvořit.
+\paragraph{View} View je zadefinováno způsobem zobrazeném v následujícím kódu \ref{code:view_app_definition}.
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=xml]      
+<mvc:View controllerName="sap.ui.mo.pm.controller.App"
+          xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" >
+  <App id="app" />
+</mvc:View>
+	\end{lstlisting}
+	\caption{XML definice view App}	
+	\label{code:view_app_definition}
+\end{algorithm}	
+Definice neříká nic jiného, než ze v případě zobrazení tohoto view má být vnořena standardní SAPUI5 komponentu App, která slouží jako základ aplikace. V rámci této komponenty jsou následně agregována view popsaná dále. Jak je v kódu vidět, je zde parametr \uv{controllerName}, který přiřazuje k view controller. 
+\paragraph{Controller} Stejně jako v ostatních případech je z důvodu přehlednosti totožně pojmenován. Jedinou jeho funkčností je v první fázi spouštění apliakce nastavit dále neměnně atributy. Jak je vidět v ukázce kódu \ref{code:controller_app_definition} níže, dochází zde k nastavení výchozího jazyka aplikace a kaskádových stylů v závislosti na typu použitého zařízení. Jiné styly jsou tak použity pro zařízení s rozlišením odpovídající tabletům, mobilů, nebo desktopům. V potaz se bere i dotykový displej, vyžadující si například větší tlačítka než by tomu bylo v případě použití obyčejného monitoru.
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=java]      
+BaseController.extend("sap.ui.pm.controller.App",{
+  onInit : function() {
+    sap.ui.getCore().getConfiguration().setLanguage("cs");
+    var component = this.getOwnerComponent();
+    var css = component.getContentDensityClass();
+    this.getView().addStyleClass(css);
+  }
+}; 
+	\end{lstlisting}
+	\caption{XML definice view App}	
+	\label{code:controller_app_definition}
+\end{algorithm}	
+Za zmínku ovšem stojí i první řádek zobrazeného kódu \ref{code:controller_app_definition} výše. Výraz \uv{BaseController.extend("sap.ui.mo.pm.controller.App"} říká, že nedochází k rozšíření standardního controlleru frameworku, ale v tomto případě k aplikaci přiloženému controlleru pojmenovaného \uv{BaseController}.
+\paragraph{BaseController} Od tohoto controlleru odvozuji všechny ostatní implementované. To protože se nemalá část funkcí dá využít na více místech v aplikaci a nemusí tak docházet k duplikování kódu, které by přinášelo riziko snížení konzistence a zvýšení pracnosti v případě budoucích změn nebo opravování chyb. Tento controller je již odvozen od standardního frameworkového controlleru \uv{sap.ui.core.mvc.Controller}. 
+Následující ukázka kódu \ref{code:controller_base_definition} zobrazuje tři takové společné funkce. Celý výčet je pochopitelně mnohem delší, ale tyto  byly vybrány, protože jsou nejčastěji používané a poslouží tak k dobré demonstraci snížené pracnosti a náročnosti na údržbu aplikace z pohledu vývojáře. Funkce zobrazené v ukázce kódu \ref{code:controller_base_definition} jsou posléze krátce popsány.
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=java]      
+Controller.extend("sap.ui.pm.controller.BaseController",{
+
+  createDialog : function(that, id, dialog, fragment) {
+    if (!dialog) {
+      var frag = sap.ui.xmlfragment(id, fragment, that);
+      that.getView().addDependent(frag);
+      jQuery.sap.syncStyleClass("sapUiSizeCompact", 
+                                that.getView(), res);
+      return frag;
+    }
+    return dialog;
+  },  
+  
+  setModel : function(oModel, sName) {
+    return this.getView().setModel(oModel, sName);
+  },
+
+  getI18NText : function(that, id) {
+    var oModel = that.getView().getModel("i18n");
+    var oBundle = oModel.getResourceBundle();
+    return oBundle.getText(id);
+  }, 
+}; 
+	\end{lstlisting}
+	\caption{XML definice view App}	
+	\label{code:controller_base_definition}
+\end{algorithm}	
 
 \begin{itemize}
 	\item
-	\textbf{App}:
+	\textbf{createDialog}: Aby mohly být v rámci controlleru vytvářeny jednotlivé dialogy (až desítky na jeden controller) téměř bezpracně, byla vytvořena následující prototypová funkce vytvářející v požadovaném controlleru objekt reprezentující dialog. K vytvoření takového dialogu poté stačí jeden příkaz jako v ukázce \ref{code:create_dialog} níže. 
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=java]      
+that.oEqunrSTD = that.createDialog(that, that.oEqunrSTD,
+   "../view.dialogs.EqunrSelectTreeDialog");
+	\end{lstlisting}
+	\caption{Ukázka kódu pro vytvoření objektu dialogu}	
+	\label{code:create_dialog}
+\end{algorithm}		
 	\item
-	\textbf{Base}:
+	\textbf{setModel}: Slouží k provázání modelu (objekt obsahující data) s požadovaným view. Každá UI komponenta frameworku umožňuje svázání s modelem a jeho konkrétním prvkem. V případě přeřazení takového modelu k view pak může dojít k zobrazení požadované hodnoty. Jelikož svazování dat v modelu s view patří k velmi častým operacím a vyžaduje volání více funkcí, je obaleno do této metody, které stačí předat jako parametr požadovaný model a jeho jméno.
 	\item
-	\textbf{PM}:
-	\item
-	\textbf{Pozadavek}:
-	\item
-	\textbf{Vyroba}:
-	\item
-	\textbf{Udrzba}:
-	\item
-	\textbf{Administrace}:
-\end{itemize} 
+	\textbf{getI18NText}: Velmi často v controlleru dojde k situaci, že je potřeba uživateli sdělit nějakou informaci. Může se jednat například o dialogové okno nebo jenom probliknutí textu informujícího o provedené nějaké akce. Aby v controlleru nebyly ošetřovány situace aktuálního jazyka a podobně, je vytvořena tato funkce, která načte hodnotu prvku v aktuálním používaném jazyce z příslušného internacionalizačního souboru. 
+\end{itemize}	
 
-\subsection{LOGIN SAPUI5 Aplikace}
+\subsubsection{PM - Úvodní stránka}
+\label{sssec:fiori_pm}
+Reprezentuje úvodní obrazovku, jejíž obsah je přímo závislý na rolích, které má uživatel k dispozici. Zde bude uživateli kromě otevření aplikací umožněno změnit si heslo.
+\paragraph{View}
+Pro demonstraci struktury jednotlivých view je v této, jakožto první, ukázce obsahující větší počet komponent zobrazena téměř celá XML struktura rozdělena do tří bloků. V implementaci 
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=xml]      
+<Page>
+  <customHeader>
+    <Bar design="Header">
+      <contentLeft />
+      <contentMiddle>
+        <Title text="{i18n>pmPageTitle}"  />
+      </contentMiddle>
+      <contentRight>
+        <Button icon="://key" press="onEditPassword" />
+        <Button icon="://log" press="onLogout" />
+      </contentRight>
+    </Bar>
+  </customHeader>
+	\end{lstlisting}
+	\caption{XML definice hlavičky úvodní stránky}	
+	\label{code:view_pm_header_definition}
+	\small Ve všech aplikacích se jedná o lehkou modifikaci této struktury. Zpravidla dochází ke změnám pouze u svazování nadpisu a použitých tlačítkách v horní liště. Jak lze vykoukat, hlavičková lišta je rozdělena do tří částí, které lehce umožňují zarovnání použitých komponent.
+\end{algorithm}	
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=xml]      
+  <VBox width="100%" justifyContent="Center" >
+    <l:Grid id="gridContainer" defaultSpan="L3 M6 S6" />
+  </VBox>
+	\end{lstlisting}
+	\caption{XML definice obsahu úvodní stránky}	
+	\label{code:view_pm_content_definition}
+	\small Jak je v ukázce vidět, jedná se o velmi jednoduchý obsah stránky. V podstatě je pouze zadefinováno rozložení Grid kontejneru, které má implicitně responzivní chování. Vývojář tedy nemusí nijak extra řešit počet zobrazených agregovaných komponent, framework to zvládá sám.  
+\end{algorithm}	
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=xml]      
+</Page>
+	\end{lstlisting}
+	\caption{XML definice zápatí úvodní stránky}	
+	\label{code:view_pm_footer_definition}
+	\small V tomto případě se jedná pouze o ukončení stránky. U ostatních aplikací mohou být zobrazovány například různá zápatí obsahující tlačítka s funkcemi a podobně.
+\end{algorithm}	
+\paragraph{Controller} Má v rámci této stránky primární úkol k přidělené požadovaných dlaždic uživateli v závislosti na přidělených rolích. To spočívá v načtení uživatelských rolí a přidání dlaždic do Grid kontejneru zadefinovaného v ukázce kódu \ref{code:view_pm_content_definition} výše. 
+\paragraph{Stránka} Výsledná podoba stránky je zobrazena na obrázku \ref{img:view_pm} níže. Jedná se o velmi minimalistické provedení, jelikož se neočekává, že by zde uživatel trávil větší množství času. Obrázek je rozdělen na dvě části. V první je podoba stránky zobrazené v běžném desktop rozlišení (více jak 1200 pixelů na šířku). V druhé části je zobrazena podoba v mobilním zařízení odpovídajícímu dnešnímu standardnímu chytrému telefonu s obrazovkou velkou přibližně 5 palců (šířka alespoň 350 pixelů na šířku).
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/view_pm}
+	\caption{Úvodní stránka PM SAPUI5 aplikace}
+	\label{img:view_pm}
+	\small Podoba stránky odpovídá případu, kdy má uživatel přiřazené všechny dosavadní role.
+\end{figure}
+
+\subsubsection{Pozadavek - Založení požadavku na údržbu}
+\label{sssec:pozadavek}
+Stránka je navržena tak, aby odpovídala funkčnímu požadavku \ref{sssec:fc_zalozeni_pozadavku}. Je zde proto vytvořen formulář umožňující zadat veškeré potřebné údaje ke specifikování požadavku. 
+\paragraph{View}
+Jelikož se jedná v podstatě pouze o formulář určený k vyplnění od uživatele, je obsahem view především komponenta SimpleForm, pomocí které lze snadno vytvořit cílený formulář. 
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=xml]      
+<f:SimpleForm>
+  <Label text="{i18n>pozadavekTplnrLabel}" />
+  <Input value="{hlaseni>/tplnr}" showValueHelp="true" 
+         valueHelpRequest="onTplnrMatchCodeRequest" />
+  <ndc:BarcodeScannerButton scan="handleScan" />
+  <Label text="{i18n>pozadavekVybaveniLabel}" />
+  <Text text="{hlaseni>/eqktx}" />
+</f:SimpleForm>
+	\end{lstlisting}
+	\caption{XML definice obsahu úvodní stránky}	
+	\label{code:view_pozadavek_form}
+	\small Komponenta SimpleForm vytváří formulář na základě komponenty Label, která od sebe jednotlivé části separuje. Všechny elementy od Labelu až k dalšímu tvoří jeden celek a jsou výsledně rendrovány v jedné skupině.
+\end{algorithm}	
+\paragraph{Controller}
+Úkolem controlleru na této stránce je především předvyplnění uživatelských atributů do vstupního formuláře a jeho následné odeslání na backend. To spočívá v načtení uživatelských dat v případě navštívení stránky s následným  naplnění modelu příslušnými daty. Obsahuje také funkce pomáhající uživateli vybrat data. Takovým příkladem může být načtení hierarchie technických míst. K tomu je zapotřebí poslat požadavek pro data. K tomu poslouží funkce query implementující AJAX request \ref{code:ajax} v JavaScriptové knihovně utils. Předáním lokálních funkcí pro úspěšné a neúspěšné volání poté může dojít zpracování přijatých dat nebo chyb. Pomocí funkce setModel popsané v BaseControlleru \ref{code:controller_base_definition} a nebo přístupem ke konkrétnímu prvku modelu (funkce setProperty) lze potom nastavit požadovaná data do svázaného formuláře. 
+\paragraph{Stránka}
+Výsledná stránka je reprezentována formulářem o sedmi prvcích. Podle typu zadávaných hodnot v poli je pak přizpůsobena komponenta ulehčující uživateli vyplnění. Pro technické místo je možné si nechat zobrazit dialog s hierarchií technických míst a vybavení si z něho vybrat. U elementů s pevně daným výběrem a zároveň striktně omezeným počtem je pak vybrána komponenta SelectList a podobně. Podoba stránky pro desktop a mobilní zařízení je vidět na obrázku \ref{img:view_zalozeni_pu} níže.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/view_zalozeni_pu}
+	\caption{Stránka pro založení požadavku na údržbu}
+	\label{img:view_zalozeni_pu}
+\end{figure}
+
+\subsubsection{Vyroba - Operátor výroby}
+\label{sssec:fiori_vyroba}
+Stránka je navržena tak, aby odpovídala funkčním požadavkům spadající pod roli Operátora výroby. Musí zde tedy býti dostupný seznam jednotlivých hlášení (poruchy, prevence a údržby) pro jeho přidělené pracoviště. V rámci jednotlivých hlášení je zapotřebí mít k dispozici relevantní operace, které s nimi operátor může provést.
+\paragraph{View}
+Z důvodu responzibility se jedná o první stránku, kde je zapotřebí již v rámci view řešit rozlišení používaného zařízení z důvodu obsáhlé tabulky, která se na mobilních zařízeních nebude vhodně zobrazovat. V horní části obrazovky jsou navrženy dva filtry. První z nich je na typ zobrazovaného hlášení a druhým je filtr na technická místa. Filtr přes druh hlášení nejen, že filtruje data, ale i mění zobrazované informace. Požadovaná zobrazovaná data k jednotlivých typům hlášením nejsou totiž identická. Tato část je pro desktopová i mobilní zařízeni stejná. Dále se však struktura stránky liší. 
+\paragraph{View (desktop)}
+Pod filtry je navržena tabulka se všemi možnými sloupci, které se mohou v rámci stránky zobrazit. V rámci jednotlivých sloupců jsou pak přiděleny agregace na UI komponenty vyhovujícím požadavkům. Jedná se především o texty a tlačítka, která jsou zobrazována v závislosti na stavu (statusu) hlášení. O logiku se stará knihovna utils \ref{file:utils.js} implementující funkce rozhodující o informaci zobrazit nebo nezobrazit.
+\paragraph{View (mobile)}
+Pod filtry je navržen komplikovanější rozložení skládající se z desítek komponent různých layoutů uspořádaných do hierarchické struktury. Bylo zapotřebí změnit celou strukturu oproti tabulkovému zobrazení. Každé hlášení tak horizontálně zabírá více místa. Namísto maximálně dvou řádků v rámci jednoho hlášení se tak nyní vyskytuje až sedm řádků informací.
+\paragraph{Controller}
+Kromě standardních činností, jako je odchytávání uživatelovi interakci s patřičným zpracováním, je zde zapotřebí dynamicky řešit obsah hlavního view. Toho je dosaženo za pomocí modelu zařízení a \textbf{návrhového vzoru pozorovatel}, který řeší informování požadovaných objektů o změně stavu jiného objektu. Pozorovaným objektem je v tomto případě model zařízení (konkrétně jeho část řešící aktuální rozlišení). Pozorovatelem je objekt (funkce) controlleru. 
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=java]     
+var dev = this.getOwnerComponent().getModel("device");
+dev.getProperty("/resize").attachHandler(this.onResize);
+	\end{lstlisting}
+	\caption{Přiřazení posluchače ve formě funkce k hodnotě modelu}	
+	\label{code:resize_attach_handler}
+	\small Jedná se o výtažek kódu v inicializační funkci onInit. Spočívá v načtení device modelu a přiřazení posluchače v podobě funkce onResize, která se provede vždy při změně rozlišení. To znamená zahrnuje i případ otočení displeje na mobilních zařízeních.
+\end{algorithm}	
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=java]      
+onResize : function(window) {
+  var layout = that.getView().byId("notifLayout");
+  layout.removeAllContent();
+  if (window.width > 1024) {
+    layout.addContent(that.notifTable);
+  } else {
+    layout.addContent(that.notifList);
+}
+	\end{lstlisting}
+	\caption{Implementace funkce onResize}
+	\label{code:resize_handler}
+	\small Jako hraniční hodnota pro zobrazení tabulky nebo listu byla vybrána hodnota 1200 pixelů. V případě změny dojde k odebrání fragmentu z layoutu a přiřazení adekvátního obsahu.
+\end{algorithm}	
+\paragraph{Stránka}
+Cílem návrhu této stránky bylo maximální možné eliminování tlačítek a textů, které uživatel nepotřebuje znát. Tudíž všechny texty i tlačítka se zobrazují v případě, že mají nějaký význam. U textů to jsou pro uživatele potřebné informace k vykonávání jeho práce. V případě tlačítek umožňujících akce nad daným hlášením je tento problém řešen zobrazením jenom těch tlačítek, které lze nad daným hlášením v danou chvíli provést. Zrušit hlášení tak lze pouze do doby, než s ním někdo začne pracovat. Zobrazovat texty k hlášení jdou pouze tehdy, když už nějaký text k němu existuje a podobně. Podoba stránky pro desktop a mobilní zařízení je vidět na obrázku \ref{img:view_vyroba} níže.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/view_vyroba}
+	\caption{Stránka pro operátora údržby}
+	\label{img:view_vyroba}
+\end{figure}
+
+\subsubsection{Udrzba - Údržbář}
+Stránka je navržena tak, aby odpovídala funkčním požadavkům spadající pod roli Údržbáře. Musí zde tedy býti dostupný seznam jednotlivých hlášení (poruchy, prevence a údržby) připravených k provedení servisního úkonu. V rámci jednotlivých hlášení je zapotřebí mít k dispozici relevantní operace, které s nimi údržbář může provést.
+\paragraph{View}
+
+\paragraph{View (mobile)}
+\paragraph{View (desktop)}
+\paragraph{Controller}
+\paragraph{Stránka}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/view_udrzba}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:view_udrzba}
+\end{figure}	
+
+\subsubsection{Administrace}
+\paragraph{View}
+\paragraph{Controller}
+\paragraph{Stránka}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/view_administrace}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:view_administrace}
+\end{figure}	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/view_administrace_mob}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:view_administrace_mob}
+\end{figure}	
+
+\subsubsection{Pomocné dialogy}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/view_dialog}
+	\caption{Diagram případu užití pro správu poruch}
+	\label{img:view_dialog}
+\end{figure}	
+
+\section{LOGIN SAPUI5 Aplikace}
 
 \section{Porovnání vývojových prostředí}
 
