@@ -1300,10 +1300,83 @@ Pro ten byl vybrán layout SimpleForm popsaný v ukázce \ref{code:view_pozadave
 \end{figure}
 
 \section{Porovnání vývojových prostředí}
+V této sekci jsou popsána dvě vývojová prostředí umožňující vývoj aplikací ve frameworku SAPUI5. Prvním z nich je open source vývojové prostředí Eclipse a tím druhým je cloudové prostředí SAP Web IDE.  
 
 \subsection{Eclipse s pluginem pro SAPUI5}
+\label{ssec:eclipse_sapui5}
+Eclipse umožňuje vyvíjet plnohodnotné aplikace ve frameworku SAPUI5. Jelikož ze v zásadě jedná o standardní dynamický web projekt akorát s připojenými knihovnami SAPUI5, vývoj tak probíhá dle očekávání. Umožňuje exportovat v mnoha variantách. Pro běh aplikace v Tomcat Apache je zapotřebí projekt vyexportovat do web archivu WAR. Ten poté stačí nahrát do kořenového adresáře web serveru, kde je následně rozbalen do potřebných souborů sloužících k přístupu do aplikace z webového prohlížeče. Podoba vývojové prostředí je viditelná na obrázku \ref{img:eclipse_design} níže. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/eclipse_design}
+	\caption{Podoba Eclipse}
+	\label{img:eclipse_design}
+\end{figure}
+\paragraph{Prostředí} 
+Vzhled a pořadí oken se dá v Eclipse libovolně měnit, nicméně v základní verzi je v levé části seznam otevřených projektů, vedle něhož je prostor pro editaci jednotlivých souborů projektu. Ve spodní části je konzole a servery dostupné pro online testování. Je možné si zde nastavit Tomcat server, který má zpracovávat a spouštět projekt. Každá úprava v kódu pak může být okamžitě zkontrolována v rámci vývojového prostředí, což je při vývoji velmi užitečné. 
 
 \subsection{SAP Web IDE}
+\label{ssec:sap_web_ide}
+Reprezentuje modernější přístup k vývoji webových aplikací. Jedná se o cloudové vývojové prostředí, tudíž sdílet identické prostředí může více vývojářů současně. Kompletní vývoj je uložen ve sdíleném uložišti, které může být sdíleno do verzovacího prostředí Gitu. Nabízí širokou škálu různých dynamických funkcionalit, které pomáhají urychlit vývoj aplikace. Takovou funkcionalitou je především tvorba aplikací z předem připravených šablon. Dále se jedná o možnost rozšíření zakoupených aplikací od společnosti SAP. Zakoupená aplikace pro přehled objednávek tak může být například rozšířena o zákaznické pole u položky objednávky.
+
+Určité omezení nastává v případě, že aplikace není cílena pro standardní nasazení očekávané od společnosti SAP. Z vývojového prostředí se očekává nahrání aplikace pouze na SAP GW. A to je znát i při vývoji aplikace z datového hlediska. V případě, že by bylo zapotřebí použít nějakou komunikační mezivrstvu (Servlet), je zapotřebí si takovou vrstvu vybudovat mimo SAP Web IDE. Standardní cestou vývoje se očekávají statické modely vytvořené v rámci aplikace nebo komunikace pomocí OData se SAP GW. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/web_ide_design}
+	\caption{Podoba SAP Web IDE}
+	\label{img:web_ide_design}
+\end{figure}
+\paragraph{Prostředí} Je z designového pohledu velmi elegantní, neobsahuje žádné rušivé elementy. V levé části je seznam otevřených projektů a ve zbylé části místo pro vlastní vývoj, tedy editování jednotlivých souborů. Po stranách jsou umístěné dobře viditelná tlačítka pro verzovací nástroj Git. Při psaní kódu je k dispozici nápověda ve formě doplňování názvu včetně funkcí a jejich parametrů. To však nefunguje úplně stoprocentně v rámci JavaScriptových souborů. V případě složitějších konstrukcí a volání funkcí nadřazeného objektu se nepředávají dobře návratové objekty a jejich funkce. Proto u nich nedochází k výběru volaných metod ze všech možných. Dědění z nadřazených objektů však velmi dobře pracuje u XML definic UI. 
+
+Pro ukázku napovídání poslouží obrázky \ref{img:web_ide_help1} a \ref{img:web_ide_help2} zobrazené níže. První z nich ukazuje možnost definice tlačítka dvěma způsoby ještě před tím, než je dopsána plný název komponenty Button. První zobrazená varianta vytvoří v XML strukturu obsahující všechny atributy komponenty včetně všech možných agregací. Druhá varianta doplní pouze název komponenty. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/web_ide_help1}
+	\caption{Nápověda při výběru komponenty v SAP Web IDE}
+	\label{img:web_ide_help1}
+\end{figure}
+U již vybrané komponenty lze však využívat nápovědu jednotlivých atributů a agregací. K výčtu jednotlivých variant je dokonce k dispozici jeho popis a vlastnosti. Ukázka je viditelná na obrázku \ref{img:web_ide_help2} níže. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/web_ide_help2}
+	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
+	\label{img:web_ide_help2}
+\end{figure}
+
+\subsection{Shrnutí}
+K porovnání obou přístupů poslouží tabulka \ref{tab:eclipse_webide_comp}. Obsahuje podstatné vlastnosti zmíněné napříč sekcemi \ref{ssec:eclipse_sapui5} a \ref{ssec:sap_web_ide}. 
+
+\begin{center}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{| l | c | c |}
+			\hline 
+			Prostředí 						& Eclipse 	&	SAP Web IDE \\ 
+			\hline	
+			\hline
+			Podpora SAPUI5					&	+		&	+			\\ 
+			\hline
+			Šablony pro tvorbu aplikací		&	-		&	+			\\
+			\hline
+			Integrace na GitHub 			&	+		&	+			\\
+			\hline
+			Export do WAR					&	+ 		&   -			\\
+			\hline
+			Online testování 				&	+		&	$\pm$		\\		
+			\hline
+			Připojený servlet				&	+		&	-			\\
+			\hline
+			Nápověda pro atributy elementů	&	-		&	+			\\
+			\hline			
+		\end{tabular}
+		\caption {Tabulka shrnující vlastnosti vývojových prostředí pro SAPUI5} 
+		\label{tab:eclipse_webide_comp}
+	\end{table}
+\end{center}
+
+Z tabulky plusově o trochu lépe vychází varianta Eclipse. To především proto, že obecně slouží pro vývoj v jazyce Java, který se velmi často používá pro integrační účely. Tudíž tvorba pomocných servletů nebo export do Web archivu zde není problém. Kde ovšem začíná tato varianta ztrácet na síle oproti SAP Web IDE je podpora pro vývoj ve frameworku SAPUI5. Množství nápověď při skládání komponent a vypsaní controlleru k nim je v cloudovém řešení mnohem lepší. 
+
+\paragraph{Doporučení} 
+V závislosti na cíleném run-time prostředí, ve kterém aplikace bude nahrána, je zapotřebí vybírat vhodné vývojové prostředí. Pokud se jedná o standardní SAP GW řešení pomocí protokolu OData, pak je jednoznačně správnou volbou SAP Web IDE. V opačném případě se nejspíše očekává ohýbání standardní cesty, které s sebou přináší potřebu řešení komunikace pomocí více integrací a v tom případě se variantě zahrnující Eclipse víceméně nedá vyhnout. Víceméně vyhnout z toho důvodu, že je možné přistoupit k hybridnímu řešení. Je totiž možné UI část zahrnující XML view a JavaScriptové controllery vyvíjet v SAP Web IDE a v požadovaný moment vývoje daný projekt exportovat a nahrát do projektu v Eclipse. To lze provést buď manuální cestou exportu a importu nebo skrze verzovací systém Git. Tím lze dosáhnout uložení kódu v jednom uložišti a na konkrétních částech projektu pracovat v příslušných prostředích. UI část tak lze editovat z cloudu a část s Java vývojem a exportovacími parametry v Eclipse. 
 
 \section{Testování}
 
