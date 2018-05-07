@@ -34,7 +34,7 @@
 
 \lstdefinelanguage{java}{
 	morekeywords={
-	function, return, if, this, that, var
+	function, return, if, this, that, var, public, class, void, throws, Exception, static
 	}
 }
 
@@ -1381,6 +1381,50 @@ V závislosti na cíleném run-time prostředí, ve kterém aplikace bude nahrá
 \section{Testování}
 
 \subsection{Middleware}
+Pro ukázku testovací na úrovni middleware jsem zvolil test třídy GWServlet představující prostředníka v komunikaci z aplikace PM na SAP GW.  Vnásleudjící ukázce kódu \ref{code:GWServletTest} je k vidění část rozhraní testovací třídy. 
+	\begin{algorithm}[H]
+	\begin{lstlisting}[language=java]   
+public class GWServletTest {
+  static GWServlet instance;	
+  public GWServletTest();
+  
+  public static void setUpClass();
+  public static void tearDownClass() ;
+  public        void setUp();
+  public        void tearDown();
+	
+  public void testGetNotifList() throws Exception;
+  public void testCreateNotifPU() throws Exception;
+  public void testGetTplnrHierarchy() throws Exception;
+                        ...
+}
+	\end{lstlisting}
+	\caption{Rozhraní testovací třídy pro Unit testování}	
+	\label{code:GWServletTest}
+\end{algorithm}
+
+Při spuštění testu dojde k vytvoření instance třídy GWServlet z metody setUpClass, která je vyvolána před provedením prvního testu. Tím dojde na servletu k vyčtení hodnot potřebných pro HTTP komunikaci se SAP GW.
+
+Metody setUp a tearDown zajišťují nezávislost testů, jsou totiž volány mezi jednotlivými testy a jde čas pro resetování inicializování instance nebo jiných aktivit nutných pro správnost testů. 
+
+Na následujících dvou obrázcích \ref{img:unit_test_success} a \ref{img:unit_test_error} jsou ukázky výstupu provedených jednotkových testů v prostředí Eclipse.	
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/unit_test_success}
+	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
+	\label{img:unit_test_success}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/unit_test_error}
+	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
+	\label{img:unit_test_error}
+\end{figure}
+
+
+
 
 \subsection{Frontend}
 

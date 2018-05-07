@@ -126,8 +126,8 @@
 \contentsline {paragraph}{Doporu\IeC {\v c}en\IeC {\'\i }}{76}{section*.52}
 \contentsline {section}{\numberline {5.7}Testov\IeC {\'a}n\IeC {\'\i }}{77}{section.5.7}
 \contentsline {subsection}{\numberline {5.7.1}Middleware}{77}{subsection.5.7.1}
-\contentsline {subsection}{\numberline {5.7.2}Frontend}{77}{subsection.5.7.2}
-\contentsline {section}{\numberline {5.8}Doporu\IeC {\v c}en\IeC {\'\i } pro v\IeC {\'y}voj}{77}{section.5.8}
+\contentsline {subsection}{\numberline {5.7.2}Frontend}{78}{subsection.5.7.2}
+\contentsline {section}{\numberline {5.8}Doporu\IeC {\v c}en\IeC {\'\i } pro v\IeC {\'y}voj}{78}{section.5.8}
 \contentsline {chapter}{Z{\' a}v{\v e}r}{79}{chapter*.53}
 \contentsline {chapter}{Literatura}{81}{section*.55}
 \contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{83}{appendix.A}
