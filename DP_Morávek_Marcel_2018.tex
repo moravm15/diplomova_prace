@@ -92,205 +92,163 @@ Jedním z cílů rešeršní části je porovnání prostředí podporujících 
 Cílem této práce není implementace ani návrh funkčnosti uvnitř EPRového systému. Tato práce začíná na úrovni komunikačních rozhraní jednotlivých funkčních modulů realizujících požadované operace. 
 
 \chapter{SAP}
-Kapitola obecně popisuje podnikový informační systém SAP. V jednotlivých podkapitolách jsou pak popsány informace o historii firmy a architektonické struktuře systému. Dále jsou zde popsány i jednotlivé technické komponenty, které jsou použity pro realizaci požadované aplikace. 
+Kapitola obecně popisuje podnikový informační systém SAP a trochu podrobněji se věnuje částem systému týkajících se požadované aplikace. V jednotlivých podkapitolách jsou nejdříve popsány informace o historii firmy a architektonické struktuře systému. Dále jsou zde popsány i jednotlivé technické komponenty, které jsou použity pro realizaci požadované aplikace. To se týká především frameworku SAPUI5 a předcházejících webových technologií, které jsou dodnes jeho součástí.
 
 \section{Společnost SAP}
-Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací a jednou z největších softwarových společností na celém světe. Pod zkratkou SAP se schovávají počáteční písmena německých slov „Systeme, Anwendungen, Produkte in der Datenverarbeitung“. Anglicky si lze zkratku přeložit pomocí anglických slov „Systems - Applications - Products in data processing“. Zaměřují se na vývoj a provoz softwarových produktů podporujících podnikové procesy. Zejména pak tedy řízení podniku, systémy pro správu vztahu se zákazníky a v současné době pak především vývoj technologií pro webové aplikace a cloud computing \cite{sap_information}.
+Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací a jednou z největších softwarových společností na celém světe. Pod zkratkou SAP se schovávají počáteční písmena německých slov „Systeme, Anwendungen, Produkte in der Datenverarbeitung“. Anglicky si lze zkratku přeložit pomocí slov „Systems - Applications - Products in data processing“. Zaměřují se na vývoj a provoz softwarových produktů podporujících podnikové procesy. Zejména se pak jedná o řízení podniku, systémy pro správu vztahu se zákazníky a v současné době pak především vývoj technologií pro webové aplikace a cloud computing \cite{sap_information}.
 
-\section{SAP R3}
-První verze systému SAP R/1, tvořená pouze finančním účetnictvím, byla vydána již v roce 1973. Následující verze SAP R/2, vydaná o šest let později, se dá již označit za první funkční ERP systém (Enterprise resources planning). Ovšem nevýhodou tohoto systému byla vysoká technická náročnost na klienta, která v tu dobu přinášela nutnost využívání sálových počítačů. Verzí SAP R/3 z roku 1992 však byla kompletně změněna architektura SAPu. Změnou architektury na klient-server opadly nároky na klienta a odpadla tak tehdejší nutnost využívání sálových počítačů a zároveň se začaly využívat relační databáze. Hlavní výhoda této architektury spočívala především však pak v kompatibilitě s různými platformami a operačními systémy Microsoft Windows nebo Unix. Tím se společnost dostala na špici poskytovatelů ERP systémů a na té se do dnes drží.
+\section{SAP ERP}
+První systém, vydaný společností již v roce 1973, měl obchodní označení SAP R/1 a byl tvořen pouze finančním účetnictvím. Následující verze SAP R/2 byla vydaná o šest let později a dá se již označovat za první funkční ERP systém (Enterprise Resources Planning). Tedy informační systém určený pro plánování podnikových zdrojů, pomocí kterých dochází k řízení a integrování většiny oblastí činností organizace jako jsou zásoby, nákup, prodej, marketing, finance nebo personalistika a podobně \cite{erpforum_erp_definition}. Ovšem nevýhodou takového systému v této době byla vysoká technická náročnost na klienta, která s sebou přinášela nutnost využívání sálových počítačů. S verzí SAP R/3 z roku 1992 byla však kompletně změněna architektura systému. Změnou architektury na klient-server opadly vysoké nároky na klienta a s tím i nutnost využívání sálových počítačů. Další změnou bylo i zavedení relačních databází. Hlavní výhoda této architektury však spočívala v kompatibilitě s různými platformami a operačními systémy Microsoft Windows nebo Unix. Tímto systém se společnost dostala na špici poskytovatelů ERP systémů a toto místo si drží dodnes \cite{sap_information}.
 
-\paragraph{Architektura systému SAP R/3} Spolu se změnou architektury s příchodem verze SAP R/3 na model klient-server, došlo k rozčlenění do tří vrstev:
+\paragraph{Architektura systému SAP R/3}
+Spolu se změnou architektury, spojenou s příchodem verze SAP R/3 na model klient-server, došlo k rozčlenění systému do tří vrstev. Tento model bývá označován jako \textbf{SAP Web Application Server} (dále již jen SAP Web AS). Jednotlivé vrstvy jsou popsány v následujícím architektonicky odspodu seřazeném výčtu. Informace v tomto bloku se zakládají na článku \cite{sapcz_blogspot_jadro_sap} popisující jádro SAP.
 \begin{itemize}
 	\item
-	\textbf{Databázová vrstva} je tvořena vlastními databázovými servery, které slouží pro ukládání dat. Jelikož SAP je multiplatformní systém, vývojáře nemusí zajímat, na jaké platformě (UNIX, ORACLE, SUN, MICROSOFT nebo jiné) databázová vrstva běží, protože na aplikační vrstvě bude přístup vypadat vždy stejně. 
+	\textbf{Databázová vrstva}: Je tvořena databázovými servery, které slouží pro ukládání dat. Ty mohou být nainstalovány na odděleném serveru a tvořit tak samostatnou architektonickou vrstvu. I přes to, že je SAP multiplatformní systém, vývojáře nemusí zajímat, na jaké platformě (Oracle, Microsoft SQL, nebo jiné) databázová vrstva běží, protože na aplikační vrstvě bude přístup vypadat vždy stejně. 
 	
-	Příkladem mohou být uložená data týkající se vybavení továrny, která jsou roztroušená po jednotlivých databázových tabulkách.
+	Příkladem mohou být uložená data týkající se vybavení tovární haly, která jsou roztroušená po jednotlivých databázových tabulkách.
 	\item
-	\textbf{Aplikační vrstva} slouží především jako prostředí pro vykonávání programové logiky na straně aplikačního serveru. Centrálně se na něm zpracovávají data, které se načítají a ukládají z databázové vrstvy. Jednotlivé programy (funkce) se v tomto prostředí píší zpravidla v SAPovském programovacím jazyce ABAP, někdy však i pomocí Javy. 
+	\textbf{Aplikační vrstva}: Slouží především jako prostředí pro vykonávání programové logiky na straně aplikačního serveru. Zpracovávají se na něm data, které se načítají a ukládají z databázové vrstvy. Jednotlivé programy (funkce) se na této vrstvě zpravidla píší v programovacím jazyce ABAP (Advanced Business Application Programming) vyvinutým společností SAP. 
 	
-	Příkladem budiž uživatelský požadavek o vyčtení zakázek na výrobní stroj pro daného uživatele. Aplikační vrstva nejdříve musí načíst z databázové vrstvy potřebná data o uživateli, strojích v továrně i zakázkách a ty poté následně dle požadavku zpracovat. Vyloučí tak například stroje, ke kterým uživatel nemá oprávnění nebo zakázky nerelevantní k danému času a strojům. Tím získá požadovanou informaci, se kterou je poté následně nějakým způsobem naloženo, například přenosem do vyšší, prezentační vrstvy.
+	Příkladem budiž požadavek o vyčtení zakázek na výrobní stroj pro daného uživatele. Aplikační vrstva nejdříve musí načíst z databázové vrstvy potřebná data o uživateli, strojích v tovární hale a zakázkách. Ty poté musí dle specifikace požadavku zpracovat. Vyloučí tak například stroje, ke kterým uživatel nemá oprávnění nebo nerelevantní zakázky k danému stroji a času. Tím získá požadovanou informaci, která je například následně přenesena do prezentační vrstvy.
 	\item
-	\textbf{Prezenční vrstva} slouží pro komunikaci mezi uživatelem a počítačem. Má za úkol předávat informace uživateli. Vlastní komunikace probíhá na prezentačním serveru, tedy klientské části. Její nedílnou součástí je rozhraní SAP GUI, které se stará o komunikaci mezi prezentačním a aplikačním serverem. To je ovšem v poslední době nahrazováno přístupem přes webový prohlížeč. Typickým příkladem jsou SAPovské aplikace Fiori vytvořené ve frameworku SAPUI5, kterým je věnována samostatná sekce. 
+	\textbf{Prezenční vrstva}: Má za úkol předávat informace uživateli. Vlastní komunikace probíhá na prezentačním serveru, tedy klientské části. Její nedílnou součástí je rozhraní SAP GUI, které se stará o komunikaci mezi prezentačním a aplikačním serverem. To je ovšem v poslední době nahrazováno modernějším přístupem přes webový prohlížeč. Typickým příkladem jsou aplikace SAP Fiori vytvořené ve frameworku SAPUI5, kterým je dále věnována samostatná kapitola \ref{sec:fiori}. 
 \end{itemize} 	
 
 \subsection{Moduly SAP R3}
-Systém SAP R/3 je vnitřně rozdělen do několika různých modulů. Každý z nich pak řeší konkrétní problematiku firmy.
+Systém SAP R/3 je vnitřně rozdělen do dvanácti různých modulů a každý z nich řeší konkrétní problematiku organizace. Jednotlivé moduly jsou  mezi sebou více či méně provázány. Úroveň provázanosti jednotlivých modulů je pak barevně znázorněna na obrázku \ref{img:sapr3} níže. Výčet a krátká charakteristika modulů následuje ihned po něm.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/sap_r3.jpg}
-	\caption{Moduly SAP R3}
+	\includegraphics[width=0.75\textwidth]{images/sap_r3}
+	\caption{Moduly SAP R3 \cite{sap_r3_modules}}
 	\label{img:sapr3}
-	\small
-	fghfghgddh
 \end{figure}
 
 \begin{itemize}
 	\item
-	\textbf{Financial Accounting (FI)} označuje finanční účetnictví a je jedním z nejdůležitějších modulů SAP ERP. Používá se k uložení finančních dat organizace a pomáhá analyzovat finanční podmínky společnosti na trhu.
+	\textbf{Financial Accounting (FI)}: Označuje finanční účetnictví a je jedním z nejdůležitějších modulů SAP ERP. Používá se k ukládání finančních dat organizace a pomáhá k analyzování jejího finančního postavení na trhu.
 	\item
-	\textbf{Controlling (CO)} podporuje koordinaci, monitorování a optimalizaci všech procesů v organizaci. Zahrnuje správu a konfiguraci základních dat, které pokrývají náklady a výnosy, interní objednávky a další nákladové prvky a funkční oblasti. Jeho hlavním účelem je plánování. Umožňuje určit odchylky srovnáním skutečných dat s údaji plánu a tím umožňuje řídit obchodní toky v organizaci.
+	\textbf{Controlling (CO)}: Jeho primárním účelem je plánování a následná kontrola vytvořených plánů uvnitř organizace. Podporuje koordinaci, monitorování a optimalizaci všech procesů. Zahrnuje správu a konfiguraci základních dat, které pokrývají náklady a výnosy, interní objednávky a další nákladové prvky. 
 	\item
-	\textbf{Asset Management (AM)} slouží k optimální správě fyzického majetku organizace. Zahrnuje takové funkcionality jako jsou návrh, konstrukce, provoz, údržba a výměna zařízení. Spravuje majetek v jednotlivých odděleních (obchodních jednotkách).
+	\textbf{Asset Management (AM)}: Slouží k optimální správě fyzického majetku organizace. Zahrnuje takové funkcionality jako jsou návrh, konstrukce, provoz nebo údržba a výměna zařízení.
 	\item
-	\textbf{Project system (PS)} je nástroj pro správu dlouhodobých projektů. Umožňuje uživatelům plánovat finanční prostředky i zdroje a kontrolovat jednotlivé části projektu tak, aby bylo zaručeno včasné dodání pokud možno v rámci rozpočtu.
+	\textbf{Project system (PS)}: Je nástroj pro správu dlouhodobých projektů. Umožňuje plánovat finanční prostředky i zdroje a kontrolovat jednotlivé části projektu tak, aby bylo zaručeno včasné dodání, pokud možno v rámci rozpočtu.
 	\item
-	\textbf{Workflow (WF)} umožňuje navrhovat a realizovat obchodní procesy v rámci aplikačních systémů SAP. Zajišťuje aby se práce dostala v požadovaný čas do rukou správným lidem. Jeho cílem je usnadnění automatizace podnikových procesů.
+	\textbf{Workflow (WF)}: Umožňuje navrhovat a realizovat obchodní procesy v rámci aplikačních systémů SAP. Zajišťuje, aby se práce v požadovaný čas dostala do rukou správným lidem. Jeho cílem je usnadnění automatizace podnikových procesů.
 	\item
-	\textbf{Industry Solutions (IS)} poskytuje specifická řešení pro desítky industriálních odvětví jako například pro automobilový, chemický či energetický průmysl.
+	\textbf{Industry Solutions (IS)}: Poskytuje specifická řešení pro desítky industriálních odvětví jako například automobilový, chemický či energetický průmysl.
 	\item
-	\textbf{Human Resources (HR)} umožňuje organizaci strukturálně a efektivně zpracovávat informace údaje týkající se zaměstnanců k potřebám obchodním požadavkům.
+	\textbf{Human Resources (HR)}: Umožňuje organizaci strukturálně a efektivně zpracovávat informace týkající se zaměstnanců. Poskytuje přehled o lidských kapacitách a nástroje k jejich strategickému rozvoji.
 	\item
-	\textbf{Plant Maintenance (PM)} poskytuje nástroj pro provádění veškerých potřebných činností týkajících se údržby organizace a jejích součástí. Umožňuje plánovat údržbu i s ohledem na materiálovou potřebu, zaznamenávat a vyrovnávat náklady spojené s činností.
+	\textbf{Plant Maintenance (PM)}: Poskytuje nástroj pro provádění veškerých potřebných činností týkajících se údržby organizace a jejích součástí. Umožňuje plánovat údržbu i s ohledem na materiálovou potřebu, zaznamenávat a vyrovnávat náklady spojené s činností.
 	\item
-	\textbf{Materials Management (MM)} se zabývá řízením materiálů a skladových zásob. Kontroluje, aby nedocházelo k nedostatkům zboží a nevznikaly tak mezery v řetězci dodavatelského procesu.
+	\textbf{Materials Management (MM)}: Se zabývá řízením materiálů a skladových zásob. Kontroluje, aby nedocházelo k nedostatkům zboží a nevznikaly tak mezery v řetězci dodavatelského procesu.
 	\item
-	\textbf{Production Planning (PP)} sleduje a zaznamenává toky ve výrobním procesu. Má za úkol sladění poptávky s výrovním kapacitou spolu s vytvořením plánů k dokončení komponentů a produktů.
+	\textbf{Production Planning (PP)}: Sleduje a zaznamenává toky ve výrobním procesu. Má za úkol sladění poptávky s výrobní kapacitou spolu s vytvořením plánů k dokončení jednotlivých komponent a produktů.
 	\item
-	\textbf{Quality Management (QM)} je modul úzce provázaný s moduly MM, PP či PM a nedílnou součástí logistického řízení. Používá se k prováděnější kvalitativních funkcí jako je plánovaní jakosti, zajištění a kontroly kvality ve výrobním a spotřebním procesu.
+	\textbf{Quality Management (QM)}: Je modul úzce provázaný s moduly MM, PP či PM a nedílnou součástí logistického řízení. Používá se k provádění kvalitativních funkcí jako je například vyhodnocení výkonnosti a spolehlivosti procesů, počtu reklamací od zákazníků atd. Důslednou kontrolou produktů je dosaženo vyšší spokojenosti zákazníka.
 	\item
-	\textbf{Sales and Distribution (SD)} se používá pro ukládání údajů o zákaznících a produktech organizace. Pomáhá řídit fakturaci, prodej a přepravu produktů či služeb organizace. Řídí vztah se zákazníky od počáteční nabídky až po prodejní zakázku a fakturaci produktu.   
+	\textbf{Sales and Distribution (SD)}: Se používá pro ukládání údajů o zákaznících a produktech organizace. Pomáhá řídit fakturaci, prodej a distribuci produktů či služeb organizace. Řídí vztah se zákazníky od počáteční nabídky až po prodejní zakázku a fakturaci produktu.   
 \end{itemize} 	
+Kombinací všech těchto modulů potom vzniká velmi komplexní a modulární systém, který se dá ještě rozvíjet a upravovat dle zákazníkových požadavků. Výsledkem je pak podnikový informační systém \uv{ušitý na míru}.
 
 \section{SAP Plant Maintenance (PM)}
-Modul SAP Plant Maintenance je komplexní řešení, které poskytuje nástroje pro kompletní údržbu v rámci organizace. Veškeré prováděné činnosti jsou vzájemně propojeny s návaznými moduly (Production Planning, Materials Management a Sales and Distribution) v rámci podnikových procesů. Modul umožňuje provádět komplexní plánování, realizovat denní činnosti údržby nebo zaznamenávat případné vzniklé problémy. Díky provázanosti na ostatní moduly taktéž dovede sledovat a plánovat materiálové aktivity případně zaznamenávat i určovat dané náklady vzniklé údržbou.
-
-K realizování zmíněných aktivit je modul rozdělen do následujících podmodulů:
+Modulem, který je pro tuto práci stěžejním, je modul SAP Plant Maintenance. Jedná se o komplexní řešení, které poskytuje nástroje pro údržbu strojů a vybavení v rámci celé organizace. Veškeré aktivity jsou vzájemně propojeny s návaznými moduly (Production Planning, Materials Management a Sales and Distribution) v rámci podnikových procesů. Modul umožňuje provádět plánování, realizovat denní činnosti údržby nebo zaznamenávat vzniklé problémy a poruchy. Díky provázanosti s ostatními moduly taktéž dovede sledovat a plánovat materiálové aktivity, případně určovat náklady vzniklé údržbou. K realizování všech těchto aktivit je modul rozdělen do následujících podmodulů. Hlavním zdrojem informací pro tuto část je dokument \cite{sap_pm_document} popisující většinu základních procesů v modulu PM.
 \begin{itemize}
 	\item
 	Správa technických objektů a vybavení
 	\item
 	Plánování úkolů údržby
 	\item
-	Řízení notifikací v rámci nastavených procesů a zakázek v rámci údržby
+	Řízení notifikací v rámci nastavených procesů 
 \end{itemize} 	
 
 \subsection{Technické objekty}
-Jelikož je v organizaci zapotřebí správně a efektivně spravovat jednotlivé aktivity v rámci procesů modulu Plant Maintenance, je struktura údržby rozdělena na technické objekty. Ty slouží k definování jednotlivých typů strojů, kterými organizace disponuje. Za použití charakteristiky technických objektů lze pak zadefinovat jiný technický objekt, což umožňuje hierarchicky definovat strukturu organizace. Výčtem zmíněných vlastností technických objektů získáme následující výhody.
+Pro správné a efektivní provádění jednotlivých aktivit v rámci procesů modulu PM je struktura údržby rozdělena na technické objekty. Ty slouží k definování jednotlivých typů strojů, kterými organizace disponuje. S použitím charakteristiky technických objektů lze pak zadefinovat jiný technický objekt, což umožňuje hierarchické definování struktury organizace. To s sebou přináší následující výhody.
 \begin{itemize}
 	\item
 	Doba potřebná pro správu jednotlivých technických objektů je snížena.
 	\item
 	Zpracování údržby je zjednodušeno.
 	\item
-	Doba strávená při zadávání dat během zpracování údržby je značně snížena.
-	\item
 	Konkrétnější, důkladnější a rychlejší vyhodnocení údajů o údržbě.
 \end{itemize}
-Technická správa objektů se skládá z následujících činností:
+Klíčová funkcionalita systému se dá shrnout do následujících bodů. Jednotlivým bodům se poté věnují podrobnější podkapitoly.
 \begin{itemize}
 	\item
-	\textbf{Inspekce} - měřit a sledovat aktuální stav technického objektu
+	\textbf{Inspekce}: Spočívá v měření a sledování aktuálního stavu technického objektu.
 	\item
-	\textbf{Preventivní údržba} - předvídat potřebu oprav a udržovat optimální stav technického objektu
+	\textbf{Preventivní údržba}: Slouží k zaručení vysoké spolehlivosti výrobního procesu. Zahrnuje plánování údržby a časování aktivit pro jednotlivé technické objekty.
 	\item
-	\textbf{Oprava} - měření a obnovení technického objektu
-	\item
-	\textbf{Další činnosti související s údržbou}
+	\textbf{Oprava poruchy}: Zahrnuje veškerá opatření, která jsou nutná k obnovení ideálního stavu technických objektů. Cílem je maximální eliminace prostojů ve výrobě a snížení nákladů na výrobu.
 \end{itemize}
 
-\vspace*{0.5cm}
-Zpracování údržby pomáhá řídit skutečné údržbářské práce prováděné v údržbě. Proces se skládá ze tří oblastí:
+\subsection{Inspekce a preventivní údržba}
+Preventivní údržba je dlouhodobý a plánovaný proces, jehož cílem je zajištění vysoké použitelnosti zařízení a minimalizování prostojů způsobovaných opravami. Pomocí preventivního chování lze potom v organizaci dosáhnout řady výhod. Dosažením maximální využitelnosti strojů lze snížit jejich počet blíže k minimu a tím tak dosáhnout menších nákladů na pořizování technologií a tím i snížení potřebných kapacit lidských zdrojů. Vybavení ve špatném stavu má negativní dopady na morálku zaměstnanců a jejich výkonnost. I to je jeden z dalších důvodů, proč je dobré mít nastavené správné preventivní procesy. Pro stanovení takového procesu lze určit řadu specifikujících parametrů. Příklady takových parametrů jsou nastíněny v následujícím seznamu.
 \begin{itemize}
 	\item
-	\textbf{Upozornění na údržbu} -  oznamte poruchu nebo popište technickou podmínku objektu
+	Seznam úkolů, které mají být v rámci prevence provedeny
 	\item
-	\textbf{Objednávka údržby} - provést podrobný plán údržby a sledovat průběh práce a uhradit náklady na údržbu
+	Rozsah inspekčních a preventivních prací
 	\item
-	\textbf{Historie údržby} - uložení důležitých údajů údržby pro vykazování a vyhodnocení
+	Frekvence kontroly 
+	\item
+	Limit nákladů spojených s preventivní údržbou
 \end{itemize} 	
-
-\subsection{Preventivní údržba}
-Preventivní údržba je dlouhodobý proces, jehož cílem je zajistit vysokou použitelnost zařízení a funkčních míst a minimalizovat prostoje způsobené opravami. Tato funkce podporuje údržbu založenou na výkonu, pokud jsou měřicí body nebo čítače používány pro řízení technických podmínek objektu.
-Součást preventivní údržby lze použít k:
-\begin{itemize}
-	\item
-	Uložit seznam úkolů, které mají být provedeny
-	\item
-	Upřesněte rozsah inspekčních prací, preventivní údržbu a plánování činností
-	\item
-	Zadejte opakovanou frekvenci údržby
-	\item
-	Upřesněte přiřazení kontrolních činností a preventivní údržbu na základě nákladů
-	\item
-	Vyhodnotit náklady na budoucí preventivní údržbu a inspekční práci
-\end{itemize} 	
-
-Preventivní údržba v organizaci se používá k zabránění selhání systému a rozpadu výroby. Pomocí preventivní údržby můžete ve vaší organizaci dosáhnout různých výhod. Preventivní údržba se používá k provádění inspekcí, preventivní údržby a oprav. Plány údržby slouží k definování dat a rozsahu úkolů preventivní a inspekční údržby, které lze naplánovat pro technické objekty.
-
-Seznam úkolů v Preventivní údržbě je definován jako sled činností, které jsou prováděny v rámci preventivní údržby v organizaci. Jsou používány k provádění opakovaných úkolů v rámci preventivní údržby a k jejich efektivnímu provedení.
-
-Pomocí seznamů úkolů můžete snížit úsilí standardizací pracovní postup. Všechny aktualizace se provádějí na jednom konkrétním místě v seznamu úkolů údržby a všechny položky údržby a údržby v systému obdrží aktualizovaný stav pracovních postupů. Pomocí seznamů úkolů pomáhá při snižování úsilí potřebného pro vytvoření objednávek údržby a položek údržby, jak můžete vrátit do seznamu úkolů, abyste viděli pracovní postup.
-Klíčové funkce seznamů úkolů v SAP Plant Maintenance jsou následující plánovaná a probíhající údržba podrobněji popsány v následujících odstavcích.
+Seznam úkolů pro preventivní údržbu je definován jako sled činností, které jsou prováděny zodpovědnými zaměstnanci. Pomocí pevně daného seznamu úkolů lze standardizovat pracovní postupy a tím tak dosáhnout vyšší efektivnosti. V rámci systému je potom v závislosti na aktuálním čase prevence dělena na plánovanou a přetrvávající údržbu.
 
 \paragraph{Plánovaná údržba}
-Všechny plánované činnosti, jako je kontrola, údržba a opravy, jsou součástí plánované údržby. V údržbě rostlin definujete časové intervaly, kdy je třeba pracovní kroky provést a pracovní sekvence, ve kterých musí být provedeny. Seznamy úkolů jsou při plánování plánování údržby přiřazeny plánu údržby.
+Všechny plánované aktivity, jakou jsou údržba, prevence, inspekce a opravy spadají pod plánovanou údržbu. V modulu PM jim mohou být přiřazeny časové intervaly vykonávání údržby. Čas může být přidělen až na úrovni jednotlivých úkonů. Příkladem tak může být úkon pro dotažení šroubů na výrobní lince XYZ každé druhé pondělí ve 14 hodin.
 
-\paragraph{Probíhající údržba}
-Seznam úkolů pro průběžnou údržbu obsahuje pracovní postupy založené na aktuální kontrole. Všechna kontrola, která se provádí bez pravidelného rozvrhu, je předmětem trvalé údržby.
+\paragraph{Přetrvávající údržba}
+Seznam úkonů přetrvávající údržby je založen na základě aktuálního stavu inspekce. Všechny takové, které jsou provedeny mimo regulérní rozvrh, spadají pod přetrvávající údržbu.
 
-\subsection{Zpracování údržby}
-Zpracování údržby se skládá z několika úrovní, které nemusí být nutně plně realizovány.
-
-Proto je možné zpracovat opravu v mnoha fázích plánování, jako je předběžná kalkulace, plánování práce, materiálové zabezpečení, plánování zdrojů a povolení. Je však také možné okamžitě reagovat na škody způsobené událostmi, které způsobí vypnutí výroby, a v co nejkratší možné době předložit požadované objednávky a prodejní doklady s minimálními údaji.
-
-Zpracování údržby lze rozdělit na následující tři oblasti:
+\paragraph{Údržba z technického hlediska}
+Zpracování údržby se z technického pohledu skládá z několika fází, jejichž pořadí nemusí být striktně dodrženo. Jelikož se údržba týká plánování, předběžné kalkulace, zabezpečení dostatečného množství materiálu a případných povolení, může v případě nutného provedení údržby dojít k přeskočení některých kroků. Mohlo by totiž například dojít k nežádoucímu čekání na schválení kalkulace i v případě nutnosti opravy. Zpracování údržby lze rozdělit na následující tři oblasti:
 \begin{itemize}
 	\item
-	\textbf{Popis stavu objektu} - Nejdůležitějším prvkem v této oblasti je oznámení o údržbě. Používá se k popisu stavu technického objektu nebo hlášení poruchy na technickém objektu a požadavek na opravu poškození.
+	\textbf{Popis stavu objektu}: Slouží k podání oznámení o údržbě, používá se k popisu stavu technického objektu nebo k nahlášení poruchy spolu s následným požadavkem na opravu.
 	\item
-	\textbf{Provádění úkolů údržby} - Nejdůležitějším prvkem v této oblasti je objednávka údržby. Používá se k detailnímu plánování provádění údržbářských činností, sledování průběhu práce a vypořádání nákladů na údržbu.
+	\textbf{Provádění úkolů údržby}: Spočívá v objednání údržby. Používá se k detailnímu plánování provádění údržbářských činností, sledování průběhu práce a vypořádání nákladů na údržbu.
 	\item
-	\textbf{Dokončení úkolů údržby} - Nejdůležitějším prvkem v této oblasti je historie údržby. Používá se k dlouhodobému uložení nejdůležitějších údajů o údržbě. Tyto údaje lze kdykoli vyžádat k vyhodnocení.
+	\textbf{Dokončení úkolů údržby}: Slouží zejména k zaznamenávání historie údržby. Používá se k dlouhodobému uložení nejdůležitějších údajů o údržbě, které lze následně z různých důvodů analyzovat. 
 \end{itemize} 
-
-Tyto prvky umožňují zpracovat všechny úkoly, které je třeba provést v údržbě zařízení, stejně jako operace, které nepatří přímo do údržby zařízení, jako jsou investice, restrukturalizace, úpravy a podobně.
-
+Na následujícím obrázku \ref{img:pm_process} je zobrazen životní \textbf{cyklus požadované údržby, případně nahlášené poruchy}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/pm_process.jpg}
 	\caption{Proces diagram PM}
 	\label{img:pm_process}
-	\small
-	Procesní diagram PM
 \end{figure}
+V prvním kroku musí dojít k podání požadavku na údržbu. Poté technicky dojde k založení objednávky se všemi náležitostmi. Tu posléze může realizovat některý z údržbářů, který má možnost daný problém řešit. Počátkem jeho prací dojde k založení servisní zakázky, pro kterou díky propojení na ostatní moduly probíhá kalkulace nákladů. Jelikož k vyřešení problému může údržbář potřebovat různý materiál (například šrouby a matice), je v procesu zobrazeno vytvoření objednávky na vydání materiálu. Po případném vyzvednutí materiálu a dokončení údržby dojde k ukončení servisní zakázky a celého procesu údržby. závěrem je celý proces zaznamenám a finančně vyhodnocen.
+
+Tím je popsán základní proces nad modulem PM potřebný k pochopení a následnému návrhu aplikace, která bude tento, mimo jiné, proces realizovat.
 
 \section{SAP BSP}
-Tato sekce se zaměřuje na front-endovou technologii SAP BSP. Jedná se o jednu z technologií použitých v cílové architektuře řešení mobilní aplikace a proto je zde stručně popsána její struktura.
+Tato sekce se zaměřuje na frontendovou technologii SAP BSP. Jedná se o jednu z technologií použitých v cílové architektuře řešení mobilní aplikace a proto je zde stručně popsána její struktura pro pochopení její role v celkové architektuře. 
 
-\paragraph{SAP Web Application Server} SAP WAS je produktový produkt aplikačního serveru a nová generace produktu Basis. Poskytuje všechny funkce, které Basis udělal, a pak mnohem víc. Přemýšlejte o tom jako o nadpřirozené základně. Přemýšlejte o tom jako o obalení základny s obrovskými možnostmi webových aplikací, mezi které patří i schopnost spouštět aplikace Java / J2EE vedle aplikací ABAP. A chci říci, že přidání Java / J2EE k tomuto aplikačnímu serveru v žádném případě neohrožuje podporu pro ABAP. Všechny vaše investice do řešení ABAP jsou dobře chráněny. Rozdíl spočívá v tom, že oba vývojové a běhové prostředí ABAP a Java / J2EE se nacházejí na jedné platformě, na jedné společné infrastruktuře. Tato sjednocená oblast systému ABAP / Java minimalizuje úsilí učitele o výuku a náklady na správu.
-
-\paragraph{BSP} Business Server Page (BSP) je kompletní funkční aplikace, stejně tak jako klasická transakce SAP. Rozhraním pro přístup však není software SAPGUI, spíše však libovolný webový prohlížeč. Díky využití protokolů HTTP nebo HTTPS je protokol používaný pro přístup k aplikaci po celé síti, což umožňuje používání standardních produktů, jako jsou firewally a proxy servery.
-
-Programovací program Stránky Business Server je podobný technologii serverových stránek. Zaměřením programovacího modelu BSP jsou body, které zajišťují optimální strukturu v rozhraní a obchodní logiku.
-
+\paragraph{BSP (Business Server Page)} Je jednou z variant, jak SAP programy a transakce zpřístupnit i mimo desktop aplikaci SAPGUI běžně používanou pro přístup do systému. Představuje funkční HTML aplikaci, u které lze dosáhnout takového chování jako u klasické SAP transakce. Tím je umožněno získat přístup do systém skrze libovolný webový prohlížeč. Na následujícím obrázku \ref{img:bsp_structure} je k vidění struktura BSP aplikace. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/bsp.png}
+	\includegraphics[width=0.75\textwidth]{images/bsp.png}
 	\caption{Struktura BSP aplikace}
 	\label{img:bsp_structure}
-	\small
-	Struktura BSP aplikace
 \end{figure}
+Každá taková stránka se skládá z layoutu, do kterého je možné vložit standardní HTML komponenty (head, body, input a podobně). Kromě toho je možné do takové stránky vložit i kód programovacího jazyka ABAP. Tím je vytvořen silný nástroj umožňující dynamické tvoření hierarchie stránky v závislosti na získaných datech. Jelikož se jedná o HTML stránku, tak je možné v každé BSP stránce zpracovávat vstupní data. Ty jsou získány  buď pomocí metody HTTP(s) GET (informace se nese v uživateli zadané URL) nebo pomocí HTTP(s) POST (informace zakódovány v těle HTTP requestu).
 
-Každá BSP stránka využívá stejného principu zpracování dat. Obecně lze na BSP stránce definovat šest základních událostí, na které se zpracovávají data. 
+Každá taková stránka má několik událostí. V následujícím výčtu jsou popsány relevantní pro vývoj požadované aplikace. 
 \begin{itemize}
 	\item
-	\textbf{OnCreate}:
+	\textbf{OnCreate}: Událost je vyvolána v případě prvního načtení v rámci session. Může posloužit k vytvoření potřebných tříd nebo načtení neměnných dat.
 	\item
-	\textbf{OnRequest}:
+	\textbf{OnRequest}: Nejdůležitější událost z hlediska vývoje požadované aplikace. Je vyvolána při každém requestu vůči BSP aplikaci. V tento moment lze vyčíst zasílaná data a v závislosti na nich provést adekvátní operace. Příkladem může být přijetí requestu s požadavkem na detail uživatele MORMAITE. Pomocí kódu v programovacím jazyce ABAP lze z databázových tabulek vyčíst požadované informace a uživateli je nějakým způsobem zobrazit zpátky.
 	\item
-	\textbf{OnInitialization}:
-	\item
-	\textbf{OnManipulation}:
-	\item
-	\textbf{OnInputOutputProcessing}:
-	\item
-	\textbf{OnDestroy}:
+	\textbf{OnDestroy}: Slouží především pro uvolnění použitých prostředků. To sice není nezbytně nutné, systém to po čase provede sám. Nicméně se vůči systému jedná o nenáročnost slušnost.
 \end{itemize} 
 
 \section{SAP FIORI}
+\label{sec:fiori}
 
 Stejně jako každý jiný tradiční počítačový software byly také přístupné ERP systémy prostřednictvím grafického uživatelského rozhraní na stacionárních místech PC nebo notebooků. Vzhledem k rychlému vývoji mobilních zařízení očekává velké množství uživatelů zlepšení a příležitosti pro mobilní použití.
 
@@ -1299,6 +1257,80 @@ Pro ten byl vybrán layout SimpleForm popsaný v ukázce \ref{code:view_pozadave
 	\label{img:view_login}
 \end{figure}
 
+\section{Testování}
+V této sekci jsou popsány testy použité při vývoji a testování dvou vrstev navržené architektury. Jedná se o vrstvu realizující prostředníka v komunikaci PM aplikace a SAP GW dále označované jako middleware a poté samotnou UI vrstvu na úrovni Fiori aplikace.
+
+\subsection{Middleware}
+Pro ukázku testovací na úrovni middleware jsem zvolil test třídy GWServlet představující prostředníka v komunikaci z aplikace PM na SAP GW.  V následující ukázce kódu \ref{code:GWServletTest} je k vidění část rozhraní testovací třídy. 
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=java]   
+public class GWServletTest {
+  static GWServlet instance;	
+  public GWServletTest();
+	
+  public static void setUpClass();
+  public static void tearDownClass() ;
+  public        void setUp();
+  public        void tearDown();
+	
+  public void testGetNotifList() throws Exception;
+  public void testCreateNotifPU() throws Exception;
+  public void testGetTplnrHierarchy() throws Exception;
+                          ...
+}
+	\end{lstlisting}
+	\caption{Rozhraní testovací třídy pro Unit testování}	
+	\label{code:GWServletTest}
+\end{algorithm}
+
+Při spuštění testu dojde k vytvoření instance třídy GWServlet z metody setUpClass, která je vyvolána před provedením prvního testu. Tím dojde na servletu k vyčtení hodnot potřebných pro HTTP komunikaci se SAP GW.
+
+Metody setUp a tearDown zajišťují nezávislost testů, jsou totiž volány mezi jednotlivými testy a jde čas pro resetování inicializování instance nebo jiných aktivit nutných pro správnost testů. 
+
+Na následujících dvou obrázcích \ref{img:unit_test_success} a \ref{img:unit_test_error} jsou ukázky výstupu provedených jednotkových testů v prostředí Eclipse.	
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/unit_test_success}
+	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
+	\label{img:unit_test_success}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/unit_test_error}
+	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
+	\label{img:unit_test_error}
+\end{figure}
+
+\subsection{UI vrstva}
+K testování má framework SAPUI5 vlastní technologii OPA5 (One Page Acceptance Tests), která umožňuje testovat UI aplikace. Poskytuje asynchronní přístup k prvkům SAPUI5. Síla technologie spočívá pro testování uživatelské interakce, integraci, navigaci a svazování komponent s datovými modely. Technologie je založena na programovacím jazyku JavaScript, což je vzhledem k použití tohoto jazyka i aplikačního frameworku celkem očekávané a vhodné. V ukázce kódu \ref{code:OPA5Test} níže je k nahlédnutí struktura základního testu. 
+
+\begin{algorithm}[H]
+	\begin{lstlisting}[language=java]   
+<script>
+  sap.ui.require(["sap/ui/test/Opa5", ...], 
+	  function (Opa5, opaTest, Common) {
+    Opa5.extendConfig({ ... });
+    sap.ui.require(["sap/ui/.../PM", ...], function () {
+      QUnit.module("Zobrazeni detailu");
+      opaTest("Prerun do detailu", function(Given, When, Then) {
+        Given.iStartMyApp();
+        Given.onTheIntro.iPressOnGoToDetail(); )
+        When.onTheList.iPressOnGoToDetail();
+        Then.onPage.iShouldSeeTheDetailPage().
+        and.iTeardownMyAppFrame();
+      }
+    });
+  QUnit.start();
+});
+</script>
+	\end{lstlisting}
+	\caption{Ukázka testovacího scriptu v hlavičce testovací stránky OPA5}	
+	\label{code:OPA5Test}
+	\small 
+\end{algorithm}
+
 \section{Porovnání vývojových prostředí}
 V této sekci jsou popsána dvě vývojová prostředí umožňující vývoj aplikací ve frameworku SAPUI5. Prvním z nich je open source vývojové prostředí Eclipse a tím druhým je cloudové prostředí SAP Web IDE.  
 
@@ -1366,67 +1398,19 @@ K porovnání obou přístupů poslouží tabulka \ref{tab:eclipse_webide_comp}.
 			Připojený servlet				&	+		&	-			\\
 			\hline
 			Nápověda pro atributy elementů	&	-		&	+			\\
-			\hline			
+			\hline		
+			Testování komunikace s GW (EPR)	&	+		&	$\pm$		\\
+			\hline		
 		\end{tabular}
 		\caption {Tabulka shrnující vlastnosti vývojových prostředí pro SAPUI5} 
 		\label{tab:eclipse_webide_comp}
 	\end{table}
 \end{center}
 
-Z tabulky plusově o trochu lépe vychází varianta Eclipse. To především proto, že obecně slouží pro vývoj v jazyce Java, který se velmi často používá pro integrační účely. Tudíž tvorba pomocných servletů nebo export do Web archivu zde není problém. Kde ovšem začíná tato varianta ztrácet na síle oproti SAP Web IDE je podpora pro vývoj ve frameworku SAPUI5. Množství nápověď při skládání komponent a vypsaní controlleru k nim je v cloudovém řešení mnohem lepší. 
+Z tabulky plusově o trochu lépe vychází varianta Eclipse. To především proto, že obecně slouží pro vývoj v jazyce Java, který se velmi často používá pro integrační účely. Tudíž tvorba pomocných servletů nebo export do Web archivu zde není problém. Kde ovšem začíná tato varianta ztrácet na síle oproti SAP Web IDE je podpora pro vývoj ve frameworku SAPUI5. Množství nápověď při skládání komponent a vypsaní controlleru k nim je v cloudu řešeno mnohem lépe. Z vývojářského pohledu ovšem postrádá možnost účinějšího testování komunikace se SAP GW oproti realizaci s middleware vrstvou implementovanou pomocí Java servletů. 
 
 \paragraph{Doporučení} 
 V závislosti na cíleném run-time prostředí, ve kterém aplikace bude nahrána, je zapotřebí vybírat vhodné vývojové prostředí. Pokud se jedná o standardní SAP GW řešení pomocí protokolu OData, pak je jednoznačně správnou volbou SAP Web IDE. V opačném případě se nejspíše očekává ohýbání standardní cesty, které s sebou přináší potřebu řešení komunikace pomocí více integrací a v tom případě se variantě zahrnující Eclipse víceméně nedá vyhnout. Víceméně vyhnout z toho důvodu, že je možné přistoupit k hybridnímu řešení. Je totiž možné UI část zahrnující XML view a JavaScriptové controllery vyvíjet v SAP Web IDE a v požadovaný moment vývoje daný projekt exportovat a nahrát do projektu v Eclipse. To lze provést buď manuální cestou exportu a importu nebo skrze verzovací systém Git. Tím lze dosáhnout uložení kódu v jednom uložišti a na konkrétních částech projektu pracovat v příslušných prostředích. UI část tak lze editovat z cloudu a část s Java vývojem a exportovacími parametry v Eclipse. 
-
-\section{Testování}
-
-\subsection{Middleware}
-Pro ukázku testovací na úrovni middleware jsem zvolil test třídy GWServlet představující prostředníka v komunikaci z aplikace PM na SAP GW.  Vnásleudjící ukázce kódu \ref{code:GWServletTest} je k vidění část rozhraní testovací třídy. 
-	\begin{algorithm}[H]
-	\begin{lstlisting}[language=java]   
-public class GWServletTest {
-  static GWServlet instance;	
-  public GWServletTest();
-  
-  public static void setUpClass();
-  public static void tearDownClass() ;
-  public        void setUp();
-  public        void tearDown();
-	
-  public void testGetNotifList() throws Exception;
-  public void testCreateNotifPU() throws Exception;
-  public void testGetTplnrHierarchy() throws Exception;
-                        ...
-}
-	\end{lstlisting}
-	\caption{Rozhraní testovací třídy pro Unit testování}	
-	\label{code:GWServletTest}
-\end{algorithm}
-
-Při spuštění testu dojde k vytvoření instance třídy GWServlet z metody setUpClass, která je vyvolána před provedením prvního testu. Tím dojde na servletu k vyčtení hodnot potřebných pro HTTP komunikaci se SAP GW.
-
-Metody setUp a tearDown zajišťují nezávislost testů, jsou totiž volány mezi jednotlivými testy a jde čas pro resetování inicializování instance nebo jiných aktivit nutných pro správnost testů. 
-
-Na následujících dvou obrázcích \ref{img:unit_test_success} a \ref{img:unit_test_error} jsou ukázky výstupu provedených jednotkových testů v prostředí Eclipse.	
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{images/unit_test_success}
-	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
-	\label{img:unit_test_success}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{images/unit_test_error}
-	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
-	\label{img:unit_test_error}
-\end{figure}
-
-
-
-
-\subsection{Frontend}
 
 \section{Doporučení pro vývoj}
 

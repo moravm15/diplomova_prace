@@ -8,8 +8,26 @@
 \providecommand{\selectlanguage}[1]{\relax}
 \providecommand{\eprint}[2][]{\biburl{#2}}
 
+\bibitem{sap_r3_modules}
+SAP R/3 informační systém {[online]}. [cit. 2018-05-07].
+\urlprefix\biburl{http://www.itica.cz/sap-r3-informacni-system/}
+
 \bibitem{sap_information}
-SAP: \emph{SAP Company History {[online]}}. [cit. 2016-24-24].
+SAP: \emph{SAP Company History {[online]}}. [cit. 2018-04-07].
 \urlprefix\biburl{https://www.sap.com/corporate/en/company/history.html}
+
+\bibitem{erpforum_erp_definition}
+Nasazením ERP systému práce nekončí, ale začíná. \emph{ERPForum
+  {[online]}}, květen 2018, [cit. 2018-04-07].
+\urlprefix\biburl{https://www.erpforum.cz/erp-systemy/nasazenim-erp-systemu-prace-nekonci-ale-zacina.html}
+
+\bibitem{sapcz_blogspot_jadro_sap}
+Jak funguje jádro SAP? \emph{V: Pandatron - elektrotechnický magazín
+  {[online]}}, červenec 2017, [cit. 2018-04-16].
+\urlprefix\biburl{https://www.simplilearn.com/sap-modules-sap-fi-sap-co-sap-sd-sap-hcm-and-more-rar111-article}
+
+\bibitem{sap_pm_document}
+SAP: \emph{SAP PM {[online]}}. [cit. 2018-04-08].
+\urlprefix\biburl{https://www.tutorialspoint.com/sap_pm/sap_pm_tutorial.pdf}
 
 \end{thebibliography}
