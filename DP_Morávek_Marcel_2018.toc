@@ -29,7 +29,7 @@
 \contentsline {subsection}{\numberline {2.5.3}SAP ODATA}{16}{subsection.2.5.3}
 \contentsline {paragraph}{EDM (Entity Data Model)}{17}{section*.15}
 \contentsline {paragraph}{JSON (JavaScript Object Notation)}{17}{section*.16}
-\contentsline {chapter}{\chapternumberline {3}Anal\IeC {\'y}za a n\IeC {\'a}vrh aplikace}{19}{chapter.3}
+\contentsline {chapter}{\chapternumberline {3}Anal\IeC {\'y}za}{19}{chapter.3}
 \contentsline {section}{\numberline {3.1}Z\IeC {\'a}kladn\IeC {\'\i } popis aplikace}{19}{section.3.1}
 \contentsline {section}{\numberline {3.2}U\IeC {\v z}ivatelsk\IeC {\'e} role}{19}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}\IeC {\'U}dr\IeC {\v z}b\IeC {\'a}\IeC {\v r}}{19}{subsection.3.2.1}
@@ -54,23 +54,28 @@
 \contentsline {subsection}{\numberline {3.4.1}Seznam \IeC {\'u}\IeC {\v c}astn\IeC {\'\i }k\IeC {\r u}}{26}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Diagram p\IeC {\v r}\IeC {\'\i }pad\IeC {\r u} u\IeC {\v z}it\IeC {\'\i }}{27}{subsection.3.4.2}
 \contentsline {subsubsection}{\numberline {3.4.2.1}UC1: Spr\IeC {\'a}va poruch}{27}{subsubsection.3.4.2.1}
-\contentsline {subsubsection}{\numberline {3.4.2.2}UC2: Spr\IeC {\'a}va po\IeC {\v z}adavk\IeC {\r u} na \IeC {\'u}dr\IeC {\v z}bu}{27}{subsubsection.3.4.2.2}
+\contentsline {subsubsection}{\numberline {3.4.2.2}UC2: Spr\IeC {\'a}va po\IeC {\v z}adavk\IeC {\r u} na \IeC {\'u}dr\IeC {\v z}bu}{28}{subsubsection.3.4.2.2}
 \contentsline {subsubsection}{\numberline {3.4.2.3}UC3: Spr\IeC {\'a}va prevenc\IeC {\'\i }}{28}{subsubsection.3.4.2.3}
+\contentsline {section}{\numberline {3.5}Z\IeC {\'a}v\IeC {\v e}ry anal\IeC {\'y}zy}{29}{section.3.5}
 \contentsline {chapter}{\chapternumberline {4}N\IeC {\'a}vrh u\IeC {\v z}ivatelsk\IeC {\'e}ho rozhran\IeC {\'\i }}{31}{chapter.4}
-\contentsline {section}{\numberline {4.1}Task Groups}{33}{section.4.1}
+\contentsline {section}{\numberline {4.1}Task Groups}{31}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Zalo\IeC {\v z}en\IeC {\'\i } po\IeC {\v z}adavku na \IeC {\'u}dr\IeC {\v z}bu}{32}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Oper\IeC {\'a}tor v\IeC {\'y}roby}{32}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}\IeC {\'U}dr\IeC {\v z}b\IeC {\'a}\IeC {\v r}}{32}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.4}Administr\IeC {\'a}tor}{33}{subsection.4.1.4}
+\contentsline {subsection}{\numberline {4.1.5}Nezat\IeC {\v r}\IeC {\'\i }d\IeC {\v e}n\IeC {\'e}}{33}{subsection.4.1.5}
 \contentsline {section}{\numberline {4.2}Task Graph}{33}{section.4.2}
-\contentsline {section}{\numberline {4.3}Lo-Fi prototyp}{34}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Balsamiq}{34}{subsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.1.1}\IeC {\'U}dr\IeC {\v z}b\IeC {\'a}\IeC {\v r}}{34}{subsubsection.4.3.1.1}
-\contentsline {paragraph}{Desktopov\IeC {\'a} verze}{36}{figure.4.6}
-\contentsline {paragraph}{Mobiln\IeC {\'\i } verze}{38}{figure.4.8}
+\contentsline {section}{\numberline {4.3}Lo-Fi prototyp}{35}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Balsamiq}{35}{subsection.4.3.1}
+\contentsline {paragraph}{Desktopov\IeC {\'a} verze}{35}{section*.17}
+\contentsline {paragraph}{Mobiln\IeC {\'\i } verze}{38}{section*.18}
 \contentsline {subsection}{\numberline {4.3.2}Built}{39}{subsection.4.3.2}
-\contentsline {paragraph}{Desktopov\IeC {\'a} verze}{39}{figure.4.10}
-\contentsline {paragraph}{Mobiln\IeC {\'\i } verze}{42}{figure.4.12}
-\contentsline {subsection}{\numberline {4.3.3}Heuristick\IeC {\'a} anal\IeC {\'y}za}{42}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Porovnan\IeC {\'\i } prototypovac\IeC {\'\i }ch n\IeC {\'a}stroj\IeC {\r u}}{43}{section.4.4}
+\contentsline {paragraph}{Desktopov\IeC {\'a} verze}{39}{section*.19}
+\contentsline {paragraph}{Mobiln\IeC {\'\i } verze}{40}{section*.20}
+\contentsline {subsection}{\numberline {4.3.3}Porovn\IeC {\'a}n\IeC {\'\i } prototypovac\IeC {\'\i }ch n\IeC {\'a}stroj\IeC {\r u}}{41}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Heuristick\IeC {\'a} anal\IeC {\'y}za}{42}{section.4.4}
 \contentsline {chapter}{\chapternumberline {5}Implementace}{46}{chapter.5}
-\contentsline {section}{\numberline {5.1}SAP ERP}{47}{section.5.1}
+\contentsline {section}{\numberline {5.1}Architektura}{46}{section.5.1}
 \contentsline {section}{\numberline {5.2}SAP GW}{47}{section.5.2}
 \contentsline {section}{\numberline {5.3}Apache Tomcat}{50}{section.5.3}
 \contentsline {subsection}{\numberline {5.3.1}Login Modul}{50}{subsection.5.3.1}
@@ -116,7 +121,7 @@
 \contentsline {subsection}{\numberline {5.5.2}Login}{72}{subsection.5.5.2}
 \contentsline {paragraph}{View}{72}{section*.47}
 \contentsline {paragraph}{Controller}{72}{section*.48}
-\contentsline {paragraph}{Str\IeC {\'a}nka}{73}{figure.5.17}
+\contentsline {paragraph}{Str\IeC {\'a}nka}{73}{figure.5.16}
 \contentsline {section}{\numberline {5.6}Testov\IeC {\'a}n\IeC {\'\i }}{73}{section.5.6}
 \contentsline {subsection}{\numberline {5.6.1}Middleware}{73}{subsection.5.6.1}
 \contentsline {subsection}{\numberline {5.6.2}UI vrstva}{75}{subsection.5.6.2}

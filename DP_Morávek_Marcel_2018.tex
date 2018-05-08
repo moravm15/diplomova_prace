@@ -335,7 +335,8 @@ JSON je textový, na jazyce zcela nezávislý formát, využívající však kon
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\chapter{Analýza a návrh aplikace}
+\chapter{Analýza}
+\label{chap:analyza}
 Tato kapitola se věnuje analýze a návrhu požadované webové aplikace pracující nad modulem SAP Plant Maintenance pro vykonávání údržby. Jednotlivé podkapitoly se pak zaobírají zpracováním požadavků kladených na výslednou funkcionalitu. Dále jsou zde nadefinována omezení aplikace a uživatelské role, které budou v aplikaci použity. Na základě stanovených požadavků je posléze proveden návrh uživatelského rozhraní. Postupy aplikované v této kapitole vychází z přednášek a doporučení popsaných v přednáškách předmětu Softwarového inženýrství \cite{edux_si}. 
 
 \section{Základní popis aplikace}
@@ -463,174 +464,299 @@ V závislosti na vybraném technickém místě nebo vybavení dojde k zobrazení
 Bude umožněna obecná správa účtu uživatelů, tedy základní operace jako přidání nebo odebrání účtu, nastavení jména uživatele a osobního čísla odpovídajícímu identifikátoru zaměstnance v ERP. Administrátorský účet bude moci měnit nastavení ostatních účtů, bude přiřazovat uživatelské role (oprávnění k zacházení s jednotlivými funkcionalitami) a parametry charakterizující daného uživatele. Pod tím se schovává nastavení závodu, plánovací skupiny, předdefinovaného technického místa a dalších atributů ulehčujících uživateli práci s aplikací (například přednastavené hodnoty pro výběr pracovišť, plánovacích skupin při zakládání požadavků na údržbu nebo hlášení poruch). V případě ztráty uživatelova hesla, bude z administrátorského účtu umožněno inicializování hesla daného uživatele.
 
 \subsection{Nefunkční požadavky}
-Jsou takové požadavky, které nejsou přímo nutné pro splnění požadované funkcionality, nicméně vhodné pro správný chod aplikace. Jedná se například o specifikaci očekávání od designu, zabezpečení nebo dostupnosti systému a dalších pasivních požadavků. Navržené požadavky pro výslednou aplikaci jsou rozděleny do 5 sekcí označených jako N1 až N4.
+Jsou takové požadavky, které nejsou přímo nutné pro splnění požadované funkcionality, nicméně vhodné pro správný chod aplikace. Jedná se například o specifikaci očekávání od designu, zabezpečení nebo dostupnosti systému a dalších pasivních vlastností. Navržené požadavky pro výslednou aplikaci jsou rozděleny do čtyř sekcí označených jako N1 až N4.
 \subsubsection{N1: Grafické uživatelské rozhraní}
-Uživatelské rozhraní bude dostupné v českém jazyce. Nicméně pro budoucí plánované využití i v zahraničních závodech se očekává snadné rozšíření do ostatních jazyků jako je například angličtina nebo němčina. Jelikož se nejedná o první organizační aplikaci pracující nad nějakým z modulů SAPu, požaduje se zachování stejného UI frameworku SAPUI5.
+Uživatelské rozhraní bude dostupné v českém jazyce. Nicméně pro budoucí plánované využití i v zahraničních závodech se očekává snadné rozšíření do ostatních jazyků jako je například angličtina nebo němčina. Jelikož se nejedná o první organizační aplikaci pracující nad nějakým z modulů SAP, požaduje se zachování stejného UI frameworku SAPUI5.
 \subsubsection{N2: Dostupnost}
 Aplikace musí být viditelná v internetu, musí být tedy dostupná z veřejné internetové adresy. Aplikace musí být ovšem plně funkční i ve vnitřní síti, která nemá přístup do internetu. Veškeré zdroje aplikace musí bý tedy uloženy na interním serveru poskytujícího run-time prostředí pro webovou aplikaci.
 \subsubsection{N3: Spolehlivost a spravovovanost}
-Aplikace bude umožňovat logování činnosti uživatelů v systému z důvodu lepší identifikaci chyb. A to minimálně z počátku provozu aplikace. Taktéž bude umožněno I v případě vyššího zatížení musejí výt veškeré transakční kroky prováděné uživatelem uskutečněny.
+Aplikace bude umožňovat logování činnosti uživatelů z důvodu lepší identifikaci chyb. A to minimálně z počátku provozu aplikace. Taktéž bude i v případě vyššího zatížení systému zajištěno požadováno dokončení transakčních kroků prováděných uživatelem.
 \subsubsection{N4: Bezpečnost}
 Z bezpečnostních důvodů musí v aplikaci docházet k autentizaci a autorizaci každého uživatele. Uživatel bude v aplikaci smět dělat pouze ty úkony, které mu administrátor povolí. Komunikace napříč komponentami musí být šifrována.
 
 \section{Model případů užití (Use Case Model)}
-Jedná se o detailní specifikaci funkčních požadavků. Typicky slouží pro tvorbu uživatelské příručky, jako podklady k tvorbě akceptačních testů, zpřesnění odhadů pracnosti a zadání pro programátora. Zahrnuje informace o tom, kdo bude se systémem pracovat a jaké funkcionality využívat. K tomu slouží vydefinovaný seznam účastníků a diagramy případů užití.
+Jedná se o detailní specifikaci funkčních požadavků. Typicky slouží pro tvorbu uživatelské příručky, jako jsou podklady k tvorbě akceptačních testů, zpřesnění odhadů pracnosti nebo zadání pro programátora. Zahrnuje informace o tom, kdo bude se systémem pracovat a jaké funkcionality kdo bude využívat. K tomu slouží vydefinovaný seznam účastníků a diagramy případů užití.
 
 \subsection{Seznam účastníků}
 \label{ssec:seznam_ucastniku}
-Níže zmínění účastníci odpovídají standardnímu pracovnímu modelu stanovenému v organizaci.
+Níže zmínění účastníci odpovídají standardnímu pracovnímu modelu stanovenému v organizaci a navrženým uživatelským rolím v kapitole \ref{sec:role}.
 \begin{itemize}
 	\item
-	\textbf{Operátor výroby}: Vychází z navržené uživatelské role operátor výroby \ref{ssec:operator_vyroby}. Na přiděleném pracovišti provádí přidělenou výrobní činnost. 
+	\textbf{Údržbář}: Odpovídá navržené roli údržbář \ref{ssec:udrzbar}, zpravidla bude disponovat i rolí pro zakládání požadavků na údržbu. Je zodpovědný za eliminaci nahlášených poruch a provádění nahlášené údržby jednotlivého vybavení.
 	\item
-	\textbf{Údržbář}: Odpovídá navržené roli údržbář \ref{ssec:udrzbar}, zpravidla bude disponovat i rolí pro zakládání požadavků na údržbu \ref{ssec:pozadavek_udrzba}. 
+	\textbf{Operátor výroby}: Vychází z navržené uživatelské role operátor výroby \ref{ssec:operator_vyroby}. Na přiděleném pracovišti provádí svoji přidělenou výrobní činnost a v aplikaci mu bude umožněno především hlásit vzniklé poruchy a zakládat požadavky na údržbu vybavení. 
 	\item
-	\textbf{Správce / Administrátor}: Vychází z navržené uživatelské správce / administrátor \ref{ssec:administrator}.
+	\textbf{Správce / Administrátor}: Vychází z navržené uživatelské správce / administrátor \ref{ssec:administrator}. Zodpovídá za správné nastavení uživatelských účtů.
 \end{itemize} 	
-Nicméně nic administrátorovi nebrání tomu role různě kombinovat, nemají mezi sebou výlučný vztah. Tudíž administrátor může mít klidně i role údržbáře a operátora výroby, čímž je schopen provádět jejich příslušné operace.
+Nicméně nic administrátorovi nebrání tomu role různě kombinovat, nemají mezi sebou totiž výlučný vztah. Administrátor může mít klidně i role údržbáře a operátora výroby, čímž je schopen provádět jim přiřazené operace.
 
 \subsection{Diagram případů užití}
-Souží pro detailní specifikaci požadavků na systém s tím, že graficky zobrazuje účastníky a jejich příslušná oprávnění. V následujících podkapitolách jsou vytvořeny diagramy pro nejdůležitější procesy očekávané d výsledné aplikace.
+Slouží pro detailní specifikaci požadavků na systém s tím, že graficky zobrazuje účastníky a jejich příslušná oprávnění. V následujících podkapitolách jsou vytvořeny diagramy pro nejdůležitější procesy očekávané d výsledné aplikace.
 \label{ssec:diagram_pripadu_uziti}
 \subsubsection{UC1: Správa poruch}
 \label{sssec:uc_sprava_poruch}
 Následující případ užití týkající se správy poruch zahrnuje funkční požadavky pro hlášení poruch \ref{sscec:fc_nahlaseni_poruchy} a jejich následnou správu \ref{sssec:fc_sprava_poruch}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/ea_sprava_poruch.jpg}
+	\includegraphics[width=1\textwidth]{images/ea_sprava_poruch}
 	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\label{img:uc_poruchy}
 \end{figure}
+V diagramu je vidět, jak jsou jednotlivé funkcionality mezi údržbáři a operátory výroby provázány. Příkladem může být nutnost zobrazení příslušného seznamu poruch. Dále je zde například vidět, že oba typy uživatelů mohou k hlášením přidávat texty a zobrazovat nad nimi provedené akce. Ovšem pouze údržbář k takovým akcím může přidat novou.
+
+Zásadním rozdílem je ovšem možnost poruchu založit a vyřešit. Nahlášení poruchy spadá do kompetence operátora výroby a vyřešení společně s následnou specifikací poruchy do kompetence údržbáře.
 \subsubsection{UC2: Správa požadavků na údržbu}
 \label{sssec:uc_sprava_udrzby}
-Následující případ užití týkající se správy poruch zahrnuje funkční požadavky pro hlášení poruch \ref{sscec:fc_nahlaseni_poruchy} a jejich následnou správu \ref{sssec:fc_sprava_poruch}.
+Následující případ užití se týká správy požadavků na údržbu. Zahrnuje funkční požadavky pro zakládání požadavků \ref{sssec:fc_zalozeni_pozadavku} a jejich následnou správu \ref{sssec:fc_sprava_poz_udr}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/ea_sprava_poruch.jpg}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\includegraphics[width=1\textwidth]{images/ea_sprava_udrzby}
+	\caption{Diagram případu užití pro správu požadavků na údržbu}
+	\label{img:uc_pozadavky}
 \end{figure}
+V diagramu je vidět přiřazení jednotlivých funkcionalit uživatelům. Příkladem může být přidělení možnosti založení požadavku na údržbu pouze operátorovi výroby. Ten má taktéž přidělenou možnost akceptace nebo reklamace práce provedené údržbářem. Dále je zde například vidět, že oba typy uživatelů mohou k hlášením přidávat texty a zobrazovat nad nimi provedené akce. Ovšem pouze údržbář k takovým akcím může přidat novou. 
 \subsubsection{UC3: Správa prevencí}
 \label{sssec:uc_sprava_prevenci}
-Následující případ užití týkající se správy poruch zahrnuje funkční požadavky pro hlášení poruch \ref{sscec:fc_nahlaseni_poruchy} a jejich následnou správu \ref{sssec:fc_sprava_poruch}.
+Následující případ užití se týká správy prevencí a příslušného funkčního požadavku \ref{sssec:fc_sprava_prev}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/ea_sprava_poruch.jpg}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\includegraphics[width=1\textwidth]{images/ea_sprava_prevenci}
+	\caption{Diagram případu užití pro správu prevencí}
+	\label{img:uc_prevence}
 \end{figure}
+Na rozdíl od předchozích dvou případů užití \ref{sssec:uc_sprava_poruch} a \ref{sssec:uc_sprava_udrzby} může preventivní údržbu provést jak údržbář, tak i operátor výroby. To s sebou přináší i možnost zadávání akcí pro operátora výroby. Nicméně provést výdej potřebného materiálu ze skladu může stále pouze údržbář. 
+\section{Závěry analýzy}
+\label{sec:zav_analyzy}
+Hlavním výstupem celé analýzy je rozdělení aplikace do čtyř komponent odpovídajícím uživatelským rolím. Realizování jedné společné komponenty, která by byla sdílena všemi uživateli by s sebou přinášela velké množství komplikací odpočívajících v ošetřování rolí a podmínek, kde se která operace může provést. Rozdělením sice vznikne potřeba realizovat stejné funkcionality na více místech, ale řešení pro tento problém je popsáno v kapitole \ref{chap:implementace} týkající se implementace.
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \chapter{Návrh uživatelského rozhraní}
-Tato kapitola se věnuje průběhu vytváření návrhu uživatelského rozhraní výsledné aplikace. Na základě funkčních požadavků vzešlých z prvních schůzek se zadavatelem a modelu případu užití jsou jednotlivé vzniklé úkony sdruženy v task group. Na základě task group je vytvořen task graph, který v grafické podob přiřazuje funkcionality k navrženým obrazovkám. Na základě toho je zde vytvořen Lo-Fi prototyp. K tomu byly použity dva nástroje Built.me a Balsamiq Mockups, které jsou následně porovnány. Na základě výsledků z testování Lo-Fi prototypu s uživateli jsou odpovídající změny zaneseny do výsledné aplikace.
+Tato kapitola se věnuje průběhu vytváření návrhu uživatelského rozhraní výsledné aplikace. Na základě funkčních požadavků vzešlých z prvních schůzek se zadavatelem a modelu případu užití jsou jednotlivé vzniklé úkony sdruženy v task group. Na základě task group je vytvořen task graph, který v grafické podob přiřazuje funkcionality k navrženým obrazovkám. Na základě toho je zde vytvořen Lo-Fi prototyp. K tomu byly použity dva nástroje Built.me a Balsamiq Mockups, které jsou následně porovnány. Na základě výsledků z testování Lo-Fi prototypu s uživateli jsou odpovídající změny zaneseny do výsledné aplikace. Postup použitý pro návrh uživatelského rozhraní a metody ověření jeho správnosti vycházejí z přednášek předmětu Návrh uživatelské rozhraní \cite{nur}
+
+V první fázi je doporučováno pospat business očekávání a případy užití. Ty jsou ale již zahrnuty v rámci kapitoly \ref{chap:analyza} věnující se analýze. Proto je zde rovnou k přistoupení dalšímu kroku a to Task Groups.
 
 \section{Task Groups}
+\label{sec:task_groups}
+Jsou založeny na \textbf{seznamu operací (Task List)}, které lze v rámci aplikace provést. Prvek takového seznamu může být přidání atributu uživatele nebo schválení provedené údržby. Granularita a důležitost jednotlivých položek pak může být, a zpravidla bývá, proměnná. Základním pravidlem pro tvorbu takového seznamu je rčení \uv{Don't think too much, just list the tasks}, tedy příliš nepitvat, zdali je úkon dostatečně adekvátní nebo naopak zbytečný, ale prostě ho přidat do seznamu. Vypisovat pouhý seznam úkonů možných provést ve výsledné aplikaci je zbytečné. Jednat protože takových operací je mnoho a hlavně proto, že by se výpis duplikoval v následujícím kroku. A tím je rozřazení jednotlivých úkonů do skupin, v rámci kterých je lze provádět. A přesně takový seznam je v rámci této sekce vytvořen. Skupiny odpovídají čtyřem komponentám vzešlých ze závěrů analýzy v kapitole \ref{sec:zav_analyzy}. Seznam úkonů je z důvodu šetření vertikálního místa co nejvíce agregován do celkových procesů.
+
+\subsection{Založení požadavku na údržbu}
+\begin{itemize}
+	\item
+	Popsání požadavku (nastavení priority, plánovací skupiny a dalších potřebných atributů)
+	\item
+	Pořízení dokumentace (vyfocení poškozeného vybavení) a přiložení přílohy
+	\item
+	Výběr vybavení (možnost naskenování QR kódu)
+	\item
+	Založení požadavku
+\end{itemize} 
+
+\subsection{Operátor výroby}
+\begin{itemize}
+	\item
+	Zobrazení seznamu hlášení (včetně všech akcí, které lze nad nimi provést). Je nutné poskytnout zobrazení hlášeních všech již zmíněných druhů (poruchy, údržba a prevence).
+	\item
+	Nahlášení poruch a požadavků na údržbu, které zahrnují následující body.
+	\begin{itemize}
+		\item
+		Popsání požadavku (nastavení priority, plánovací skupiny a dalších potřebných atributů).
+		\item
+		Pořízení dokumentace (vyfocení poškozeného vybavení) a přiložení přílohy.
+		\item
+		Výběr vybavení (možnost naskenování QR kódu).
+	\end{itemize} 
+    \item
+	Schválení nebo reklamace provedené údržby.
+	\item
+	Zobrazování akcí, textů a příloh k danému hlášení.
+	\item
+	Zahájení a ukončení práce na preventivní výrobě (spolu s tím i zadávat prováděné akce nad hlášením).
+\end{itemize} 
+
+\subsection{Údržbář}
+\begin{itemize}
+	\item
+	Zobrazení seznamu hlášení (včetně všech akcí, které lze nad nimi provést). Je nutné poskytnout zobrazení hlášeních všech již zmíněných druhů (poruchy, údržba a prevence).
+	\item
+	Zobrazování akcí, textů a příloh k danému hlášení.
+	\item
+	Zahájení a ukončení práce všech typech hlášení. To s sebou obnáší následující body.
+	\begin{itemize}
+		\item
+		Možnost zadávat akce k hlášení.
+		\item
+		Adekvátní ukončení. To v případě údržby spočívá v předání hlášení operátorovi výroby ke schválení, u prevence přímé ukončení a poruchy ukončení s vyplněním specifikace.
+	\end{itemize} 
+\end{itemize} 
+
+\subsection{Administrátor}
+
+\begin{itemize}
+	\item
+	Zobrazení seznamu uživatelů.
+	\item
+	Přidání nového uživatele. To s sebou obnáší následující body.
+	\begin{itemize}
+		\item
+	    Zadání uživatelského jména a hesla.
+	    \item
+	    Určení typu uživatele.
+	    \item
+	    Přiřazení osobního číslo v SAP ERP nově vznikajícímu portálovému uživateli.
+	\end{itemize} 
+    \item
+	Zobrazení detailu uživatele, které je rozděleno do následujících úkonů.
+	\begin{itemize}
+		\item
+		Úprava jména.
+		\item
+		Změna osobního čísla.
+		\item
+		Změna hesla.
+		\item
+		Odebrání uživatele.
+		\item
+		Přidání (odebrání) uživatelských atributů.
+		\item
+		Přidání (odebrání) uživatelských rolí.
+		\item
+		Přidání (odebrání) zodpovědných pracovišť.
+	\end{itemize} 
+\end{itemize} 
+
+\subsection{Nezatříděné}
+\begin{itemize}
+	\item
+	Změna hesla.
+	\item
+	Přihlášení a odhlášení.
+\end{itemize} 
 
 \section{Task Graph}
+Jedná se o grafický výstup, jehož vstupem je do skupin rozdělený seznam úkonů. Jako vstup posloužil seznam vytvořený v kapitole \ref{sec:task_groups}. Nezbytnou součástí výstupního grafu je znázornění možné interakce a pohybu uživatele mezi jednotlivými úkony. Výstupní graf je vidět na obrázku \ref{img:task_graph} zobrazeném níže. Graf má vyznačené dva startovní body, stránky Loginpage a Homepage. Z těch lze v závislosti na přiřazených rolích pokračovat do jednotlivých komponent zahrnujících sadů svých funkcionalit.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/task_graph.png}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\caption{Task Graph pro aplikaci}
+	\label{img:task_graph}
 \end{figure}
-
 
 \section{Lo-Fi prototyp}
+Lo-Fi (Low-Fidelity) prototypy slouží pro snadné a hlavně rychlé znázornění pochopení konceptu a možné podoby budoucí aplikace. Demonstruje sled požadovaných procesů a informačních struktur. Díky tomu lze získat levnou zpětnou vazbu pro zlepšení aplikace. Obecně jsou charakterizovány nízkou technologickou implementací a ne zřídka k tvorbě bývá použit i obyčejný papír a tužka \cite{lofi}. 
 
+Pro návrh prototypu byly použity dva k tomu určené nástroje. Prvním z nich je univerzální nástroj pro tvorbu prototypových aplikací Balsamiq Mockups \cite{balsamiq} druhým je nástroj Built \cite{builtme} určený k prototypování přímo ve frameworku SAPUI5. Návrh rozhraní probíhá pro dva typy zařízení. Jednak pro desktop aplikace běžně disponujícím rozlišením 1200 pixelů a více a poté i pro přenosná zařízení jako jsou chytré telefony nebo tablety. V obou případech se jedná o \textbf{WYSIWYG editory} (What You See Is What You Get), které umožňují tvořit cílovou podobu stránky bez nutnosti cokoliv programovat. Většinou pracují na principu táhni a pusť. Tudíž uživatel pracující s tímto editor si vybírá ze základny použitelných UI komponent, které potom skládá do sebe a tvoří tím výslednou stránku. 
 \subsection{Balsamiq}
-
-\subsubsection{Údržbář}
-
+Jedná se o prototypovací nástroj disponující širokou škálou univerzálních kreslících nástrojů a připravených elementů, které se v moderních aplikacích vyskytují. Takovým elementem může být například obecná struktura webové stránky nebo vzhled mobilního telefonu. Tím lze vytvořit kostru navrhovaného prototypu, do kterého lze poté sázet konkrétní UI prvky jako tlačítka, texty, obrázky, tabulky a podobně. Na každý element lze navázat událost, pomocí které lze mezi jednotlivými stránkami navigovat. Výstupem je soubor ve formátu PDF, ve kterém se lze mezi jednotlivými obrazovky pohybovat jako by byly reálnou webovou stránkou nebo aplikací. 
 \paragraph{Desktopová verze}
-
+První navržená stránka se týká přihlášení uživatele. Návrh přihlašovací stránky je vidět na obrázku \ref{img:bal_login_desktop}. Byl pro ni použit layout představující webový prohlížeč. Do něj byl zasazen formulář pro vyplnění uživatelského jména a hesla. Z důvodu testování nástroje byly do stránky doplněny i doprovodné texty a náznak úvodního obrázku. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/bal_login}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\includegraphics[width=0.9\textwidth]{images/bal_login}
+	\caption{Návrh přihlašovací stránky}
+	\label{img:bal_login_desktop}
 \end{figure}
-
+Pro návrh domovské stránky je čerpáno z konceptu SAP Fiori Launchpad, který slouží jako rozcestník do aplikací ve standardním licencovaném řešení SAP. Ten umožňuje uživatelům jednotlivé aplikace seskupovat a upravovat si designové téma. Ukázkou Launchpadu je obrázek \ref{img:fiori_launchpad}. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/fiori_launchpad}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\includegraphics[width=0.9\textwidth]{images/fiori_launchpad}
+	\caption{Ukázka designu SAP Fiori Launchpad}
+	\label{img:fiori_launchpad}
 \end{figure}
-
+Nic takové ovšem není ve vyvíjené aplikaci plánováno. Nicméně pro důvod zachování konceptu a možného budoucího zprovoznění SAP Fiori Launchpad je přistoupeno ke stejnému dlaždicovému návrhu. Návrh je k vidění na obrázku \ref{img:bal_homepage_desktop}. Jednotlivé dlaždice umožňují navigaci do cílených aplikací navržených závěrem analýzy v kapitole \ref{sec:zav_analyzy}.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/bal_homepage}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\includegraphics[width=0.9\textwidth]{images/bal_homepage}
+	\caption{Návrh domovské stránky}
+	\label{img:bal_homepage_desktop}
 \end{figure}
-
-
+Obrázek \ref{img:bal_poruchy_seznam_desktop} představuje navrženou stránku pro operátoru výroby. Skládá se z již použitého layoutu pro webové stránky a především pak tabulky zobrazující seznam poruch. V tabulce jsou zobrazeny požadované sloupce a v její pravé horní části jsou tlačítka pro přepínání druhů hlášení a spolu s tlačítkem pro založení nové poruchy. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/bal_poruchy_seznam}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\includegraphics[width=0.9\textwidth]{images/bal_poruchy_seznam}
+	\caption{Návrh seznamu poruch pro operátora výroby}
+	\label{img:bal_poruchy_seznam_desktop}
 \end{figure}
-
+Po stisknutí tlačítka pro založení nové poruchy dojde k otevření dialogu, tak jak je znázorněno na obrázku \ref{img:bal_poruchy_seznam_zalozeni_poruchy_desktop}. Zobrazený dialog se zobrazí do popředí aplikace s tím, že zbytek (seznam hlášení a zbytek komponent) bude neaktivní. Formulář pro založení poruchy se skládá z několika polí, pro které jsou využity příhodné vstupní elementy. To znamená, že například pro stanovení priority je použit select box umožňující výběr z pevně dané množiny hodnot. Pro výběr souboru je naopak připraveno standardní tlačítko vyhledat, které by mělo otevřít průzkumníka pro vyhledání souboru v závislosti na uživatelovi používané platformě. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/bal_poruchy_seznam_zalozeni_poruchy}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\includegraphics[width=0.9\textwidth]{images/bal_poruchy_seznam_zalozeni_poruchy}
+	\caption{Návrh založení poruchy pro operátora výroby}
+	\label{img:bal_poruchy_seznam_zalozeni_poruchy_desktop}
 \end{figure}
 
 \paragraph{Mobilní verze}
+Mobilní verze obsahuje návrh stejných obrazovek jako desktopová verze popsaná výše. 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/bal_login_hompage_mob}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\includegraphics[width=0.8\textwidth]{images/bal_login_hompage_mob}
+	\caption{Návrh přihlašovací a domovské stránky}
+	\label{img:bal_login_hompage_mob}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/bal_poruchy_mob}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\includegraphics[width=0.8\textwidth]{images/bal_poruchy_mob}
+	\caption{Návrh }
+	\label{img:bal_poruchy_mob}
 \end{figure}
 
 \subsection{Built}
-
+Jedná se o oficiální produkt společnosti SAP, který umožňuje tvorbu prototypových aplikací ve frameworku SAPUI5. Tvorba v tomto nástroji si vyžaduje alespoň základní znalosti o jednotlivých komponentách frameworku a strukturování navrhovaných stránek. Pro výběr prvků se totiž využívá omezený výběr UI komponent poskytovaných přímo frameworkem SAPUI5. V základním výběru jsou především prvky z responzivní knihovny \uv{sap.m}.
 \paragraph{Desktopová verze}
-
+První navržená stránka je pro operátora výroby. Zobrazuje mu tabulku se seznam poruch. každá porucha má ve sloupcích vypsané požadované hodnoty, případně tlačítka pro provádění požadovaných akcí. Na obrázku \ref{img:bu_poruchy_seznam} je k vidění například tlačítko pro započetí práce na poruše nebo pro zobrazené přiložené přílohy. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/bu_poruchy_seznam}
 	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\label{img:bu_poruchy_seznam}
 \end{figure}
-
+Prvním technickou překážkou tohoto nástroje je vytváření dialogů. To totiž není možné. A proto pro stlačení tlačítka na založení reakce musí dojít k zavolání zcela nové stránky. Stránka s jednotlivými elementy pro popsání poruchy a následného založení je k vidění na obrázku \ref{img:bu_zalozeni_poruchy}. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/bu_zalozeni_poruchy}
 	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\label{img:bu_zalozeni_poruchy}
 \end{figure}
 
 \paragraph{Mobilní verze}
+Druhou technickou překážkou je tvorba návrhu pro mobilní zařízení. Knihovna \uv{sap.m} je sice responzivní, ale ne vždy nabízí takové možnosti, které by od ní mohly být očekávány. Na obrázku \ref{img:bu_mob} je k vidění podoba tabulky se seznamem poruch. Místo horizontálního skládání sloupců vedle sebe je správně použito skládání vertikální. Nicméně při zobrazení pěti hlášení by uživatel nedělal nic jiného než zdlouhavě hledal požadovanou informaci v zdánlivě nekonečném seznamu.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[]{images/bu_poruchy_seznam_mob}
+	\includegraphics[width=0.8\textwidth]{images/bu_mob}
 	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\label{img:bu_mob}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[]{images/bu_zalozeni_poruchy_mob}
-	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
-\end{figure}
+\subsection{Porovnání prototypovacích nástrojů}
+Na porovnání použitých nástrojů je k dispozici skromná tabulka hodnocení (jako ve škole) od autora práce.
+\begin{center}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{| l | c | c |}
+			\hline 
+			Prostředí 						& Balsamiq 	&	Built \\ 
+			\hline	
+			\hline
+			Výběr komponent					&	1		&	3			\\ 
+			\hline
+			Rychlost prototypování			&	1		&	3			\\
+			\hline
+			Možnost využití při Hi-Fi		&	3		&	2			\\
+			\hline
+			Dostupnost (cena)				&	2		&	3			\\
+			\hline		
+		\end{tabular}
+		\caption {Tabulka s hodnocením prototypovacích nástrojů} 
+		\label{tab:prototyp_comp}
+	\end{table}
+\end{center}
+Pro tvorbu Lo-Fi prototypu se zdáti být Balsamiq účinějším nástrojem. Je mnohem rychlejší, přehlednější a při troše úsilí a znalosti frameworku SAPUI5 lze pomocí něho dosáhnout velmi dobrých výsledků v napodobení Fiori aplikace. Nástroj Built sice navíc umožňuje následné vyexportování aplikace, nicméně 
 
-\subsection{Heuristická analýza}
-Při návrhu uživatelského rozhraní je dobré držet se deseti následujících pravidel z Nielsenovi heuristické analýzy. V této kapitole je čerpáno ze zdrojů [8] a [9]. Nielsenova heuristická analýza je jednou ze základních metod pro testování uživatelského rozhraní. Jedná se o seznam pravidel, které by mělo uživatelské rozhraní splňovat. Jakob Nielsen a Rolf Molich v roce 1990 vytvořili heuristiku
-pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto heristiku na množinu pravidel.
+\section{Heuristická analýza}
+Při návrhu uživatelského rozhraní je dobré držet se deseti následujících pravidel z Nielsenovi heuristické analýzy. Nielsenova heuristická analýza je jednou ze základních metod pro testování uživatelského rozhraní. Jedná se o seznam pravidel, které by uživatelské rozhraní mělo splňovat. Jakob Nielsen a Rolf Molich v roce 1990 vytvořili heuristiku pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto heristiku na množinu pravidel \cite{heuristika}
 
 \begin{enumerate}
 	\item
@@ -674,29 +800,26 @@ pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto h
 	vyhledatelné a obsahem nápovědy by měly být názorné příklady.
 \end{enumerate} 
 
-\section{Porovnaní prototypovacích nástrojů}
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+
 
 
 \chapter{Implementace}
+\label{chap:implementace}
+
+\section{Architektura}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/architektura}
 	\caption{Diagram případu užití pro správu poruch}
-	\label{img:uc_sprava_poruch}
+	\label{img:architektura}
 \end{figure}
 
-Tato kapitola se věnuje implementaci jednotlivých částí navržené architektury \ref{sec:architektura}, která je ihned v první podkapitole zobrazena a popsána. Podrobnější popis jednotlivých komponent následuji ihned poté. Architekrura je rozdělena do tří bloků a tomu odpovídají i tři následující podkapitoly. 
+Tato kapitola se věnuje implementaci jednotlivých částí navržené architektury, která je ihned v první podkapitole zobrazena a popsána. Podrobnější popis jednotlivých komponent následuji ihned poté. Architekrura je rozdělena do tří bloků a tomu odpovídají i tři následující podkapitoly. 
 
-\section{SAP ERP}
-Touto části architektury se tato práce přímo nezabývá, nicméně je zde pro lepší představu o celkovém systému krátce popsána. Jak již bylo v kapitole věnující se teoretickému základu řečeno, základem veškerých potřebných procesů je SAP ERP. Konkrétně potom moduly PM, MM a CO. Každý z těchto modulů ma desítky BAPI (Business Application Programming Interface) funkcí představujících rozhraní pro základní operace nad daným modulem. Správné sekvence a data volaných BAPI funkcí jsou potom obaleny do funkčních modulů, které umožňují vzdálené vyvolání z jiných systémů. Ke vzdálenému volání slouží v rámci SAP systému RFC (Remote Function Call), které umožňuje přenášet data napříč jednotlivými systémy. Takovýchto funkcí vzniklo v ERP systému více než 20, výčet modulů je k vidění na obrázku \ref{img:erp_fm} níže.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{images/erp_fm}
-	\caption{Seznam funkčních modulů v ERP systému}
-	\label{img:erp_fm}
-\end{figure}
 
 \section{SAP GW}
 Jak již bylo zmíněno v kapitole věnující se tomuto produktu více teoreticky, primárním účelem serveru je komunikace s okolním světem. Standardní cesta pro Fiori aplikace je používáním servisů ODATA. Ne všichni zákazníci ovšem mají nakoupené licence pro provoz Fiori touto cestou a právě proto byla navržena architektura založená na technologii BSP, běžně dostupné v produktech GW, ale i ERP. Na obrázku \ref{img:gw_json} je seznam 36 BSP stránek, které pro aplikaci vznikly. V porovnání s počtem funkčních modulů na straně ERP je evidetní, že nejsou vytvořeny v poměru 1:1. Je to především z toho důvodu, že jsou v této úrovni uloženy uživatelská data portálových uživatelů. 
