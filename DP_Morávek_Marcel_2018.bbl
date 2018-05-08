@@ -12,6 +12,10 @@
 SAP R/3 informační systém {[online]}. [cit. 2018-05-07].
 \urlprefix\biburl{http://www.itica.cz/sap-r3-informacni-system/}
 
+\bibitem{fiori_structure}
+SAP PM - Overview {[online]}. [cit. 2018-04-08].
+\urlprefix\biburl{https://sapui5.hana.ondemand.com/\#/topic/28b59ca857044a7890a22aec8cf1fee9.html}
+
 \bibitem{sap_information}
 SAP: \emph{SAP Company History {[online]}}. [cit. 2018-04-07].
 \urlprefix\biburl{https://www.sap.com/corporate/en/company/history.html}
@@ -29,5 +33,13 @@ Jak funguje jádro SAP? \emph{V: Pandatron - elektrotechnický magazín
 \bibitem{sap_pm_document}
 SAP: \emph{SAP PM {[online]}}. [cit. 2018-04-08].
 \urlprefix\biburl{https://www.tutorialspoint.com/sap_pm/sap_pm_tutorial.pdf}
+
+\bibitem{mvc}
+SAP PM - Overview {[online]}. [cit. 2018-04-08].
+\urlprefix\biburl{https://theses.cz/id/0u6njb/zaverecna_prace.pdf}
+
+\bibitem{json}
+SAP PM - Overview {[online]}. [cit. 2018-04-08].
+\urlprefix\biburl{https://www.json.org/json-cz.html}
 
 \end{thebibliography}

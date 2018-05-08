@@ -226,6 +226,7 @@ V prvním kroku musí dojít k podání požadavku na údržbu. Poté technicky 
 Tím je popsán základní proces nad modulem PM potřebný k pochopení a následnému návrhu aplikace, která bude tento, mimo jiné, proces realizovat.
 
 \section{SAP BSP}
+\label{sec:bsp}
 Tato sekce se zaměřuje na frontendovou technologii SAP BSP. Jedná se o jednu z technologií použitých v cílové architektuře řešení mobilní aplikace a proto je zde stručně popsána její struktura pro pochopení její role v celkové architektuře. 
 
 \paragraph{BSP (Business Server Page)} Je jednou z variant, jak SAP programy a transakce zpřístupnit i mimo desktop aplikaci SAPGUI běžně používanou pro přístup do systému. Představuje funkční HTML aplikaci, u které lze dosáhnout takového chování jako u klasické SAP transakce. Tím je umožněno získat přístup do systém skrze libovolný webový prohlížeč. Na následujícím obrázku \ref{img:bsp_structure} je k vidění struktura BSP aplikace. 
@@ -249,112 +250,93 @@ Každá taková stránka má několik událostí. V následujícím výčtu jsou
 
 \section{SAP FIORI}
 \label{sec:fiori}
-
-Stejně jako každý jiný tradiční počítačový software byly také přístupné ERP systémy prostřednictvím grafického uživatelského rozhraní na stacionárních místech PC nebo notebooků. Vzhledem k rychlému vývoji mobilních zařízení očekává velké množství uživatelů zlepšení a příležitosti pro mobilní použití.
-
-V minulosti, mnoho zákazníků SAP vyjádřili svou nespokojenost ohledně staromódní vzhled a dojem z obrazovek SAP, stejně jako nedostatek exkluzivního přístupu přes desktop GUI pro většinu operací (jako schvalování objednávky, vytvoření prodejní objednávky, samostatně výdělečně servisní úkoly, vyhledávání informací.) Zpětná vazba byla oceněna a SAP podnikla kroky ke zlepšení použitelnosti a dostupnosti. (Bince 2015, 365)
-Dne 15. května 2013 představila společnost SAP platformu SAP Mobile Platform 3.0, otevřenou platformu, která byla k dispozici vývojářům softwaru. Společně se zavedením platformy zahájila společnost SAP svůj nový mobilní produkt s názvem Fiori. (SAP Fiori 2013, citováno 9. listopadu 2016.) Tento nový produkt je založen na pěti zásadách návrhu (obrázek 4).
-Prostřednictvím tohoto nového mobilního řešení uživatelsky orientované klienti nyní měl přístup k novým řešením, kde sbírka aplikací bylo možné použít na různých zařízení, jako jsou stolní počítače, chytré telefony a tablety. V prvním vydání Flowers bylo zařazeno 25 aplikací, které slouží klientům v jejich nejčastějších obchodních funkcích. (SAP Fiori 2013, citováno 9. listopadu 2016.)
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{images/fiori.jpg}
-	\caption{Struktura BSP aplikace}
-	\label{img:fiori}
-	\small
-	Struktura BSP aplikace
-\end{figure}
-
-
+Systém SAP byl po dvě desetiletí přístupný zejména prostřednictvím destop aplikace SAPGUI. Jedná se tedy o aplikaci navrženou v 90. letech 20. století a tomu odpovídá i její vzhled. Nejedná se zrovna o User-Friendly rozhraní a to si SAP management samozřejmě uvědomuje. Kromě toho se nejedná zrovna ani o nejdostupnější řešení. Proto v roce 2013 společnost SAP přišla platformou SAP Mobile Platform 3.0 startující novou éru přístupu k systému SAP. Mobilní platforma dostala obchodní název Fiori. Bylo založena na základě následujících pěti pravidlech.
 \begin{itemize}
 	\item
-	Založené na rolích:
-	- Uživatelsky orientované aplikace závislé na odpovědnosti uživatele
-	- uživatel může mít více rolí a spouštět různé úkoly v několika doménách
+	\textbf{Založené na rolích}: Má se jednat o uživatelsky orientované aplikace závislé na rolích uživatele. Uživatel může mít více rolí a provádět tak zcela rozdílné úkoly v rámci různých aplikací.  
 	\item
-	citlivý:
-	- založené na formátu HTML5; pracuje bez problémů na různých zařízeních a velikostech obrazovky
-	- automaticky upravuje rozložení aplikací na dostupné obrazovce
-	- podporuje různé režimy interakce, jako klávesnice, myši a dotykové vstupy
+	\textbf{Responzivní}: Budou založené na HTML5. Musí bez problému pracovat na různých zařízeních bez ohledu na velikost obrazovky. V případě změny rozlišení musí aplikace adekvátně reagovat a přizpůsobit svůj vzhled. A nakonec musí podporovat různé režimy interakce jako jsou klávesnice, myši nebo dotykové vstupy.
 	\item
-	Jednoduché:
-	- Jednoduché uživatelské rozhraní podporuje rychlé a snadné dokončení úkolů
-	- má přístup 1: 1: 3: jeden uživatel, jeden případ, tři obrazovky (stolní, tabletové, mobilní)
+	\textbf{Jednoduché}: Jednotlivé obrazovky musí být jednoduché a zobrazovat relevantní informace. Práce s aplikacemi musí být intuitivní a neměla by vyžadovat návod k zacházení.
 	\item
-	koherentní:
-	- uživatel může mít mnoho aplikací, které mají stejný design a použitelnost
-	- Snadno se naučíte nové aplikace poté, co se učíte používat jednu aplikaci Fiori
+	\textbf{Koherentní}: Napříč aplikacemi musí být zachován stejný design a princ použití. Snadno se pak uživatel sžije s novými aplikacemi poté, co už s některou Fiori aplikací pracoval.
 	\item
-	Okamžitá hodnota:
-	- stejný návrhový vzorec v aplikacích snižuje čas a náklady na školení nových uživatelů
+	\textbf{Líbivé}: Aplikace se musí uživatelům líbit, motivuje je to při práci a tím snižuje náklady společnosti.
 \end{itemize} 	
+Zavedením této technologie má dojít k odstranění problémů s nespokojenými zákazníky ohledně staromódního vzhledu a komplikované práci. Společnost SAP od té doby vytvořila stovky Fiori aplikací, které si mohou zákazníci zakoupit. Jedná se například o aplikace pro vyřizování objednávek, správu uživatelů a mnoho dalších. 
 
+Na následujícím obrázku \ref{img:fiori_design} je k vidění aktuální design prezentovaný společností SAP.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/fiori}
+	\caption{Design Fiori aplikací}
+	\label{img:fiori_design}
+\end{figure}
+
+\subsection{Technický pohled}
+Frameworkem pro tvorbu Fiori aplikací je SAPUI5. Jeho základní struktura je zobrazena na obrázku \ref{img:fiori_arch} níže. Jedná se o sadu vývojářských nástrojů, které slouží k vytváření aplikací s bohatým uživatelským rozhraním pro moderní business webové aplikace. Jeho základem je JavaScript knihovna Core, která poskytuje zejména prostředky pro podporu MVC \ref{ssec:mvc} konceptu. Dále nabízí možnosti provazování dat s UI prvky z různých datových zdrojů (JSON, XML, OData \ref{ssec:odata}) a efektivní práci s jednotlivými HTML prvky. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/fiori_arch.png}
-	\caption{Struktura BSP aplikace}
+	\caption{Struktura BSP aplikace \cite{fiori_structure}}
 	\label{img:fiori_arch}
-	\small{ https://sapui5.hana.ondemand.com/\#/topic/28b59ca857044a7890a22aec8cf1fee9.html }
 \end{figure}
+Struktura frameworku spočívá především v konceptu MVC. Při zavádění aplikace dojde k vytvoření hlavní \textbf{komponenty} (Component.js), která obaluje jednotlivá \textbf{view} zadefinovaná v rámci aplikace. Pod každým view si lze představit libovolnou stránku. Každá taková stránka má přiřazen právě jeden \textbf{controller}, který reaguje a obstarává uživatelovu interakci. Klikne-li uživatel na tlačítko vymazat záznam, je to právě controller, kdo odchytí uživatelovu akci a musí na ni adekvátně zareagovat. V takovém případě by nejspíš zobrazil dialog pro potvrzení nebo rovnou poslal na backend request pro vykonání dané operace. Podrobněji se jednotlivým souborům použitým ve frameworku SAPUI5 věnuje implementační část v kapitole \ref{ssec:struckuta_pm_aplikace}.
+
+\paragraph{UI komponenty}
+Framework má k dispozici více než 200 komponent, které umožňují skládání výsledné podoby uživatelského rozhraní. Takovou komponentou může být jednoduché zobrazení textu, ale i složitý layout rozdělující stránku na několik nezávislých částí. Obsahuje spoustu typických layoutů potřebných při téměř každém vývoj aplikace. Tím může být například vstupní formulář nebo zobrazení seznamu prvků. 
 
 \subsection{MVC}
-
+\label{ssec:mvc}
+Základem celého frameworku je návrhový vzor MVC (Model-View-Controller). Rozděluje aplikaci na tři nezávislé komponenty. Jedná se o datový mode, uživatelské rozhraní a řídící logiku. Symbolické znázornění funkčnosti vzoru je k vidění na obrázku \ref{img:mvc} zobrazeném níže.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{images/mvc.png}
-	\caption{Struktura BSP aplikace}
-	\label{img:bsp}
-	\small
-	Struktura BSP aplikace
+	\includegraphics[width=0.5\textwidth]{images/mvc.png}
+	\caption{Návrhový vzor MVC}
+	\label{img:mvc}
 \end{figure}
-
-\paragraph{Model} reprezentuje správu vlastních dat, nad nimiž aplikace pracuje: to mů-že být třeba obrázek, textový dokument, databáze uložená na serveru SQL, … Je dobré si uvědomit rozdíl mezi daty samotnými a jejich správcem (tedy prá-vě tím modelem, o němž zde hovoříme). Třeba takový konkrétní obrázek jsou data; skupina tříd, umožňující obrázky načítat ze souborů a opět do nich uklá-dat, zjišťovat a měnit jejich atributy, převádět jejich formáty a pracovat s jejich obsahem – to je správce. V běžící aplikaci pak samozřejmě bude základním ob-jektem vrstvy modelu nějaká vhodná instance, jež bude reprezentovat vlastní obrázek a nabízet všechny odpovídající služby.
-
-\paragraph{View} zahrnuje všechny objekty (grafického) uživatelského rozhraní a jejich služby. Uživatel aplikace s ní komunikuje výhradně prostřednictvím těchto ob-jektů; právě ony mu prezentují data z modelu ve vhodné formě, a naopak pou-ze jejich prostřednictvím uživatel dává aplikaci příkazy, jež určují její další činnost.
-View má s modelem společnou tu nejdůležitější věc: jeho objekty nejsou závislé na konkrétní aplikační logice. Grafické uživatelské rozhraní aplikace tak mů-žeme podle potřeby (a podle požadavků zákazníků) snadno kdykoliv měnit, aniž by bylo zapotřebí přitom nějak zasahovat do aplikační logiky (nebo do-konce do modelu).
-
-\paragraph{Controller} mezi datovým modelem a objekty grafického uživatelského roz-hraní, jež tvoří vzhled, stojí vrstva controller; právě na její úrovni je imple-mentována funkční logika aplikace, takové věci jako „stiskne-li uživatel tohle tlačítko, provede se támhleta akce, a v tomto textovém poli se zobrazí výsle-dek“. (Čada, 2009)
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{images/fiori.jpg}
-	\caption{Struktura BSP aplikace}
-	\label{img:fiori}
-	\small
-	Struktura BSP aplikace
-\end{figure}
+\paragraph{Model} Reprezentuje správu dat, nad nimiž aplikace pracuje. Takovými daty může být seznam uživatelů, detail objednávky nebo obrázek v binární podobě. Jelikož se z v architektonickém modelu server-klient jedná o prezentační vrstvu, je vhodné, aby data měly co možná nejpřijatelnější podobu pro prezentování uživateli. 
+\paragraph{View} Zahrnuje všechny grafické objekty uživatelského rozhraní. Jedná se o komponenty, s kterými uživatel přímo pracuje. Pomocí nich mu jsou prezentovány požadovaná data v prezentovatelné formě. A naopak pouze jejich prostřednictvím uživatel dává aplikaci příkazy k provedení požadované činnosti. Výhodou jednotlivých komponent je nezávislost na modelu a controlleru. Grafické komponenty lze tak v průběhu aplikace měnit. 
+\paragraph{Controller} Dělá prostředníka datovému modelu a uživatelským rozhraním. Má na starost obstarávání uživatelských akcí vůči rozhraní. Klikne-li uživatel na tlačítko, je právě na něm, aby provedl adekvátní akci očekávanou od uživatele. Upravuje data uložená v modelu, čímž může měnit uživateli prezentovaná data. A taktéž může zasahovat do view jako takového. V případě, že je zapotřebí některé elementy schovat nebo naopak zobrazit, je to právě controller, kdo může takovou akci provést.
 
 \subsection{SAP ODATA}
+\label{ssec:odata}
+Protokol OData umožňuje vytváření datových služeb založených na webovém protokolu REST (Representational State Transfer), který umožňuje uživatelům provádět CRUD (Create, Read, Update, Delete) operace nad zdroji identifikovanými pomocí URI (Uniform Resource Identifier) a definovanými v datovém modelu použitím HTTP requestů.
 
-\paragraph{Protokol OData} umožňuje vytváření datových služeb založených na webovém protokolu REST (representational state transfer), který umožňuje uživatelům provádět CRUDQ operace nad zdroji identifikovanými pomocí Uniform Resource Identifier (URI) a definovanými v datovém modelu použitím jednoduchých HTTP zpráv.
+Data přenášená prostřednictvím OData protokolu mohou využívat různé datové formáty běžně používané ve webových technologiích. Příkladem  může být XML (Extensible Markup Language), JSON (JavaScript Object Notation) nebo další. Data jsou při přenosu zabalena do protokolu HTTP, případně do jeho zabezpečené verze HTTPS.
 
-Protokol původně vyvinul Microsoft, verze 1.0, 2.0 a 3.0 jsou uvolněny pod Microsoft Open Specification Promise. Aktuálně nejnovější verze 4.0 byla schválena jako standard prostřednictvím OASIS OData Technical Committee, jejímiž členy jsou BlackBerry, IBM, Microsoft, SAP a další. Následující informace ohledně OData protokolu se budou vztahovat k verzi 2.0, která je momentálně v SAPu navzdory zavádění verze 4.0, používána nejčastěji. 
+Jádrem OData jsou feeds, které jsou kolekcemi Collections složené ze záznamů Entries. Každý Entry je identifikovaný klíčem a reprezentuje strukturovaný záznam, který má seznam vlastností Properties, ty mohou být komplexního, nebo primitivního typu. Entries mohou být součástí hierarchie typů a mohou mít související entries a feeds odkazované prostřednictvím Links \cite{mvc}.
 
-Data přenášená prostřednictvím OData protokolu mohou využívat různé datové formáty běžně používané ve webových technologiích, například Extensible Markup Language (XML), JavaScript Object Notation (JSON) nebo Atom Publishing Pro-tocol (AtomPub) a další. Data jsou při přenosu zabalena do protokolu HTTP, případně do jeho zabezpečené verze HTTPS.
+\paragraph{EDM (Entity Data Model)} Hlavním konceptem v EDM jsou entity a asociace. Entita je strukturovaný záznam představující libovolný datový objekt. Tím může být například uživatel nebo objednávka. Každá taková entita má svůj klíč, kterému se říká klíč entity. Pomocí tohoto klíče lze asociovat entity mezi sebou. Budeli objednávka přiřazena k nějakému uživateli, bude mít klíč uživatele u sebe dostupný. Namapováním klíče uživatele na objednávky obsahující jeho klíč dostaneme asociaci uživatelovi objednávky. Takto lze hierarchicky libovolně navazovat asociace na jiné a tím tak vytvářet požadované datové struktury připravené k exportu. 
 
-Jádrem OData jsou feeds, které jsou kolekcemi Collections složené ze záznamů Entries. Každý Entry je identifikovaný klíčem a reprezentuje strukturovaný záznam, který má seznam vlastností Properties, ty mohou být komplexního, nebo primitivního typu. Entries mohou být součástí hierarchie typů a mohou mít související entries a feeds odkazované prostřednictvím Links.
+\paragraph{JSON (JavaScript Object Notation)}
+\label{par:json}
+Jedná se o datový formát velmi často využívaný ve frameworku SAPUI5 a je i jednou z podob, ve které lze prezentovat OData. Jedná se o nezávislou datovou reprezentaci, jejíž základní prvek je objekt, který může být:
+\begin{itemize}
+	\item
+	Reálnou hodnotou (číslo, text, boolean hodnota true/false, null)
+	\item
+	Strukturou objektů
+    \item
+	Polem objektů	
+\end{itemize} 
 
-\paragraph{Metadata} OData služba poskytuje metadata dokumenty. Aby mohli uživatelé oData služby prozkoumat, co všechno služba nabízí, aniž by museli zkoumat implementaci služ-by na backendu.
-Jednodušší Service Document se nachází v root URI služby, obsahuje seznam všech feedů, takže je uživatelé mohou prozkoumat a zjistit jejich adresy.
-Přidáním segmentu \$metadata do root URI služby získáme Service Metadata Document, který popisuje celý datový model, jinými slovy strukturu a propojení všech zdrojů. Jak uvádí (Odata, 2013), Service Metadata Document popisuje svá data pomocí termínů EDM použitím XML jazyka pro popis modelů nazvaných Con-ceptual Schema Definition Language (CSDL). Tento CSDL dokument je pak zabalen použitím formátu EDMX. (Odata, 2015)
-
-\paragraph{Entity Data Model (EDM)} Hlavním konceptem v EDM jsou entity a asociace. Entity jsou instance Entity Type (například Inventura, Závod, Budova a tak dále), které jsou strukturovanými zá-znamy s klíčem Entity Key a složenými z pojmenovaných a typovaných vlastností. Entity Key je složen z podmnožiny vlastností v Entity Type. Entity Key (například InventuraID, nebo BudovaID) je zásadní koncept pro unikátní identifikaci instancí Entity Type a umožnění Enity Type instancím fungovat ve vztazích. Entity jsou se-skupovány v Entity Sets (například Budovy je množina instancí Entity Type Budo-va).
-Asociace definují vztah mezi dvěma nebo více Enity Type (například Budova patří Závodu). Instance asociací jsou seskupovány v Association Sets. Navigation Properties jsou speciální vlastnosti v Entity Type, které jsou vázány na konkrétní asociaci a mohou být použity k odkazování na asociaci entity.
-Položením předchozích definic do OData termínů, feedy vystavované OData službou jsou reprezentovány pomocí Entity Set, nebo Navigation Property na Entity Type, které identifikuje kolekci entit. Například Entity Set identifikovaný pomocí URI http://services.odata.org/OData/OData.svc/Products, nebo kolekce entit identifikovaná pomocí Products Navigation Property v http://services.odata.org/OData/OData.svc/Categories(1)/Products identifikují feed složený z Entry vystavovaný OData službou. (Odata, 2015)
+Na obrázku \ref{img:json} níže je zobrazena ukázková struktura JSON objektu.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/odata.png}
-	\caption{Struktura BSP aplikace}
-	\label{img:bsp}
-	\small
-	Struktura BSP aplikace
+	\includegraphics[width=0.5\textwidth]{images/json}
+	\caption{Ukázka JSON Objektu}
+	\label{img:json}
 \end{figure}
 
-\chapter{Analýza a návrh aplikace}
-Tato kapitola se věnuje analýze a návrhu požadované webové aplikace pracující nad SAP modulem Plant Maintenance pro vykonávání údržby v halách. Jednotlivé podkapitoly se pak věnují zpracování požadavků kladených na výslednou aplikaci, omezením aplikace a definování uživatelských rolí, které budou v aplikaci použity. Na základě stanovených požadavků je posléze proveden návrh uživatelského rozhraní.  
+JSON je textový, na jazyce zcela nezávislý formát, využívající však konvence dobře známé programátorům jazyků rodiny C (C, C++, C\#, Java, JavaScript, Perl, Python a dalších). Díky tomu je JSON pro výměnu dat opravdu ideálním jazykem \cite{json}.
 
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+\chapter{Analýza a návrh aplikace}
+Tato kapitola se věnuje analýze a návrhu požadované webové aplikace pracující nad modulem SAP Plant Maintenance pro vykonávání údržby v halách. Jednotlivé podkapitoly se pak věnují zpracování požadavků kladených na výslednou aplikaci, omezením aplikace a definování uživatelských rolí, které budou v aplikaci použity. Na základě stanovených požadavků je posléze proveden návrh uživatelského rozhraní.  
 
 \section{Základní popis aplikace}
 Webová aplikace bude svým uživatelům umožňovat vykonávat potřebné úkony pro správný chod výrobních hal. To zahrnuje důležité operace jako je například hlášení požadavků na údržbu nebo poruch pro zadefinované vybavení, evidování práce na nahlášených poruchách apod. Podrobný soupis funkčních požadavků je popsán v následující kapitole. 
