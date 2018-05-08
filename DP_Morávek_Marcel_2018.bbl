@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\biburl}[1]{\url{#1}}
 \providecommand{\urlprefix}{Dostupn{\' e} z: }
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -41,5 +41,13 @@ SAP PM - Overview {[online]}. [cit. 2018-04-08].
 \bibitem{json}
 SAP PM - Overview {[online]}. [cit. 2018-04-08].
 \urlprefix\biburl{https://www.json.org/json-cz.html}
+
+\bibitem{edux_si}
+Softwarové inženýrství I.{[online]}. [cit. 2018-04-16].
+\urlprefix\biburl{https://edux.fit.cvut.cz/archive/B171/BI-SI1/lectures/start}
+
+\bibitem{edux_pcm1}
+Softwarové inženýrství I.{[online]}. [cit. 2018-04-16].
+\urlprefix\biburl{https://edux.fit.cvut.cz/archive/B171/MI-PCM.16/_media/lectures/mi-pcm_prednaska_1.pdf}
 
 \end{thebibliography}
