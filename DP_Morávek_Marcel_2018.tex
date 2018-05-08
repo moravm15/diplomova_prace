@@ -59,12 +59,12 @@
 \author{Marcel Morávek} %jméno autora bez akademických titulů
 \supervisor{Ing. Martin Šindlář}
 \acknowledgements{Velké díky patří Ing. Martinovi Šindláři za jeho čas a výpomoc při návrhu architektury a vedení této práce. Dále bych chtěl poděkovat Ing. Martinovi Kurkovi za konzultace ohledně modulu SAP PM.}
-\abstractCS{Tato práce se zabývá tvorbou webové aplikace nad modulem údržby SAP Plant Maintenance. Popisuje komponenty SAP potřebné pro vývoj požadované aplikace, analýzu požadavků a samotnou implementaci.}
+\abstractCS{Tato práce se zabývá tvorbou webové aplikace nad modulem údržby SAP Plant Maintenance. Popisuje komponenty SAP potřebné pro vývoj požadované aplikace, analýzu požadavků a následnou implementaci}
 \abstractEN{This thesis deals with the creation of web application over SAP Plant Maintenance module. Describes the SAP components needed to develop required application, requirements analysis and implementation itself.}
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{5} %volba Prohlášení (číslo 1-6)
-\keywordsCS{SAP, Model údržby, Fiori, SAPUI5, BSP, uživatelské rozhraní}
-\keywordsEN{SAP, Module Plant Maintenance, Fiori, SAPUI5, BSP, user interface}
+\keywordsCS{SAP, Model údržby, Fiori, SAP Gateway, BSP, SAPUI5, uživatelské rozhraní}
+\keywordsEN{SAP, Module Plant Maintenance, Fiori, SAP Gateway, BSP, SAPUI5, user interface}
 
 % \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
 
@@ -651,6 +651,7 @@ Jedná se o grafický výstup, jehož vstupem je do skupin rozdělený seznam ú
 \end{figure}
 
 \section{Lo-Fi prototyp}
+\label{sec:lofi}
 Lo-Fi (Low-Fidelity) prototypy slouží pro snadné a hlavně rychlé znázornění pochopení konceptu a možné podoby budoucí aplikace. Demonstruje sled požadovaných procesů a informačních struktur. Díky tomu lze získat levnou zpětnou vazbu pro zlepšení aplikace. Obecně jsou charakterizovány nízkou technologickou implementací a ne zřídka k tvorbě bývá použit i obyčejný papír a tužka \cite{lofi}. 
 
 Pro návrh prototypu byly použity dva k tomu určené nástroje. Prvním z nich je univerzální nástroj pro tvorbu prototypových aplikací Balsamiq Mockups \cite{balsamiq} druhým je nástroj Built \cite{builtme} určený k prototypování přímo ve frameworku SAPUI5. Návrh rozhraní probíhá pro dva typy zařízení. Jednak pro desktop aplikace běžně disponujícím rozlišením 1200 pixelů a více a poté i pro přenosná zařízení jako jsou chytré telefony nebo tablety. V obou případech se jedná o \textbf{WYSIWYG editory} (What You See Is What You Get), které umožňují tvořit cílovou podobu stránky bez nutnosti cokoliv programovat. Většinou pracují na principu táhni a pusť. Tudíž uživatel pracující s tímto editor si vybírá ze základny použitelných UI komponent, které potom skládá do sebe a tvoří tím výslednou stránku. 
@@ -661,7 +662,7 @@ První navržená stránka se týká přihlášení uživatele. Návrh přihlaš
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/bal_login}
-	\caption{Návrh přihlašovací stránky}
+	\caption{Návrh přihlašovací obrazovky}
 	\label{img:bal_login_desktop}
 \end{figure}
 Pro návrh domovské stránky je čerpáno z konceptu SAP Fiori Launchpad, který slouží jako rozcestník do aplikací ve standardním licencovaném řešení SAP. Ten umožňuje uživatelům jednotlivé aplikace seskupovat a upravovat si designové téma. Ukázkou Launchpadu je obrázek \ref{img:fiori_launchpad}. 
@@ -675,7 +676,7 @@ Nic takové ovšem není ve vyvíjené aplikaci plánováno. Nicméně pro důvo
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/bal_homepage}
-	\caption{Návrh domovské stránky}
+	\caption{Návrh domovské obrazovky}
 	\label{img:bal_homepage_desktop}
 \end{figure}
 Obrázek \ref{img:bal_poruchy_seznam_desktop} představuje navrženou stránku pro operátoru výroby. Skládá se z již použitého layoutu pro webové stránky a především pak tabulky zobrazující seznam poruch. V tabulce jsou zobrazeny požadované sloupce a v její pravé horní části jsou tlačítka pro přepínání druhů hlášení a spolu s tlačítkem pro založení nové poruchy. 
@@ -699,14 +700,14 @@ Mobilní verze obsahuje návrh stejných obrazovek jako desktopová verze popsan
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{images/bal_login_hompage_mob}
-	\caption{Návrh přihlašovací a domovské stránky}
+	\caption{Návrh přihlašovací a domovské obrazovky}
 	\label{img:bal_login_hompage_mob}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{images/bal_poruchy_mob}
-	\caption{Návrh }
+	\caption{Návrh obrazovky pro seznam poruch a jejich založení}
 	\label{img:bal_poruchy_mob}
 \end{figure}
 
@@ -717,14 +718,14 @@ První navržená stránka je pro operátora výroby. Zobrazuje mu tabulku se se
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/bu_poruchy_seznam}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Návrh obrazovky pro seznam poruch}
 	\label{img:bu_poruchy_seznam}
 \end{figure}
 Prvním technickou překážkou tohoto nástroje je vytváření dialogů. To totiž není možné. A proto pro stlačení tlačítka na založení reakce musí dojít k zavolání zcela nové stránky. Stránka s jednotlivými elementy pro popsání poruchy a následného založení je k vidění na obrázku \ref{img:bu_zalozeni_poruchy}. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/bu_zalozeni_poruchy}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Návrh obrazovky pro založení poruchy}
 	\label{img:bu_zalozeni_poruchy}
 \end{figure}
 
@@ -734,7 +735,7 @@ Druhou technickou překážkou je tvorba návrhu pro mobilní zařízení. Kniho
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{images/bu_mob}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Návrh obrazovky pro seznam poruch a jejich založení}
 	\label{img:bu_mob}
 \end{figure}
 
@@ -854,7 +855,7 @@ Načtená data jsou zpětně serializována pro výstup. Obsahem celé BSP HTML 
 \begin{figure}[H]
 	\centering
 	\includegraphics[]{images/gw_db}
-	\caption{Ilustrační databázové schéma pro uživatelská data portálového uživatele}
+	\caption{Ilustrační databázové schéma portálových uživatelů}
 	\label{img:gw_db}
 \end{figure}
 
@@ -962,7 +963,7 @@ Na obrázku \ref{img:gw_servlet_structure} je k vidění struktura paketu realiz
 \begin{figure}[H]
 	\centering
 	\includegraphics[]{images/gw_servlet_structure}
-	\caption{Struktura paketu realizujícího middleware vrstvu mezi PM SAPUI5 aplikací a SAP GW}
+	\caption{Struktura paketu realizujícího middleware vrstvu}
 	\label{img:gw_servlet_structure}
 \end{figure}
 Jedná se o čtyři třídy napsané v programovacím jazyce Java. Podrobněji jsou jednotlivé třídy popsány v seznamu níže.
@@ -1404,14 +1405,14 @@ Na následujících dvou obrázcích \ref{img:unit_test_success} a \ref{img:unit
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/unit_test_success}
-	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
+	\caption{Úspěšné JUnit testy}
 	\label{img:unit_test_success}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/unit_test_error}
-	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
+	\caption{Neúspěšné JUnit testy}
 	\label{img:unit_test_error}
 \end{figure}
 
@@ -1442,7 +1443,7 @@ Skládáním jednoduchých testů naznačených v kódu \ref{ssec:OPA5Test} lze 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/opa5}
-	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
+	\caption{Úspěšný OPA5 test}
 	\label{img:opa5}
 \end{figure}
 
@@ -1528,6 +1529,41 @@ Z tabulky plusově o trochu lépe vychází varianta Eclipse. To především pr
 V závislosti na cíleném run-time prostředí, ve kterém aplikace bude nahrána, je zapotřebí vybírat vhodné vývojové prostředí. Pokud se jedná o standardní SAP GW řešení pomocí protokolu OData, pak je jednoznačně správnou volbou SAP Web IDE. V opačném případě se nejspíše očekává ohýbání standardní cesty, které s sebou přináší potřebu řešení komunikace pomocí více integrací a v tom případě se variantě zahrnující Eclipse víceméně nedá vyhnout. Víceméně vyhnout z toho důvodu, že je možné přistoupit k hybridnímu řešení. Je totiž možné UI část zahrnující XML view a JavaScriptové controllery vyvíjet v SAP Web IDE a v požadovaný moment vývoje daný projekt exportovat a nahrát do projektu v Eclipse. To lze provést buď manuální cestou exportu a importu nebo skrze verzovací systém Git. Tím lze dosáhnout uložení kódu v jednom uložišti a na konkrétních částech projektu pracovat v příslušných prostředích. UI část tak lze editovat z cloudu a část s Java vývojem a exportovacími parametry v Eclipse. 
 
 \section{Doporučení pro vývoj}
+V této závěrečné jsou shrnuty poznatky z analýzy, návrhu a implementace do několika bloků s krátkými poznámky, na které by se mělo při vývoji aplikace brát zřetel.
+
+\subsection{Seznámení se zadáním}
+V případě podmětu od zákazníků a partnerů nebo vlastní iniciativy je dobré uvědomit si celkový koncept očekávaný od aplikace a v závislosti na tom pokračovat následujícím bodem.
+
+\subsection{Kontaktáž potenciálního zákazníka - Lo-Fi prototyp}
+V této fázi je vhodné využít nástroje určené k rychlému prototypování a neztrácet čas vývoj prototypové aplikace, u které většinou nikdo nemá představu o finální podobě, v cílovém frameworku. Časová náročnost tvorby v prototypovacím nástroji Balsamiq popsaném v kapitole \ref{sec:lofi} je doslova zanedbatelná vůči potřebnému času pro vývoj prototypové aplikace ve frameworku SAPUI5.
+
+\subsection{Komunikace se vyvíjí slibně - Hi-Fi prototyp}
+Je žádoucí se do této fáze vyhnout programování na straně controllerů a nebo případně začít v této fázi od znova. Špatným návrhem a rozmístěním funkcí poté vzniká ve finálové aplikaci mnoho redundantních částí kódů, které se špatně spravují a rozvíjí. V této části už by měla být co možná nejvíce eliminována možnost zásadních změn z pohledu jednotlivých komponent aplikace. 
+
+\subsection{Implementace}
+V případě zelené od vedení (zodpovědného managementu) a započatí implementace je nutné si určit způsob, kterým bude aplikace vyvíjena. V následujících odstavcích jsou popsány dvě metody, které by mohly být pro vývoj vhodné. Teorie k těmto metodikám je čerpána z dokumentu \cite{prototyping}. 
+
+\paragraph{Agilní vývoj}
+Agilní vývoj zahrnuje skupiny iteračních a inkrementálních metodik vývoje software. Pomocí této kombinace lze rychle reagovat na případné změny v požadavcích od zákazníka. Ten totiž pravidelně dostává aktuální podobu aplikace k testování v rámci sprintů (opakujících se vývojových cyklů). Diagram vývoje je na obrázku \ref{img:agile}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/agile}
+	\caption{Diagram agilního vývoje \cite{prototyping}}
+	\label{img:agile}
+\end{figure}
+
+\paragraph{Prototyping}
+Je jedním z iterativních přístupů k vývoji. Dochází u něj k vytváření prototypů představujících jednotlivé komponenty výsledné aplikace. V případě, že se od očekávají izolovatelné funkcionality, může to být velmi vhodnou alternativou k agilnímu přístupu. Diagram vývoje je na obrázku \ref{img:prototyping}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/prototyping}
+	\caption{Diagram prototypovacího vývoje \cite{prototyping}}
+	\label{img:prototyping}
+\end{figure}
+
+\paragraph{Verzování}
+Ačkoliv byly aplikace doposud vyvíjení vždy pouze jedním vývojářem, je nezbytné kód revidovat pomocí verzovacího systému. Zabrání se tak možným ztrátám kódu již implementovaných aplikací a usnadní možnost obnovení zahozené funkcionality. Další výhodou využití verzovacího systému (v itelligence nový zavedený Git) je možnost issue trackingu.
+
 
 \begin{conclusion}
 Ve své práci jsem představil společnost SAP a její softwarový produkt SAP Enterprise Resource Planning. Stručně popsal význam jeho jednotlivých modulů a poté se podrobněji věnoval modulu údržby SAP Plant Maintenance. Následně jsem popsal produkt SAP Fiori a webovou technologii BSP použitou při implementaci komunikace mezi webovou aplikací a systémem SAP Gateway. 
