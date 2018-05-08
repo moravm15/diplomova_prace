@@ -1416,32 +1416,35 @@ Na následujících dvou obrázcích \ref{img:unit_test_success} a \ref{img:unit
 \end{figure}
 
 \subsection{UI vrstva}
-K testování má framework SAPUI5 vlastní technologii OPA5 (One Page Acceptance Tests), která umožňuje testovat UI aplikace. Poskytuje asynchronní přístup k prvkům SAPUI5. Síla technologie spočívá pro testování uživatelské interakce, integraci, navigaci a svazování komponent s datovými modely. Technologie je založena na programovacím jazyku JavaScript, což je vzhledem k použití tohoto jazyka i aplikačního frameworku celkem očekávané a vhodné. V ukázce kódu \ref{code:OPA5Test} níže je k nahlédnutí struktura základního testu. 
+K testování má framework SAPUI5 vlastní technologii OPA5 (One Page Acceptance Tests), která umožňuje testovat UI aplikace. Poskytuje asynchronní přístup k prvkům SAPUI5. Síla technologie spočívá pro testování uživatelské interakce, integraci, navigaci a svazování komponent s datovými modely. Technologie je založena na programovacím jazyku JavaScript, což je vzhledem k použití tohoto jazyka i aplikačního frameworku celkem očekávané a vhodné. V ukázce kódu \ref{code:OPA5Test} níže je k nahlédnutí struktura základního testu. V podstatě se jedná o HTML stránku, která si pomocí JavaScriptu natáhne potřebná view aplikace testované aplikace a za pomocí komponty OPA5 na nich provádí testy.
 
 \begin{algorithm}[H]
 	\begin{lstlisting}[language=java]   
 <script>
-  sap.ui.require(["sap/ui/test/Opa5", ...], 
-	  function (Opa5, opaTest, Common) {
-    Opa5.extendConfig({ ... });
-    sap.ui.require(["sap/ui/.../PM", ...], function () {
-      QUnit.module("Zobrazeni detailu");
-      opaTest("Prerun do detailu", function(Given, When, Then) {
-        Given.iStartMyApp();
-        Given.onTheIntro.iPressOnGoToDetail(); )
-        When.onTheList.iPressOnGoToDetail();
-        Then.onPage.iShouldSeeTheDetailPage().
-        and.iTeardownMyAppFrame();
-      }
-    });
-  QUnit.start();
+sap.ui.require([".../Administrace", ...], function () {
+  QUnit.module("Zobrazeni detailu");
+  opaTest("ToDetail", function(Given, When, Then) {
+    Given.iStartMyApp();
+    Given.onTheIntro.iPressOnGoToDetail(); )
+    When.onTheList.iPressOnGoToDetail();
+    Then.onPage.iShouldSeeTheDetailPage().
+    and.iTeardownMyAppFrame();
+  }
 });
+QUnit.start();
 </script>
 	\end{lstlisting}
 	\caption{Ukázka testovacího scriptu v hlavičce testovací stránky OPA5}	
 	\label{code:OPA5Test}
-	\small 
+	\small Nastiňuje strukturu testu pro otestování navigace ze seznamu uživatelů do jeho detailu. 
 \end{algorithm}
+Skládáním jednoduchých testů naznačených v kódu \ref{ssec:OPA5Test} lze vytvořit komplexní skládající se z několika kroků. Takovým testem pak může být otevření dialogového okna pro založení poruchy. Vybrání prvku a pokusu o vytvoření daného hlášení. Výsledkem takové testu je pak znázorněn na obrázku \ref{img:opa5}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/opa5}
+	\caption{Nápověda při definování atributů elementu v SAP Web IDE}
+	\label{img:opa5}
+\end{figure}
 
 \section{Porovnání vývojových prostředí}
 V této sekci jsou popsána dvě vývojová prostředí umožňující vývoj aplikací ve frameworku SAPUI5. Prvním z nich je open source vývojové prostředí Eclipse a tím druhým je cloudové prostředí SAP Web IDE.  
@@ -1533,11 +1536,11 @@ Na základě konzultací s PM konzultantem jsem sepsal funkční požadavky klad
 
 Poté jsem na základě získaných znalostí o komponentách systému SAP, funkčních požadavcích kladených na webovou aplikaci a návrhu uživatelského rozhraní implementoval celý systém. V kapitole věnující se implementaci jsem popsal architekturu jako celek a poté podrobněji zdokumentoval její vrstvy. Nejpodrobněji je popsána část týkající se frameworku SAPUI5, kde jsou detailně popsány jeho jednotlivé stavební prvky. Poté jsou porovnána dvě vývojová prostředí uzpůsobená pro tento framework a na závěr jsem přidal ukázky možného testování uživatelského rozhraní a komunikační vrstvy tvořené Java servlety. Práce je uzavřena stručnou sadou doporučení pro budoucí vývoj aplikací v tomto frameworku.
 
+\section{Budoucí vývoj}
+Věřím, že na základě získaných znalostí a následného zdokumentování vývoje budu moci svým kolegům ulehčit práci při vytváření podobných aplikací. Struktura aplikace je i v případě vývoje nad zcela jiným modulem lehce znovupoužitelná a může tak razantně urychlit vývoj.  
 
-
-
-
-
+\section{Dosažení cílů}
+S výsledkem své práce jsem spokojený. Podařilo se mi dosáhnout všech stanovených cílů, byť u některých částí méně, než jsem si na začátku představoval. Nicméně implementační část, kterou považuji za stěžejní v rámci této práce, byla již v menší modifikaci použita v ostrém provozu, a to mě velmi těší.
 
 \end{conclusion}
 

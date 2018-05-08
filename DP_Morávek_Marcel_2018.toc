@@ -127,13 +127,15 @@
 \contentsline {subsection}{\numberline {4.7.2}UI vrstva}{73}{subsection.4.7.2}
 \contentsline {section}{\numberline {4.8}Porovn\IeC {\'a}n\IeC {\'\i } v\IeC {\'y}vojov\IeC {\'y}ch prost\IeC {\v r}ed\IeC {\'\i }}{74}{section.4.8}
 \contentsline {subsection}{\numberline {4.8.1}Eclipse s pluginem pro SAPUI5}{74}{subsection.4.8.1}
-\contentsline {paragraph}{Prost\IeC {\v r}ed\IeC {\'\i }}{74}{section*.53}
-\contentsline {subsection}{\numberline {4.8.2}SAP Web IDE}{74}{subsection.4.8.2}
-\contentsline {paragraph}{Prost\IeC {\v r}ed\IeC {\'\i }}{75}{section*.54}
-\contentsline {subsection}{\numberline {4.8.3}Shrnut\IeC {\'\i }}{76}{subsection.4.8.3}
+\contentsline {paragraph}{Prost\IeC {\v r}ed\IeC {\'\i }}{75}{section*.53}
+\contentsline {subsection}{\numberline {4.8.2}SAP Web IDE}{75}{subsection.4.8.2}
+\contentsline {paragraph}{Prost\IeC {\v r}ed\IeC {\'\i }}{76}{section*.54}
+\contentsline {subsection}{\numberline {4.8.3}Shrnut\IeC {\'\i }}{77}{subsection.4.8.3}
 \contentsline {paragraph}{Doporu\IeC {\v c}en\IeC {\'\i }}{77}{section*.55}
-\contentsline {section}{\numberline {4.9}Doporu\IeC {\v c}en\IeC {\'\i } pro v\IeC {\'y}voj}{77}{section.4.9}
+\contentsline {section}{\numberline {4.9}Doporu\IeC {\v c}en\IeC {\'\i } pro v\IeC {\'y}voj}{78}{section.4.9}
 \contentsline {chapter}{Z{\' a}v{\v e}r}{79}{chapter*.56}
-\contentsline {chapter}{Literatura}{81}{section*.58}
+\contentsline {section}{Budouc\IeC {\'\i } v\IeC {\'y}voj}{79}{section*.57}
+\contentsline {section}{Dosa\IeC {\v z}en\IeC {\'\i } c\IeC {\'\i }l\IeC {\r u}}{80}{section*.58}
+\contentsline {chapter}{Literatura}{81}{section*.60}
 \contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{83}{appendix.A}
 \contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{85}{appendix.B}
