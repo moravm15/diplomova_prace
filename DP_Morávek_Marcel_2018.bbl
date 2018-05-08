@@ -66,8 +66,20 @@ Návrh uživatelského rozhraní{[online]}. [cit. 2018-04-16].
 Návrh uživatelského rozhraní{[online]}. [cit. 2018-04-16].
 \urlprefix\biburl{http://built.me}
 
-\bibitem{heuristika}
+\bibitem{heursitika2}
 Návrh uživatelského rozhraní{[online]}. [cit. 2018-04-16].
-\urlprefix\biburl{https://edux.fit.cvut.cz/archive/B171/MI-NUR/_media/lectures/x09-opakovani.pdf}
+\urlprefix\biburl{https://dspace.cvut.cz/bitstream/handle/10467/65128/F8-DP-2016-Soukup-Karel-thesis.pdf?sequence=1&isAllowed=y}
+
+\bibitem{tomcat}
+Návrh uživatelského rozhraní{[online]}. [cit. 2018-04-16].
+\urlprefix\biburl{http://tomcat.apache.org/}
+
+\bibitem{jaas}
+Návrh uživatelského rozhraní{[online]}. [cit. 2018-04-16].
+\urlprefix\biburl{http://www.oracle.com/technetwork/topics/index-089689.html}
+
+\bibitem{basic_form}
+Návrh uživatelského rozhraní{[online]}. [cit. 2018-04-16].
+\urlprefix\biburl{http://java.boot.by/wcd-guide/ch05s03.html}
 
 \end{thebibliography}

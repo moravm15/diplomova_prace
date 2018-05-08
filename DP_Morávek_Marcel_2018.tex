@@ -58,13 +58,13 @@
 \authorWithDegrees{Bc. Marcel Morávek} %jméno autora včetně současných akademických titulů
 \author{Marcel Morávek} %jméno autora bez akademických titulů
 \supervisor{Ing. Martin Šindlář}
-\acknowledgements{Poděkování}
-\abstractCS{Abstrakt CZ}
-\abstractEN{Abstrakt EN}
+\acknowledgements{Velké díky patří Ing. Martinovi Šindláři za jeho čas a výpomoc při návrhu architektury a vedení této práce. Dále bych chtěl poděkovat Ing. Martinovi Kurkovi za konzultace ohledně modulu SAP PM.}
+\abstractCS{Tato práce se zabývá tvorbou webové aplikace nad modulem údržby SAP Plant Maintenance. Popisuje komponenty SAP potřebné pro vývoj požadované aplikace, analýzu požadavků a samotnou implementaci.}
+\abstractEN{This thesis deals with the creation of web application over SAP Plant Maintenance module. Describes the SAP components needed to develop required application, requirements analysis and implementation itself.}
 \placeForDeclarationOfAuthenticity{V~Praze}
-\declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
-\keywordsCS{SAP, Fiori}
-\keywordsEN{SAP, Fiori}
+\declarationOfAuthenticityOption{5} %volba Prohlášení (číslo 1-6)
+\keywordsCS{SAP, Model údržby, Fiori, SAPUI5, BSP, uživatelské rozhraní}
+\keywordsEN{SAP, Module Plant Maintenance, Fiori, SAPUI5, BSP, user interface}
 
 % \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
 
@@ -76,20 +76,27 @@
 % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
 
 \begin{introduction}
-	Tato práce se zaobírá ...
-\end{introduction}
+Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací na celém světe. Zaměřuje se na vývoj a provoz softwarových produktů podporujících podnikové procesy a v současné době pak především na vývoj technologií pro webové aplikace a cloud computing. Jádrem celého systému je SAP Enterprise Resource Planning, pomocí něhož dochází k řízení a integrování většiny oblastí činností organizace vlastnící tento systém. Ten se skládá z modulů, které pomáhají řídit společnost v jednotlivých odvětvích, jako například finance, marketing nebo řízení lidských zdrojů. Jedním z nich je i modul údržby SAP Plant Maintenance poskytující nástroje pro údržbu strojů a vybavení dané organizace. 
 
-\chapter{Cíl práce}
-Cílem této práce je vytvoření webové SAP Fiori aplikace nad SAPovským modulem údržby ve frameworku SAPUI5. Pomocí této aplikace bude umožněno realizovat servisní zakázky i preventivní údržbu strojů a to včetně jejich vybavení.
+Jedním z dalších produktů je portfolio webových aplikací, které jsou obchodně označovány jako SAP Fiori. Pro jejich funkcí musí mít ovšem zákazník zakoupen produkt SAP NetWeaver Gateway. Ovšem  ne všichni ho mají a přesto by chtěli Fiori aplikace používat.
 
-\section{Vývojová část}
-Cílem praktické části je navržení uživatelského rozhraní aplikace s ohledem na způsob zacházení s modulem údržby. Nadále pak implementace samotné aplikace dle provedeného návrhu. 
+Společnost itelligence je jedním z předních mezinárodních poskytovatelů řešení SAP a zároveň zadavatelem této práce, jejíž hlavním úkolem je navržení architektury, která umožní komunikaci se systémem SAP ERP i bez produktu SAP NetWeaver Gateway. Konkrétně je pak požadována aplikace nad modulem Plant Maintenance pro vykonávání preventivní údržby a řešení poruch ve výrobním procesu. 
 
-\section{Rešeršní část}
-Jedním z cílů rešeršní části je porovnání prostředí podporujících vývoj ve frameworku SAPUI5. 
+\section{Cíl práce}
+Cílem práce je představení potřebných komponent systému SAP pro realizaci Fiori aplikací. Analyzovat požadavky kladené na výslednou aplikaci nad modulem Plant Maintenance a v závislosti na nich navrhnout uživatelské rozhraní. Následně důkladně implementovat a zdokumentovat jednotlivé kroky vývoje včetně navržené architektury. Součástí budou i doporučení pro budoucí projekty týkajících se frameworku SAPUI5.
 
 \section{Co není cílem práce}
-Cílem této práce není implementace ani návrh funkčnosti uvnitř EPRového systému. Tato práce začíná na úrovni komunikačních rozhraní jednotlivých funkčních modulů realizujících požadované operace. 
+Cílem této práce není implementace jednotlivých procesů na úrovni modulu údržby. Rozsah této práce končí voláním jednotlivých funkčních modulů, které tyto procesy realizují. 
+
+\section{Struktura práce}
+V první kapitole \textit{SAP} je nejdříve popsána historie společnosti a její business model. Následnou jsou popsány jednotlivé komponenty SAP potřebné pro vývoj Fiori aplikace zahrnující webové technologie i samostatné moduly SAP ERP. 
+
+Druhá kapitola \textit{Analýza} popisuje funkční a nefunkční požadavky kladené na aplikaci. Následně definuje nejdůležitější případy užití na základě kterých dojde k rozčlenění aplikace do nezávislých komponent. 
+
+Třetí kapitola \textit{Návrh uživatelského rozhraní} zahrnuje rozdělení jednotlivých uživatelských operací do skupin dle navržených komponent aplikace. Následně je zde proveden návrh některých obrazovek ve dvou prototypovacích prostředí. Ty jsou závěrem porovnány.
+
+Čtvrt kapitola \textit{Implementace} je nejobsáhlejší, zahrnuje popis vývoje na všech vrstvách architektury a řeší komunikaci mezi nimi. Je zde popsána struktura aplikace ve frameworku SAPUI5 a porovnány dvě vývojová prostředí umožňující vývoj v tomto frameworku. Jsou zde popsány i možnosti testování v rámci komunikační mezivrstvy realizované pomocí servletu a samotného UI frameworku SAPUI5. Závěrem jsou popsána doporučení pro vývoj aplikace SAPUI5.
+\end{introduction}
 
 \chapter{SAP}
 Kapitola obecně popisuje podnikový informační systém SAP a trochu podrobněji se věnuje částem systému týkajících se požadované aplikace. V jednotlivých podkapitolách jsou nejdříve popsány informace o historii firmy a architektonické struktuře systému. Dále jsou zde popsány i jednotlivé technické komponenty, které jsou použity pro realizaci požadované aplikace. To se týká především frameworku SAPUI5 a předcházejících webových technologií, které jsou dodnes jeho součástí.
@@ -98,6 +105,7 @@ Kapitola obecně popisuje podnikový informační systém SAP a trochu podrobně
 Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací a jednou z největších softwarových společností na celém světe. Pod zkratkou SAP se schovávají počáteční písmena německých slov „Systeme, Anwendungen, Produkte in der Datenverarbeitung“. Anglicky si lze zkratku přeložit pomocí slov „Systems - Applications - Products in data processing“. Zaměřují se na vývoj a provoz softwarových produktů podporujících podnikové procesy. Zejména se pak jedná o řízení podniku, systémy pro správu vztahu se zákazníky a v současné době pak především vývoj technologií pro webové aplikace a cloud computing \cite{sap_information}.
 
 \section{SAP ERP}
+\label{sec:erp}
 První systém, vydaný společností již v roce 1973, měl obchodní označení SAP R/1 a byl tvořen pouze finančním účetnictvím. Následující verze SAP R/2 byla vydaná o šest let později a dá se již označovat za první funkční ERP systém (Enterprise Resources Planning). Tedy informační systém určený pro plánování podnikových zdrojů, pomocí kterých dochází k řízení a integrování většiny oblastí činností organizace jako jsou zásoby, nákup, prodej, marketing, finance nebo personalistika a podobně \cite{erpforum_erp_definition}. Ovšem nevýhodou takového systému v této době byla vysoká technická náročnost na klienta, která s sebou přinášela nutnost využívání sálových počítačů. S verzí SAP R/3 z roku 1992 byla však kompletně změněna architektura systému. Změnou architektury na klient-server opadly vysoké nároky na klienta a s tím i nutnost využívání sálových počítačů. Další změnou bylo i zavedení relačních databází. Hlavní výhoda této architektury však spočívala v kompatibilitě s různými platformami a operačními systémy Microsoft Windows nebo Unix. Tímto systém se společnost dostala na špici poskytovatelů ERP systémů a toto místo si drží dodnes \cite{sap_information}.
 
 \paragraph{Architektura systému SAP R/3}
@@ -737,7 +745,7 @@ Na porovnání použitých nástrojů je k dispozici skromná tabulka hodnocení
 		\centering
 		\begin{tabular}{| l | c | c |}
 			\hline 
-			Prostředí 						& Balsamiq 	&	Built \\ 
+			Prostředí 						& Balsamiq 	&	Built		\\ 
 			\hline	
 			\hline
 			Výběr komponent					&	1		&	3			\\ 
@@ -756,82 +764,75 @@ Na porovnání použitých nástrojů je k dispozici skromná tabulka hodnocení
 Pro tvorbu Lo-Fi prototypu se zdáti být Balsamiq účinějším nástrojem. Je mnohem rychlejší, přehlednější a při troše úsilí a znalosti frameworku SAPUI5 lze pomocí něho dosáhnout velmi dobrých výsledků v napodobení Fiori aplikace. Nástroj Built sice navíc umožňuje následné vyexportování aplikace, nicméně 
 
 \section{Heuristická analýza}
-Při návrhu uživatelského rozhraní je dobré držet se deseti následujících pravidel z Nielsenovi heuristické analýzy. Nielsenova heuristická analýza je jednou ze základních metod pro testování uživatelského rozhraní. Jedná se o seznam pravidel, které by uživatelské rozhraní mělo splňovat. Jakob Nielsen a Rolf Molich v roce 1990 vytvořili heuristiku pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto heristiku na množinu pravidel \cite{heuristika}
+Při návrhu uživatelského rozhraní je dobré držet se deseti následujících pravidel z Nielsenovi heuristické analýzy. Nielsenova heuristická analýza je jednou ze základních metod pro testování uživatelského rozhraní. Jedná se o seznam pravidel, které by uživatelské rozhraní mělo splňovat. Jakob Nielsen a Rolf Molich v roce 1990 vytvořili heuristiku pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto heuristiku na množinu pravidel \cite{heursitika2}
 
 \begin{enumerate}
 	\item
-	\textbf{Viditelnost stavu systému} - Uživatel by měl být vždy systémem vhodně informován (v rozumném čase)
-	o tom co se zrovna děje. Systém by tak měl reagovat na uživatelský vstup, nebo v případě, že se například provádí nějaký časově náročnější výpočet nebo
-	stahování dat, tak zobrazit progress bar.
+	\textbf{Viditelnost stavu systému}: Uživatel by měl být vždy vhodně informován o tom co se zrovna děje. Systém by měl vždy dát uživateli vědět, co se právě odehrává. Nesmí zůstat zamrzlý a nereagovat na uživatelské vstupy.
 	\item
-	\textbf{Propojení systému a reálného světa} - Systém by měl na uživatele mluvit jazykem uživatele se slovy, frázemi a koncepty, které jsou uživateli známé, zná je z reálného světa. Neměly by se využívat
-	pojmy, které jsou například specifické pouze pro daný systém.
+	\textbf{Propojení systému a reálného světa}: Komunikace systému s uživatelem by se měla odehrávat uživatelsky příjemným způsobem (srozumitelný jazyk bez odborných termínů). Měl by zachovávat konvence reálného světa, ikony by měli znázorňovat akci, která se pod nimi ukrývá a podobně. 
 	\item
-	\textbf{Uživatelská kontrola a svoboda} - Uživatelé se často učí nové funkce systému pomocí chyb, které provedou. Když uživatelé udělají chybu, musí mít možnost provedenou akci vrátit zpět a vrátit
-	tak systém do předchozího stavu. V případě, že se provádí nenávratná akce,
-	je třeba na to uživatele řádně upozornit.
+	\textbf{Uživatelská kontrola a svoboda}: Uživatelé při práci se systémem dělají chyby a potřebují proto únikový východ pro návrat do předchozího stavu. Měla by tak být vždy k dispozici funkce zpět (návrat do předchozího stavu) nebo alespoň varování o nevratné akci. Uživatel tím pádem více experimentuje a rychleji se učí aplikaci ovládat. 
 	\item
-	\textbf{Standardizace a konzistence} - Uživatel nesmí být zmaten různými termíny v různých situacích, přestože mají dané termíny stejný význam. Systém by měl vždy dodržovat standardy, které
-	jsou na dané platformě. Proto je například potřeba dodržovat standardní chybové
-	hlášky, správné umístění komponent apod. Ideální je používat standardní
-	platformové komponenty.
+	\textbf{Standardizace a konzistence}: Uživatelé by neměli být nuceni přemýšlet, jestli různé termíny znamenají to stejné, proto se doporučuje dodržovat obecné zásady. Pokud je to možné, je vhodné používat platformové (frameworkové) komponenty pro zachování jednotného designu.
 	\item
-	\textbf{Prevence chyb} - Lepší než dobré chybové hlášky je návrh, který zabraňuje samotnému výskytu
-	chyb. Buď je možné podmínky náchylné k chybám co nejvíce eliminovat, nebo
-	na chyby uživatele upozornit ještě dříve než například potvrdí formulář.
+	\textbf{Prevence chyb}: Vyvarovat se chybovým hlášením bezpečným designem, který bude preventivně působit proti problémům. Uživateli je dobré například sdělit špatně vyplněný formulář ještě před tím, než se ho pokusí potvrdit a odeslat.
 	\item
-	\textbf{Rozpoznání namísto vzpomínání} - Je třeba minimalizovat zatěžování paměti uživatele tím, že uživatel vždy vidí potřebné informace a akce, které může provést. Uživatel si tak například nemusí
-	pamatovat informace z jedné části formuláře na další.
+	\textbf{Rozpoznání namísto vzpomínání}: Uživatel by neměl být nucen vzpomínat si na provádění operací v systému, instrukce by měly být v systému vždy viditelně umístěny. Musí tak být vždy zobrazeny relevantní údaje pro uživatelovu práci. 
 	\item
-	\textbf{Flexibilní a efektivní použití} - Systém by měl v závislosti na jeho možnostech a typu umožňovat dvě verze ovládání. Pro méně zkušené uživatele a pro zkušené uživatele. Verze pro méně zkušené uživatele by měla obsahovat pouze základní funkce a možnosti nastavení tak, aby „nezkušený“ uživatel nebyl zbytečně zatěžován funkcionalitami, které stejně nepotřebuje. Naopak pro zkušené uživatele by se	měli zobrazit všechny funkcionality, včetně těch složitějších. Zkušenější uživatel by měl mít také případně možnost si potřebné funkcionality přizpůsobit pomocí maker. Pro oba typy uživatelů je také dobré umožnit využívat klávesové zkratky
+	\textbf{Flexibilní a efektivní použití}: Umožnění zrychlení práce se systém pro pokročilé uživatele. Mělo by tak být umožněno pokročilým uživatelům zpřístupnit pokročilý režim, zobrazující například méně informaci nebo s méně kroky v procesu.
 	\item
-	\textbf{Estetický a minimalistický} - Uživatel by měl mít co nejméně možností kam může kliknout, protože každá
-	další možnost soutěží o pozornost uživatele. Čím méně možností uživatel má,
-	tím rychleji je schopen pokračovat. Na obrazovce by také měly být zobrazeny
-	pouze informace, které uživatel v dané situaci opravdu potřebuje.
+	\textbf{Estetický a minimalistický}: Uživatel by měl mít co nejméně možností kam může kliknout, protože každá další možnost soutěží o pozornost uživatele. Čím méně možností uživatel má,	tím rychleji je schopen pokračovat. Na obrazovce by také měly být zobrazeny pouze informace, které uživatel v dané situaci opravdu potřebuje.
 	\item
-	\textbf{Pomoc uživatelů pochopit, poznat a vzpamatovat se z chyb} - Chybové hlášky by měly být v přirozeném jazyce a neměly by například obsahovat
-	žádné chybové kódy apod. Hlášky by měly přesně popisovat co je za
-	problém a doporučit uživateli jak pokračovat dál. Ideální je, když uživatel
-	nemá možnost dojít do stavu, kdy je potřeba chybové hlášení.
+	\textbf{Pomoc uživatelů pochopit, poznat a vzpamatovat se z chyb}: Chybové hlášky by měly být v přirozeném jazyce a neměly by například obsahovat žádné chybové kódy a podobně. Nejlepší je ovšem nedojít do stavu, kdy je chybového hlášení třeba.
 	\item
-	\textbf{Nápověda a návody} - Přestože je lepší, když je systém použitelný bez jakékoliv nápovědy, nápovědu
-	by měl systém obsahovat. Veškeré informace by v systému měly být snadno
-	vyhledatelné a obsahem nápovědy by měly být názorné příklady.
+	\textbf{Nápověda a návody}: Všechny informace se musí dát lehce vyhledat, nápověda by měla obsahovat postupy. Spíše než popisy by se měla zabývat příklady.
 \end{enumerate} 
+
+\textbf{Jedná se o pomůcky poskytovanou testerům UI, nicméně se jedná o velmi užitečné zásady už pro samotný návrh.}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 
-
-
 \chapter{Implementace}
 \label{chap:implementace}
+Tato kapitola se věnuje implementaci jednotlivých částí navržené architektury, která je ihned v první podkapitole zobrazena a popsána. Podrobnější popis jednotlivých komponent následuji ihned poté. 
 
 \section{Architektura}
+Architektura celého systému je zobrazena na obrázku \ref{img:architektura}, je rozdělena do tří bloků a tomu odpovídají i tři následující podkapitoly. 
+
+Standardním řešením je Fiori aplikace nahraná v SAP GW, která je přístupná přes SAP Fiori Launchpad. Pokud však zákazník nedisponuje dostatečnými licencemi a zakoupenými moduly, není tato cesta možná. Proto je zde navrženo řešení, které Fiori aplikaci spouští v prostředí Apache Tomcat a komunikaci s prostředím SAP řeší pomocí Java servletů a SAP BSP. 
+
+Toto řešení ovšem při požadavcích jako autentizace a autorizace uživatele přináší vývoj navíc. Ten však nemusí a zpravidla nepřesahuje náklady na moduly a licence SAP. Naopak přináší řadu výhod. V prostředí Apache Tomcat lze uchovávat a zpracovávat přijatá data a vytvořit si tak komunikační mezivrstvu mezi Fiori aplikací a SAP ERP. Tím lze ulehčit potenciálně zatíženým serverům a zkrátit uživateli webové aplikace odezvu v komunikaci.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/architektura}
-	\caption{Diagram případu užití pro správu poruch}
+	\caption{Architektura navrženého systému}
 	\label{img:architektura}
 \end{figure}
 
-Tato kapitola se věnuje implementaci jednotlivých částí navržené architektury, která je ihned v první podkapitole zobrazena a popsána. Podrobnější popis jednotlivých komponent následuji ihned poté. Architekrura je rozdělena do tří bloků a tomu odpovídají i tři následující podkapitoly. 
+\section{SAP ERP}
+Touto části architektury se tato práce přímo nezabývá, nicméně je zde pro lepší představu o celkovém systému krátce popsána. Jak již bylo v kapitole \ref{sec:erp} věnující se teoretickému základu řečeno, místem veškerých potřebných procesů pro realizaci požadované aplikace je SAP ERP. Konkrétně potom moduly PM, MM a CO. Každý z těchto modulů má desítky BAPI (Business Application Programming Interface) funkcí představujících rozhraní pro základní operace nad daným modulem. Správné sekvence a data volaných BAPI funkcí jsou potom obaleny do funkčních modulů, které umožňují vzdálené volání z jiných systémů. K tomu slouží v rámci SAP funkcionalita RFC (Remote Function Call), které umožňuje přenášet data napříč jednotlivými systémy. Takovýchto funkcí vzniklo v ERP systému více než 20, výčet modulů je k vidění na obrázku \ref{img:erp_fm}.
 
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/erp_fm}
+	\caption{Seznam funkčních modulů v ERP systému}
+	\label{img:erp_fm}
+\end{figure}
 
 \section{SAP GW}
-Jak již bylo zmíněno v kapitole věnující se tomuto produktu více teoreticky, primárním účelem serveru je komunikace s okolním světem. Standardní cesta pro Fiori aplikace je používáním servisů ODATA. Ne všichni zákazníci ovšem mají nakoupené licence pro provoz Fiori touto cestou a právě proto byla navržena architektura založená na technologii BSP, běžně dostupné v produktech GW, ale i ERP. Na obrázku \ref{img:gw_json} je seznam 36 BSP stránek, které pro aplikaci vznikly. V porovnání s počtem funkčních modulů na straně ERP je evidetní, že nejsou vytvořeny v poměru 1:1. Je to především z toho důvodu, že jsou v této úrovni uloženy uživatelská data portálových uživatelů. 
+Primárním účelem serveru SAP GW (Gateway) je komunikace s okolním světem. Je také standardním prostředím pro běh Fiori aplikace a pro servisy pomocí protokolu OData popsaných v kapitole \ref{ssec:odata}. Ne všichni zákazníci ovšem mají nakoupené licence pro provoz Fiori touto cestou, a právě proto byla navržena tato architektura založená na technologii BSP, která je běžně dostupná v produktech GW, ale i ERP. Na obrázku \ref{img:gw_json} je seznam 36 BSP stránek, které pro aplikaci vznikly. V porovnání s počtem funkčních modulů na straně ERP je evidentní, že nejsou vytvořeny v poměru 1:1. Je to především z toho důvodu, že jsou v této úrovni uloženy uživatelská data portálových uživatelů. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/gw_json}
-	\caption{Seznam funkčních modulů v ERP systému}
+	\caption{Seznam funkčních modulů v SAP GW}
 	\label{img:gw_json}
 \end{figure}
 
-Všechny výše zobrazené BSP stránky jsou implementovány na stejném principu. Využívají události OnRequest, ve které dojde ke zpracování vstupních dat a vygenerování adekvátních dat na výstup. V první fázi jsou vytvořeny lokální proměnné potřebné pro správné zpracování dat. Následně je deserializován vstupní objekt typu JSON do odpovídajících struktur programovacího jazyka ABAP. Poté je pomocí RFC zavolán příslušný funkční modul. Stejně tak jako v ukázce algoritmu \ref{code:rfc_call} níže. 
+Všechny výše zobrazené BSP stránky jsou implementovány na stejném principu. Využívají události OnRequest, ve které dojde ke zpracování vstupních dat a vygenerování adekvátních dat na výstup. V první fázi jsou vytvořeny lokální proměnné potřebné pro správné zpracování dat. Následně je deserializován vstupní objekt typu JSON do odpovídajících struktur programovacího jazyka ABAP. Poté je pomocí RFC zavolán příslušný funkční modul. Stejně tak jako v ukázce algoritmu \ref{code:rfc_call}. 
 
 \begin{algorithm}[H]	
 	\begin{lstlisting}[language = VHDL]  
@@ -843,9 +844,9 @@ CALL FUNCTION 'ZITL_PM_CREATE_NOTIF' DESTINATION lv_dest
     et_notif     = lt_notif
     ev_error     = lv_error.
 	\end{lstlisting}
-	\caption{Vytvoření instance třídy PortList}	
+	\caption{RFC volání funkčního modulu}	
 	\label{code:rfc_call}
-	\small Kód zobrazuje volání funkčního modulu ZITL\_MOB\_PM\_GET\_NOTIF pro načtení seznamu hlášení. Parametrem DESTINATION je řízeno směrování volání. Hodnotou musí být nastavené spojení se vzdáleným servem zabezpečeného pomocí metody BASIC. Parametry EXPORTING a IMPORTING určují vstupní a výstupní proměnné z funkčního modulu. Vstupními parametry je tak řízen například typ hlášení, který určuje zdali se jedná o poruchu, prevenci nebo požadovanou údržbu. Obsahuje však i další parametry určují datumový rozsah a podobně.
+	\small Kód zobrazuje volání funkčního modulu ZITL\_MOB\_PM\_GET\_NOTIF pro načtení seznamu hlášení. Parametrem DESTINATION je řízeno směrování volání. Hodnotou musí být nastavené spojení se vzdáleným serverem zabezpečeného pomocí metody BASIC. Parametry EXPORTING a IMPORTING určují vstupní a výstupní proměnné z funkčního modulu. Vstupními parametry je tak řízen například typ hlášení, který určuje, zdali se jedná o poruchu, prevenci nebo požadovanou údržbu. Obsahuje však i další parametry určují datumový rozsah a podobně.
 \end{algorithm}	
 
 Načtená data jsou zpětně serializována pro výstup. Obsahem celé BSP HTML stránky je tedy objekt typu JSON. Jak již ale bylo zmíněno, na úrovni GW se nacházejí i uživatelská data představující portálové uživatele. Na následujícím obrázku \ref{img:gw_db} je k vidění ilustrační databázové schéma. 
@@ -857,11 +858,11 @@ Načtená data jsou zpětně serializována pro výstup. Obsahem celé BSP HTML 
 	\label{img:gw_db}
 \end{figure}
 
-Databázové schéma neodpovídá úplně přesně skutečnosti. Některá pole a vazby tabulek jsou úmyslně skryta a to buď protože nejsou pro celý koncept aplikace relevantní nebo z důvodu zvýšení bezpečnosti. Ze schematu vychází vazby 1 ku N pro všechny kombinace kmenové tabulky PMP\_USER a pomocných tabulek PMP\_USER\_ROLES, PMP\_USER\_ATTRUBUTES a PMP\_USER\_LOCATIONS. Trochu podrobněji jsou jednotlivé tabulky popsány v následujícím výčtu.
+Databázové schéma neodpovídá úplně přesně skutečnosti. Některá pole a vazby tabulek jsou úmyslně skryta, a to buď protože nejsou pro celý koncept aplikace relevantní nebo z důvodu zvýšení bezpečnosti. Ze schématu vychází vazby 1 ku N pro všechny kombinace kmenové tabulky PMP\_USER a pomocných tabulek PMP\_USER\_ROLES, PMP\_USER\_ATTRUBUTES a PMP\_USER\_LOCATIONS. Trochu podrobněji jsou jednotlivé tabulky popsány v následujícím výčtu.
 
 \begin{itemize}
 	\item
-	\textbf{PMP\_USER}: Tabulka obsahuje záznamy jednotlivých portálových uživatelů. Jedná se tedy především o přihlašovací údaje a jednotlivé informace přímo související s uživatelem. Jako je například jméno, pod kterým uživatel ve webové aplikaci vystupuje, osobní číslo v ERP, informace o tom zdali se jedná o správce nebo také platnosti uživatele a data s časy posledních změn spolu s jejich autory.
+	\textbf{PMP\_USER}: Tabulka obsahuje záznamy jednotlivých portálových uživatelů. Jedná se tedy především o přihlašovací údaje a jednotlivé informace přímo související s uživatelem. Jako je například jméno, pod kterým uživatel ve webové aplikaci vystupuje, osobní číslo v ERP, informace o tom, zdali se jedná o správce nebo také platnosti uživatele a data s časy posledních změn spolu s jejich autory.
 	\item
 	\textbf{PMP\_USER\_ROLES}: Tabulka s cizím klíčem uživatel. Primární klíč je identifikátor role, která je uložena ve standartních SAP tabulkách, které jsou zpracovatelné pomocí standardních transakcí.
 	\item
@@ -871,11 +872,11 @@ Databázové schéma neodpovídá úplně přesně skutečnosti. Některá pole 
 \end{itemize} 
 
 \section{Apache Tomcat}
-Apache Tomcat je známý open-source webový server a servletový kontejner. Jedná se o oficiální referenční implementaci technologií Java Servlet a Java Server Pages (JSP). Na serveru mohou běžet uživatelské servlety (programy napsané v Javě), které umí zpracovávat požadavky zasílané pomocí HTTP protokolu a tímtéž protokolem na ně odpovídat. Apache Tomcat zde slouží jako zásobník servletů starající se o jejich spouštění, běh, ukončování a podobně.
+Apache Tomcat je známý open-source webový server a servletový kontejner. Jedná se o oficiální referenční implementaci technologií Java Servlet a Java Server Pages (JSP). Na serveru mohou běžet uživatelské servlety (programy napsané v Javě), které umí zpracovávat požadavky zasílané pomocí HTTP protokolu a tímtéž protokolem na ně odpovídat. Apache Tomcat zde slouží jako zásobník servletů starající se o jejich spouštění, běh, ukončování a podobně \cite{tomcat}.
 
 \subsection{Login Modul}
 \label{ssec:login_modul}
-Login modul využívá systému \textbf{JAAS} (Java Authentication and Authorization Service), který slouží pro autentizaci a autorizaci uživatele. Jak již z názvu vyplývá, jedná se o bezpečnostní systém založený na technologii Java. Vyskytuje se od verze 1.4 v J2EE (Java 2 Enterprise Edition). 
+Login modul využívá systému \textbf{JAAS} (Java Authentication and Authorization Service), který slouží pro autentizaci a autorizaci uživatele. Jak již z názvu vyplývá, jedná se o bezpečnostní systém založený na technologii Java. Vyskytuje se od verze 1.4 v J2EE (Java 2 Enterprise Edition). Veškeré informace týkající se JAAS technologie vycházejí z dokumentace \cite{jaas}
 
 Deklarativní zabezpečení J2EE chrání webové aplikace podle aktuálního vzorce uživatelovi URL. Cesta k souborům může být popsána absolutním i relativním způsobem. Jeli například požadováno povolení přístupu k aplikaci uživatelům s rolí USERS, je zapotřebí v definici web.xml \ref{item:pm_web_inf} zavést následující definici.
 
@@ -896,9 +897,9 @@ Deklarativní zabezpečení J2EE chrání webové aplikace podle aktuálního vz
 	\small Tato definice chrání webovou aplikaci od kořenového adresáře J2EE, jak je naznačeno vzorem \uv{\textbackslash}. Pokud by mělo být zabezpečení aplikováno jen na část aplikace, je třeba uvést za \uv{\textbackslash} jméno adekvátního podadresáře.
 \end{algorithm}	
 
-Ověřování v deklarativní ochraně je vynuceno, právě tehdy když si uživatel vyžádá chráněnou oblast webové aplikac. Pokud nebyl dříve ověřen, zobrazí se přihlašovací dialog, aby se uživatel mohl identifikovat. Běžně používané způsoby ověření jsou FORM a BASIC. 
+Ověřování v deklarativní ochraně je vynuceno, právě tehdy když si uživatel vyžádá chráněnou oblast webové aplikace. Pokud nebyl dříve ověřen, zobrazí se přihlašovací dialog, aby se uživatel mohl identifikovat. Běžně používané způsoby ověření jsou FORM a BASIC. 
 
-\paragraph{BASIC} Je základním typem autentizace. Využívá standardního dialogu prohlížeče pro vložené uživatelského jména a hesla. Tento dialog nelze nikterak modifikovat, proto se jeho vzhled liší pouze na typu aktuálně používaného prohlížeče. Uživatelská pověření pro autentizovanou oblast jsou uložena v rámci session prohlížeče. Uživatelská data (jméno a heslo) jsou potom v zakodované formě posílána s každým HTTP requestem.
+\paragraph{BASIC} Je základním typem autentizace. Využívá standardního dialogu prohlížeče pro vložené uživatelského jména a hesla. Tento dialog nelze nikterak modifikovat, proto se jeho vzhled liší pouze na typu aktuálně používaného prohlížeče. Uživatelská pověření pro autentizovanou oblast jsou uložena v rámci session prohlížeče. Uživatelská data (jméno a heslo) jsou potom v zakódované formě posílána s každým HTTP requestem \cite{basic_form}.
 
 \begin{algorithm}[H]	
 	\begin{lstlisting}[language = XML]  
@@ -910,7 +911,7 @@ Ověřování v deklarativní ochraně je vynuceno, právě tehdy když si uživ
 	\label{code:auth_basic_def}
 \end{algorithm}	
 
-\paragraph{FORM} Je přizpůsobivější variantou autentizace. Umožňuje vývojáři specifikovat vlastní dialog pro přihlášení. Jediné omezení spočívá v pojmenování vstupní hodnoty uživatelského jména na j\_username a hesla na j\_password. Přihlašovací akce pro autentizaci potom musí mít hodnotu j\_security\_check v rámci J2EE kontejneru. Uživatel posléze zůstává ověřen přes session server.
+\paragraph{FORM} Je přizpůsobivější variantou autentizace. Umožňuje vývojáři specifikovat vlastní dialog pro přihlášení. Jediné omezení spočívá v pojmenování vstupní hodnoty uživatelského jména na j\_username a hesla na j\_password. Přihlašovací akce pro autentizaci potom musí mít hodnotu j\_security\_check v rámci J2EE kontejneru. Uživatel posléze zůstává ověřen přes session server \cite{basic_form}.
 
 \begin{algorithm}[H]	
 	\begin{lstlisting}[language = XML]  
@@ -938,11 +939,11 @@ Kompletní proces autentizace a autorizace je implementován pomocí tříd naps
 	\label{img:loginmodule_structure}
 \end{figure}
 
-Nejdůležitější třídou je \textbf{PMLoginModule}, která spočívá v přepisu čtyř procesních metod. Inicializační metodou je \textbf{initialize}, která nastavení instančním proměnným výchozí hodnoty. Prvním z nich je základní objekt CallbackHandler, sloužící k předávání hodnot mezi modulem a uživatelovým prohlížečem. Druhým je objekt Subject udržující informace o uživateli. Takovou hodnotou je například identifikátor session. Metodou realizující autentizaci je metoda \texttt{\textbf{Login}}, která pomocí objektu CallbackHandler získá uživatelem vyplněné hodnoty jména a hesla, jejíž ověření se právě v rámci této metody musí provést. Pro kontrolu očekávaného slouží statická třída \textbf{Password}, která obsahuje metody pro generování hesel i ověření jejich shodnosti. Výstupem je potom boolean hodnota true nebo false. O autorizaci se stará metoda \texttt{\textbf{Commit}}, jejíž úkolem je přidělení příslušných rolí uživateli. K tomu slouží třídy \texttt{\textbf{UserPrincipal}} a \textbf{RolePrincipal} reprezentující jednotlivé role a uživatele. Poslední metodou k doplnění celého procesu je \textbf{Logout}, která má za úkol odstranit uživateli role a a následně celý obejt Subjekt, který ho reprezentuje.
+Nejdůležitější třídou je \textbf{PMLoginModule}, která spočívá v přepisu čtyř procesních metod. Inicializační metodou je \textbf{initialize}, která nastavení instančním proměnným výchozí hodnoty. Prvním z nich je základní objekt CallbackHandler, sloužící k předávání hodnot mezi modulem a uživatelovým prohlížečem. Druhým je objekt Subject udržující informace o uživateli. Takovou hodnotou je například identifikátor session. Metodou realizující autentizaci je metoda \texttt{\textbf{Login}}, která pomocí objektu CallbackHandler získá uživatelem vyplněné hodnoty jména a hesla, jejíž ověření se právě v rámci této metody musí provést. Pro kontrolu očekávaného slouží statická třída \textbf{Password}, která obsahuje metody pro generování hesel i ověření jejich shodnosti. Výstupem je potom boolean hodnota true nebo false. O autorizaci se stará metoda \texttt{\textbf{Commit}}, jejíž úkolem je přidělení příslušných rolí uživateli. K tomu slouží třídy \texttt{\textbf{UserPrincipal}} a \textbf{RolePrincipal} reprezentující jednotlivé role a uživatele. Poslední metodou k doplnění celého procesu je \textbf{Logout}, která má za úkol odstranit uživateli role a následně celý objekt Subjekt, který ho reprezentuje.
 
 \paragraph{Nasazení} Celý projekt je zapotřebí zabalit do archivu typu JAR, sloužící pro distribuci programů a knihoven. Následně ho vložit do run-time prostředí Tomcat serveru. Pro uložení takové knihovny je určen adresář libs.
 
-K tomu, aby server vůbec věděl, že má pro aplikace vyžadující autentizaci uživatele použít vytvořenou JAR knihovnu, je zapotřebí definovat JAAS konfigurační soubor obsahující cestu k dané knihovně. Ukázka takové definici je v kódu \ref{code:jaas_config} níže. 
+K tomu, aby server vůbec věděl, že má pro aplikace vyžadující autentizaci uživatele použít vytvořenou JAR knihovnu, je zapotřebí definovat JAAS konfigurační soubor obsahující cestu k dané knihovně. Ukázka takové definici je v kódu \ref{code:jaas_config}. 
 
 \begin{algorithm}[H]	
 	\begin{lstlisting}[language = VHDL]  
@@ -969,33 +970,16 @@ Jedná se o čtyři třídy napsané v programovacím jazyce Java. Podrobněji j
 \begin{itemize}
 	\item
 	\textbf{GWServlet}: Je Java třída implementující interface javax.servlet.Servlet sloužící pro zpracování Http požadavků. Základem tohoto servletu je přepsaná metoda doGet, která obsahuje parametry HttpServletRequest a HttpServletResponse umožňují jednak načtení přijatých dat společně s dalšími parametry, které s sebou požadavek nese a potom také adekvátní data pomocí odpovědi vrátit. Metoda doGet je volána z další přepsané metody doPost, která je vyvolána v případě HTTP requestu typu POST. 
-	
-	\begin{algorithm}[H]	
-		\begin{lstlisting}[language = VHDL]  
-CALL FUNCTION 'ZITL_MOB_PM_CREATE_NOTIF' DESTINATION lv_dest
-EXPORTING
-is_notif_get = zitl_input_json-qmart
-it_tplnr     = zitl_input_json-tplnr
-IMPORTING
-et_notif     = lt_notif
-ev_error     = lv_error.
-		\end{lstlisting}
-		\caption{Vytvoření instance třídy PortList}	
-		\label{code:rfc_call}
-		\small Kód zobrazuje volání funkčního modulu ZITL\_MOB\_PM\_GET\_NOTIF pro načtení seznamu hlášení. Parametrem DESTINATION je řízeno směrování volání. Hodnotou musí být nastavené spojení se vzdáleným servem zabezpečeného pomocí metody BASIC. Parametry EXPORTING a IMPORTING určují vstupní a výstupní proměnné z funkčního modulu. Vstupními parametry je tak řízen například typ hlášení, který určuje zdali se jedná o poruchu, prevenci nebo požadovanou údržbu. Obsahuje však i další parametry určují datumový rozsah a podobně.
-	\end{algorithm}	
-	
-	
 	\item
 	\textbf{Node}: Třída reprezentující prvek hierarchie technických míst a vybavení z modulu SAP PM. Jelikož se v interně technické místo a vybavení datově liší, je vytvořena tato třída, která nesrovnalosti mezi těmito objekty eliminuje. Datově rozdílné identifikátory jsou nahrazeny jednotným id a ostatní lišící se parametry jsou sloučeny do atributů třídy odpovídajícím významu původního datového objektu. To posléze umožňuje v prezentační vrstvě lehce pracovat v 
 	\item
-	\textbf{TplnrHierarchy}:
+	\textbf{TplnrHierarchy}: Třída sloužící pro hierarchické skládání. Jejím hlavním atributem je množina (Set) objektů TplnrHierarchy. Tím, že lze uložit stejné prvky do sebe lze vytvořit požadovaná stromová struktura. Při pozdějším načítání struktury od požadovaného místa stačí v logaritmickém čase najít požadovaný uzel a vzít všechny jeho následníky.
 	\item
-	\textbf{Password}:
+	\textbf{Password}: Statická třída obsahující statické třídy pro generování hash z hesel a opačně k i jejich kontrolování.
 \end{itemize} 
 
 \section{PM SAPUI5 Aplikace}
-V následujících podkapitolách je popsána implementační struktura projektu pro PM SAPUI5 Aplikaci. Jelikož se jedná o stěžejní část celkové architektury, obsahuje veškerou logiku očekávanou od prezentační vrstvy. Jsou zde zadefinovány veškeré pohledy (stránky), se kterými se uživatel bude moci setkat.  
+V následujících podkapitolách je popsána implementační struktura projektu pro PM SAPUI5 Aplikaci. Jelikož se jedná o stěžejní část celkové architektury, obsahuje veškerou logiku očekávanou od prezentační vrstvy. Jsou zde nadefinovány veškeré pohledy (stránky), se kterými se uživatel bude moci setkat.  
 
 \subsection{Struktura aplikace}
 \label{ssec:struckuta_pm_aplikace}
@@ -1543,7 +1527,18 @@ V závislosti na cíleném run-time prostředí, ve kterém aplikace bude nahrá
 \section{Doporučení pro vývoj}
 
 \begin{conclusion}
-	%sem napište závěr Vaší práce
+Ve své práci jsem představil společnost SAP a její softwarový produkt SAP Enterprise Resource Planning. Stručně popsal význam jeho jednotlivých modulů a poté se podrobněji věnoval modulu údržby SAP Plant Maintenance. Následně jsem popsal produkt SAP Fiori a webovou technologii BSP použitou při implementaci komunikace mezi webovou aplikací a systémem SAP Gateway. 
+
+Na základě konzultací s PM konzultantem jsem sepsal funkční požadavky kladené na výslednou aplikaci Fiori a znázornil k nim nejdůležitější případy užití. Na základě těchto požadavků jsem vytvořil návrh uživatelského rozhraní a soustředil se u něho na dodržení správných postupů návrhu. K tvorbě prototypů jsem použil dva nástroje, které jsem následně porovnal. Popsal jsem heuristickou analýzu, jakožto nástroj na určení kvality uživatelského rozhraní z důvodu vhodného použití při testování prototypu zákazníkem. 
+
+Poté jsem na základě získaných znalostí o komponentách systému SAP, funkčních požadavcích kladených na webovou aplikaci a návrhu uživatelského rozhraní implementoval celý systém. V kapitole věnující se implementaci jsem popsal architekturu jako celek a poté podrobněji zdokumentoval její vrstvy. Nejpodrobněji je popsána část týkající se frameworku SAPUI5, kde jsou detailně popsány jeho jednotlivé stavební prvky. Poté jsou porovnána dvě vývojová prostředí uzpůsobená pro tento framework a na závěr jsem přidal ukázky možného testování uživatelského rozhraní a komunikační vrstvy tvořené Java servlety. Práce je uzavřena stručnou sadou doporučení pro budoucí vývoj aplikací v tomto frameworku.
+
+
+
+
+
+
+
 \end{conclusion}
 
 \bibliographystyle{csn690}
@@ -1554,8 +1549,16 @@ V závislosti na cíleném run-time prostředí, ve kterém aplikace bude nahrá
 \chapter{Seznam použitých zkratek}
 % \printglossaries
 \begin{description}
-	\item[GUI] Graphical user interface
+	\item[SAP] Systems - Applications - Products in data processing
+	\item[ERP] User Interface
+	\item[ABAP] Advanced Business Application Programming
+	\item[GW] Gateway 
+	\item[BSP] Business Server Page 
+	\item[JAAS] Java Authentication and Authorization Service (Java autentizační a autorizační servus)
+	\item[UI] User Interface (uživatelské rozhraní)
+	\item[MVC] Model - View - Controller (Model - Uživatelské rozhraní - Řídící logika)
 	\item[XML] Extensible markup language
+	\item[JSON] JavaScript Object Notation
 \end{description}
 
 
