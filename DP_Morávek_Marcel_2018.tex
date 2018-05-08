@@ -76,11 +76,11 @@
 % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
 
 \begin{introduction}
-Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací na celém světe. Zaměřuje se na vývoj a provoz softwarových produktů podporujících podnikové procesy a v současné době pak především na vývoj technologií pro webové aplikace a cloud computing. Jádrem celého systému je SAP Enterprise Resource Planning, pomocí něhož dochází k řízení a integrování většiny oblastí činností organizace vlastnící tento systém. Ten se skládá z modulů, které pomáhají řídit společnost v jednotlivých odvětvích, jako například finance, marketing nebo řízení lidských zdrojů. Jedním z nich je i modul údržby SAP Plant Maintenance poskytující nástroje pro údržbu strojů a vybavení dané organizace. 
+Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací na celém světe. Zaměřuje se na vývoj a provoz softwarových produktů podporujících podnikové procesy a v nedávné době pak především na vývoj technologií pro webové aplikace a cloud computing. Jádrem celého systému je SAP ERP, pomocí něhož dochází k řízení a integrování většiny oblastí činností organizace vlastnící tento systém. Ten se skládá z modulů, které pomáhají řídit společnost v jednotlivých odvětvích, jako například finance, marketing nebo řízení lidských zdrojů. Jedním z nich je i modul údržby SAP Plant Maintenance poskytující nástroje pro údržbu strojů a vybavení dané organizace. 
 
-Jedním z dalších produktů je portfolio webových aplikací, které jsou obchodně označovány jako SAP Fiori. Pro jejich funkcí musí mít ovšem zákazník zakoupen produkt SAP NetWeaver Gateway. Ovšem  ne všichni ho mají a přesto by chtěli Fiori aplikace používat.
+Jedním z dalších produktů je portfolio webových aplikací, které jsou obchodně označovány jako SAP Fiori. Pro jejich funkcí musí mít zákazník zakoupen produkt SAP NetWeaver Gateway. Ovšem  ne všichni ho mají a přesto by chtěli Fiori aplikace používat.
 
-Společnost itelligence je jedním z předních mezinárodních poskytovatelů řešení SAP a zároveň zadavatelem této práce, jejíž hlavním úkolem je navržení architektury, která umožní komunikaci se systémem SAP ERP i bez produktu SAP NetWeaver Gateway. Konkrétně je pak požadována aplikace nad modulem Plant Maintenance pro vykonávání preventivní údržby a řešení poruch ve výrobním procesu. 
+Společnost itelligence je jedním z předních mezinárodních poskytovatelů řešení SAP a zároveň zadavatelem této práce. Jejím hlavním úkolem je navržení architektury, která umožní komunikaci se systémem SAP ERP i bez produktu SAP NetWeaver Gateway. Konkrétně je pak požadována aplikace nad modulem Plant Maintenance pro vykonávání preventivní údržby a řešení poruch ve výrobním procesu. 
 
 \section{Cíl práce}
 Cílem práce je představení potřebných komponent systému SAP pro realizaci Fiori aplikací. Analyzovat požadavky kladené na výslednou aplikaci nad modulem Plant Maintenance a v závislosti na nich navrhnout uživatelské rozhraní. Následně důkladně implementovat a zdokumentovat jednotlivé kroky vývoje včetně navržené architektury. Součástí budou i doporučení pro budoucí projekty týkajících se frameworku SAPUI5.
@@ -89,13 +89,13 @@ Cílem práce je představení potřebných komponent systému SAP pro realizaci
 Cílem této práce není implementace jednotlivých procesů na úrovni modulu údržby. Rozsah této práce končí voláním jednotlivých funkčních modulů, které tyto procesy realizují. 
 
 \section{Struktura práce}
-V první kapitole \textit{SAP} je nejdříve popsána historie společnosti a její business model. Následnou jsou popsány jednotlivé komponenty SAP potřebné pro vývoj Fiori aplikace zahrnující webové technologie i samostatné moduly SAP ERP. 
+V první kapitole \textit{SAP} je nejdříve popsána historie společnosti a její business model. Následně jsou popsány jednotlivé komponenty SAP potřebné pro vývoj Fiori aplikace zahrnující webové technologie i moduly SAP ERP. 
 
 Druhá kapitola \textit{Analýza} popisuje funkční a nefunkční požadavky kladené na aplikaci. Následně definuje nejdůležitější případy užití na základě kterých dojde k rozčlenění aplikace do nezávislých komponent. 
 
 Třetí kapitola \textit{Návrh uživatelského rozhraní} zahrnuje rozdělení jednotlivých uživatelských operací do skupin dle navržených komponent aplikace. Následně je zde proveden návrh některých obrazovek ve dvou prototypovacích prostředí. Ty jsou závěrem porovnány.
 
-Čtvrt kapitola \textit{Implementace} je nejobsáhlejší, zahrnuje popis vývoje na všech vrstvách architektury a řeší komunikaci mezi nimi. Je zde popsána struktura aplikace ve frameworku SAPUI5 a porovnány dvě vývojová prostředí umožňující vývoj v tomto frameworku. Jsou zde popsány i možnosti testování v rámci komunikační mezivrstvy realizované pomocí servletu a samotného UI frameworku SAPUI5. Závěrem jsou popsána doporučení pro vývoj aplikace SAPUI5.
+Čtvrt kapitola \textit{Implementace} je nejobsáhlejší, zahrnuje popis vývoje na všech vrstvách architektury a řeší komunikaci mezi nimi. Je zde popsána struktura aplikace ve frameworku SAPUI5 a porovnány dvě vývojová prostředí umožňující vývoj v tomto frameworku. Jsou zde popsány i možnosti testování v rámci komunikační mezivrstvy realizované pomocí servletu a samotného UI frameworku SAPUI5.
 \end{introduction}
 
 \chapter{SAP}
