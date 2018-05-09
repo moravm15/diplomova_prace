@@ -9,13 +9,30 @@
 \providecommand{\eprint}[2][]{\biburl{#2}}
 
 \bibitem{sap_r3_modules}
-SAP R/3 informační systém {[online]}. [cit. 2018-05-07].
+SAP R/3 informační systém {[online]}. [cit. 2018-04-07].
 \urlprefix\biburl{http://www.itica.cz/sap-r3-informacni-system/}
+
+\bibitem{sap_pm_document}
+\emph{SAP PM {[online]}}. [cit. 2018-04-08].
+\urlprefix\biburl{https://www.tutorialspoint.com/sap_pm/sap_pm_tutorial.pdf}
+
+\bibitem{sap_bsp}
+SAP Business Server Pages {[online]}. [cit. 2018-04-09].
+\urlprefix\biburl{https://help.sap.com/SAPHELP_NWPI71/helpdata/en/e9/bb153aab4a0c0ee10000000a114084/frameset.htm}
+
+\bibitem{sap_fiori}
+SAP Fiori {[online]}. [cit. 2018-04-14].
+\urlprefix\biburl{https://experience.sap.com/fiori-design/}
 
 \bibitem{fiori_structure}
 SAP Fiori - The Basic Files of Your App {[online]}. \emph{tutorialspoint},
   [cit. 2018-04-08].
 \urlprefix\biburl{https://sapui5.hana.ondemand.com/\#/topic/28b59ca857044a7890a22aec8cf1fee9.html}
+
+\bibitem{mvc}
+Tvorba moderních webových aplikací pomocí SAPUI5 a oDATA služeb
+  {[online]}. [cit. 2018-04-08].
+\urlprefix\biburl{https://theses.cz/id/0u6njb/zaverecna_prace.pdf}
 
 \bibitem{prototyping}
 What are the Benefits of Prototyping? {[online]}. [cit. 2018-04-18].
@@ -34,14 +51,9 @@ Nasazením ERP systému práce nekončí, ale začíná {[online]}.
 SAP Modules - SAP FI, CO, SD and more. [cit. 2018-04-16].
 \urlprefix\biburl{https://www.simplilearn.com/sap-modules-sap-fi-sap-co-sap-sd-sap-hcm-and-more-rar111-article}
 
-\bibitem{sap_pm_document}
-\emph{SAP PM {[online]}}. [cit. 2018-04-08].
-\urlprefix\biburl{https://www.tutorialspoint.com/sap_pm/sap_pm_tutorial.pdf}
-
-\bibitem{mvc}
-Tvorba moderních webových aplikací pomocí SAPUI5 a oDATA služeb
-  {[online]}. [cit. 2018-04-08].
-\urlprefix\biburl{https://theses.cz/id/0u6njb/zaverecna_prace.pdf}
+\bibitem{sap_fiori_api}
+SAP Fiori Documentation {[online]}. [cit. 2018-05-26].
+\urlprefix\biburl{https://sapui5.hana.ondemand.com/\#/topic}
 
 \bibitem{json}
 Úvod do JSON {[online]}. [cit. 2018-04-08].
@@ -90,5 +102,13 @@ J2EE authentication and authorization with JAAS {[online]}. \emph{ORACLE},
 \bibitem{basic_form}
 BASIC and FORM Authentication {[online]}. [cit. 2018-04-16].
 \urlprefix\biburl{http://java.boot.by/wcd-guide/ch05s03.html}
+
+\bibitem{eclipse}
+Eclipse {[online]}. \emph{Eclipse}, [cit. 2018-04-08].
+\urlprefix\biburl{https://www.eclipse.org/}
+
+\bibitem{webide}
+SAP Web IDE {[online]}. \emph{SAP}, [cit. 2018-04-11].
+\urlprefix\biburl{https://www.sap.com/developer/topics/sap-webide.html}
 
 \end{thebibliography}

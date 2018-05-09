@@ -58,8 +58,8 @@
 \authorWithDegrees{Bc. Marcel Morávek} %jméno autora včetně současných akademických titulů
 \author{Marcel Morávek} %jméno autora bez akademických titulů
 \supervisor{Ing. Martin Šindlář}
-\acknowledgements{Velké díky patří Ing. Martinovi Šindláři za jeho čas a výpomoc při návrhu architektury a vedení této práce. Dále bych chtěl poděkovat Ing. Martinovi Kurkovi za konzultace ohledně modulu SAP PM.}
-\abstractCS{Tato práce se zabývá tvorbou webové aplikace nad modulem údržby SAP Plant Maintenance. Popisuje komponenty SAP potřebné pro vývoj požadované aplikace, analýzu požadavků a následnou implementaci}
+\acknowledgements{Velké díky patří Ing. Martinovi Šindlářovi za jeho čas a výpomoc při návrhu architektury a vedení této práce. Dále bych chtěl poděkovat Ing. Martinovi Kurkovi za konzultace ohledně modulu SAP PM.}
+\abstractCS{Tato práce se zabývá tvorbou webové aplikace nad modulem údržby SAP Plant Maintenance. Popisuje komponenty SAP potřebné pro vývoj požadované aplikace, analýzu požadavků a následnou implementací.}
 \abstractEN{This thesis deals with the creation of web application over SAP Plant Maintenance module. Describes the SAP components needed to develop required application, requirements analysis and implementation itself.}
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{5} %volba Prohlášení (číslo 1-6)
@@ -91,18 +91,18 @@ Cílem této práce není implementace jednotlivých procesů na úrovni modulu 
 \section{Struktura práce}
 V první kapitole \textit{SAP} je nejdříve popsána historie společnosti a její business model. Následně jsou popsány jednotlivé komponenty SAP potřebné pro vývoj Fiori aplikace zahrnující webové technologie i moduly SAP ERP. 
 
-Druhá kapitola \textit{Analýza} popisuje funkční a nefunkční požadavky kladené na aplikaci. Následně definuje nejdůležitější případy užití na základě kterých dojde k rozčlenění aplikace do nezávislých komponent. 
+Druhá kapitola \textit{Analýza} popisuje funkční a nefunkční požadavky kladené na aplikaci. Následně definuje nejdůležitější případy užití, na základě kterých dojde k rozčlenění aplikace do nezávislých komponent. 
 
-Třetí kapitola \textit{Návrh uživatelského rozhraní} zahrnuje rozdělení jednotlivých uživatelských operací do skupin dle navržených komponent aplikace. Následně je zde proveden návrh některých obrazovek ve dvou prototypovacích prostředí. Ty jsou závěrem porovnány.
+Třetí kapitola \textit{Návrh uživatelského rozhraní} zahrnuje rozdělení jednotlivých uživatelských operací do skupin dle navržených komponent aplikace. Následně je zde proveden návrh některých obrazovek ve dvou prototypovacích prostředí. Ty jsou posléze porovnány.
 
-Čtvrt kapitola \textit{Implementace} je nejobsáhlejší, zahrnuje popis vývoje na všech vrstvách architektury a řeší komunikaci mezi nimi. Je zde popsána struktura aplikace ve frameworku SAPUI5 a porovnány dvě vývojová prostředí umožňující vývoj v tomto frameworku. Jsou zde popsány i možnosti testování v rámci komunikační mezivrstvy realizované pomocí servletu a samotného UI frameworku SAPUI5.
+Čtvrtá kapitola \textit{Implementace} je nejobsáhlejší, zahrnuje popis vývoje na všech vrstvách architektury a řeší komunikaci mezi nimi. Je zde popsána struktura aplikace ve frameworku SAPUI5 a porovnány dvě vývojová prostředí umožňující její vývoj. Jsou zde popsány i možnosti testování v rámci komunikační mezivrstvy realizované pomocí Java servletu a samotného UI frameworku SAPUI5.
 \end{introduction}
 
 \chapter{SAP}
 Kapitola obecně popisuje podnikový informační systém SAP a trochu podrobněji se věnuje částem systému týkajících se požadované aplikace. V jednotlivých podkapitolách jsou nejdříve popsány informace o historii firmy a architektonické struktuře systému. Dále jsou zde popsány i jednotlivé technické komponenty, které jsou použity pro realizaci požadované aplikace. To se týká především frameworku SAPUI5 a předcházejících webových technologií, které jsou dodnes jeho součástí.
 
 \section{Společnost SAP}
-Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací a jednou z největších softwarových společností na celém světe. Pod zkratkou SAP se schovávají počáteční písmena německých slov „Systeme, Anwendungen, Produkte in der Datenverarbeitung“. Anglicky si lze zkratku přeložit pomocí slov „Systems - Applications - Products in data processing“. Zaměřují se na vývoj a provoz softwarových produktů podporujících podnikové procesy. Zejména se pak jedná o řízení podniku, systémy pro správu vztahu se zákazníky a v současné době pak především vývoj technologií pro webové aplikace a cloud computing \cite{sap_information}.
+Společnost SAP je v současné době jedním z největších poskytovatelů podnikových aplikací a jednou z nejpřednějších softwarových společností na celém světe. Pod zkratkou SAP se schovávají počáteční písmena německých slov „Systeme, Anwendungen, Produkte in der Datenverarbeitung“. Anglicky si lze zkratku přeložit pomocí slov „Systems - Applications - Products in data processing“. Zaměřují se na vývoj a provoz softwarových produktů podporujících podnikové procesy. Zejména se pak jedná o řízení podniku, systémy pro správu vztahu se zákazníky a v současné době pak především vývoj technologií pro webové aplikace a cloud computing \cite{sap_information}.
 
 \section{SAP ERP}
 \label{sec:erp}
@@ -124,7 +124,7 @@ Spolu se změnou architektury, spojenou s příchodem verze SAP R/3 na model kli
 \end{itemize} 	
 
 \subsection{Moduly SAP R3}
-Systém SAP R/3 je vnitřně rozdělen do dvanácti různých modulů a každý z nich řeší konkrétní problematiku organizace. Jednotlivé moduly jsou  mezi sebou více či méně provázány. Úroveň provázanosti jednotlivých modulů je pak barevně znázorněna na obrázku \ref{img:sapr3} níže. Výčet a krátká charakteristika modulů následuje ihned po něm.
+Systém SAP R/3 je vnitřně rozdělen do dvanácti různých modulů a každý z nich řeší konkrétní problematiku organizace. Jednotlivé moduly jsou mezi sebou více či méně provázány. Úroveň provázanosti jednotlivých modulů je pak barevně znázorněna na obrázku \ref{img:sapr3}. Výčet a krátká charakteristika modulů následuje ihned po něm.
 
 \begin{figure}[H]
 	\centering
@@ -173,7 +173,7 @@ Modulem, který je pro tuto práci stěžejním, je modul SAP Plant Maintenance.
 \end{itemize} 	
 
 \subsection{Technické objekty}
-Pro správné a efektivní provádění jednotlivých aktivit v rámci procesů modulu PM je struktura údržby rozdělena na technické objekty. Ty slouží k definování jednotlivých typů strojů, kterými organizace disponuje. S použitím charakteristiky technických objektů lze pak zadefinovat jiný technický objekt, což umožňuje hierarchické definování struktury organizace. To s sebou přináší následující výhody.
+Pro správné a efektivní provádění jednotlivých aktivit v rámci procesů modulu PM je struktura údržby rozdělena na technické objekty. Ty slouží k definování jednotlivých typů strojů, kterými organizace disponuje. S použitím charakteristiky technických objektů lze pak nadefinovat jiný technický objekt, což umožňuje hierarchické definování struktury organizace. To s sebou přináší následující výhody.
 \begin{itemize}
 	\item
 	Doba potřebná pro správu jednotlivých technických objektů je snížena.
@@ -222,31 +222,31 @@ Zpracování údržby se z technického pohledu skládá z několika fází, jej
 	\item
 	\textbf{Dokončení úkolů údržby}: Slouží zejména k zaznamenávání historie údržby. Používá se k dlouhodobému uložení nejdůležitějších údajů o údržbě, které lze následně z různých důvodů analyzovat. 
 \end{itemize} 
-Na následujícím obrázku \ref{img:pm_process} je zobrazen životní \textbf{cyklus požadované údržby, případně nahlášené poruchy}.
+Na obrázku \ref{img:pm_process} je zobrazen životní \textbf{cyklus požadované údržby, případně nahlášené poruchy}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/pm_process.jpg}
-	\caption{Proces diagram PM}
+	\caption{Proces diagram PM \cite{sap_pm_document}}
 	\label{img:pm_process}
 \end{figure}
-V prvním kroku musí dojít k podání požadavku na údržbu. Poté technicky dojde k založení objednávky se všemi náležitostmi. Tu posléze může realizovat některý z údržbářů, který má možnost daný problém řešit. Počátkem jeho prací dojde k založení servisní zakázky, pro kterou díky propojení na ostatní moduly probíhá kalkulace nákladů. Jelikož k vyřešení problému může údržbář potřebovat různý materiál (například šrouby a matice), je v procesu zobrazeno vytvoření objednávky na vydání materiálu. Po případném vyzvednutí materiálu a dokončení údržby dojde k ukončení servisní zakázky a celého procesu údržby. závěrem je celý proces zaznamenám a finančně vyhodnocen.
+V prvním kroku musí dojít k podání požadavku na údržbu. Poté technicky dojde k založení objednávky se všemi náležitostmi. Tu posléze může realizovat některý z údržbářů, který má možnost daný problém řešit. Počátkem jeho prací dojde k založení servisní zakázky, pro kterou díky propojení na ostatní moduly probíhá kalkulace nákladů. Jelikož k vyřešení problému může údržbář potřebovat různý materiál (například šrouby a matice), je v procesu zobrazeno vytvoření objednávky na vydání materiálu. Po případném vyzvednutí materiálu a dokončení údržby dojde k ukončení servisní zakázky a celého procesu údržby. Závěrem je celý proces zaznamenám a finančně vyhodnocen.
 
 Tím je popsán základní proces nad modulem PM potřebný k pochopení a následnému návrhu aplikace, která bude tento, mimo jiné, proces realizovat.
 
 \section{SAP BSP}
 \label{sec:bsp}
-Tato sekce se zaměřuje na frontendovou technologii SAP BSP. Jedná se o jednu z technologií použitých v cílové architektuře řešení mobilní aplikace a proto je zde stručně popsána její struktura pro pochopení její role v celkové architektuře. 
+Tato sekce se zaměřuje na frontend technologii SAP BSP. Jedná se o jednu z technologií použitých v cílové architektuře řešení mobilní aplikace, a proto je zde stručně popsána její struktura pro pochopení její role v celkové architektuře. 
 
 \paragraph{BSP (Business Server Page)} Je jednou z variant, jak SAP programy a transakce zpřístupnit i mimo desktop aplikaci SAPGUI běžně používanou pro přístup do systému. Představuje funkční HTML aplikaci, u které lze dosáhnout takového chování jako u klasické SAP transakce. Tím je umožněno získat přístup do systém skrze libovolný webový prohlížeč. Na následujícím obrázku \ref{img:bsp_structure} je k vidění struktura BSP aplikace. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\textwidth]{images/bsp.png}
-	\caption{Struktura BSP aplikace}
+	\caption{Struktura BSP aplikace \cite{sap_bsp}}
 	\label{img:bsp_structure}
 \end{figure}
-Každá taková stránka se skládá z layoutu, do kterého je možné vložit standardní HTML komponenty (head, body, input a podobně). Kromě toho je možné do takové stránky vložit i kód programovacího jazyka ABAP. Tím je vytvořen silný nástroj umožňující dynamické tvoření hierarchie stránky v závislosti na získaných datech. Jelikož se jedná o HTML stránku, tak je možné v každé BSP stránce zpracovávat vstupní data. Ty jsou získány  buď pomocí metody HTTP(s) GET (informace se nese v uživateli zadané URL) nebo pomocí HTTP(s) POST (informace zakódovány v těle HTTP requestu).
+Každá taková stránka se skládá z layoutu, do kterého je možné vložit standardní HTML komponenty (head, body, input a podobně). Kromě toho je možné do takové stránky vložit i kód programovacího jazyka ABAP. Tím je vytvořen silný nástroj umožňující dynamické tvoření hierarchie stránky v závislosti na získaných datech. Jelikož se jedná o HTML stránku, tak je možné v každé BSP stránce zpracovávat vstupní data. Ty jsou získány buď pomocí metody HTTP(s) GET (informace se nese v uživateli zadané URL) nebo pomocí HTTP(s) POST (informace zakódovány v těle HTTP requestu).
 
-Každá taková stránka má několik událostí. V následujícím výčtu jsou popsány relevantní pro vývoj požadované aplikace. 
+Každá taková stránka má několik událostí. V následujícím výčtu jsou popsány relevantní pro vývoj požadované aplikace \cite{sap_bsp}. 
 \begin{itemize}
 	\item
 	\textbf{OnCreate}: Událost je vyvolána v případě prvního načtení v rámci session. Může posloužit k vytvoření potřebných tříd nebo načtení neměnných dat.
@@ -258,7 +258,7 @@ Každá taková stránka má několik událostí. V následujícím výčtu jsou
 
 \section{SAP FIORI}
 \label{sec:fiori}
-Systém SAP byl po dvě desetiletí přístupný zejména prostřednictvím destop aplikace SAPGUI. Jedná se tedy o aplikaci navrženou v 90. letech 20. století a tomu odpovídá i její vzhled. Nejedná se zrovna o User-Friendly rozhraní a to si SAP management samozřejmě uvědomuje. Kromě toho se nejedná zrovna ani o nejdostupnější řešení. Proto v roce 2013 společnost SAP přišla platformou SAP Mobile Platform 3.0 startující novou éru přístupu k systému SAP. Mobilní platforma dostala obchodní název Fiori. Bylo založena na základě následujících pěti pravidlech.
+Systém SAP byl po dvě desetiletí přístupný zejména prostřednictvím desktop aplikace SAPGUI. Jedná se tedy o aplikaci navrženou v 90. letech 20. století a tomu odpovídá i její vzhled. Nejedná se zrovna o User-Friendly rozhraní, a to si SAP management samozřejmě uvědomuje. Kromě toho se nejedná zrovna ani o nejdostupnější řešení. Proto v roce 2013 společnost SAP přišla platformou SAP Mobile Platform 3.0 startující novou éru přístupu k systému SAP. Mobilní platforma dostala obchodní název Fiori. Bylo založena na základě následujících pěti pravidlech \cite{sap_fiori}.
 \begin{itemize}
 	\item
 	\textbf{Založené na rolích}: Má se jednat o uživatelsky orientované aplikace závislé na rolích uživatele. Uživatel může mít více rolí a provádět tak zcela rozdílné úkoly v rámci různých aplikací.  
@@ -273,26 +273,26 @@ Systém SAP byl po dvě desetiletí přístupný zejména prostřednictvím dest
 \end{itemize} 	
 Zavedením této technologie má dojít k odstranění problémů s nespokojenými zákazníky ohledně staromódního vzhledu a komplikované práci. Společnost SAP od té doby vytvořila stovky Fiori aplikací, které si mohou zákazníci zakoupit. Jedná se například o aplikace pro vyřizování objednávek, správu uživatelů a mnoho dalších. 
 
-Na následujícím obrázku \ref{img:fiori_design} je k vidění aktuální design prezentovaný společností SAP.
+Na obrázku \ref{img:fiori_design} je k vidění aktuální design prezentovaný společností SAP.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/fiori}
-	\caption{Design Fiori aplikací}
+	\caption{Design Fiori aplikací \cite{sap_fiori}}
 	\label{img:fiori_design}
 \end{figure}
 
 \subsection{Technický pohled}
-Frameworkem pro tvorbu Fiori aplikací je SAPUI5. Jeho základní struktura je zobrazena na obrázku \ref{img:fiori_arch} níže. Jedná se o sadu vývojářských nástrojů, které slouží k vytváření aplikací s bohatým uživatelským rozhraním pro moderní business webové aplikace. Jeho základem je JavaScript knihovna Core, která poskytuje zejména prostředky pro podporu MVC \ref{ssec:mvc} konceptu. Dále nabízí možnosti provazování dat s UI prvky z různých datových zdrojů (JSON, XML, OData \ref{ssec:odata}) a efektivní práci s jednotlivými HTML prvky. 
+Frameworkem pro tvorbu Fiori aplikací je SAPUI5. Jeho základní struktura je zobrazena na obrázku \ref{img:fiori_arch} níže. Jedná se o sadu vývojářských nástrojů, které slouží k vytváření aplikací s bohatým uživatelským rozhraním pro moderní business webové aplikace. Jeho základem je JavaScript knihovna Core, která poskytuje zejména prostředky pro podporu MVC \ref{ssec:mvc} konceptu. Dále nabízí možnosti provazování dat s UI prvky z různých datových zdrojů (JSON, XML, OData \ref{ssec:odata}) a efektivní práci s jednotlivými HTML prvky \cite{sap_fiori_api}. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/fiori_arch.png}
 	\caption{Struktura BSP aplikace \cite{fiori_structure}}
 	\label{img:fiori_arch}
 \end{figure}
-Struktura frameworku spočívá především v konceptu MVC. Při zavádění aplikace dojde k vytvoření hlavní \textbf{komponenty} (Component.js), která obaluje jednotlivá \textbf{view} zadefinovaná v rámci aplikace. Pod každým view si lze představit libovolnou stránku. Každá taková stránka má přiřazen právě jeden \textbf{controller}, který reaguje a obstarává uživatelovu interakci. Klikne-li uživatel na tlačítko vymazat záznam, je to právě controller, kdo odchytí uživatelovu akci a musí na ni adekvátně zareagovat. V takovém případě by nejspíš zobrazil dialog pro potvrzení nebo rovnou poslal na backend request pro vykonání dané operace. Podrobněji se jednotlivým souborům použitým ve frameworku SAPUI5 věnuje implementační část v kapitole \ref{ssec:struckuta_pm_aplikace}.
+Struktura frameworku spočívá především v konceptu \textbf{MVC}. Při zavádění aplikace dojde k vytvoření hlavní \textbf{komponenty} (Component.js), která obaluje jednotlivá \textbf{view} nadefinovaná v rámci aplikace. Pod každým view si lze představit libovolnou stránku. Každá taková stránka má přiřazen právě jeden \textbf{controller}, který reaguje a obstarává uživatelovu interakci. Klikne-li uživatel na tlačítko vymazat záznam, je to právě controller, kdo odchytí uživatelovu akci a musí na ni adekvátně zareagovat. V takovém případě by nejspíš zobrazil dialog pro potvrzení nebo rovnou poslal na backend request pro vykonání dané operace. Podrobněji se jednotlivým souborům použitým ve frameworku SAPUI5 věnuje implementační část v kapitole \ref{ssec:struckuta_pm_aplikace}.
 
 \paragraph{UI komponenty}
-Framework má k dispozici více než 200 komponent, které umožňují skládání výsledné podoby uživatelského rozhraní. Takovou komponentou může být jednoduché zobrazení textu, ale i složitý layout rozdělující stránku na několik nezávislých částí. Obsahuje spoustu typických layoutů potřebných při téměř každém vývoj aplikace. Tím může být například vstupní formulář nebo zobrazení seznamu prvků. 
+Framework má k dispozici více než 200 komponent, které umožňují skládání výsledné podoby uživatelského rozhraní. Takovou komponentou může být jednoduché zobrazení textu, ale i složitý layout rozdělující stránku na několik nezávislých částí. Obsahuje spoustu typických layoutů potřebných při téměř každém vývoj aplikace. Tím může být například vstupní formulář nebo zobrazení seznamu prvků. Všechny komponenty jsou popsány v dokumentaci \cite{sap_fiori_api}.
 
 \subsection{MVC}
 \label{ssec:mvc}
@@ -300,22 +300,22 @@ Základem celého frameworku je návrhový vzor MVC (Model-View-Controller). Roz
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/mvc.png}
-	\caption{Návrhový vzor MVC}
+	\caption{Návrhový vzor MVC \cite{mvc}}
 	\label{img:mvc}
 \end{figure}
 \paragraph{Model} Reprezentuje správu dat, nad nimiž aplikace pracuje. Takovými daty může být seznam uživatelů, detail objednávky nebo obrázek v binární podobě. Jelikož se z v architektonickém modelu server-klient jedná o prezentační vrstvu, je vhodné, aby data měly co možná nejpřijatelnější podobu pro prezentování uživateli. 
 \paragraph{View} Zahrnuje všechny grafické objekty uživatelského rozhraní. Jedná se o komponenty, s kterými uživatel přímo pracuje. Pomocí nich mu jsou prezentovány požadovaná data v prezentovatelné formě. A naopak pouze jejich prostřednictvím uživatel dává aplikaci příkazy k provedení požadované činnosti. Výhodou jednotlivých komponent je nezávislost na modelu a controlleru. Grafické komponenty lze tak v průběhu aplikace měnit. 
-\paragraph{Controller} Dělá prostředníka datovému modelu a uživatelským rozhraním. Má na starost obstarávání uživatelských akcí vůči rozhraní. Klikne-li uživatel na tlačítko, je právě na něm, aby provedl adekvátní akci očekávanou od uživatele. Upravuje data uložená v modelu, čímž může měnit uživateli prezentovaná data. A taktéž může zasahovat do view jako takového. V případě, že je zapotřebí některé elementy schovat nebo naopak zobrazit, je to právě controller, kdo může takovou akci provést.
+\paragraph{Controller} Dělá prostředníka datovému modelu a uživatelským rozhraním. Má na starost obstarávání uživatelských akcí vůči rozhraní. Klikne-li uživatel na tlačítko, je právě na něm, aby provedl adekvátní akci očekávanou od uživatele. Upravuje data uložená v modelu, čímž může měnit uživateli prezentovaná data. A taktéž může zasahovat do view jako takového. V případě, že je zapotřebí některé elementy schovat nebo naopak zobrazit, je to právě controller, kdo může takovou akci provést \cite{mvc}.
 
 \subsection{SAP ODATA}
 \label{ssec:odata}
 Protokol OData umožňuje vytváření datových služeb založených na webovém protokolu REST (Representational State Transfer), který umožňuje uživatelům provádět CRUD (Create, Read, Update, Delete) operace nad zdroji identifikovanými pomocí URI (Uniform Resource Identifier) a definovanými v datovém modelu použitím HTTP requestů.
 
-Data přenášená prostřednictvím OData protokolu mohou využívat různé datové formáty běžně používané ve webových technologiích. Příkladem  může být XML (Extensible Markup Language), JSON (JavaScript Object Notation) nebo další. Data jsou při přenosu zabalena do protokolu HTTP, případně do jeho zabezpečené verze HTTPS.
+Data přenášená prostřednictvím OData protokolu mohou využívat různé datové formáty běžně používané ve webových technologiích. Příkladem může být XML (Extensible Markup Language), JSON (JavaScript Object Notation) nebo další. Data jsou při přenosu zabalena do protokolu HTTP, případně do jeho zabezpečené verze HTTPS.
 
-Jádrem OData jsou feeds, které jsou kolekcemi Collections složené ze záznamů Entries. Každý Entry je identifikovaný klíčem a reprezentuje strukturovaný záznam, který má seznam vlastností Properties, ty mohou být komplexního, nebo primitivního typu. Entries mohou být součástí hierarchie typů a mohou mít související entries a feeds odkazované prostřednictvím Links \cite{mvc}.
+Jádrem OData jsou feeds, které jsou kolekcemi složených ze záznamů Entries. Každý Entry pvek je identifikovaný klíčem a reprezentuje strukturovaný záznam, který má seznam vlastností Properties. Ty mohou být komplexního nebo primitivního typu \cite{mvc}.
 
-\paragraph{EDM (Entity Data Model)} Hlavním konceptem v EDM jsou entity a asociace. Entita je strukturovaný záznam představující libovolný datový objekt. Tím může být například uživatel nebo objednávka. Každá taková entita má svůj klíč, kterému se říká klíč entity. Pomocí tohoto klíče lze asociovat entity mezi sebou. Budeli objednávka přiřazena k nějakému uživateli, bude mít klíč uživatele u sebe dostupný. Namapováním klíče uživatele na objednávky obsahující jeho klíč dostaneme asociaci uživatelovi objednávky. Takto lze hierarchicky libovolně navazovat asociace na jiné a tím tak vytvářet požadované datové struktury připravené k exportu. 
+\paragraph{EDM (Entity Data Model)} Hlavním konceptem v EDM jsou entity a asociace. Entita je strukturovaný záznam představující libovolný datový objekt. Tím může být například uživatel nebo objednávka. Každá taková entita má svůj klíč, kterému se říká klíč entity. Pomocí tohoto klíče lze asociovat entity mezi sebou. Bude-li objednávka přiřazena k nějakému uživateli, bude mít klíč uživatele u sebe dostupný. Mapováním klíče uživatele na objednávky obsahující jeho klíč dostaneme asociaci uživatelovi objednávky. Takto lze hierarchicky libovolně navazovat asociace na jiné a tím tak vytvářet požadované datové struktury připravené k exportu. 
 
 \paragraph{JSON (JavaScript Object Notation)}
 \label{par:json}
@@ -535,7 +535,7 @@ Následující případ užití se týká správy prevencí a příslušného fu
 Na rozdíl od předchozích dvou případů užití \ref{sssec:uc_sprava_poruch} a \ref{sssec:uc_sprava_udrzby} může preventivní údržbu provést jak údržbář, tak i operátor výroby. To s sebou přináší i možnost zadávání akcí pro operátora výroby. Nicméně provést výdej potřebného materiálu ze skladu může stále pouze údržbář. 
 \section{Závěry analýzy}
 \label{sec:zav_analyzy}
-Hlavním výstupem celé analýzy je rozdělení aplikace do čtyř komponent odpovídajícím uživatelským rolím. Realizování jedné společné komponenty, která by byla sdílena všemi uživateli by s sebou přinášela velké množství komplikací odpočívajících v ošetřování rolí a podmínek, kde se která operace může provést. Rozdělením sice vznikne potřeba realizovat stejné funkcionality na více místech, ale řešení pro tento problém je popsáno v kapitole \ref{chap:implementace} týkající se implementace.
+Hlavním výstupem celé analýzy je rozdělení aplikace do čtyř komponent odpovídajících uživatelským rolím. Realizování jedné společné komponenty, která by byla sdílena všemi uživateli by s sebou přinášela velké množství komplikací odpočívajících v ošetřování rolí a podmínek, kde se která operace může provést. Rozdělením sice vznikne potřeba realizovat stejné funkcionality na více místech, ale řešení pro tento problém je popsáno v kapitole \ref{chap:implementace} týkající se implementace.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
@@ -546,7 +546,7 @@ V první fázi je doporučováno pospat business očekávání a případy užit
 
 \section{Task Groups}
 \label{sec:task_groups}
-Jsou založeny na \textbf{seznamu operací (Task List)}, které lze v rámci aplikace provést. Prvek takového seznamu může být přidání atributu uživatele nebo schválení provedené údržby. Granularita a důležitost jednotlivých položek pak může být, a zpravidla bývá, proměnná. Základním pravidlem pro tvorbu takového seznamu je rčení \uv{Don't think too much, just list the tasks}, tedy příliš nepitvat, zdali je úkon dostatečně adekvátní nebo naopak zbytečný, ale prostě ho přidat do seznamu. Vypisovat pouhý seznam úkonů možných provést ve výsledné aplikaci je zbytečné. Jednat protože takových operací je mnoho a hlavně proto, že by se výpis duplikoval v následujícím kroku. A tím je rozřazení jednotlivých úkonů do skupin, v rámci kterých je lze provádět. A přesně takový seznam je v rámci této sekce vytvořen. Skupiny odpovídají čtyřem komponentám vzešlých ze závěrů analýzy v kapitole \ref{sec:zav_analyzy}. Seznam úkonů je z důvodu šetření vertikálního místa co nejvíce agregován do celkových procesů.
+Jsou založeny na \textbf{seznamu operací (Task List)}, které lze v rámci aplikace provést. Prvek takového seznamu může být přidání atributu uživatele nebo schválení provedené údržby. Granularita a důležitost jednotlivých položek pak může být, a zpravidla bývá, proměnná. Základním pravidlem pro tvorbu takového seznamu je rčení \uv{Don't think too much, just list the tasks}, tedy příliš nepitvat, zdali je úkon dostatečně adekvátní nebo naopak zbytečný, ale prostě ho přidat do seznamu. Vypisovat pouhý seznam úkonů možných provést ve výsledné aplikaci je zbytečné. Jednak protože takových operací je mnoho a hlavně proto, že by se výpis duplikoval v následujícím kroku. A tím je rozřazení jednotlivých úkonů do skupin, v rámci kterých je lze provádět. A přesně takový seznam je v rámci této sekce vytvořen. Skupiny odpovídají čtyřem komponentám vzešlých ze závěrů analýzy v kapitole \ref{sec:zav_analyzy}. Seznam úkonů je z důvodu šetření vertikálního místa co nejvíce agregován do celkových procesů.
 
 \subsection{Založení požadavku na údržbu}
 \begin{itemize}
@@ -579,7 +579,7 @@ Jsou založeny na \textbf{seznamu operací (Task List)}, které lze v rámci apl
 	\item
 	Zobrazování akcí, textů a příloh k danému hlášení.
 	\item
-	Zahájení a ukončení práce na preventivní výrobě (spolu s tím i zadávat prováděné akce nad hlášením).
+	Zahájení a ukončení práce na preventivní výrobě (spolu s tím i zadávat prováděné akce nad hlášením)
 \end{itemize} 
 
 \subsection{Údržbář}
@@ -656,7 +656,7 @@ Lo-Fi (Low-Fidelity) prototypy slouží pro snadné a hlavně rychlé znázorně
 
 Pro návrh prototypu byly použity dva k tomu určené nástroje. Prvním z nich je univerzální nástroj pro tvorbu prototypových aplikací Balsamiq Mockups \cite{balsamiq} druhým je nástroj Built \cite{builtme} určený k prototypování přímo ve frameworku SAPUI5. Návrh rozhraní probíhá pro dva typy zařízení. Jednak pro desktop aplikace běžně disponujícím rozlišením 1200 pixelů a více a poté i pro přenosná zařízení jako jsou chytré telefony nebo tablety. V obou případech se jedná o \textbf{WYSIWYG editory} (What You See Is What You Get), které umožňují tvořit cílovou podobu stránky bez nutnosti cokoliv programovat. Většinou pracují na principu táhni a pusť. Tudíž uživatel pracující s tímto editor si vybírá ze základny použitelných UI komponent, které potom skládá do sebe a tvoří tím výslednou stránku. 
 \subsection{Balsamiq}
-Jedná se o prototypovací nástroj disponující širokou škálou univerzálních kreslících nástrojů a připravených elementů, které se v moderních aplikacích vyskytují. Takovým elementem může být například obecná struktura webové stránky nebo vzhled mobilního telefonu. Tím lze vytvořit kostru navrhovaného prototypu, do kterého lze poté sázet konkrétní UI prvky jako tlačítka, texty, obrázky, tabulky a podobně. Na každý element lze navázat událost, pomocí které lze mezi jednotlivými stránkami navigovat. Výstupem je soubor ve formátu PDF, ve kterém se lze mezi jednotlivými obrazovky pohybovat jako by byly reálnou webovou stránkou nebo aplikací. 
+Jedná se o prototypovací nástroj disponující širokou škálou univerzálních kreslících nástrojů a připravených elementů, které se v moderních aplikacích vyskytují. Takovým elementem může být například obecná struktura webové stránky nebo vzhled mobilního telefonu. Tím lze vytvořit kostru navrhovaného prototypu, do kterého lze poté sázet konkrétní UI prvky jako tlačítka, texty, obrázky, tabulky a podobně. Na každý element lze navázat událost, pomocí které lze mezi jednotlivými stránkami navigovat. Výstupem je soubor ve formátu PDF, ve kterém se lze mezi jednotlivými obrazovky pohybovat jako by byly reálnou webovou stránkou nebo aplikací \cite{balsamiq}. 
 \paragraph{Desktopová verze}
 První navržená stránka se týká přihlášení uživatele. Návrh přihlašovací stránky je vidět na obrázku \ref{img:bal_login_desktop}. Byl pro ni použit layout představující webový prohlížeč. Do něj byl zasazen formulář pro vyplnění uživatelského jména a hesla. Z důvodu testování nástroje byly do stránky doplněny i doprovodné texty a náznak úvodního obrázku. 
 \begin{figure}[H]
@@ -669,7 +669,7 @@ Pro návrh domovské stránky je čerpáno z konceptu SAP Fiori Launchpad, kter�
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/fiori_launchpad}
-	\caption{Ukázka designu SAP Fiori Launchpad}
+	\caption{Ukázka designu SAP Fiori Launchpad \cite{sap_fiori}}
 	\label{img:fiori_launchpad}
 \end{figure}
 Nic takové ovšem není ve vyvíjené aplikaci plánováno. Nicméně pro důvod zachování konceptu a možného budoucího zprovoznění SAP Fiori Launchpad je přistoupeno ke stejnému dlaždicovému návrhu. Návrh je k vidění na obrázku \ref{img:bal_homepage_desktop}. Jednotlivé dlaždice umožňují navigaci do cílených aplikací navržených závěrem analýzy v kapitole \ref{sec:zav_analyzy}.
@@ -695,7 +695,7 @@ Po stisknutí tlačítka pro založení nové poruchy dojde k otevření dialogu
 \end{figure}
 
 \paragraph{Mobilní verze}
-Mobilní verze obsahuje návrh stejných obrazovek jako desktopová verze popsaná výše. 
+Mobilní verze obsahuje návrh stejných obrazovek jako desktopová verze popsaná výše. Návrhy jsou zobrazeny v obrázcích \ref{img:bal_login_hompage_mob} a \ref{img:bal_poruchy_mob}.
 
 \begin{figure}[H]
 	\centering
@@ -712,7 +712,7 @@ Mobilní verze obsahuje návrh stejných obrazovek jako desktopová verze popsan
 \end{figure}
 
 \subsection{Built}
-Jedná se o oficiální produkt společnosti SAP, který umožňuje tvorbu prototypových aplikací ve frameworku SAPUI5. Tvorba v tomto nástroji si vyžaduje alespoň základní znalosti o jednotlivých komponentách frameworku a strukturování navrhovaných stránek. Pro výběr prvků se totiž využívá omezený výběr UI komponent poskytovaných přímo frameworkem SAPUI5. V základním výběru jsou především prvky z responzivní knihovny \uv{sap.m}.
+Jedná se o oficiální produkt společnosti SAP, který umožňuje tvorbu prototypových aplikací ve frameworku SAPUI5. Tvorba v tomto nástroji si vyžaduje alespoň základní znalosti o jednotlivých komponentách frameworku a strukturování navrhovaných stránek. Pro výběr prvků se totiž využívá omezený výběr UI komponent poskytovaných přímo frameworkem SAPUI5. V základním výběru jsou především prvky z responzivní knihovny \uv{sap.m} \cite{builtme}.
 \paragraph{Desktopová verze}
 První navržená stránka je pro operátora výroby. Zobrazuje mu tabulku se seznam poruch. každá porucha má ve sloupcích vypsané požadované hodnoty, případně tlačítka pro provádění požadovaných akcí. Na obrázku \ref{img:bu_poruchy_seznam} je k vidění například tlačítko pro započetí práce na poruše nebo pro zobrazené přiložené přílohy. 
 \begin{figure}[H]
@@ -730,7 +730,7 @@ Prvním technickou překážkou tohoto nástroje je vytváření dialogů. To to
 \end{figure}
 
 \paragraph{Mobilní verze}
-Druhou technickou překážkou je tvorba návrhu pro mobilní zařízení. Knihovna \uv{sap.m} je sice responzivní, ale ne vždy nabízí takové možnosti, které by od ní mohly být očekávány. Na obrázku \ref{img:bu_mob} je k vidění podoba tabulky se seznamem poruch. Místo horizontálního skládání sloupců vedle sebe je správně použito skládání vertikální. Nicméně při zobrazení pěti hlášení by uživatel nedělal nic jiného než zdlouhavě hledal požadovanou informaci v zdánlivě nekonečném seznamu.
+Druhou technickou překážkou je tvorba návrhu pro mobilní zařízení. Knihovna \uv{sap.m} je sice responzivní, ale ne vždy nabízí takové možnosti, které by od ní mohly být očekávány. Na obrázku \ref{img:bu_mob} je k vidění podoba tabulky se seznamem poruch. Místo horizontálního skládání sloupců vedle sebe je správně použito skládání vertikální. Nicméně při zobrazení pěti hlášení by uživatel nedělal nic jiného, než zdlouhavě hledal požadovanou informaci v zdánlivě nekonečném seznamu.
 
 \begin{figure}[H]
 	\centering
@@ -762,7 +762,7 @@ Na porovnání použitých nástrojů je k dispozici skromná tabulka hodnocení
 		\label{tab:prototyp_comp}
 	\end{table}
 \end{center}
-Pro tvorbu Lo-Fi prototypu se zdáti být Balsamiq účinějším nástrojem. Je mnohem rychlejší, přehlednější a při troše úsilí a znalosti frameworku SAPUI5 lze pomocí něho dosáhnout velmi dobrých výsledků v napodobení Fiori aplikace. Nástroj Built sice navíc umožňuje následné vyexportování aplikace, nicméně 
+Pro tvorbu Lo-Fi prototypu se zdáti být Balsamiq účinějším nástrojem. Je mnohem rychlejší, přehlednější a při troše úsilí a znalosti frameworku SAPUI5 lze pomocí něho dosáhnout velmi dobrých výsledků v napodobení Fiori aplikace. Nástroj Built sice navíc umožňuje následné vyexportování aplikace, nicméně je technicky náročnější a výstup není pro budoucí vývoj nejvhodnější.
 
 \section{Heuristická analýza}
 Při návrhu uživatelského rozhraní je dobré držet se deseti následujících pravidel z Nielsenovi heuristické analýzy. Nielsenova heuristická analýza je jednou ze základních metod pro testování uživatelského rozhraní. Jedná se o seznam pravidel, které by uživatelské rozhraní mělo splňovat. Jakob Nielsen a Rolf Molich v roce 1990 vytvořili heuristiku pro heuristické vyhodnocení a poté v roce 1994 Jakob Nielsen revidoval tuto heuristiku na množinu pravidel \cite{heursitika2}
@@ -926,7 +926,7 @@ Ověřování v deklarativní ochraně je vynuceno, právě tehdy když si uživ
 	\end{lstlisting}
 	\caption{Definice typu autentizace FORM}	
 	\label{code:auth_form_def}
-	\small Navíc od autentizace typu BASIC jsou zde zadefinovány dvě html stránky. Element <form-login-page> stanovuje stránku, která je uživateli zobrazena při prvotním pokusu uživatele o načtení aplikace, stránka stanovená elementem <form-error-page> se zobrazí v případě, že uživatel zadá špatnou kombinace jména a hesla nebo se v průběhu autentizace vyskytne jiná chyba.
+	\small Navíc od autentizace typu BASIC jsou zde nadefinovány dvě html stránky. Element <form-login-page> stanovuje stránku, která je uživateli zobrazena při prvotním pokusu uživatele o načtení aplikace, stránka stanovená elementem <form-error-page> se zobrazí v případě, že uživatel zadá špatnou kombinace jména a hesla nebo se v průběhu autentizace vyskytne jiná chyba.
 \end{algorithm}	
 
 Oba přístupy autentizace jsou zranitelná vůči útokům skrze odposlouchávání. Proto je silně doporučeno zpřístupňovat aplikaci skrze HTTPS protokol. 
@@ -1010,7 +1010,7 @@ Jednotlivé položky jsou potom popsány v následujícím seznamu. Koncepčně 
 	\textbf{model}: Obsahuje pomocné JavaScriptové soubory s funkcemi, které se opakovaně používají napříč celou aplikací. Jedná se například o formátovací funkce, stanovení modelů obsahující informace o používaném zařízení uživatele a podobně. V mém případě obsahuje tři následující soubory.
 	\begin{itemize}
 		\item
-		\textbf{models.js}: Slouží pouze k zadefinování modelu s informace o používaném zařízení. Poskytuje tak napříč zbytku aplikace například aktuální šířku displeje, používaný operační systém nebo typ prohlížeče. Na základě toho poté dochází ve zbytku aplikace k používání komponent příslušných dané velikosti displeje, nedochází tak k zobrazování tabulky na mobilním zařízení, ale k adekvátně upravenému listu záznamů.
+		\textbf{models.js}: Slouží pouze k nadefinování modelu s informace o používaném zařízení. Poskytuje tak napříč zbytku aplikace například aktuální šířku displeje, používaný operační systém nebo typ prohlížeče. Na základě toho poté dochází ve zbytku aplikace k používání komponent příslušných dané velikosti displeje, nedochází tak k zobrazování tabulky na mobilním zařízení, ale k adekvátně upravenému listu záznamů.
 		\item
 		\textbf{formatter.js}: Obsahuje funkce pro úpravu zobrazované informace získaných z backendu. SAPí interní formát data 2018-05-04, lze tak pomocí takových funkcí převést na datum v požadovaném tvaru a naopak.
 		\item
@@ -1041,12 +1041,12 @@ query : function(data, success, error) {
 
 \begin{itemize}
 	\item
-	\textbf{Component.js}: Jeden ze stavebních kamenů celé aplikace. Představuje objekt obalující všechna zadefinovaná view. Tudíž jakékoliv informace uložené v modelu jsou dostupné napříč celou aplikací. Právě zde se uplatní modely nesoucí znalosti o použitém zařízení klienta nebo sloužící pro překlady textů.
+	\textbf{Component.js}: Jeden ze stavebních kamenů celé aplikace. Představuje objekt obalující všechna nadefinovaná view. Tudíž jakékoliv informace uložené v modelu jsou dostupné napříč celou aplikací. Právě zde se uplatní modely nesoucí znalosti o použitém zařízení klienta nebo sloužící pro překlady textů.
 	\item
-	\textbf{index.html}: Jedná se o soubor, který je implicitně volán v případě, že uživatel ve svém webovém prohlížeči zadá adresu, pod kterou se požadovaná aplikace skrývá. Nacházejí se zde základní informace nutné pro správné spuštění aplikace. Nejdůležitější z nich je zadefinování zdrojů frameworku SAPUI5. To spočívá v odkazu na obsáhlý soubor sap-ui-core.js (dále již jen jádro), které představuje kostru nutnou pro běh aplikace. Použití slova core - jádro v názvu pochopitelně není náhoda. Jádro si v průběhu používání aplikace dotahuje další frameworkové knihovny jako jsou například komponenty pro uživatelské vstupní pole typu datum, kdy je uživateli poskytnuto příjemné kalendářní rozhraní pro výběr požadovaného data. Tyto knihovny jsou stahovány až v případě, že si je uživatelova interakce vyžaduje. Dochází tedy k tak zvanému lazy loadingu. Stanovit přístup k jádru se dá pomocí dvou základních metod. První z nich je mapování na veřejně dostupný soubor pod adresou \url{https://sapui5.hana.ondemand.com/resources/sap-ui-core.js}. Druhým způsobem je mít veškeré knihovny dostupné v run-timeovém prostředí aplikace. Zároveň se také jedná o možnost použitou v této implementaci. Interní bezpečností politika totiž nedovoluje volání mimo vnitřní síť. Dále se zde nacházejí odkazy na externí knihovny nutné pro správný chod aplikace v rámci prostředí používaném uživatelem. V rámci hierarchie HTML je vytvořen element body, do kterého je vložena celá instance vytvořené aplikace odvozené od staženého jádra. Jedná se zpravidla o jediný kus čistého HTML při tvorbě aplikace ve frameworku SAPUI5.
-	\paragraph{Aplikační Cache} Implicitně jsou veškeré zdroje a knihovny používané ve frameworku ukládány do mezipaměti prohlížeče, aby byla uživateli zkrácena doba načítání a nedocházelo k opakovanému stahování potřebných souborů. To s sebou ovšem přináší problém při vydávání nové verze aplikace. V případě, že by došlo ke změně některého ze souborů a libovolný uživatel měl uloženy staré soubory v mezipaměti, pravděpodobně by se stala aplikace nefunkční. Tento problém je oficiálně řešen na straně SAP Gateway, kde dochází k porovnání jednotlivých soborů před samotným stažením. Tato funkcionalita bohužel není implicitně ve frameworku zanesena, nicméně existují mechanismy, které obdobné chování umožňují. Celý proces spočívá v zadefinování ResourceServletu, který porovnává datum poslední modifikace souboru s tím, který má uživatel uložen v mezipaměti. Tento Servlet musí být zadefinován v souboru web.xml a aplikace musí dostat informaci o tom, u kterých souborů má k takové kontrole docházet. Proto je v tomto HTML souboru odkaz na soubor \textbf{sap-ui-cachebuster-info.json}, obsahující JSON pole, s dvěma prvky. Jedním z nich je relativní cesta k požadovanému souboru a druhým je datum poslední modifikaci. Pro správný chod aplikace je tak nutné při každém exportování dbát na aktualizaci potřebných záznamů.
+	\textbf{index.html}: Jedná se o soubor, který je implicitně volán v případě, že uživatel ve svém webovém prohlížeči zadá adresu, pod kterou se požadovaná aplikace skrývá. Nacházejí se zde základní informace nutné pro správné spuštění aplikace. Nejdůležitější z nich je nadefinování zdrojů frameworku SAPUI5. To spočívá v odkazu na obsáhlý soubor sap-ui-core.js (dále již jen jádro), které představuje kostru nutnou pro běh aplikace. Použití slova core - jádro v názvu pochopitelně není náhoda. Jádro si v průběhu používání aplikace dotahuje další frameworkové knihovny jako jsou například komponenty pro uživatelské vstupní pole typu datum, kdy je uživateli poskytnuto příjemné kalendářní rozhraní pro výběr požadovaného data. Tyto knihovny jsou stahovány až v případě, že si je uživatelova interakce vyžaduje. Dochází tedy k tak zvanému lazy loadingu. Stanovit přístup k jádru se dá pomocí dvou základních metod. První z nich je mapování na veřejně dostupný soubor pod adresou \url{https://sapui5.hana.ondemand.com/resources/sap-ui-core.js}. Druhým způsobem je mít veškeré knihovny dostupné v run-timeovém prostředí aplikace. Zároveň se také jedná o možnost použitou v této implementaci. Interní bezpečností politika totiž nedovoluje volání mimo vnitřní síť. Dále se zde nacházejí odkazy na externí knihovny nutné pro správný chod aplikace v rámci prostředí používaném uživatelem. V rámci hierarchie HTML je vytvořen element body, do kterého je vložena celá instance vytvořené aplikace odvozené od staženého jádra. Jedná se zpravidla o jediný kus čistého HTML při tvorbě aplikace ve frameworku SAPUI5.
+	\paragraph{Aplikační Cache} Implicitně jsou veškeré zdroje a knihovny používané ve frameworku ukládány do mezipaměti prohlížeče, aby byla uživateli zkrácena doba načítání a nedocházelo k opakovanému stahování potřebných souborů. To s sebou ovšem přináší problém při vydávání nové verze aplikace. V případě, že by došlo ke změně některého ze souborů a libovolný uživatel měl uloženy staré soubory v mezipaměti, pravděpodobně by se stala aplikace nefunkční. Tento problém je oficiálně řešen na straně SAP Gateway, kde dochází k porovnání jednotlivých soborů před samotným stažením. Tato funkcionalita bohužel není implicitně ve frameworku zanesena, nicméně existují mechanismy, které obdobné chování umožňují. Celý proces spočívá v nadefinování ResourceServletu, který porovnává datum poslední modifikace souboru s tím, který má uživatel uložen v mezipaměti. Tento Servlet musí být zadefinován v souboru web.xml a aplikace musí dostat informaci o tom, u kterých souborů má k takové kontrole docházet. Proto je v tomto HTML souboru odkaz na soubor \textbf{sap-ui-cachebuster-info.json}, obsahující JSON pole, s dvěma prvky. Jedním z nich je relativní cesta k požadovanému souboru a druhým je datum poslední modifikaci. Pro správný chod aplikace je tak nutné při každém exportování dbát na aktualizaci potřebných záznamů.
 	\item
-	\textbf{login.html}: V rámci JAAS logiky pro autorizaci a autentifikaci je definována implicitní HTML stránka, která je vyvolána v případě, že uživatel nemá doposud vytvořenou vůči aplikaci session. Z důvodu zachování konzistetního vzhledu aplikací je i pro přihlášení vytvořena SAPUI5 aplikace. Umístit ji zde v rámci jednoho projektu by způsobilo značnou nepřehlednost a taktéž by mohlo způsobit neočekáváné problémy při vývoji. Z toho důvodu má HTML stránka login.html velmi jednoduchou funkčnost. A tou je přesměrování uživatele do přihlašovací SAPUI5 aplikace.
+	\textbf{login.html}: V rámci JAAS logiky pro autorizaci a autentifikaci je definována implicitní HTML stránka, která je vyvolána v případě, že uživatel nemá doposud vytvořenou vůči aplikaci session. Z důvodu zachování konzistentního  vzhledu aplikací je i pro přihlášení vytvořena SAPUI5 aplikace. Umístit ji zde v rámci jednoho projektu by způsobilo značnou nepřehlednost a taktéž by mohlo způsobit neočekávané problémy při vývoji. Z toho důvodu má HTML stránka login.html velmi jednoduchou funkčnost. A tou je přesměrování uživatele do přihlašovací SAPUI5 aplikace.
 	\item
 	\textbf{manifest.json}: Manifest slouží především k rychlému definování možného směrování v rámci aplikace. Dochází zde k mapování uživatelovi aktuální url na jednotlivá view. Lze tak například přiřadit k postfixu pm/\#/vyroba view \uv{Vyroba} a tím tak uživateli zobrazit očekávané informace. Dále se zde dají zadefinovat modely přiřazené komponentě nebo zdroje kaskádových stylů. 
 \end{itemize} 
@@ -1081,8 +1081,8 @@ Není ani tak stránkou jako spíš základním view aplikace. V podstatě pouze
 	\caption{XML definice view App}	
 	\label{code:view_app_definition}
 \end{algorithm}	
-Definice neříká nic jiného, než ze v případě zobrazení tohoto view má být vnořena standardní SAPUI5 komponentu App, která slouží jako základ aplikace. V rámci této komponenty jsou následně agregována view popsaná dále. Jak je v kódu vidět, je zde parametr \uv{controllerName}, který přiřazuje k view controller. 
-\paragraph{Controller} Stejně jako v ostatních případech je z důvodu přehlednosti totožně pojmenován. Jedinou jeho funkčností je v první fázi spouštění apliakce nastavit dále neměnně atributy. Jak je vidět v ukázce kódu \ref{code:controller_app_definition} níže, dochází zde k nastavení výchozího jazyka aplikace a kaskádových stylů v závislosti na typu použitého zařízení. Jiné styly jsou tak použity pro zařízení s rozlišením odpovídající tabletům, mobilů, nebo desktopům. V potaz se bere i dotykový displej, vyžadující si například větší tlačítka než by tomu bylo v případě použití obyčejného monitoru.
+Definice neříká nic jiného, než že v případě zobrazení tohoto view má být vnořena standardní SAPUI5 komponentu App, která slouží jako základ aplikace. V rámci této komponenty jsou následně agregována view popsaná dále. Jak je v kódu vidět, je zde parametr \uv{controllerName}, který přiřazuje k view controller. 
+\paragraph{Controller} Stejně jako v ostatních případech je z důvodu přehlednosti totožně pojmenován. Jedinou jeho funkčností je v první fázi spouštění apliakce nastavit dále neměnně atributy. Jak je vidět v ukázce kódu \ref{code:controller_app_definition} níže, dochází zde k nastavení výchozího jazyka aplikace a kaskádových stylů v závislosti na typu použitého zařízení. Jiné styly jsou tak použity pro zařízení s rozlišením odpovídající tabletům, mobilů, nebo desktopům. V potaz se bere i dotykový displej, vyžadující si například větší tlačítka, než by tomu bylo v případě použití obyčejného monitoru.
 \begin{algorithm}[H]
 	\begin{lstlisting}[language=java]      
 BaseController.extend("sap.ui.pm.controller.App",{
@@ -1098,8 +1098,8 @@ BaseController.extend("sap.ui.pm.controller.App",{
 	\label{code:controller_app_definition}
 \end{algorithm}	
 Za zmínku ovšem stojí i první řádek zobrazeného kódu \ref{code:controller_app_definition} výše. Výraz \uv{BaseController.extend("sap.ui.mo.pm.controller.App"} říká, že nedochází k rozšíření standardního controlleru frameworku, ale v tomto případě k aplikaci přiloženému controlleru pojmenovaného \uv{BaseController}.
-\paragraph{BaseController} Od tohoto controlleru odvozuji všechny ostatní implementované. To protože se nemalá část funkcí dá využít na více místech v aplikaci a nemusí tak docházet k duplikování kódu, které by přinášelo riziko snížení konzistence a zvýšení pracnosti v případě budoucích změn nebo opravování chyb. Tento controller je již odvozen od standardního frameworkového controlleru \uv{sap.ui.core.mvc.Controller}. 
-Následující ukázka kódu \ref{code:controller_base_definition} zobrazuje tři takové společné funkce. Celý výčet je pochopitelně mnohem delší, ale tyto  byly vybrány, protože jsou nejčastěji používané a poslouží tak k dobré demonstraci snížené pracnosti a náročnosti na údržbu aplikace z pohledu vývojáře. Funkce zobrazené v ukázce kódu \ref{code:controller_base_definition} jsou posléze krátce popsány.
+\paragraph{BaseController} Od tohoto controlleru odvozuji všechny ostatní implementované. To, protože se nemalá část funkcí dá využít na více místech v aplikaci a nemusí tak docházet k duplikování kódu, které by přinášelo riziko snížení konzistence a zvýšení pracnosti v případě budoucích změn nebo opravování chyb. Tento controller je již odvozen od standardního frameworkového controlleru \uv{sap.ui.core.mvc.Controller}. 
+Následující ukázka kódu \ref{code:controller_base_definition} zobrazuje tři takové společné funkce. Celý výčet je pochopitelně mnohem delší, ale tyto byly vybrány, protože jsou nejčastěji používané a poslouží tak k dobré demonstraci snížené pracnosti a náročnosti na údržbu aplikace z pohledu vývojáře. Funkce zobrazené v ukázce kódu \ref{code:controller_base_definition} jsou posléze krátce popsány.
 \begin{algorithm}[H]
 	\begin{lstlisting}[language=java]      
 Controller.extend("sap.ui.pm.controller.BaseController",{
@@ -1221,7 +1221,7 @@ Jelikož se jedná v podstatě pouze o formulář určený k vyplnění od uživ
 	\small Komponenta SimpleForm vytváří formulář na základě komponenty Label, která od sebe jednotlivé části separuje. Všechny elementy od Labelu až k dalšímu tvoří jeden celek a jsou výsledně rendrovány v jedné skupině.
 \end{algorithm}	
 \paragraph{Controller}
-Úkolem controlleru na této stránce je především předvyplnění uživatelských atributů do vstupního formuláře a jeho následné odeslání na backend. To spočívá v načtení uživatelských dat v případě navštívení stránky s následným  naplnění modelu příslušnými daty. Obsahuje také funkce pomáhající uživateli vybrat data. Takovým příkladem může být načtení hierarchie technických míst. K tomu je zapotřebí poslat požadavek pro data. K tomu poslouží funkce query implementující AJAX request \ref{code:ajax} v JavaScriptové knihovně utils. Předáním lokálních funkcí pro úspěšné a neúspěšné volání poté může dojít zpracování přijatých dat nebo chyb. Pomocí funkce setModel popsané v BaseControlleru \ref{code:controller_base_definition} a nebo přístupem ke konkrétnímu prvku modelu (funkce setProperty) lze potom nastavit požadovaná data do svázaného formuláře. 
+Úkolem controlleru na této stránce je především předvyplnění uživatelských atributů do vstupního formuláře a jeho následné odeslání na backend. To spočívá v načtení uživatelských dat v případě navštívení stránky s následným naplnění modelu příslušnými daty. Obsahuje také funkce pomáhající uživateli vybrat data. Takovým příkladem může být načtení hierarchie technických míst. K tomu je zapotřebí poslat požadavek pro data. K tomu poslouží funkce query implementující AJAX request \ref{code:ajax} v JavaScriptové knihovně utils. Předáním lokálních funkcí pro úspěšné a neúspěšné volání poté může dojít zpracování přijatých dat nebo chyb. Pomocí funkce setModel popsané v BaseControlleru \ref{code:controller_base_definition} a nebo přístupem ke konkrétnímu prvku modelu (funkce setProperty) lze potom nastavit požadovaná data do svázaného formuláře. 
 \paragraph{Stránka}
 Výsledná stránka je reprezentována formulářem o sedmi prvcích. Podle typu zadávaných hodnot v poli je pak přizpůsobena komponenta ulehčující uživateli vyplnění. Pro technické místo je možné si nechat zobrazit dialog s hierarchií technických míst a vybavení si z něho vybrat. U elementů s pevně daným výběrem a zároveň striktně omezeným počtem je pak vybrána komponenta SelectList a podobně. Podoba stránky pro desktop a mobilní zařízení je vidět na obrázku \ref{img:view_zalozeni_pu} níže.
 \begin{figure}[H]
@@ -1235,7 +1235,7 @@ Výsledná stránka je reprezentována formulářem o sedmi prvcích. Podle typu
 \label{sssec:fiori_vyroba}
 Stránka je navržena tak, aby odpovídala funkčním požadavkům spadající pod roli Operátora výroby. Musí zde tedy býti dostupný seznam jednotlivých hlášení (poruchy, prevence a údržby) pro jeho přidělené pracoviště. V rámci jednotlivých hlášení je zapotřebí mít k dispozici relevantní operace, které s nimi operátor může provést.
 \paragraph{View}
-Z důvodu responzibility se jedná o první stránku, kde je zapotřebí již v rámci view řešit rozlišení používaného zařízení z důvodu obsáhlé tabulky, která se na mobilních zařízeních nebude vhodně zobrazovat. V horní části obrazovky jsou navrženy dva filtry. První z nich je na typ zobrazovaného hlášení a druhým je filtr na technická místa. Filtr přes druh hlášení nejen, že filtruje data, ale i mění zobrazované informace. Požadovaná zobrazovaná data k jednotlivých typům hlášením nejsou totiž identická. Tato část je pro desktopová i mobilní zařízeni stejná. Dále se však struktura stránky liší. 
+Z důvodu responzibility se jedná o první stránku, kde je zapotřebí již v rámci view řešit rozlišení používaného zařízení z důvodu obsáhlé tabulky, která se na mobilních zařízeních nebude vhodně zobrazovat. V horní části obrazovky jsou navrženy dva filtry. První z nich je na typ zobrazovaného hlášení a druhým je filtr na technická místa. Filtr přes druh hlášení nejen, že filtruje data, ale i mění zobrazované informace. Požadovaná zobrazovaná data k jednotlivým typům hlášením nejsou totiž identická. Tato část je pro desktopová i mobilní zařízeni stejná. Dále se však struktura stránky liší. 
 \paragraph{View (desktop)}
 Pod filtry je navržena tabulka se všemi možnými sloupci, které se mohou v rámci stránky zobrazit. V rámci jednotlivých sloupců jsou pak přiděleny agregace na UI komponenty vyhovujícím požadavkům. Jedná se především o texty a tlačítka, která jsou zobrazována v závislosti na stavu (statusu) hlášení. O logiku se stará knihovna utils \ref{file:utils.js} implementující funkce rozhodující o informaci zobrazit nebo nezobrazit.
 \paragraph{View (mobile)}
@@ -1249,7 +1249,7 @@ dev.getProperty("/resize").attachHandler(this.onResize);
 	\end{lstlisting}
 	\caption{Přiřazení posluchače ve formě funkce k hodnotě modelu}	
 	\label{code:resize_attach_handler}
-	\small Jedná se o výtažek kódu v inicializační funkci onInit. Spočívá v načtení device modelu a přiřazení posluchače v podobě funkce onResize, která se provede vždy při změně rozlišení. To znamená zahrnuje i případ otočení displeje na mobilních zařízeních.
+	\small Jedná se o výtažek kódu v inicializační funkci onInit. Spočívá v načtení modelu zařízení a přiřazení posluchače v podobě funkce onResize, která se provede vždy při změně rozlišení. To znamená zahrnuje i případ otočení displeje na mobilních zařízeních.
 \end{algorithm}	
 \begin{algorithm}[H]
 	\begin{lstlisting}[language=java]      
@@ -1279,7 +1279,7 @@ Cílem návrhu této stránky bylo maximální možné eliminování tlačítek 
 \label{sssec:fiori_udrzba}
 Stránka je navržena tak, aby odpovídala funkčním požadavkům spadající pod roli Údržbáře. Musí zde tedy býti dostupný seznam jednotlivých hlášení (poruchy, prevence a údržby) připravených k provedení servisního úkonu. V rámci jednotlivých hlášení je zapotřebí mít k dispozici relevantní operace, které s nimi údržbář může provést.
 \paragraph{View}
-Jelikož je seznam jednotlivých druhů hlášení řešen pomocí tabulky, stejně jako v případě operátora výroby \ref{sssec:fiori_vyroba}, je opět přistoupeno k oddělení jednotlivých view na fragmenty, které se v závislosti na šířce e používaného zařízení přidávají a odebírají. Oproti stránce pro operátory výroby je zde ale požadovaných funkcionalit trochu více a proto je rozdělení typů hlášení řešeno jinak. Místo přepínacího filtru mezi poruchami, prevencemi a údržbami vzniklo pět záložek. Tři z nich kopírují druhy hlášení, zbylé dvě slouží pro dohledání dokumentace k vybavení a zobrazení historie poruch.
+Jelikož je seznam jednotlivých druhů hlášení řešen pomocí tabulky, stejně jako v případě operátora výroby \ref{sssec:fiori_vyroba}, je opět přistoupeno k oddělení jednotlivých view na fragmenty, které se v závislosti na šířce e používaného zařízení přidávají a odebírají. Oproti stránce pro operátory výroby je zde ale požadovaných funkcionalit trochu více, a proto je rozdělení typů hlášení řešeno jinak. Místo přepínacího filtru mezi poruchami, prevencemi a údržbami vzniklo pět záložek. Tři z nich kopírují druhy hlášení, zbylé dvě slouží pro dohledání dokumentace k vybavení a zobrazení historie poruch.
 \paragraph{View (desktop)}
 Všech pět záložek je řešeno pomocí tabulek s různými sloupci. Požadavek na minimální počet zobrazených elementů zůstává. A i zde jsou proto texty a tlačítka zobrazována na základě knihovny utils \ref{file:utils.js}. 
 \paragraph{View (mobile)} 
@@ -1400,7 +1400,7 @@ Při spuštění testu dojde k vytvoření instance třídy GWServlet z metody s
 
 Metody setUp a tearDown zajišťují nezávislost testů, jsou totiž volány mezi jednotlivými testy a jde čas pro resetování inicializování instance nebo jiných aktivit nutných pro správnost testů. 
 
-Na následujících dvou obrázcích \ref{img:unit_test_success} a \ref{img:unit_test_error} jsou ukázky výstupu provedených jednotkových testů v prostředí Eclipse.	
+Na následujících dvou obrázcích \ref{img:unit_test_success} a \ref{img:unit_test_error} jsou ukázky výstupu provedených jednotkových testů v prostředí Eclipse \cite{eclipse}.	
 
 \begin{figure}[H]
 	\centering
@@ -1417,7 +1417,7 @@ Na následujících dvou obrázcích \ref{img:unit_test_success} a \ref{img:unit
 \end{figure}
 
 \subsection{UI vrstva}
-K testování má framework SAPUI5 vlastní technologii OPA5 (One Page Acceptance Tests), která umožňuje testovat UI aplikace. Poskytuje asynchronní přístup k prvkům SAPUI5. Síla technologie spočívá pro testování uživatelské interakce, integraci, navigaci a svazování komponent s datovými modely. Technologie je založena na programovacím jazyku JavaScript, což je vzhledem k použití tohoto jazyka i aplikačního frameworku celkem očekávané a vhodné. V ukázce kódu \ref{code:OPA5Test} níže je k nahlédnutí struktura základního testu. V podstatě se jedná o HTML stránku, která si pomocí JavaScriptu natáhne potřebná view aplikace testované aplikace a za pomocí komponty OPA5 na nich provádí testy.
+K testování má framework SAPUI5 vlastní technologii OPA5 (One Page Acceptance Tests), která umožňuje testovat UI aplikace. Poskytuje asynchronní přístup k prvkům SAPUI5. Síla technologie spočívá pro testování uživatelské interakce, integraci, navigaci a svazování komponent s datovými modely. Technologie je založena na programovacím jazyku JavaScript, což je vzhledem k použití tohoto jazyka i aplikačního frameworku celkem očekávané a vhodné. V ukázce kódu \ref{code:OPA5Test} níže je k nahlédnutí struktura základního testu. V podstatě se jedná o HTML stránku, která si pomocí JavaScriptu natáhne potřebná view aplikace testované aplikace a za pomocí komponenty OPA5 na nich provádí testy.
 
 \begin{algorithm}[H]
 	\begin{lstlisting}[language=java]   
@@ -1452,7 +1452,7 @@ V této sekci jsou popsána dvě vývojová prostředí umožňující vývoj ap
 
 \subsection{Eclipse s pluginem pro SAPUI5}
 \label{ssec:eclipse_sapui5}
-Eclipse umožňuje vyvíjet plnohodnotné aplikace ve frameworku SAPUI5. Jelikož ze v zásadě jedná o standardní dynamický web projekt akorát s připojenými knihovnami SAPUI5, vývoj tak probíhá dle očekávání. Umožňuje exportovat v mnoha variantách. Pro běh aplikace v Tomcat Apache je zapotřebí projekt vyexportovat do web archivu WAR. Ten poté stačí nahrát do kořenového adresáře web serveru, kde je následně rozbalen do potřebných souborů sloužících k přístupu do aplikace z webového prohlížeče. Podoba vývojové prostředí je viditelná na obrázku \ref{img:eclipse_design} níže. 
+Eclipse umožňuje vyvíjet plnohodnotné aplikace ve frameworku SAPUI5. Jelikož se v zásadě jedná o standardní dynamický web projekt akorát s připojenými knihovnami SAPUI5, vývoj tak probíhá dle očekávání. Umožňuje exportovat v mnoha variantách. Pro běh aplikace v Tomcat Apache je zapotřebí projekt vyexportovat do web archivu WAR. Ten poté stačí nahrát do kořenového adresáře web serveru, kde je následně rozbalen do potřebných souborů sloužících k přístupu do aplikace z webového prohlížeče. Podoba vývojové prostředí je viditelná na obrázku \ref{img:eclipse_design} níže. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/eclipse_design}
@@ -1464,7 +1464,7 @@ Vzhled a pořadí oken se dá v Eclipse libovolně měnit, nicméně v základn�
 
 \subsection{SAP Web IDE}
 \label{ssec:sap_web_ide}
-Reprezentuje modernější přístup k vývoji webových aplikací. Jedná se o cloudové vývojové prostředí, tudíž sdílet identické prostředí může více vývojářů současně. Kompletní vývoj je uložen ve sdíleném uložišti, které může být sdíleno do verzovacího prostředí Gitu. Nabízí širokou škálu různých dynamických funkcionalit, které pomáhají urychlit vývoj aplikace. Takovou funkcionalitou je především tvorba aplikací z předem připravených šablon. Dále se jedná o možnost rozšíření zakoupených aplikací od společnosti SAP. Zakoupená aplikace pro přehled objednávek tak může být například rozšířena o zákaznické pole u položky objednávky.
+Reprezentuje modernější přístup k vývoji webových aplikací. Jedná se o cloudové vývojové prostředí, tudíž sdílet identické prostředí může více vývojářů současně. Kompletní vývoj je uložen ve sdíleném uložišti, které může být sdíleno do verzovacího prostředí Gitu. Nabízí širokou škálu různých dynamických funkcionalit, které pomáhají urychlit vývoj aplikace. Takovou funkcionalitou je především tvorba aplikací z předem připravených šablon. Dále se jedná o možnost rozšíření zakoupených aplikací od společnosti SAP. Zakoupená aplikace pro přehled objednávek tak může být například rozšířena o zákaznické pole u položky objednávky \cite{webide}.
 
 Určité omezení nastává v případě, že aplikace není cílena pro standardní nasazení očekávané od společnosti SAP. Z vývojového prostředí se očekává nahrání aplikace pouze na SAP GW. A to je znát i při vývoji aplikace z datového hlediska. V případě, že by bylo zapotřebí použít nějakou komunikační mezivrstvu (Servlet), je zapotřebí si takovou vrstvu vybudovat mimo SAP Web IDE. Standardní cestou vývoje se očekávají statické modely vytvořené v rámci aplikace nebo komunikace pomocí OData se SAP GW. 
 \begin{figure}[H]
@@ -1713,14 +1713,16 @@ S výsledkem své práce jsem spokojený. Podařilo se mi dosáhnout všech stan
 
 \begin{figure}
 	\dirtree{%
-		.1 readme.txt\DTcomment{stručný popis obsahu CD}.
-		.1 exe\DTcomment{adresář se spustitelnou formou implementace}.
+		.1 thesis\DTcomment{textová část diplomové práce spolu se zadáním}.
+		.2 DP\_Morávek\_Marcel\_2018.pdf\DTcomment{diplomová práce ve formátu PDF}.
+		.2 assignment.pdf\DTcomment{zadání diplomové práce ve formátu PDF}.
 		.1 src.
-		.2 impl\DTcomment{zdrojové kódy implementace}.
-		.2 thesis\DTcomment{zdrojová forma práce ve formátu \LaTeX{}}.
-		.1 text\DTcomment{text práce}.
-		.2 thesis.pdf\DTcomment{text práce ve formátu PDF}.
-		.2 thesis.ps\DTcomment{text práce ve formátu PS}.
+		.2 fiori\DTcomment{zdrojové soubory SAPUI5 aplikací}.
+		.3 pm\DTcomment{hlavní SAPUI5 aplikace}.	
+		.3 pmlogin\DTcomment{login SAPUI5 aplikace}.	
+		.3 pmloginmodule\DTcomment{JAAS login modul}.			
+		.2 latex\DTcomment{zdrojové soubory textové části diplomové práce}.
+		.3 images\DTcomment{použité obrázky}.	
 	}
 \end{figure}
 
